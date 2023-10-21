@@ -5,7 +5,10 @@
 <mapper namespace="com.health.mybatis">
  
   <select id="loginMember" resultType="MemberDto" parameterType="MemberDto">
-  	select * from member where id = #{id} and password = #{password}
+  	select * from member where id = #{id} and pw = #{pw}
   </select>
+    <update id="updateMember" parameterType="MemberDto">
+        update member set nickname = #{nickname}, address = #{address}, addressDetail=#{addressDetail}, email = #{email} where userno = #{userNo}
+    </update>
 	
 </mapper>

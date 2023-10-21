@@ -1,7 +1,6 @@
-package com.health.controller.personal.member;
+package com.health.controller.personal;
 
 import com.health.dao.MemberDao;
-import com.health.dao.MemberDaoImpl;
 import com.health.dto.MemberDto;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -9,12 +8,12 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "MemberInfo", value = "/personal/member/info")
+@WebServlet(name = "MemberInfo", value = "/personal/member-info")
 public class MemberInfo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MemberDto memberDto = new MemberDto();
-        MemberDao memberDao = new MemberDaoImpl();
+        MemberDao memberDao = new MemberDao();
         memberDto.setId("id18");
         memberDto.setPw("pw18");
 
