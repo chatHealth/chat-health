@@ -39,7 +39,7 @@ public class MemberModifyProcess extends HttpServlet {
         if (result > 0) {
             response.sendRedirect("../personal/member-info");
         } else {
-            System.out.println("error");
+            //member info 수정 오류
         }
     }
 }

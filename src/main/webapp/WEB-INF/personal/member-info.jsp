@@ -103,6 +103,7 @@
             <h1>Sidebar</h1>
             <ul>
                 <li><a href="../personal/member-info">내 정보</a></li>
+                <li><a href="../personal/member-password">비밀번호 변경</a></li>
                 <li><a href="../personal/member-wish">관심 제품</a></li>
                 <li><a href="../personal/member-review">내 리뷰</a></li>
                 <li><a href="../personal/member-comments">내 댓글</a></li>
@@ -117,10 +118,36 @@
                 <div class="col-4">
                     <!-- Profile Picture -->
                     <div class="profile-picture">
-                        <img src="https://via.placeholder.com/150" alt="Profile Picture">
+<%--                        <img src="https://via.placeholder.com/150" alt="Profile Picture">--%>
+                        <img src="/uploadProfile/${loginSession.profile }" alt="Profile Picture">
                         <div class="edit-button">
-                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>
+<%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
+<%--                        </div>--%>
+                        <button id="editBtn" class="btn" style="background: none; border: none; color: white;">Edit</button>
+                        <!-- 회원가입 확인 Modal-->
+                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="profileModalLabel">프로필 사진 변경</h5>
+                                    </div>
+                                    <form action="../personal/member-profile-image" enctype="multipart/form-data" method="post">
+                                    <div class="modal-body">
+                                    <!-- 프로필 사진 업로드 양식 -->
+                                    <div class="form-group">
+<%--                                    <label for="profileImage">프로필 사진 업로드</label>--%>
+                                    <input type="file" class="form-control-file" id="profileImage" name="profileImage">
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">닫기</button>
+                                    <button type="submit" class="btn btn-primary">저장</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                     </div>
                 </div>
                 <div class="col-8">
@@ -131,28 +158,24 @@
                             <tbody>
                             <tr>
                                 <th scope="row" class="w-25">Name</th>
-                                <td class="w-75">${loginMember.name }</td>
+                                <td class="w-75">${loginSession.name }</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="w-25">NickName</th>
-                                <td class="w-75">${loginMember.nickname }</td>
+                                <td class="w-75">${loginSession.nickname }</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="w-25">Address</th>
-                                <td class="w-75">${loginMember.address }</td>
+                                <td class="w-75">${loginSession.address }</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="w-25">Address Detail</th>
-                                <td class="w-75">${loginMember.addressDetail }</td>
+                                <td class="w-75">${loginSession.addressDetail }</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="w-25">E-Mail</th>
-                                <td class="w-75">${loginMember.email }</td>
+                                <td class="w-75">${loginSession.email }</td>
                             </tr>
-<%--                            <tr>--%>
-<%--                                <th scope="row" class="w-25">Gender</th>--%>
-<%--                                <td class="w-75">x${loginMember.gender }</td>--%>
-<%--                            </tr>--%>
                             </tbody>
                         </table>
                         <div class="info-text"><a href="../personal/member-modify" style="color:inherit">정보 수정</a></div>
@@ -163,5 +186,14 @@
     </div>
 </div>
 
-
+<script>
+    $('#editBtn').click(function(e){
+        e.preventDefault();
+        $('#editModal').modal("show");
+    });
+    $('#close').click(function(e){
+        e.preventDefault();
+        $('#editModal').modal("hide");
+    });
+</script>
 <%@ include file="../include/footer.jsp" %>

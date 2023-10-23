@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: wonu
-  Date: 10/21/23
-  Time: 11:55
+  Date: 10/23/23
+  Time: 09:39
   To change this template use File | Settings | File Templates.
 --%>
 
@@ -101,7 +101,7 @@
 			<h1>Sidebar</h1>
 			<ul>
 				<li><a href="../personal/member-info">내 정보</a></li>
-				<li><a href="../personal/member-password-change">비밀번호 변경</a></li>
+				<li><a href="../personal/member-password">비밀번호 변경</a></li>
 				<li><a href="../personal/member-wish">관심 제품</a></li>
 				<li><a href="../personal/member-review">내 리뷰</a></li>
 				<li><a href="../personal/member-comments">내 댓글</a></li>
@@ -111,27 +111,40 @@
 
 		<!-- Content -->
 		<div class="col-9 content">
-			<h1>Edit Member Profile</h1>
-			<form action="../personal/member-modify-process" method="post">
-				<div class="mb-3">
-					<label for="email" class=form-label">Email</label>
-<%--					<span class="input-group-text">@</span>--%>
-					<input type="email" class="form-control" id="email" name="email" value=${loginSession.email }>
-
+			<h4 class="mb-3">Billing address</h4>
+			<form action="../personal/member-password-process" class="needs-validation" novalidate="" method="post">
+				<div class="row g-3">
+					<div class="col-12">
+						<label for="username" class="form-label">비밀번호</label>
+						<div class="input-group has-validation">
+<%--							<span class="input-group-text">@</span>--%>
+							<input type="password" class="form-control" id="username" placeholder="password" required="" name="password">
+							<div class="invalid-feedback">
+								password
+							</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<label for="username" class="form-label">비밀번호 확인</label>
+						<div class="input-group has-validation">
+<%--							<span class="input-group-text">@</span>--%>
+							<input type="password" class="form-control" id="username" placeholder="password" required="" name="passwordCheck">
+							<div class="invalid-feedback">
+							</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<label for="username" class="form-label">새로운 비밀번호</label>
+						<div class="input-group has-validation">
+<%--							<span class="input-group-text">@</span>--%>
+							<input type="password" class="form-control" id="username" placeholder="new password" required="" name="newPassword">
+							<div class="invalid-feedback">
+							</div>
+						</div>
+					</div>
+				<button class="w-100 btn btn-primary btn-lg" type="submit">비밀번호 변경</button>
+				<button class="w-100 btn btn-primary btn-lg" type="submit">취소</button>
 				</div>
-				<div class="mb-3">
-					<label for="nickname" class="form-label">Nickname</label>
-					<input type="text" class="form-control" id="nickname" name="nickname" value=${loginSession.nickname }>
-				</div>
-				<div class="mb-3">
-					<label for="address" class="form-label">Address</label>
-					<input type="text" class="form-control" id="address" name="address" value=${loginSession.address }>
-				</div>
-				<div class="mb-3">
-					<label for="addressDetail" class="form-label">Address Detail</label>
-					<input type="text" class="form-control" id="addressDetail" name="addressDetail" value=${loginSession.addressDetail }>
-				</div>
-				<button type="submit" class="btn btn-primary">Update Profile</button>
 			</form>
 		</div>
 	</div>

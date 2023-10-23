@@ -20,7 +20,7 @@ public class MemberInfo extends HttpServlet {
         HttpSession session = request.getSession();
         MemberDto loginMember = memberDao.loginMember(memberDto);
 
-        session.setAttribute("loginMember", loginMember);
+        session.setAttribute("loginSession", loginMember);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-info.jsp");
         requestDispatcher.forward(request, response);
