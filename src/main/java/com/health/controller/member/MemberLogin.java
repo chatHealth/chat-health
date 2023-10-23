@@ -1,4 +1,4 @@
-package com.jjang051.controller.member;
+package com.health.controller.member;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,9 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Servlet implementation class MemberLogin
- */
+
 @WebServlet("/member/login")
 public class MemberLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;

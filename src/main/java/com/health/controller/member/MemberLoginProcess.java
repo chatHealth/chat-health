@@ -1,4 +1,4 @@
-package com.jjang051.controller.member;
+package com.health.controller.member;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,13 +9,12 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import com.jjang051.dao.MemberDao;
-import com.jjang051.dto.MemberDto;
-import com.jjang051.dto.ModalState;
+import com.health.dao.MemberDao;
+import com.health.dto.MemberDto;
+import com.health.dto.ModalState;
+import com.health.util.ScriptWriter;
 
-/**
- * Servlet implementation class MemberLoginProcess
- */
+
 @WebServlet("/member/login-process")
 public class MemberLoginProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,34 +27,37 @@ public class MemberLoginProcess extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userID = request.getParameter("userID");
-		String userPW = request.getParameter("userPW");
-		MemberDto loggedMember = null;
-		MemberDto memberDto = new MemberDto();
-		memberDto.setId(userID);
-		memberDto.setPassword(userPW);
+		String userID= request.getParameter("userID");
+		String userPW= request.getParameter("userPW");
+		
 		MemberDao memberDao = new MemberDao();
-		loggedMember = memberDao.loginMember(memberDto);
+		MemberDto parameterMemberDto = new MemberDto();
+		MemberDto loggedMember = null;
+		parameterMemberDto.setID(userID);
+		parameterMemberDto.setPW(userPW);
+		loggedMember = memberDao.loginMember(parameterMemberDto);
 		if(loggedMember!=null) {
-			HttpSession session = request.getSession();
+			HttpSession loginSession = request.getSession();
 			ModalState modalState = new ModalState("show","로그인되었습니다.");
-			session.setAttribute("modalState", modalState);
-			session.setAttribute("loggedID", loggedMember.getId());
-			session.setAttribute("loggedName", loggedMember.getName());
-			session.setAttribute("profile", loggedMember.getProfile());
-			response.sendRedirect("../board/list");
+			loginSession.setAttribute("modalState", modalState);
+			loginSession.setAttribute("loggedID", loggedMember.getID());
+			loginSession.setAttribute("loggedName", loggedMember.getName());
+			loginSession.setAttribute("profile", loggedMember.getProfile());
+			System.out.println(loginSession.getAttribute("loggedID"));
+			response.sendRedirect("../board/list"); //사랑이 메인페이지 만들어지면 수정 필요.
+		} else {
+			ScriptWriter.alertAndGo(response, "아이디 혹은 비밀번호가 일치하지 않습니다.", "/");
 		}
+		
 	}
+
 }

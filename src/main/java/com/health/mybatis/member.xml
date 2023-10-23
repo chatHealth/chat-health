@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.helath.mybatis">
+	<select id="loginMember" resultType="MemberDto" parameterType="MemberDto">
+		SELECT ID = #{id}, #{pw} FROM member UNION SELECT ID = #{id}, PW = #{pw}FROM enterprise;
+	</select>
+	<insert id="insertMember" parameterType="MemberDto">
+		insert into member values(
+									seq_member.nextval,
+									#{nickname}
+									#{id},
+									#{pw},
+									#{name},
+									#{birth},
+									#{gender},								
+									#{email},
+									#{address},
+									#{addressdetail},
+									sysdate,
+									#{profile},
+									#{deleted},
+									#{grade}							
+									
+								  )
+	</insert>
+	<select id="idCheck" resultType="int" parameterType="String">
+		select count(*) as count from member where id = #{id}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
