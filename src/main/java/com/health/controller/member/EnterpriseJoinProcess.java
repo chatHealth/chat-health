@@ -40,16 +40,26 @@ public class EnterpriseJoinProcess extends HttpServlet {
 		String name = request.getParameter("name");
 		String ceo = request.getParameter("ceo");
 		String pw = request.getParameter("pw");
+		String pw2 = request.getParameter("pw2");
 		String address = request.getParameter("address");		
 		String addressDetail = request.getParameter("addressDetail");
 		String tel = request.getParameter("tel");
 		Part profile = request.getPart("profile");
 		int accepted = Integer.parseInt(request.getParameter("accepted"));
 		
+		// 비번 일치여부 확인
+		if(pw == pw2) {
+			return;
+		}else {
+			HttpSession session = request.getSession();
+			ModalState modalState = new ModalState("show","오류입니다.");
+			session.setAttribute("modalState", modalState);
+			response.sendRedirect("../member/enterprise-join");
+			}
 		
 		//2. < 이미지 처리 >
 				// 파일 업로드 경로 바깥에
-				String uploadDir = "C:\\upload";
+				String uploadDir = "C:\\Users\\user\\Pictures";
 				String realUploadPath = uploadDir;
 
 				// 파일이름찾기
@@ -59,9 +69,13 @@ public class EnterpriseJoinProcess extends HttpServlet {
 				String originFileName = partHeaderArray[1].trim().replace("\"", ""); // 맨뒤 따옴표 제거
 
 				String newFileName = "";
+				System.out.println(newFileName);
 				if (!originFileName.isEmpty()) {
 					// 실질적인(물리적인)경로에 파일생기도록
+				
 					profile.write(realUploadPath + File.separator + originFileName);
+					
+					
 
 					// 파일명바꾸기 -날짜붙이기
 					Date now = new Date();
@@ -78,6 +92,7 @@ public class EnterpriseJoinProcess extends HttpServlet {
 
 				}
 				
+				System.out.println("code-"+code);
 				//3. 데이터 set
 				EnterpriseDto parameterDto = new EnterpriseDto();
 				parameterDto.setId(code);
@@ -88,6 +103,7 @@ public class EnterpriseJoinProcess extends HttpServlet {
 				parameterDto.setAddress(address);
 				parameterDto.setAddressDatail(addressDetail);
 				parameterDto.setTel(tel);
+				parameterDto.setProfile(realUploadPath + File.separator + newFileName);
 				parameterDto.setAccepted(accepted);
 				
 				//4. 인서트

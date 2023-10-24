@@ -8,13 +8,13 @@
 
     <div class="form-floating">
     <label for="userID">아이디</label>
-      <input type="text" class="form-control" id="userID" placeholder="아이디" name="userID" 
+      <input type="text" class="form-control" id="userID" placeholder="ID" name="userID" 
       value="${cookie.saveIDCookie.value}"> 
       
     </div>
     <div class="form-floating">
-    <label for="userPW">패스워드</label>
-      <input type="password" class="form-control" id="userPW" placeholder="비밀번호" name="userPW">      
+    <label for="userPW">비밀번호</label>
+      <input type="password" class="form-control" id="userPW" placeholder="Password" name="userPW">      
     </div>
 
     <div class="checks">    	

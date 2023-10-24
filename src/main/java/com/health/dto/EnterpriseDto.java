@@ -122,7 +122,7 @@ public class EnterpriseDto {
 		super();
 		this.enterpriseNo = enterpriseNo;
 		this.id = id;
-		this.id = id;
+		this.code = code;
 		this.pw = PW;
 		this.name = name;
 		this.profile = profile;

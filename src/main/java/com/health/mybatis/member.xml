@@ -22,7 +22,7 @@
 									#{gender},								
 									#{email},
 									#{address},
-									#{addressdetail},
+									#{addressDetail},
 									sysdate,
 									#{profile},
 									#{deleted},
@@ -32,7 +32,7 @@
 	</insert>
 	<insert id="insertEnterprise" parameterType="EnterpriseDto">
 		insert into enterprise values (
-														seq_enterprise,
+														seq_enterprise.nextval,
 														#{code},
 														#{code},
 														#{pw},
@@ -41,8 +41,8 @@
 														#{ceo},
 														#{address},
 														#{tel},
-														#{acceptedDate},
-														#{deletedDate},
+														#{accepted},
+													 	Null,
 														#{addressDetail}
 													)
 	</insert>

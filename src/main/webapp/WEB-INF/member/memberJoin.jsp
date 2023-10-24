@@ -2,31 +2,27 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
-<h1 class="h3 mb-3 fw-normal">사업자 회원가입</h1>
+<h1 class="h3 mb-3 fw-normal">개인 회원가입</h1>
 
 <form action="../member/enterprise-join-process" method="post" enctype="multipart/form-data">
       <div class="form-join m-auto">
-        <div class="mb-3"><!--사업자번호-->          
-          <label for="code" class="form-label">사업자번호</label>
-          <input type="text" class="form-control" id="code" aria-describedby="idHelp" name="code" placeholder="000-00-00000" />
-          <div id="idHelp" class="form-text">사업자 회원은 사업자번호를 아이디로 사용하게 됩니다.</div>
+        <div class="mb-3">        
+          <label for="id" class="form-label">아이디</label>
+          <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id" placeholder="아이디를 입력해주세요" />
+          <div id="idHelp" class="form-text"> !욕설등, 부적절한 아이디는 관리자에 의해 강제 탈퇴 될 수 있습니다.</div>
         </div>
         
-        <div class="mb-3"><!--상호명-->          
-          <label for="companyName" class="form-label">상호명</label>
-          <input type="text" class="form-control" id="companyName" name="name"/>
+        <div class="mb-3"><!--이메일-->          
+          <label for="email" class="form-label">이메일</label>
+          <input type="text" class="form-control" id="email" name="email"/>
         </div>
         
-        <div class="mb-3"><!--대표자-->
+        <div class="mb-3"><!--이름-->
           
-          <label for="ceo" class="form-label">대표자 명</label>
-          <input type="text" class="form-control" id="ceo" name="ceo"/>
+          <label for="name" class="form-label">이름</label>
+          <input type="text" class="form-control" id="name" name="name"/>
         </div>
-        <div class="mb-3"><!--전화번호-->          
-          <label for="tel" class="form-label">사업장 연락처</label>
-          <input type="text" class="form-control" id="tel" name="tel" placeholder="ex)02-123-1234"/>
-        </div>
-        
+                
         <div class="mb-3"><!--비번-->
           
           <label for="password" class="form-label">비밀번호</label>
@@ -36,10 +32,11 @@
           
           <label for="password2" class="form-label">비밀번호 확인</label>
           <input type="password" class="form-control" id="password2" name="pw2"/>
-        </div>
+        </div>  
+          
         <div class="mb-3"><!--사업장소재지,우편번호찾기 API 연동-->
           
-          <label for="address" class="form-label">사업장 소재지</label>
+          <label for="address" class="form-label">주소</label>
           <input type="text" id="sample4_postcode" placeholder="우편번호">
 		  <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 		  <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address">
@@ -116,11 +113,21 @@
 			</div>
 		
 		
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="accepted" name="accepted" value="0" required/>
-          <label class="form-check-label w-100" for="accepted" value=0 >사업자 회원은 가입신청 후 승인완료 되면 활동 하실 수 있습니다.</label>
+        <div class="mt-3 form-check">
+          <input type="checkbox" class="form-check-input mt-5" id="grade" name="grade" value="10" required/>
+          <label class="form-check-label w-100 mt-5 agree" for="accepted" value=0 >
+          (필수) <a href="../useAgree.jsp" target="_blank">이용약관</a>과 <a href="../personal.jsp" target="_blank">개인정보 수집 및 이용</a>에 동의합니다.
+          </label>
+          <script> <!--이용처리방침 팝업 스크립트-->
+        function popup(){
+            var url = "popup.html";
+            var name = "popup test";
+            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+            window.open(url, name, option);
+        }
+    </script>
         </div>
-        <button type="submit" class="btn btn-primary w-100" name="">회원가입 신청하기</button>
+        <button type="submit" class="btn btn-primary w-100 mt-20" name="">회원가입 신청하기</button>
       </div>
     </form>
 
