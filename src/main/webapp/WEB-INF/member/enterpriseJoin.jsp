@@ -2,44 +2,48 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <h1 class="h3 mb-3 fw-normal">로그인</h1>
-<form>
+<form action="../member/enterprise-join-process" method="post">
       <div class="form-join m-auto">
-        <div class="mb-3">
-          <!--사업자번호-->
+        <div class="mb-3"><!--사업자번호-->          
           <label for="id" class="form-label">사업자번호</label>
-          <input type="text" class="form-control" id="id" aria-describedby="idHelp" placeholder="000-00-00000" />
+          <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="code" placeholder="000-00-00000" />
           <div id="idHelp" class="form-text">사업자 회원은 사업자번호를 아이디로 사용하게 됩니다.</div>
         </div>
-        <div class="mb-3">
-          <!--상호명-->
+        
+        <div class="mb-3"><!--상호명-->          
           <label for="companyName" class="form-label">상호명</label>
-          <input type="text" class="form-control" id="companyName" />
+          <input type="text" class="form-control" id="companyName" name="name"/>
         </div>
-        <div class="mb-3">
-          <!--대표자-->
+        
+        <div class="mb-3"><!--대표자-->
+          
           <label for="ceo" class="form-label">대표자 명</label>
-          <input type="text" class="form-control" id="ceo" />
+          <input type="text" class="form-control" id="ceo" name="ceo"/>
         </div>
-        <div class="mb-3">
-          <!--비번-->
+        <div class="mb-3"><!--전화번호-->          
+          <label for="tel" class="form-label">사업장 연락처</label>
+          <input type="text" class="form-control" id="tel" name="tel"/>
+        </div>
+        
+        <div class="mb-3"><!--비번-->
+          
           <label for="password" class="form-label">비밀번호</label>
-          <input type="password" class="form-control" id="password" />
+          <input type="password" class="form-control" id="password" name="pw"/>
         </div>
-        <div class="mb-3">
-          <!--비번확인-->
+        <div class="mb-3"><!--비번확인-->
+          
           <label for="password2" class="form-label">비밀번호 확인</label>
           <input type="password" class="form-control" id="password2" />
         </div>
-        <div class="mb-3">
-          <!--사업장소재지, 우편번호찾기 API 연동 필요-->
+        <div class="mb-3"><!--사업장소재지,우편번호찾기 API 연동-->
+          
           <label for="location" class="form-label">사업장 소재지</label>
           <input type="text" id="sample4_postcode" placeholder="우편번호" />
           <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" /><br />
-          <input type="text" id="sample4_roadAddress" placeholder="도로명주소" />
-          <input type="text" id="sample4_jibunAddress" placeholder="지번주소" />
+          <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address"/>
+          <input type="text" id="sample4_jibunAddress" placeholder="지번주소"/>
           <span id="guide" style="color: #999; display: none"></span>
-          <input type="text" id="sample4_detailAddress" placeholder="상세주소" />
-          <input type="text" id="sample4_extraAddress" placeholder="참고항목" />
+          <input type="text" id="sample4_detailAddress" placeholder="상세주소" name="addressDetail"/>
 
           <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
           <script>
@@ -99,11 +103,19 @@
             }
           </script>
         </div>
+        <!-- 프로필 이미지 삽입 -->
+        <div class="mb-3">
+			<div class="col-20 mt-3 ">	
+            	<input type="file" class="form-control" id="profile" placeholder="png,jpg" name="profile"
+            	accept="image/gif, image/jpeg, image/png" />
+			</div>
+		
+		
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="accepted" />
+          <input type="checkbox" class="form-check-input" id="accepted" name="accepted" required/>
           <label class="form-check-label w-100" for="accepted">사업자 회원은 가입신청 후 승인완료 되면 활동 하실 수 있습니다.</label>
         </div>
-        <button type="submit" class="btn btn-primary w-100">회원가입 신청하기</button>
+        <button type="submit" class="btn btn-primary w-100" name="">회원가입 신청하기</button>
       </div>
     </form>
 

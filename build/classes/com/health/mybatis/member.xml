@@ -4,8 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.helath.mybatis">
 	<select id="loginMember" resultType="MemberDto" parameterType="MemberDto">
-		SELECT ID = #{id}, #{pw} FROM member UNION SELECT ID = #{id}, PW = #{pw}FROM enterprise;
+		SELECT ID, PW FROM member
+		WHERE ID = #{id} AND PW = #{pw}
+		UNION ALL
+		SELECT ID, PW FROM enterprise
+		WHERE ID = #{id} AND PW = #{pw};
 	</select>
+	
 	<insert id="insertMember" parameterType="MemberDto">
 		insert into member values(
 									seq_member.nextval,
@@ -24,6 +29,22 @@
 									#{grade}							
 									
 								  )
+	</insert>
+	<insert id="insertEnterprise" parameterType="EnterpriseDto">
+		insert into enterprise values (
+														seq_enterprise,
+														#{code},
+														#{code},
+														#{pw},
+														#{name},
+														#{profile},
+														#{ceo},
+														#{address},
+														#{tel},
+														#{acceptedDate},
+														#{deletedDate},
+														#{addressDetail}
+													)
 	</insert>
 	<select id="idCheck" resultType="int" parameterType="String">
 		select count(*) as count from member where id = #{id}

@@ -8,9 +8,10 @@ public class EnterpriseDto {
 	private String name;
 	private String profile;
 	private String ceo;
-	private String location;
+	private String address;
+	private String addressDetail;
 	private String tel;
-	private String acceptedDate;
+	private int accepted;
 	private String deletedDate;
 	
 	//getter&setter
@@ -70,12 +71,19 @@ public class EnterpriseDto {
 		this.ceo = ceo;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+
+	public void setAddressDatail(String addressDetail) {
+		this.addressDetail = addressDetail;
 	}
 
 	public String getTel() {
@@ -86,12 +94,12 @@ public class EnterpriseDto {
 		this.tel = tel;
 	}
 
-	public String getAcceptedDate() {
-		return acceptedDate;
+	public int getAccepted() {
+		return accepted;
 	}
 
-	public void setAcceptedDate(String acceptedDate) {
-		this.acceptedDate = acceptedDate;
+	public void setAccepted(int accepted) {
+		this.accepted = accepted;
 	}
 
 	public String getDeletedDate() {
@@ -110,7 +118,7 @@ public class EnterpriseDto {
 	}
 
 	public EnterpriseDto(int enterpriseNo, String id, String code, String PW, String name, String profile, String ceo,
-			String location, String tel, String acceptedDate, String deletedDate) {
+			String address, String addressDetail,String tel, int accepted, String deletedDate) {
 		super();
 		this.enterpriseNo = enterpriseNo;
 		this.id = id;
@@ -119,9 +127,10 @@ public class EnterpriseDto {
 		this.name = name;
 		this.profile = profile;
 		this.ceo = ceo;
-		this.location = location;
+		this.address = address;
+		this.addressDetail = addressDetail;
 		this.tel = tel;
-		this.acceptedDate = acceptedDate;
+		this.accepted = accepted;
 		this.deletedDate = deletedDate;
 	}
 }

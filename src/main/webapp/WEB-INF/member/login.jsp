@@ -25,17 +25,14 @@
           로그인 유지
         </label>
       </div>
-      	<div class="saup">
-          <input class="form-check-input2" type="checkbox" value="enterprise" id="enterpriseLogin">
-          <label class="form-check-label2" for="enterpriseLogin">사업자회원</label>
-        </div>
+      	
      </div>
     
     <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
     
     <!--  <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>-->
   </form>
-  <div>
+  <div> <!-- 회원가입버튼 누르면 연결되는 페이지 연동 필요 -->
   <a href="../member/insert.jsp" class="nav-link"><button class="btn btn-primary w-100 pu-2 mt-3" type="submit">회원가입</button></a>
   </div>
 </div>

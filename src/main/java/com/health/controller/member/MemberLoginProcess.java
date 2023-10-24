@@ -18,13 +18,10 @@ import com.health.util.ScriptWriter;
 @WebServlet("/member/login-process")
 public class MemberLoginProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	private final MemberDao memberDao = MemberDao.getInstance();
+
     public MemberLoginProcess() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	
@@ -32,14 +29,10 @@ public class MemberLoginProcess extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userID= request.getParameter("userID");
 		String userPW= request.getParameter("userPW");
 		
-		MemberDao memberDao = new MemberDao();
 		MemberDto parameterMemberDto = new MemberDto();
 		MemberDto loggedMember = null;
 		parameterMemberDto.setID(userID);
