@@ -11,6 +11,9 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "MemberPasswordProcess", value = "/personal/member-password-process")
 public class MemberPasswordProcess extends HttpServlet {
+
+    private final MemberDao memberDao = MemberDao.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -18,6 +21,7 @@ public class MemberPasswordProcess extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
         String newPassword = request.getParameter("newPassword");
@@ -37,7 +41,6 @@ public class MemberPasswordProcess extends HttpServlet {
             MemberDto updatePasswordMember = new MemberDto();
             updatePasswordMember.setPw(password);
             updatePasswordMember.setUserNo(loginMember.getUserNo());
-            MemberDao memberDao = new MemberDao();
             int result = memberDao.updatePassword(updatePasswordMember);
             if (result > 1) {
                 response.sendRedirect("../WEB-INF/personal/member-info");

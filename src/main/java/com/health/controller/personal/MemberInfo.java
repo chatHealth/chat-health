@@ -10,10 +10,12 @@ import java.io.IOException;
 
 @WebServlet(name = "MemberInfo", value = "/personal/member-info")
 public class MemberInfo extends HttpServlet {
+
+    //생성자를 통해 MemberDao 객체를 생성할 수 없으므로 getInstance() 메서드 호출 -> singleton
+    private final MemberDao memberDao = MemberDao.getInstance();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MemberDto memberDto = new MemberDto();
-        MemberDao memberDao = new MemberDao();
         memberDto.setId("id18");
         memberDto.setPw("pw18");
 

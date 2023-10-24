@@ -12,6 +12,9 @@ import java.util.Arrays;
 
 @WebServlet(name = "MemberProfileImage", value = "/personal/member-profile-image")
 public class MemberProfileImage extends HttpServlet {
+
+    private final MemberDao memberDao = MemberDao.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -35,41 +38,39 @@ public class MemberProfileImage extends HttpServlet {
             out.flush();
             response.flushBuffer();
             out.close();
-        }
-
-        String uploadDir = "/Users/wonu/Desktop/uploadProfile";
-        System.out.println(uploadDir);
+        } else {
+            String uploadDir = "/Users/wonu/Desktop/uploadProfile";
+            System.out.println(uploadDir);
 
 //        File profileImageDir = new File(uploadDir);
 
-        HttpSession session = request.getSession();
-        MemberDto loginMember = (MemberDto) session.getAttribute("loginSession");
+            HttpSession session = request.getSession();
+            MemberDto loginMember = (MemberDto) session.getAttribute("loginSession");
 
-        String filename = loginMember.getId() + "_profileImage." + ext;
+            String filename = loginMember.getId() + "_profileImage." + ext;
 
-        System.out.println(filename);
+            System.out.println(filename);
 
-        part.write(uploadDir+"/"+filename);
+            part.write(uploadDir + "/" + filename);
 
-        MemberDto updateProfileMember = new MemberDto();
+            MemberDto updateProfileMember = new MemberDto();
 
-        MemberDao memberDao = new MemberDao();
+            updateProfileMember.setProfile(filename);
+            updateProfileMember.setUserNo(loginMember.getUserNo());
 
-        updateProfileMember.setProfile(filename);
-        updateProfileMember.setUserNo(loginMember.getUserNo());
+            int result = memberDao.updateProfileImage(updateProfileMember);
 
-        int result = memberDao.updateProfileImage(updateProfileMember);
-
-        if (result > 0) {
-            //프사 변경 완료
-            response.sendRedirect("../personal/member-info");
-        } else {
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('실패! 다시 시도 하세요'); history.go(-1);</script>");
-            out.flush();
-            response.flushBuffer();
-            out.close();
+            if (result > 0) {
+                //프사 변경 완료
+                response.sendRedirect("../personal/member-info");
+            } else {
+                response.setContentType("text/html; charset=UTF-8");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('실패! 다시 시도 하세요'); history.go(-1);</script>");
+                out.flush();
+                response.flushBuffer();
+                out.close();
+            }
         }
     }
 }

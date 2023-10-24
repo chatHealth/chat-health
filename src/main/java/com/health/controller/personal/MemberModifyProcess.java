@@ -10,6 +10,9 @@ import java.io.IOException;
 
 @WebServlet(name = "MemberModifyProcess", value = "/personal/member-modify-process")
 public class MemberModifyProcess extends HttpServlet {
+
+    private final MemberDao memberDao = MemberDao.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -33,7 +36,6 @@ public class MemberModifyProcess extends HttpServlet {
         memberDto.setAddress(address);
         memberDto.setAddressDetail(addressDetail);
 
-        MemberDao memberDao = new MemberDao();
         int result = memberDao.updateMember(memberDto);
 
         if (result > 0) {

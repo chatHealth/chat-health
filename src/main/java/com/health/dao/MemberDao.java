@@ -6,6 +6,19 @@ import org.apache.ibatis.session.SqlSession;
 
 public class MemberDao {
 
+
+    //싱글톤 적용 위해 static final instance 선언
+    private static final MemberDao instance = new MemberDao();
+
+    public static MemberDao getInstance() {
+        return instance;
+    }
+
+    //생성자를 통해 객체를 생성하지 못하도록 막음
+    private MemberDao() {
+
+    }
+
     public MemberDto loginMember(MemberDto memberDto) {
         MemberDto loginMember;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();

@@ -16,5 +16,4 @@
     <update id="updateMemberProfileImage" parameterType="MemberDto">
         update member set profile = #{profile} where userno = #{userNo}
     </update>
-	
 </mapper>
