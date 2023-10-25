@@ -1,6 +1,9 @@
 package com.health.controller.personal;
 
 import com.health.dao.MemberDao;
+import com.health.dao.PersonalDao;
+import com.health.dto.MemberDto;
+import com.health.dto.PostDto;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,17 +16,17 @@ import java.util.List;
 public class MemberWish extends HttpServlet {
 
     //singleton
-    private final MemberDao memberDao = MemberDao.getInstance();
+    private final PersonalDao personalDao = PersonalDao.getInstance();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //list <- 유저 좋아요 post
-        List<String> images = new ArrayList<>();
-        for (int i = 0; i < 11; i++) {
-            images.add(i + "번");
-        }
+        HttpSession session = request.getSession();
+        MemberDto loginSession = (MemberDto) session.getAttribute("loginSession");
+        int userNo = loginSession.getUserNo();
 
-        request.setAttribute("images", images);
+        List<PostDto> userLikePosts = personalDao.userLikePosts(userNo);
+
+        request.setAttribute("userLikes", userLikePosts);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-wish.jsp");
         requestDispatcher.forward(request, response);

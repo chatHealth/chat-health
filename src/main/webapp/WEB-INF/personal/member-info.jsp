@@ -123,7 +123,7 @@
                         <div class="edit-button">
 <%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
 <%--                        </div>--%>
-                        <button id="editBtn" class="btn" style="background: none; border: none; color: white;">Edit</button>
+                        <button id="editBtn" class="btn" style="background: none; border: none;">Edit</button>
                         <!-- 회원가입 확인 Modal-->
                         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">

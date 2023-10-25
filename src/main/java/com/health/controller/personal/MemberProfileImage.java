@@ -6,6 +6,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -24,6 +25,23 @@ public class MemberProfileImage extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Part part = request.getPart("profileImage");
         System.out.println(part.toString());
+
+
+        //root/uploadPath 경로 설정
+        String path = (File.separator + "uploadPath");
+        File Folder = new File(path);
+        if (!Folder.exists()) {
+            try{
+                Folder.mkdir(); //폴더 생성합니다. ("새폴더"만 생성)
+                System.out.println("폴더가 생성완료.");
+            }
+            catch(Exception e){
+                e.getStackTrace();
+            }
+        }
+        System.out.println("path = " + path);
+
+        //folder 없으면 만들기
 
         //Content-type 이 png, jpeg, jpg, gif 일 때만 받기
         String contentType = part.getContentType();
@@ -51,7 +69,7 @@ public class MemberProfileImage extends HttpServlet {
 
             System.out.println(filename);
 
-            part.write(uploadDir + "/" + filename);
+            part.write(path + filename);
 
             MemberDto updateProfileMember = new MemberDto();
 
