@@ -22,6 +22,8 @@
           <element id="library" level="project" name="Maven: jakarta.annotation:jakarta.annotation-api:2.1.1" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.11" />
           <element id="library" level="project" name="oracle.database.jdbc.ojdbc11" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.13" />
+          <element id="library" level="project" name="mybatis-3.5.11" />
         </element>
       </element>
       <element id="directory" name="META-INF">

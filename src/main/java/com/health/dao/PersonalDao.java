@@ -1,5 +1,6 @@
 package com.health.dao;
 
+import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
 import com.health.mybatis.MyBatisConnectionFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -22,7 +23,14 @@ public class PersonalDao {
         userLikePosts = sqlSession.selectList("memberWishPosts", userNo);
         System.out.println("userNo = " + userNo);
         System.out.println("userLikePosts.size() = " + userLikePosts.size());
-        sqlSession.close();
         return userLikePosts;
+    }
+
+    public MemberDto memberInfo(int userNo) {
+        MemberDto member;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        member = sqlSession.selectOne("memberInfo", userNo);
+        sqlSession.close();
+        return member;
     }
 }

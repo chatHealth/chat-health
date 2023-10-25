@@ -2,6 +2,7 @@ package com.health.controller.personal;
 
 import com.health.dao.MemberDao;
 import com.health.dto.MemberDto;
+import com.health.util.ScriptWriter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -21,7 +22,7 @@ public class MemberModifyProcess extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        MemberDto loginMember = (MemberDto) session.getAttribute("loginMember");
+        MemberDto loginMember = (MemberDto) session.getAttribute("member");
         int userNo = loginMember.getUserNo();
 
         String nickname = request.getParameter("nickname");
@@ -41,7 +42,7 @@ public class MemberModifyProcess extends HttpServlet {
         if (result > 0) {
             response.sendRedirect("../personal/member-info");
         } else {
-            //member info 수정 오류
+            ScriptWriter.alertAndBack(response,"오류입니다.");
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.health.controller.personal;
 
 import com.health.dao.MemberDao;
+import com.health.dao.PersonalDao;
 import com.health.dto.MemberDto;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -12,17 +13,16 @@ import java.io.IOException;
 public class MemberInfo extends HttpServlet {
 
     //생성자를 통해 MemberDao 객체를 생성할 수 없으므로 getInstance() 메서드 호출 -> singleton
-    private final MemberDao memberDao = MemberDao.getInstance();
+    private final PersonalDao personalDao = PersonalDao.getInstance();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        MemberDto memberDto = new MemberDto();
-        memberDto.setID("id18");
-        memberDto.setPW("pw18");
-
         HttpSession session = request.getSession();
-        MemberDto loginMember = memberDao.loginMember(memberDto);
+        int userNo = (int) session.getAttribute("loggedNo");
 
-        session.setAttribute("loginSession", loginMember);
+        MemberDto memberDto = personalDao.memberInfo(userNo);
+        memberDto.setPw(null);
+
+        session.setAttribute("member", memberDto);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-info.jsp");
         requestDispatcher.forward(request, response);

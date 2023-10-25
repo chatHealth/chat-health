@@ -65,7 +65,7 @@ public class MemberProfileImage extends HttpServlet {
             HttpSession session = request.getSession();
             MemberDto loginMember = (MemberDto) session.getAttribute("loginSession");
 
-            String filename = loginMember.getID() + "_profileImage." + ext;
+            String filename = loginMember.getId() + "_profileImage." + ext;
 
             System.out.println(filename);
 

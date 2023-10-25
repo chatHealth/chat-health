@@ -11,4 +11,7 @@
         inner join userlike u on m.userno = u.userno where m.userno = #{userNo}) mu
         on p.postno = mu.postno WHERE p.DELETEDDATE is null
     </select>
+    <select id="memberInfo" resultType="MemberDto" parameterType="int">
+        select * from member where userno = ${userNo}
+    </select>
 </mapper>

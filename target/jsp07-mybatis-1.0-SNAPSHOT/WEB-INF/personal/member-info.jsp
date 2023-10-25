@@ -119,7 +119,7 @@
                     <!-- Profile Picture -->
                     <div class="profile-picture">
 <%--                        <img src="https://via.placeholder.com/150" alt="Profile Picture">--%>
-                        <img src="/uploadProfile/${loginSession.profile }" alt="Profile Picture">
+                        <img src="/uploadProfile/${member.profile }" alt="Profile Picture">
                         <div class="edit-button">
 <%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
 <%--                        </div>--%>
@@ -158,23 +158,23 @@
                             <tbody>
                             <tr>
                                 <th scope="row" class="w-25">Name</th>
-                                <td class="w-75">${loginSession.name }</td>
+                                <td class="w-75">${member.name }</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="w-25">NickName</th>
-                                <td class="w-75">${loginSession.nickname }</td>
+                                <td class="w-75">${member.nickname }</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="w-25">Address</th>
-                                <td class="w-75">${loginSession.address }</td>
+                                <td class="w-75">${member.address }</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="w-25">Address Detail</th>
-                                <td class="w-75">${loginSession.addressDetail }</td>
+                                <td class="w-75">${member.addressDetail }</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="w-25">E-Mail</th>
-                                <td class="w-75">${loginSession.email }</td>
+                                <td class="w-75">${member.email }</td>
                             </tr>
                             </tbody>
                         </table>

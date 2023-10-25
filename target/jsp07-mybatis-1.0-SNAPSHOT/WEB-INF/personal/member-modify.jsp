@@ -116,20 +116,20 @@
 				<div class="mb-3">
 					<label for="email" class=form-label">Email</label>
 <%--					<span class="input-group-text">@</span>--%>
-					<input type="email" class="form-control" id="email" name="email" value=${loginSession.email }>
+					<input type="email" class="form-control" id="email" name="email" value=${member.email }>
 
 				</div>
 				<div class="mb-3">
 					<label for="nickname" class="form-label">Nickname</label>
-					<input type="text" class="form-control" id="nickname" name="nickname" value=${loginSession.nickname }>
+					<input type="text" class="form-control" id="nickname" name="nickname" value=${member.nickname }>
 				</div>
 				<div class="mb-3">
 					<label for="address" class="form-label">Address</label>
-					<input type="text" class="form-control" id="address" name="address" value=${loginSession.address }>
+					<input type="text" class="form-control" id="address" name="address" value=${member.address }>
 				</div>
 				<div class="mb-3">
 					<label for="addressDetail" class="form-label">Address Detail</label>
-					<input type="text" class="form-control" id="addressDetail" name="addressDetail" value=${loginSession.addressDetail }>
+					<input type="text" class="form-control" id="addressDetail" name="addressDetail" value=${member.addressDetail }>
 				</div>
 				<button type="submit" class="btn btn-primary">Update Profile</button>
 			</form>
