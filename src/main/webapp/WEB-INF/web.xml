@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+=======
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+>>>>>>> a70e31a135fd061562328173b29fb92a7620bcb9
   <display-name>chat-health</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -9,4 +13,28 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+<<<<<<< HEAD
 </web-app>
+=======
+</web-app>
+
+<!--
+  <servlet>
+    <description></description>
+    <display-name>PostWriteProcess</display-name>
+    <servlet-name>PostWriteProcess</servlet-name>
+    <servlet-class>com.health.controller.category.PostWriteProcess</servlet-class>
+    <multipart-config>
+      <location></location>
+      <max-file-size>20848820</max-file-size>
+      <max-request-size>418018841</max-request-size>
+      <file-size-threshold>1048576</file-size-threshold>
+    </multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostWriteProcess</servlet-name>
+    <url-pattern>/post/write-process</url-pattern>
+  </servlet-mapping>
+  
+   -->
+>>>>>>> a70e31a135fd061562328173b29fb92a7620bcb9

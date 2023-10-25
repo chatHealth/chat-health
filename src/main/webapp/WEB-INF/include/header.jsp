@@ -6,7 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>Insert title here</title>
+=======
+
+
+<title>chat health</title>
+
+>>>>>>> a70e31a135fd061562328173b29fb92a7620bcb9
 
 <script src="../js/jquery-3.7.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
@@ -14,6 +21,18 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <link href="../css/layout.css" rel="stylesheet" />
 
+<<<<<<< HEAD
+=======
+
+<!-- multi select -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+<link rel="stylesheet" href="../css/select2-bootstrap-5-theme.min.css" />
+<link rel="stylesheet" href="../css/select2-bootstrap-5-theme.rtl.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+
+
+>>>>>>> a70e31a135fd061562328173b29fb92a7620bcb9
 </head>
 <body>
 	
