@@ -90,10 +90,10 @@ public class MemberJoinProcess extends HttpServlet {
 						
 						//3. 데이터 set
 						MemberDto parameterDto = new MemberDto();
-						parameterDto.setId(id);
+						parameterDto.setID(id);
 						parameterDto.setEmail(email);
 						parameterDto.setName(name);
-						parameterDto.setPw(pw);
+						parameterDto.setPW(pw);
 						parameterDto.setAddress(address);
 						parameterDto.setAddressDetail(addressDetail);
 						parameterDto.setProfile(realUploadPath + File.separator + newFileName);

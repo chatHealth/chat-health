@@ -1,10 +1,10 @@
 package com.health.dao;
 
-import com.health.mybatis.MyBatisConnectionFactory;
 import org.apache.ibatis.session.SqlSession;
 
 import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
+import com.health.mybatis.MyBatisConnectionFactory;
 
 public class MemberDao {
 	
@@ -43,11 +43,19 @@ public class MemberDao {
         sqlSession.close();
         return result;
     }
-    
+
 	public MemberDto loginMember(MemberDto memberDto) {
 		MemberDto loggedMember = null;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		loggedMember = sqlSession.selectOne("loginMember",memberDto);
+		sqlSession.close();
+		return loggedMember;
+	}
+	
+	public EnterpriseDto loginEnterprise(EnterpriseDto enterpriseDto) {
+		EnterpriseDto loggedMember = null;
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		loggedMember = sqlSession.selectOne("loginMember",enterpriseDto);
 		sqlSession.close();
 		return loggedMember;
 	}
@@ -87,4 +95,13 @@ public class MemberDao {
 		sqlSession.close();
 		return result;
 	}
+
 }
+
+
+
+
+
+
+
+
