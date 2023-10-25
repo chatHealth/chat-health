@@ -12,7 +12,7 @@
 
 		<!-- Content -->
 		<div class="col-9 content">
-			<h4 class="mb-3">Billing address</h4>
+			<h4 class="mb-3">비밀번호 변경</h4>
 			<form action="../personal/member-password-process" class="needs-validation" novalidate="" method="post">
 				<div class="row g-3">
 					<div class="col-12">

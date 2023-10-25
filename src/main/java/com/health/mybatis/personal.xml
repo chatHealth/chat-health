@@ -17,4 +17,7 @@
     <select id="memberPassword" resultType="String" parameterType="int">
         select pw from member where userno = ${userNo}
     </select>
+    <update id="withdrawMember" parameterType="int">
+        update member set deleteddate = sysdate where userno = ${userNo}
+    </update>
 </mapper>
