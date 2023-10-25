@@ -1,32 +1,31 @@
 package com.health.controller.member;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
+import com.health.util.ScriptWriter;
 
-@WebServlet("/member/login")
-public class MemberLogin extends HttpServlet {
+@WebServlet("/member/logout")
+public class MemberLogout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public MemberLogin() {
+    
+    public MemberLogout() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/member/login.jsp");
-		dispatcher.forward(request, response);
+		HttpSession session = request.getSession();
+		session.invalidate();
+		ScriptWriter.alertAndGo(response, "로그아웃되었습니다.","../");
 	}
-
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 	}
 
 }
