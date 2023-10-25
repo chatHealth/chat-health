@@ -19,36 +19,19 @@
 /*	padding-left: 40px;*/
 /*}*/
 
-/*.list a {*/
-/*	text-decoration: none;*/
-/*	color:#111;*/
-/*}*/
+.check {
+	display: relative;
+	justify-content: space-between;
+}
 
+.form-join {
+	width:450px !important;
+}
 
-/*.form-signin {*/
-/*	width:450px !important;*/
-/*}*/
-
-/*.form-signin .form-floating {*/
-/*  margin-bottom: 50px ;*/
-/*}*/
-
-/*.check {*/
-/*	display: relative;*/
-/*	justify-content: space-between;*/
-/*}*/
-
-/*.form-join {*/
-/*	width:450px !important;*/
-/*}*/
-
-/*.hidden{*/
-/*	display: none;*/
-/*}*/
-
-
-/*.ck-editor__editable_inline {*/
-/*	min-height: 400px !important; */
-/*}*/
-/*.ck-editor__editable p {margin: 0}*/
-/*]*/
+.hidden{
+	display: none;
+}
+.ck-editor__editable_inline {
+	min-height: 400px !important; 
+}
+.ck-editor__editable p {margin: 0}

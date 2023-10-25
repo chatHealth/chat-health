@@ -82,17 +82,6 @@ public class MemberDao {
 	
 	public int insertEnterprise(EnterpriseDto enterpriseDto) {
 		int result = 0;
-		System.out.println(enterpriseDto.getEnterpriseNo());
-		System.out.println(enterpriseDto.getCode());
-		System.out.println(enterpriseDto.getAccepted());
-		System.out.println(enterpriseDto.getAddress());
-		System.out.println(enterpriseDto.getDeletedDate());
-		System.out.println(enterpriseDto.getAddressDetail());
-		System.out.println(enterpriseDto.getCeo());
-		System.out.println(enterpriseDto.getId());
-		System.out.println(enterpriseDto.getPw());
-		System.out.println(enterpriseDto.getTel());
-		System.out.println(enterpriseDto.getName());
 		
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		result = sqlSession.insert("insertEnterprise",enterpriseDto);

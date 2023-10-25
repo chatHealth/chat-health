@@ -39,7 +39,7 @@
     <!--  <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>-->
   </form>
   <div> <!-- 회원가입버튼 누르면 연결되는 페이지 연동 필요 -->
-  <a href="../member/insert.jsp" class="nav-link"><button class="btn btn-primary w-100 pu-2 mt-3" type="submit">회원가입</button></a>
+  <a href="../member/enterprise-join" class="nav-link"><button class="btn btn-primary w-100 pu-2 mt-3" type="submit">회원가입</button></a>
   </div>
 </div>
 
