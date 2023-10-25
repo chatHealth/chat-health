@@ -16,8 +16,8 @@ public class MemberInfo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MemberDto memberDto = new MemberDto();
-        memberDto.setId("id18");
-        memberDto.setPw("pw18");
+        memberDto.setID("id18");
+        memberDto.setPW("pw18");
 
         HttpSession session = request.getSession();
         MemberDto loginMember = memberDao.loginMember(memberDto);

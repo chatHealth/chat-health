@@ -29,7 +29,7 @@ public class MemberPasswordProcess extends HttpServlet {
         MemberDto loginMember = (MemberDto) request.getSession().getAttribute("loginSession");
 
 
-        if (!password.equals(passwordCheck) || !loginMember.getPw().equals(password) || password.isEmpty() || newPassword.isEmpty()) {
+        if (!password.equals(passwordCheck) || !loginMember.getPW().equals(password) || password.isEmpty() || newPassword.isEmpty()) {
 //          비밀번호 확인
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
@@ -39,7 +39,7 @@ public class MemberPasswordProcess extends HttpServlet {
             out.close();
         } else {
             MemberDto updatePasswordMember = new MemberDto();
-            updatePasswordMember.setPw(password);
+            updatePasswordMember.setPW(password);
             updatePasswordMember.setUserNo(loginMember.getUserNo());
             int result = memberDao.updatePassword(updatePasswordMember);
             if (result > 1) {

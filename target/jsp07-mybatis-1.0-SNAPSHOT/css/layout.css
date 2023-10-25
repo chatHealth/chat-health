@@ -1,8 +1,11 @@
 @charset "UTF-8";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> ceddccac4b997dd44d2d0bbfef3ace623d2ab526
 .main {
 	min-height: 500px;
 }
@@ -53,4 +56,7 @@
 	min-height: 400px !important; 
 }
 .ck-editor__editable p {margin: 0}
+<<<<<<< HEAD
 >>>>>>> a70e31a135fd061562328173b29fb92a7620bcb9
+=======
+>>>>>>> ceddccac4b997dd44d2d0bbfef3ace623d2ab526
