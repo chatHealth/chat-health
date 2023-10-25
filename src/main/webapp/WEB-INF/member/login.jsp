@@ -25,6 +25,13 @@
           로그인 유지
         </label>
       </div>
+      
+      <div class="enterprise">
+        <input class="form-check-input1" type="checkbox" value="imEnterprise" id="flexCheckDefault" name="imEnterprise" value="enterprise">
+          <label class="form-check-label1" for="flexCheckDefault">
+          사업자회원
+        </label>
+      </div>
       	
      </div>
     

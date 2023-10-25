@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
-import com.health.mybatis.MybatisConnectionFactory;
+import com.health.mybatis.MyBatisConnectionFactory;
 
 public class MemberDao {
 	
@@ -22,15 +22,23 @@ public class MemberDao {
     
 	public MemberDto loginMember(MemberDto memberDto) {
 		MemberDto loggedMember = null;
-		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		loggedMember = sqlSession.selectOne("loginMember",memberDto);
+		sqlSession.close();
+		return loggedMember;
+	}
+	
+	public EnterpriseDto loginEnterprise(EnterpriseDto enterpriseDto) {
+		EnterpriseDto loggedMember = null;
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		loggedMember = sqlSession.selectOne("loginMember",enterpriseDto);
 		sqlSession.close();
 		return loggedMember;
 	}
 	
 	public int idCheck(String id) {
 		int result = 0;
-		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		result = sqlSession.selectOne("idCheck",id);
 		sqlSession.close();
 		return result;
@@ -38,7 +46,7 @@ public class MemberDao {
 	
 	public int insertMember(MemberDto memberDto) {
 		int result = 0;
-		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		result = sqlSession.insert("insertMember",memberDto);
 		sqlSession.close();
 		return result;
@@ -58,7 +66,7 @@ public class MemberDao {
 		System.out.println(enterpriseDto.getTel());
 		System.out.println(enterpriseDto.getName());
 		
-		SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		result = sqlSession.insert("insertEnterprise",enterpriseDto);
 		sqlSession.close();
 		return result;
