@@ -9,7 +9,7 @@
 		WHERE ID = #{id} AND PW = #{pw}
 		UNION ALL
 		SELECT ID, PW FROM enterprise
-		WHERE ID = #{id} AND PW = #{pw};
+		WHERE ID = #{id} AND PW = #{pw}
 	</select>
 
 	<insert id="insertMember" parameterType="MemberDto">

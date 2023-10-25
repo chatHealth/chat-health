@@ -35,14 +35,14 @@ public class MemberLoginProcess extends HttpServlet {
 		
 		MemberDto parameterMemberDto = new MemberDto();
 		MemberDto loggedMember = null;
-		parameterMemberDto.setID(userID);
-		parameterMemberDto.setPW(userPW);
+		parameterMemberDto.setId(userID);
+		parameterMemberDto.setPw(userPW);
 		loggedMember = memberDao.loginMember(parameterMemberDto);
 		if(loggedMember!=null) {
 			HttpSession loginSession = request.getSession();
 			ModalState modalState = new ModalState("show","로그인되었습니다.");
 			loginSession.setAttribute("modalState", modalState);
-			loginSession.setAttribute("loggedID", loggedMember.getID());
+			loginSession.setAttribute("loggedID", loggedMember.getId());
 			loginSession.setAttribute("loggedName", loggedMember.getName());
 			loginSession.setAttribute("profile", loggedMember.getProfile());
 			System.out.println(loginSession.getAttribute("loggedID"));

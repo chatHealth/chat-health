@@ -33,6 +33,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jakarta.servlet.api" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 10.1.13" level="application_server_libraries" />
+    <orderEntry type="library" name="oracle.database.jdbc.ojdbc11" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.servlet:jakarta.servlet-api:6.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.9.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
@@ -46,6 +47,5 @@
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.10.1" level="project" />
     <orderEntry type="library" name="Maven: jakarta.annotation:jakarta.annotation-api:2.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.11" level="project" />
-    <orderEntry type="library" name="oracle.database.jdbc.ojdbc11" level="project" />
   </component>
 </module>
