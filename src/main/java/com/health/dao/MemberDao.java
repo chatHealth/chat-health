@@ -31,6 +31,7 @@ public class MemberDao {
     public int updatePassword(MemberDto memberDto) {
         int result = 0;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		System.out.println("memberDto.getPw() = " + memberDto.getPw());
         result = sqlSession.update("updateMemberPassword", memberDto);
         sqlSession.close();
         return result;

@@ -21,8 +21,7 @@ public class PersonalDao {
         List<PostDto> userLikePosts;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         userLikePosts = sqlSession.selectList("memberWishPosts", userNo);
-        System.out.println("userNo = " + userNo);
-        System.out.println("userLikePosts.size() = " + userLikePosts.size());
+        sqlSession.close();
         return userLikePosts;
     }
 
@@ -32,5 +31,13 @@ public class PersonalDao {
         member = sqlSession.selectOne("memberInfo", userNo);
         sqlSession.close();
         return member;
+    }
+
+    public String memberPassword(int userNo) {
+        String pw;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        pw = sqlSession.selectOne("memberPassword", userNo);
+        sqlSession.close();
+        return pw;
     }
 }

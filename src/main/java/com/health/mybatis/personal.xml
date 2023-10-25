@@ -5,7 +5,7 @@
 <mapper namespace="com.health.mybatis">
 
     <select id="memberWishPosts" resultType="PostDto" parameterType="int">
-<!--        select p.postno as postNo, enterpriseNo,title,content, postimg as postImg,p.regDate as regDate,p.deletedDate as deletedDate from post p-->
+        <!--        select p.postno as postNo, enterpriseNo,title,content, postimg as postImg,p.regDate as regDate,p.deletedDate as deletedDate from post p-->
         select p.postno as postNo, title, postimg from post p
         inner join (select * from member m
         inner join userlike u on m.userno = u.userno where m.userno = #{userNo}) mu
@@ -13,5 +13,8 @@
     </select>
     <select id="memberInfo" resultType="MemberDto" parameterType="int">
         select * from member where userno = ${userNo}
+    </select>
+    <select id="memberPassword" resultType="String" parameterType="int">
+        select pw from member where userno = ${userNo}
     </select>
 </mapper>

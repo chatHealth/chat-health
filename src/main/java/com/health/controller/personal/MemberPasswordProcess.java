@@ -1,7 +1,9 @@
 package com.health.controller.personal;
 
 import com.health.dao.MemberDao;
+import com.health.dao.PersonalDao;
 import com.health.dto.MemberDto;
+import com.health.util.ScriptWriter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,6 +15,7 @@ import java.io.PrintWriter;
 public class MemberPasswordProcess extends HttpServlet {
 
     private final MemberDao memberDao = MemberDao.getInstance();
+    private final PersonalDao personalDao = PersonalDao.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,31 +29,30 @@ public class MemberPasswordProcess extends HttpServlet {
         String passwordCheck = request.getParameter("passwordCheck");
         String newPassword = request.getParameter("newPassword");
 
-        MemberDto loginMember = (MemberDto) request.getSession().getAttribute("loginSession");
+        if (password.equals("") || passwordCheck.equals("") || newPassword.equals("")) {
+            ScriptWriter.alertAndBack(response, "빈 칸 있음");
+        }
+
+        HttpSession session = request.getSession();
+        MemberDto member = (MemberDto) session.getAttribute("member");
+        int userNo = member.getUserNo();
+        System.out.println("userNo = " + userNo);
+        String memberPassword = personalDao.memberPassword(userNo);
 
 
-        if (!password.equals(passwordCheck) || !loginMember.getPw().equals(password) || password.isEmpty() || newPassword.isEmpty()) {
+        if (!(password.equals(passwordCheck) || memberPassword.equals(password) || password.isEmpty() || newPassword.isEmpty())) {
 //          비밀번호 확인
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('비밀번호 확인'); history.go(-1);</script>");
-            out.flush();
-            response.flushBuffer();
-            out.close();
+            ScriptWriter.alertAndBack(response, "비밀번호 확인");
         } else {
             MemberDto updatePasswordMember = new MemberDto();
-            updatePasswordMember.setPw(password);
-            updatePasswordMember.setUserNo(loginMember.getUserNo());
+            updatePasswordMember.setPw(newPassword);
+            updatePasswordMember.setUserNo(userNo);
             int result = memberDao.updatePassword(updatePasswordMember);
-            if (result > 1) {
-                response.sendRedirect("../WEB-INF/personal/member-info");
+            if (result > 0) {
+                session.invalidate();
+                ScriptWriter.alertAndGo(response, "재로그인 필요", "../member/login");
             } else {
-                response.setContentType("text/html; charset=UTF-8");
-                PrintWriter out = response.getWriter();
-                out.println("<script>alert('서버 오류'); history.go(-1);</script>");
-                out.flush();
-                response.flushBuffer();
-                out.close();
+                ScriptWriter.alertAndBack(response, "오류");
             }
         }
     }

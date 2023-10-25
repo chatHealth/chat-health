@@ -118,7 +118,7 @@
 						<label for="username" class="form-label">비밀번호</label>
 						<div class="input-group has-validation">
 <%--							<span class="input-group-text">@</span>--%>
-							<input type="password" class="form-control" id="username" placeholder="password" required="" name="password">
+							<input type="password" class="form-control" id="username" placeholder="password" name="password">
 							<div class="invalid-feedback">
 								password
 							</div>
@@ -128,7 +128,7 @@
 						<label for="username" class="form-label">비밀번호 확인</label>
 						<div class="input-group has-validation">
 <%--							<span class="input-group-text">@</span>--%>
-							<input type="password" class="form-control" id="username" placeholder="password" required="" name="passwordCheck">
+							<input type="password" class="form-control" id="username" placeholder="password" name="passwordCheck">
 							<div class="invalid-feedback">
 							</div>
 						</div>
@@ -137,7 +137,7 @@
 						<label for="username" class="form-label">새로운 비밀번호</label>
 						<div class="input-group has-validation">
 <%--							<span class="input-group-text">@</span>--%>
-							<input type="password" class="form-control" id="username" placeholder="new password" required="" name="newPassword">
+							<input type="password" class="form-control" id="username" placeholder="new password" name="newPassword">
 							<div class="invalid-feedback">
 							</div>
 						</div>
