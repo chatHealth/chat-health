@@ -6,11 +6,22 @@
 
 <form action="../member/enterprise-join-process" method="post" enctype="multipart/form-data">
       <div class="form-join m-auto">
-        <div class="mb-3">        
-          <label for="id" class="form-label">아이디</label>
-          <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id" placeholder="아이디를 입력해주세요" />
-          <div id="idHelp" class="form-text"> !욕설등, 부적절한 아이디는 관리자에 의해 강제 탈퇴 될 수 있습니다.</div>
-        </div>
+        <div class="row d-flex mt-5 w-100">
+				<div>
+					<div class="mb-3">
+						<div class="row">
+							<div class="col-6">
+								<label for="id" class="form-label">아이디</label> 
+								<input type="text" class="form-control" id="id"
+								placeholder="user id" name="id" />
+							</div>
+							<div class="col-6  mt-3 d-flex align-items-baseline px-0">
+								<button class="btn btn-primary mt-3" id="btnIDCheck">아이디 중복 확인</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
         
         <div class="mb-3"><!--이메일-->          
           <label for="email" class="form-label">이메일</label>
@@ -118,14 +129,7 @@
           <label class="form-check-label w-100 mt-5 agree" for="accepted" value=0 >
           (필수) <a href="../useAgree.jsp" target="_blank">이용약관</a>과 <a href="../personal.jsp" target="_blank">개인정보 수집 및 이용</a>에 동의합니다.
           </label>
-          <script> <!--이용처리방침 팝업 스크립트-->
-        function popup(){
-            var url = "popup.html";
-            var name = "popup test";
-            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-            window.open(url, name, option);
-        }
-    </script>
+          
         </div>
         <button type="submit" class="btn btn-primary w-100 mt-20" name="">회원가입 신청하기</button>
       </div>

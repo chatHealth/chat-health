@@ -39,7 +39,7 @@
         </div>
         <div class="mb-3"><!--사업장소재지,우편번호찾기 API 연동-->
           
-          <label for="address" class="form-label">사업장 소재지</label>
+          <label for="address" class="form-label">사업장 소재지</label></br>
           <input type="text" id="sample4_postcode" placeholder="우편번호">
 		  <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 		  <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address">
@@ -47,7 +47,7 @@
 		  <span id="guide" style="color:#999;display:none"></span>
 		  <input type="text" id="sample4_detailAddress" placeholder="상세주소"name="addressDetail">
 		  <input type="text" id="sample4_extraAddress" placeholder="참고항목">
-
+		</div>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -106,7 +106,7 @@
         }).open();
     }
 </script>
-        </div>
+        
         <!-- 프로필 이미지 삽입 -->
         <label for="profile">프로필 사진</label>
         <div class="mb-3">

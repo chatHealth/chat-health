@@ -39,3 +39,7 @@
 .form-join {
 	width:450px !important;
 }
+
+.hidden{
+	display: none;
+}

@@ -110,7 +110,6 @@ public class EnterpriseDto {
 		this.deletedDate = deletedDate;
 	}
 
-	
 
 	public EnterpriseDto() {
 		super();

@@ -19,4 +19,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>MemberJoinProcess</display-name>
+    <servlet-name>MemberJoinProcess</servlet-name>
+    <servlet-class>com.health.controller.member.MemberJoinProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberJoinProcess</servlet-name>
+    <url-pattern>/member/member-join-process</url-pattern>
+  </servlet-mapping>
 </web-app>
