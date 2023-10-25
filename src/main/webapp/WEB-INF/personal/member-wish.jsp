@@ -111,13 +111,14 @@
 
 		<!-- Content -->
 		<div class="col-9 content">
+			<h2>좋아요</h2>
 			<div class="row">
 				<c:forEach items="${userLikes }" var="image" varStatus="loop">
 				<div class="col-md-3">
 					<a href="#"><div class="card">
 						<img src="/upload/${image.postImg }" alt="" class="card-img-top">
 						<div class="card-body">
-							<p class="card-text">${image.postImg }</p>
+							<p class="card-text">${image.title }</p>
 						</div>
 					</div>
 					</a>
