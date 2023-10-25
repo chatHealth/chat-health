@@ -112,8 +112,7 @@ public class EnterpriseDto {
 
 
 	public EnterpriseDto() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public EnterpriseDto(int enterpriseNo, String id, String code, String PW, String name, String profile, String ceo,

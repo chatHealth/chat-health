@@ -4,9 +4,42 @@
 
 <h1 class="h3 mb-3 fw-normal">개인 회원가입</h1>
 
-<form action="../member/enterprise-join-process" method="post" enctype="multipart/form-data">
-      <div class="form-join m-auto">
-        <div class="row d-flex mt-5 w-100">
+<form action="../member/member-join-process" method="post" enctype="multipart/form-data">
+      <div class="form-join m-auto">        
+			
+			<div class="mb-3"><!--닉네임-->
+          
+          <label for="nickname" class="form-label">닉네임</label>
+          <input type="text" class="form-control" id="nickname" name="nickname"/>
+        </div>
+        
+        <div class="mb-3"><!--이메일-->          
+          <label for="email" class="form-label">이메일</label>
+          <input type="text" class="form-control" id="email" name="email"/>
+        </div>
+        
+        <div class="mb-3"><!--이름-->
+          
+          <label for="name" class="form-label">이름</label>
+          <input type="text" class="form-control" id="name" name="name"/>
+        </div>
+        
+        <div class="form-check"><!--성별-->
+          
+          <label for="gender-f" class="form-label"><input type="radio" class="form-check-input" id="gender-f" name="gender" value="f">여성</label>
+          
+          <label for="gender-m" class="form-label"><input type="radio" class="form-check-input" id="gender-m" name="gender" value="m">남성</label>
+          
+        </div>
+        
+        <!-- <div class="mb-3">생년월일
+          
+          <label for="birth" class="form-label">이름</label>
+          <input type="date" class="form-control" id=""" name="birth"/>
+        </div>
+        -->
+        
+         <div class="row d-flex mt-5 w-100"> <!-- 아이디 -->
 				<div>
 					<div class="mb-3">
 						<div class="row">
@@ -21,19 +54,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-        
-        <div class="mb-3"><!--이메일-->          
-          <label for="email" class="form-label">이메일</label>
-          <input type="text" class="form-control" id="email" name="email"/>
-        </div>
-        
-        <div class="mb-3"><!--이름-->
-          
-          <label for="name" class="form-label">이름</label>
-          <input type="text" class="form-control" id="name" name="name"/>
-        </div>
-                
+			</div>   
+			    
         <div class="mb-3"><!--비번-->
           
           <label for="password" class="form-label">비밀번호</label>
@@ -48,7 +70,7 @@
         <div class="mb-3"><!--사업장소재지,우편번호찾기 API 연동-->
           
           <label for="address" class="form-label">주소</label>
-          <input type="text" id="sample4_postcode" placeholder="우편번호">
+          <input type="hidden" id="sample4_postcode" placeholder="우편번호">
 		  <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 		  <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address">
 		  <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
@@ -122,11 +144,11 @@
             	<input type="file" class="form-control" id="profile" placeholder="png,jpg" name="profile"
             	accept="image/gif, image/jpeg, image/png" />
 			</div>
-		
+		<input type="hidden" name="grade" value="10" >
 		
         <div class="mt-3 form-check">
-          <input type="checkbox" class="form-check-input mt-5" id="grade" name="grade" value="10" required/>
-          <label class="form-check-label w-100 mt-5 agree" for="accepted" value=0 >
+          <input type="checkbox" class="form-check-input mt-5" required/>
+          <label class="form-check-label w-100 mt-5" for="accepted"  >
           (필수) <a href="../useAgree.jsp" target="_blank">이용약관</a>과 <a href="../personal.jsp" target="_blank">개인정보 수집 및 이용</a>에 동의합니다.
           </label>
           

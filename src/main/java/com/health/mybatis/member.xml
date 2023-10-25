@@ -15,19 +15,19 @@
 	<insert id="insertMember" parameterType="MemberDto">
 		insert into member values(
 									seq_member.nextval,
-									#{nickname}
+									#{nickname},
 									#{id},
 									#{pw},
 									#{name},
-									#{birth},
+									#{birthDate},
 									#{gender},								
 									#{email},
 									#{address},
 									#{addressDetail},
 									sysdate,
 									#{profile},
-									#{deleted},
-									#{grade}							
+									null,
+									10							
 									
 								  )
 	</insert>
@@ -43,7 +43,7 @@
 														#{address},
 														#{tel},
 														#{accepted},
-													 	Null,
+													 	null,
 														#{addressDetail}
 													)
 	</insert>

@@ -10,7 +10,6 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
 </web-app>
-
 <!--
   <servlet>
     <description></description>
