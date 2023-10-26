@@ -87,16 +87,15 @@
 </style>
 <div class="container-fluid" style="text-align: center;"> <!-- 어드민 사이드바 메뉴 목록 -->
   <div class="row">
-    <%--        <button class="btn btn-primary mt-2 ml-2" id="sidebar-toggle">Toggle Sidebar</button>--%>
 
     <!-- Sidebar -->
     <div class="col sidebar" id="lnb">
       <h3>관리자 페이지</h3>
       <p >어서오세요, admin님</p>
       <span style="border-top: 1px solid #000; display: block; margin: 10px 0;"></span>
-      <ul>
-        <li><input type="button" value="memberManage" onclick="acyncMovePage('/test/test.do')"></li>
-        <li><input type="button" value="enterpriseManage" onclick="acyncMovePage('/test/test.do')"></li>
+      <ul> <!-- 관리자페이지 버튼누르면 연결될거 생각하기 -->
+        <li><input type="radio" value="memberManage"" checked="checked">개인회원 관리</li>
+        <li><input type="radio" value="enterpriseManage">사업자회원 관리</li>
       </ul>
     </div>
  </div>
