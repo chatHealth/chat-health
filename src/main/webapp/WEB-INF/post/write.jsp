@@ -66,7 +66,7 @@
 
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
-
+	
 <script>
 
 // 1. ck editor
@@ -75,7 +75,7 @@ ClassicEditor
 .create(document.querySelector("#content"),
     {
         language: "ko",
-        simpleUpload:
+        ckfinder:
         {
             uploadUrl: "../post/img-upload",
             withCredentials: true,
