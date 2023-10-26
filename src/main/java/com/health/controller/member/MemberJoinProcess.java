@@ -89,7 +89,7 @@ public class MemberJoinProcess extends HttpServlet {
 						parameterDto.setId(id);
 						parameterDto.setEmail(email);
 						parameterDto.setName(name);
-						parameterDto.setNickname(nickname);
+						parameterDto.setNickName(nickname);
 						parameterDto.setPw(pw);
 						parameterDto.setGender(gender);
 						parameterDto.setAddress(address);

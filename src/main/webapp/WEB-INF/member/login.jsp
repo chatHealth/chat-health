@@ -19,17 +19,16 @@
 
     <div class="checks">    	
       <div class="yuji">
-        <input class="form-check-input1" type="checkbox" value="rememberMe" id="flexCheckDefault" name="saveID"
+        <input class="form-check-input1" type="checkbox" value="rememberMe" id="saveID" name="saveID"
           <c:if test="${not empty cookie.saveIDCookie }">checked</c:if>>
-          <label class="form-check-label1" for="flexCheckDefault">
+          <label class="form-check-label1" for="saveID">
           로그인 유지
         </label>
       </div>
-      <div class="enterprise">
-        <input class="form-check-input1" type="checkbox" value="imEnterprise" id="flexCheckDefault" name="imEnterprise" value="enterprise">
-          <label class="form-check-label1" for="flexCheckDefault">
-          사업자회원
-        </label>
+      
+      <div class="checkbox-enterprise">
+        <input class="form-check-input1" type="checkbox" value="imEnterprise" id="isEnterprise" name="isEnterprise">
+          <label class="form-check-label1" for="isEnterprise"> 사업자회원</label>
       </div>
 
      </div>

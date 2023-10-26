@@ -28,6 +28,6 @@
 
 </head>
 <body>
-	
 
-	<main class="main">
+	
+	<main class="main main-category">
