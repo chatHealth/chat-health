@@ -82,7 +82,7 @@ public class PostWriteProcess extends HttpServlet {
 			saveDir="/upload";
 
 		}else {
-			//대표 이미지 선택안했을경우, tmp파일의 기본이미지로 대체
+			//대표 이미지 선택안했을경우, img파일의 기본이미지로 대체
 			saveDir = request.getContextPath()+ File.separator + "img";
 			newFileName = "basic_post.svg";
 		}
