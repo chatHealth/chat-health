@@ -81,4 +81,12 @@ public class PersonalDao {
         sqlSession.close();
         return result;
     }
+
+    public int updateProfileImage(EnterpriseDto enterpriseDto) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("entProfileImg", enterpriseDto);
+        sqlSession.close();
+        return result;
+    }
 }

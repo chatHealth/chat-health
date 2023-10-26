@@ -35,4 +35,7 @@
     <update id="entWithdraw" parameterType="int">
         update enterprise set deleteddate = sysdate where enterpriseNo = #{enterpriseNo}
     </update>
+    <update id="entProfileImg" parameterType="EnterpriseDto">
+        update enterprise set profile = #{profile} where enterpriseNo = #{enterpriseNo}
+    </update>
 </mapper>

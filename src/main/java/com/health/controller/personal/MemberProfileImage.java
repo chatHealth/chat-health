@@ -2,6 +2,7 @@ package com.health.controller.personal;
 
 import com.health.dao.MemberDao;
 import com.health.dao.PersonalDao;
+import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
 import com.health.util.ScriptWriter;
 import jakarta.servlet.*;
@@ -42,23 +43,50 @@ public class MemberProfileImage extends HttpServlet {
 
             HttpSession session = request.getSession();
             MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
+            EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
-            String filename = loggedMember.getUserNo() + loggedMember.getUserNo() + "_profileImage." + ext;
-            part.write(uploadDir + File.separator + filename);
+            if (loggedMember != null) {
 
-            MemberDto updateProfileMember = new MemberDto();
+                String filename = "member" + loggedMember.getUserNo() + "_profileImage." + ext;
+                part.write(uploadDir + File.separator + filename);
 
-            updateProfileMember.setProfile(filename);
-            updateProfileMember.setUserNo(loggedMember.getUserNo());
+                MemberDto updateProfileMember = new MemberDto();
 
-            int result = memberDao.updateProfileImage(updateProfileMember);
+                updateProfileMember.setProfile(filename);
+                updateProfileMember.setUserNo(loggedMember.getUserNo());
 
-            if (result > 0) {
-                //프사 변경 완료
-                MemberDto updateProfile = personalDao.memberInfo(loggedMember.getUserNo());
-                updateProfile.setPw(null);
-                session.setAttribute("loggedMember", updateProfile);
-                response.sendRedirect("../personal/member-info");
+                int result = memberDao.updateProfileImage(updateProfileMember);
+
+                if (result > 0) {
+                    //프사 변경 완료
+                    MemberDto updateProfile = personalDao.memberInfo(loggedMember.getUserNo());
+                    updateProfile.setPw(null);
+                    session.setAttribute("loggedMember", updateProfile);
+                    response.sendRedirect("../personal/member-info");
+                } else {
+                    ScriptWriter.alertAndBack(response, "잘못된 접근입니다.");
+                }
+            } else if (loggedEnterprise != null) {
+
+                String filename = "ent" + loggedEnterprise.getEnterpriseNo() + "_profileImage." + ext;
+                part.write(uploadDir + File.separator + filename);
+
+                EnterpriseDto updateProfileEnt = new EnterpriseDto();
+
+                updateProfileEnt.setProfile(filename);
+                updateProfileEnt.setEnterpriseNo(loggedEnterprise.getEnterpriseNo());
+
+                int result = personalDao.updateProfileImage(updateProfileEnt);
+
+                if (result > 0) {
+                    //프사 변경 완료
+                    EnterpriseDto updateProfile = personalDao.EnterpriseInfo(loggedEnterprise.getEnterpriseNo());
+                    updateProfile.setPw(null);
+                    session.setAttribute("loggedEnterprise", updateProfile);
+                    response.sendRedirect("../personal/member-info");
+                } else {
+                    ScriptWriter.alertAndBack(response, "잘못된 접근입니다.");
+                }
             } else {
                 ScriptWriter.alertAndBack(response, "잘못된 접근입니다.");
             }
