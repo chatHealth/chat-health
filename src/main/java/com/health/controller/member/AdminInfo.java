@@ -8,16 +8,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin")
-public class Admin extends HttpServlet {
+@WebServlet("/personal/admin-info")
+public class AdminInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public Admin() {
+    public AdminInfo() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/member/admin.jsp");
+				request.getRequestDispatcher("/WEB-INF/member/adminInfo.jsp");
 		dispatcher.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

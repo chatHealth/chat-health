@@ -46,13 +46,16 @@ public class MemberLoginProcess extends HttpServlet {
 		
 			if(loggedMember!=null) {
 				HttpSession loginSession = request.getSession();
-				loggedMember.setPw(null);				
+				loggedMember.setPw(null);			
 				
-				loginSession.setAttribute("loggedMember", loggedMember);
 				
-				if(loggedMember.getGrade() == 1) {
-					response.sendRedirect("../admin");				
-				}else{response.sendRedirect("../category/list");} //메인페이지로 수정 필요
+				if(loggedMember.getGrade() == 1) {  // 관리자
+					loginSession.setAttribute("loggedAdmin", loggedMember);
+					response.sendRedirect("../personal/admin-info");				
+				}else{ //개인
+					loginSession.setAttribute("loggedMember", loggedMember);
+					response.sendRedirect("../index/index");
+					} 
 	
 				
 			} else {
