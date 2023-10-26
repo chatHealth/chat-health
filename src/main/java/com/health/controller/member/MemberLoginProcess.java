@@ -34,8 +34,8 @@ public class MemberLoginProcess extends HttpServlet {
 		String userID= request.getParameter("userID");
 		String userPW= request.getParameter("userPW");
 
-		String enterprise = request.getParameter("enterprise");
-		
+		String enterprise = request.getParameter("imEnterprise");
+
 		
 		if (enterprise != null) {
 			EnterpriseDto enterpriseDto = new EnterpriseDto();
@@ -50,6 +50,7 @@ public class MemberLoginProcess extends HttpServlet {
 				loginSession.setAttribute("loggedID", loggedMember.getId());
 				loginSession.setAttribute("loggedName", loggedMember.getName());
 				loginSession.setAttribute("profile", loggedMember.getProfile());
+				loginSession.setAttribute("loggedNo", loggedMember.getEnterpriseNo());
 				loginSession.setAttribute("enterprise", enterprise);
 				System.out.println(loginSession.getAttribute("loggedID"));
 				response.sendRedirect("../category/list"); //사랑이 메인페이지 만들어지면 수정 필요.
@@ -72,6 +73,7 @@ public class MemberLoginProcess extends HttpServlet {
 			loginSession.setAttribute("loggedName", loggedMember.getName());
 			loginSession.setAttribute("profile", loggedMember.getProfile());
 			loginSession.setAttribute("loggedNo", loggedMember.getUserNo());
+			loginSession.setAttribute("enterprise", "imMember");
 			System.out.println(loginSession.getAttribute("loggedID"));
 			response.sendRedirect("../board/list"); //사랑이 메인페이지 만들어지면 수정 필요.
 		} else {
