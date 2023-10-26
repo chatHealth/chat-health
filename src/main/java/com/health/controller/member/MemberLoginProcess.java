@@ -15,67 +15,66 @@ import com.health.dto.MemberDto;
 import com.health.dto.ModalState;
 import com.health.util.ScriptWriter;
 
-
 @WebServlet("/member/login-process")
 public class MemberLoginProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final MemberDao memberDao = MemberDao.getInstance();
 
-    public MemberLoginProcess() {
-        super();
-    }
+	public MemberLoginProcess() {
+		super();
+	}
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userID= request.getParameter("userID");
 		String userPW= request.getParameter("userPW");
-		String enterprise = request.getParameter("enterprise");
+		String isEnterprise = request.getParameter("isEnterprise");
 		
 		
-		if (enterprise != null) {
+		
+		if(isEnterprise == null) { // 1. 개인인 경우
+			MemberDto memberDto = new MemberDto();
+			MemberDto loggedMember = null;
+			memberDto.setId(userID);
+			memberDto.setPw(userPW);
+			loggedMember = memberDao.loginMember(memberDto);
+		
+			if(loggedMember!=null) {
+				HttpSession loginSession = request.getSession();
+				ModalState modalState = new ModalState("show","로그인되었습니다.");
+				loginSession.setAttribute("modalState", modalState);
+				loggedMember.setPw(null);
+				loginSession.setAttribute("loggedMember", loggedMember);
+	
+				response.sendRedirect("../category/list"); //메인페이지로 수정 필요 
+			} else {
+				ScriptWriter.alertAndBack(response, "아이디 혹은 비밀번호가 일치하지 않습니다.");
+			}
+		} else if (isEnterprise.equals("imEnterprise")) {	 //2. 사업자인경우
 			EnterpriseDto enterpriseDto = new EnterpriseDto();
 			EnterpriseDto loggedMember = null;
 			enterpriseDto.setId(userID);
 			enterpriseDto.setPw(userPW);
 			loggedMember = memberDao.loginEnterprise(enterpriseDto);
-			if(loggedMember!=null) {
+			
+			if(loggedMember!=null) {  //login success
 				HttpSession loginSession = request.getSession();
 				ModalState modalState = new ModalState("show","로그인되었습니다.");
 				loginSession.setAttribute("modalState", modalState);
-				loginSession.setAttribute("loggedID", loggedMember.getId());
-				loginSession.setAttribute("loggedName", loggedMember.getName());
-				loginSession.setAttribute("profile", loggedMember.getProfile());
-				loginSession.setAttribute("enterprise", enterprise);
-				System.out.println(loginSession.getAttribute("loggedID"));
-				response.sendRedirect("../category/list"); //사랑이 메인페이지 만들어지면 수정 필요.
-			} else {
-				ScriptWriter.alertAndGo(response, "아이디 혹은 비밀번호가 일치하지 않습니다.", "/");
+				loggedMember.setPw(null);
+				loginSession.setAttribute("loggedEnterprise", loggedMember);
+				
+				response.sendRedirect("../category/list"); //메인페이지로 수정 필요 
+			} else {  // login fail
+				ScriptWriter.alertAndBack(response, "아이디 혹은 비밀번호가 일치하지 않습니다.");
 			}
-		
-		}else {
-			MemberDto parameterMemberDto = new MemberDto();
-		MemberDto loggedMember = null;
-		parameterMemberDto.setId(userID);
-		parameterMemberDto.setPw(userPW);
-		loggedMember = memberDao.loginMember(parameterMemberDto);
-		
-		if(loggedMember!=null) {
-			HttpSession loginSession = request.getSession();
-			ModalState modalState = new ModalState("show","로그인되었습니다.");
-			loginSession.setAttribute("modalState", modalState);
-			loginSession.setAttribute("loggedID", loggedMember.getId());
-			loginSession.setAttribute("loggedName", loggedMember.getName());
-			loginSession.setAttribute("profile", loggedMember.getProfile());
-			System.out.println(loginSession.getAttribute("loggedID"));
-			response.sendRedirect("../board/list"); //사랑이 메인페이지 만들어지면 수정 필요.
-		} else {
-			ScriptWriter.alertAndGo(response, "아이디 혹은 비밀번호가 일치하지 않습니다.", "/");
 		}
-		}
+			
+
 		
 		
 	}
