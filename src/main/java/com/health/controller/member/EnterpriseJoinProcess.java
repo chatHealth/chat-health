@@ -80,7 +80,7 @@ public class EnterpriseJoinProcess extends HttpServlet {
 					File oldFile = new File(realUploadPath + File.separator + originFileName);
 					File newFile = new File(realUploadPath + File.separator + newFileName);
 					oldFile.renameTo(newFile);
-
+					saveDir = "/upload";
 				}else {
 					//대표 이미지 선택안했을경우, img파일의 기본이미지로 대체
 					saveDir = request.getContextPath()+ File.separator + "img";
@@ -98,7 +98,7 @@ public class EnterpriseJoinProcess extends HttpServlet {
 				parameterDto.setAddress(address);
 				parameterDto.setAddressDatail(addressDetail);
 				parameterDto.setTel(tel);
-				parameterDto.setProfile(realUploadPath + File.separator + newFileName);
+				parameterDto.setProfile(saveDir + File.separator + newFileName);
 				parameterDto.setAccepted(accepted);
 				
 				//4. 인서트
