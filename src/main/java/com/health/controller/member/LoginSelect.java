@@ -7,35 +7,23 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-import com.google.gson.Gson;
-import com.health.dao.MemberDao;
-
-@WebServlet("/member/id-check")
-public class IDCheck extends HttpServlet {
+@WebServlet("/login-select")
+public class LoginSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final MemberDao memberDao = MemberDao.getInstance();
        
-    public IDCheck() {
+    public LoginSelect() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String id = request.getParameter("id");
-		int result = memberDao.idCheck(id); //0,1
-		Map<String,Integer> countMap = new HashMap<>();
-		countMap.put("count", result);
-		Gson gson = new Gson();
-		String resultJson = gson.toJson(countMap);
-		request.setAttribute("resultJson", resultJson);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/member/id-check.jsp");
+		RequestDispatcher dispatcher = 
+				request.getRequestDispatcher("/WEB-INF/member/loginSelect.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		doGet(request, response);
 	}
 

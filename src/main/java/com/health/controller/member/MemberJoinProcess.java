@@ -104,7 +104,6 @@ public class MemberJoinProcess extends HttpServlet {
 								
 						
 						if(result>0) {
-							HttpSession session = request.getSession();
 							response.sendRedirect("../member/login");
 						} else {
 							HttpSession session = request.getSession();
