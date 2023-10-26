@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/** yong  **/
 .main {
 	min-height: 500px;
 }
@@ -45,11 +46,17 @@
 	display: none;
 }
 
+/** yong end **/
 
+/** rang **/
 .ck-editor__editable_inline {
 	min-height: 400px !important; 
 }
 .ck-editor__editable p {margin: 0}
+
+.main-category{
+	display: flex;
+}
 
 .profile-small {
 		width:100px;
@@ -68,7 +75,7 @@
 /* sun */
 
 
-.row {
+.product_row {
 	display: flex;
 	align-items: center;
 	

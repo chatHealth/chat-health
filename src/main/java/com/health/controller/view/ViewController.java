@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/view/Product")
+@WebServlet("/view/product")
 public class ViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  

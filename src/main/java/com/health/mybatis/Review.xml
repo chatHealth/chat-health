@@ -7,7 +7,7 @@
  INSERT INTO Review values(
 					seq_review.nextval,
 					#{userNo},
-					#{postNo2},
+					#{postNo},
 					#{title},
 					#{content},
 					DEFAULT,
