@@ -63,10 +63,6 @@
 </div>
 
 
-
-<script
-	src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
-	
 <script>
 
 // 1. ck editor
