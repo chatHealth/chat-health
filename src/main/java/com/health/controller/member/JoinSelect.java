@@ -8,17 +8,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/login-select")
-public class LoginSelect extends HttpServlet {
+@WebServlet("/member/join-select")
+public class JoinSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public LoginSelect() {
+    public JoinSelect() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/member/loginSelect.jsp");
+				request.getRequestDispatcher("/WEB-INF/member/joinSelect.jsp");
 		dispatcher.forward(request, response);
 	}
 
