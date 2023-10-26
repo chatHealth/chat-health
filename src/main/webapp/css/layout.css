@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body{
+	list-style: none;
+}
+
+
 .main {
 	min-height: 500px;
 }
@@ -53,6 +58,7 @@
 }
 .ck-editor__editable p {margin: 0}
 
+
 .main-category{
 	display: flex;
 }
@@ -65,3 +71,22 @@
 	}
 	
 /* rang end */
+
+
+/* sun */
+.row{
+	float: left !important;
+}
+
+.info_write{
+	display: flex;
+	background-color: red;
+}
+
+.box2{
+	background-color: red;
+}
+
+/* sun end */
+
+>>>>>>> sun
