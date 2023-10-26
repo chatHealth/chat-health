@@ -30,7 +30,7 @@
         <input class="form-check-input1" type="checkbox" value="imEnterprise" id="isEnterprise" name="isEnterprise">
           <label class="form-check-label1" for="isEnterprise"> 사업자회원</label>
       </div>
-      	
+
      </div>
     
     <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
