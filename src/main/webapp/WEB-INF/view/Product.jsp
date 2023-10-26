@@ -134,7 +134,7 @@
 			</div>
 			
 			<!--                    리뷰끝                    -->
-		<form action="commmentAdd" method="post">
+		<form action="reviewAdd" method="post">
 			<hr class="featurette-divider">
 				<div class="commet_box">
 				 <input class="comment_text" type="text"  id="content" placeholder="리뷰글 작성"/>
