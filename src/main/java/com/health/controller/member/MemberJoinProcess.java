@@ -61,6 +61,7 @@ public class MemberJoinProcess extends HttpServlet {
 						String originFileName = partHeaderArray[1].trim().replace("\"", ""); // 맨뒤 따옴표 제거
 
 						String newFileName = "";
+						String saveDir = "";
 						
 						if (!originFileName.isEmpty()) {
 							// 실질적인(물리적인)경로에 파일생기도록
@@ -82,6 +83,10 @@ public class MemberJoinProcess extends HttpServlet {
 							File newFile = new File(realUploadPath + File.separator + newFileName);
 							oldFile.renameTo(newFile);
 
+						}else {
+							//대표 이미지 선택안했을경우, img파일의 기본이미지로 대체
+							saveDir = request.getContextPath()+ File.separator + "img";
+							newFileName = "basic_profile.svg";
 						}
 						
 						//3. 데이터 set
