@@ -1,6 +1,7 @@
 package com.health.controller.personal;
 
 import com.health.dao.PersonalDao;
+import com.health.dto.MemberDto;
 import com.health.util.ScriptWriter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -20,7 +21,9 @@ public class MemberWithdrawProcess extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        int loggedNo = (int) session.getAttribute("loggedNo");
+//        int loggedNo = (int) session.getAttribute("loggedNo");
+        MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
+        int loggedNo = loggedMember.getUserNo();
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
         String memberPassword = personalDao.memberPassword(loggedNo);

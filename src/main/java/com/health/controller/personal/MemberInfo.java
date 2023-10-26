@@ -17,12 +17,16 @@ public class MemberInfo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        int userNo = (int) session.getAttribute("loggedNo");
+        MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
+        System.out.println(loggedMember.getProfile());
+//        int userNo = (int) session.getAttribute("loggedNo");
+//        MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
 
-        MemberDto memberDto = personalDao.memberInfo(userNo);
-        memberDto.setPw(null);
+//        MemberDto memberDto = personalDao.memberInfo(loggedMember.getUserNo());
+//        memberDto.setPw(null);
 
-        session.setAttribute("member", memberDto);
+//        session.setAttribute("member", memberDto);
+
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-info.jsp");
         requestDispatcher.forward(request, response);

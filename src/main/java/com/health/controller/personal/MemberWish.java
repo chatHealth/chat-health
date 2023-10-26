@@ -21,7 +21,7 @@ public class MemberWish extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        MemberDto member = (MemberDto) session.getAttribute("member");
+        MemberDto member = (MemberDto) session.getAttribute("loggedMember");
         int userNo = member.getUserNo();
 
         List<PostDto> userLikePosts = personalDao.userLikePosts(userNo);

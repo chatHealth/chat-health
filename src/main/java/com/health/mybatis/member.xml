@@ -52,7 +52,7 @@
 	</select>
 
 	<update id="updateMember" parameterType="MemberDto">
-		update member set nickname = #{nickname}, address = #{address}, addressDetail=#{addressDetail}, email = #{email} where userno = #{userNo}
+		update member set nickname = #{nickName}, address = #{address}, addressDetail=#{addressDetail}, email = #{email} where userno = #{userNo}
 	</update>
 	<update id="updateMemberPassword" parameterType="MemberDto">
 		update member set pw = #{pw} where userno = #{userNo}

@@ -18,11 +18,18 @@
             <!-- Profile Picture -->
             <div class="profile-picture">
                 <%--                        <img src="https://via.placeholder.com/150" alt="Profile Picture">--%>
-                <img src="/uploadProfile/${member.profile }" alt="Profile Picture">
+                <c:choose>
+                <c:when test="${loggedMember.profile eq 'null'}">
+                    <img src="../img/basic_profile.svg" alt="없음">
+                </c:when>
+                <c:otherwise>
+                    <img src="/uploadProfile/${loggedMember.profile }" alt="+++++++">
+                </c:otherwise>
+                </c:choose>
                 <div class="edit-button">
                     <%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
                     <%--                        </div>--%>
-                    <button id="editBtn" class="btn" style="background: none; border: none;">Edit</button>
+                    <button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>
                     <!-- 회원가입 확인 Modal-->
                     <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -38,7 +45,7 @@
                                         <div class="form-group">
                                             <%--                                    <label for="profileImage">프로필 사진 업로드</label>--%>
                                             <input type="file" class="form-control-file" id="profileImage"
-                                                   name="profileImage">
+                                                   name="profileImage" accept="image/jpeg, image/jpg, image/gif, image/png">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -62,23 +69,23 @@
                     <tbody>
                     <tr>
                         <th scope="row" class="w-25">Name</th>
-                        <td class="w-75">${member.name }</td>
+                        <td class="w-75">${loggedMember.name }</td>
                     </tr>
                     <tr>
                         <th scope="row" class="w-25">NickName</th>
-                        <td class="w-75">${member.nickname }</td>
+                        <td class="w-75">${loggedMember.nickName }</td>
                     </tr>
                     <tr>
                         <th scope="row" class="w-25">Address</th>
-                        <td class="w-75">${member.address }</td>
+                        <td class="w-75">${loggedMember.address }</td>
                     </tr>
                     <tr>
                         <th scope="row" class="w-25">Address Detail</th>
-                        <td class="w-75">${member.addressDetail }</td>
+                        <td class="w-75">${loggedMember.addressDetail }</td>
                     </tr>
                     <tr>
                         <th scope="row" class="w-25">E-Mail</th>
-                        <td class="w-75">${member.email }</td>
+                        <td class="w-75">${loggedMember.email }</td>
                     </tr>
                     </tbody>
                 </table>

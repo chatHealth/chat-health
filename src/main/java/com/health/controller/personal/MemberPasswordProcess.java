@@ -34,7 +34,7 @@ public class MemberPasswordProcess extends HttpServlet {
         }
 
         HttpSession session = request.getSession();
-        MemberDto member = (MemberDto) session.getAttribute("member");
+        MemberDto member = (MemberDto) session.getAttribute("loggedMember");
         int userNo = member.getUserNo();
         System.out.println("userNo = " + userNo);
         String memberPassword = personalDao.memberPassword(userNo);
