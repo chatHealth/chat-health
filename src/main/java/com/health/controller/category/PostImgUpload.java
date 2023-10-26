@@ -17,6 +17,7 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
+@WebServlet("/post/img-upload")
 public class PostImgUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

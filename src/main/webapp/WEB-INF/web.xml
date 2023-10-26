@@ -9,26 +9,8 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>NoAcceptAlert</display-name>
-    <servlet-name>NoAcceptAlert</servlet-name>
-    <servlet-class>com.health.controller.member.NoAcceptAlert</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>NoAcceptAlert</servlet-name>
-    <url-pattern>/member/no-accept</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>PostImgUpload</display-name>
-    <servlet-name>PostImgUpload</servlet-name>
-    <servlet-class>com.health.controller.category.PostImgUpload</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PostImgUpload</servlet-name>
-    <url-pattern>/post/img-upload</url-pattern>
-  </servlet-mapping>
+  
+
 </web-app>
 <!--
   <servlet>
