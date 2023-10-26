@@ -32,4 +32,7 @@
     <update id="updateEntPassword" parameterType="EnterpriseDto">
         update enterprise set pw = #{pw} where enterpriseNo=#{enterpriseNo}
     </update>
+    <update id="entWithdraw" parameterType="int">
+        update enterprise set deleteddate = sysdate where enterpriseNo = #{enterpriseNo}
+    </update>
 </mapper>

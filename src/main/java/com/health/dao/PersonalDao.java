@@ -73,4 +73,12 @@ public class PersonalDao {
         sqlSession.close();
         return result;
     }
+
+    public int entWithdraw(int enterpriseNo) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("entWithdraw", enterpriseNo);
+        sqlSession.close();
+        return result;
+    }
 }
