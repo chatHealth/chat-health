@@ -1,4 +1,4 @@
-package com.health.controller.view.review;
+package com.health.controller.member;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,21 +7,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/chat-health/view/commmentAdd")
-public class CommentAdd extends HttpServlet {
+import com.health.util.ScriptWriter;
+
+@WebServlet("/member/no-accept")
+public class NoAcceptAlert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public CommentAdd() {
+    
+	  
+    public NoAcceptAlert() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ScriptWriter sw = new ScriptWriter();
+		sw.alertAndBack(response, "승인되지 않은 사업자는 글을 쓸 수 없습니다");
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
 	}
-	
-	
+
 }

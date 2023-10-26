@@ -15,8 +15,7 @@ import java.util.Date;
 
 import com.health.dao.MemberDao;
 import com.health.dto.EnterpriseDto;
-import com.health.dto.ModalState;
-
+import com.health.util.ScriptWriter;
 @WebServlet("/member/enterprise-join-process")
 public class EnterpriseJoinProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class ScriptWriter {
+	
 	public static void alert(HttpServletResponse response, String msg) throws IOException {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-
+<%@ include file="../include/nav.jsp"%>
 
 <div class="container ">
 
@@ -63,10 +63,6 @@
 </div>
 
 
-
-<script
-	src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
-
 <script>
 
 // 1. ck editor
@@ -75,9 +71,9 @@ ClassicEditor
 .create(document.querySelector("#content"),
     {
         language: "ko",
-        simpleUpload:
+        ckfinder:
         {
-            uploadUrl: "../post/write-process",
+            uploadUrl: "../post/img-upload",
             withCredentials: true,
         }
     })
