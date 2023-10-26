@@ -9,7 +9,17 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  </web-app>
+  <servlet>
+    <description></description>
+    <display-name>CommentAdd</display-name>
+    <servlet-name>CommentAdd</servlet-name>
+    <servlet-class>com.health.controller.view.CommentAdd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommentAdd</servlet-name>
+    <url-pattern>/CommentAdd</url-pattern>
+  </servlet-mapping>
+</web-app>
 <!--
   <servlet>
     <description></description>
