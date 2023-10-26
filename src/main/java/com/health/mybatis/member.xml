@@ -12,6 +12,7 @@
 		WHERE ID = #{id} AND PW = #{pw}
 	</select>
 	
+	
 	<insert id="insertMember" parameterType="MemberDto">
 		insert into member values(
 									seq_member.nextval,
