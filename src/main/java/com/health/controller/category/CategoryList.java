@@ -30,6 +30,7 @@ public class CategoryList extends HttpServlet {
     private final PostDao postDao = PostDao.getInstance();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<PostDto> postList = postDao.getAllPost();
+		if(postList.size() == 0) { postList = null; }
 		request.setAttribute("postList", postList);
 		
 		//nav

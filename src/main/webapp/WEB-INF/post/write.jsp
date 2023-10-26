@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-
+<%@ include file="../include/nav.jsp"%>
 
 <div class="container ">
 
@@ -77,7 +77,7 @@ ClassicEditor
         language: "ko",
         simpleUpload:
         {
-            uploadUrl: "../post/write-process",
+            uploadUrl: "../post/img-upload",
             withCredentials: true,
         }
     })

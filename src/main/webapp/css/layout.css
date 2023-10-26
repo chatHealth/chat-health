@@ -50,5 +50,10 @@
 		object-fit:contain;
 		border-radius: 100px ;
 	}
-	
+
+.no-category-content{
+	width:100%;	
+	height: 100%;
+}
+
 /* rang end */
