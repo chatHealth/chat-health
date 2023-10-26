@@ -37,7 +37,7 @@ public class CategoryList extends HttpServlet {
 		if(session.getAttribute("navSymptomList")==null) {
 			session.setAttribute("navSymptomList", SymptomDao.getInstance().getAllSymptom());
 		}
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/category/list.jsp");
 		dispatcher.forward(request, response); 
 	}

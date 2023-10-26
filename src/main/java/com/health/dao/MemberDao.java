@@ -20,13 +20,38 @@ public class MemberDao{
     private MemberDao() {
 
     }
-    
+
+    public int updateMember(MemberDto memberDto) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("updateMember", memberDto);
+        sqlSession.close();
+        return result;
+    }
+
+    public int updatePassword(MemberDto memberDto) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		System.out.println("memberDto.getPw() = " + memberDto.getPw());
+        result = sqlSession.update("updateMemberPassword", memberDto);
+        sqlSession.close();
+        return result;
+    }
+
+    public int updateProfileImage(MemberDto memberDto) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("updateMemberProfileImage", memberDto);
+        sqlSession.close();
+        return result;
+    }
+
 	public MemberDto loginMember(MemberDto memberDto) {
-		MemberDto loggedMember = null;
+		MemberDto loggedMember;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		
 		loggedMember = sqlSession.selectOne("loginMember",memberDto);
-	
+
 		sqlSession.close();
 		return loggedMember;
 	}
@@ -64,7 +89,7 @@ public class MemberDao{
 		sqlSession.close();
 		return result;
 	}
-	
+
 }
 
 
