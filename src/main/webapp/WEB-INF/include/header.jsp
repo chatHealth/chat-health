@@ -17,7 +17,8 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <link href="../css/layout.css" rel="stylesheet" />
 
-
+<!-- post) ckeditor  -->
+<script src="../js/ckeditor.js"></script>
 <!-- multi select -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
 <link rel="stylesheet" href="../css/select2-bootstrap-5-theme.min.css" />

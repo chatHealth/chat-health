@@ -2,12 +2,11 @@ package com.health.dto;
 
 public class ReplyDto {
 	private int replyNo;
-	private int commentNo2;
+	private int commentNo;
 	private int userNo;
 	private String content;
 	private String regDate;
 	private String deletedDate;
-	private int commentNo;
 	
 	
 	public ReplyDto() {
@@ -15,16 +14,14 @@ public class ReplyDto {
 	};
 	
 	
-	public ReplyDto(int replyNo, int commentNo2, int userNo, String content, String regDate, String deletedDate,
-			int commentNo) {
+	public ReplyDto(int replyNo, int commentNo, int userNo, String content, String regDate, String deletedDate) {
 		super();
 		this.replyNo = replyNo;
-		this.commentNo2 = commentNo2;
+		this.commentNo = commentNo;
 		this.userNo = userNo;
 		this.content = content;
 		this.regDate = regDate;
 		this.deletedDate = deletedDate;
-		this.commentNo = commentNo;
 	}
 
 
@@ -38,13 +35,13 @@ public class ReplyDto {
 	}
 
 
-	public int getCommentNo2() {
-		return commentNo2;
+	public int getcommentNo() {
+		return commentNo;
 	}
 
 
-	public void setCommentNo2(int commentNo2) {
-		this.commentNo2 = commentNo2;
+	public void setcommentNo(int commentNo) {
+		this.commentNo = commentNo;
 	}
 
 
@@ -88,14 +85,6 @@ public class ReplyDto {
 	}
 
 
-	public int getCommentNo() {
-		return commentNo;
-	}
-
-
-	public void setCommentNo(int commentNo) {
-		this.commentNo = commentNo;
-	}
 	
 	
 	
