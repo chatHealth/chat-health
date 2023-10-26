@@ -18,11 +18,18 @@
 			<!-- Profile Picture -->
 			<div class="profile-picture">
 				<%--                        <img src="https://via.placeholder.com/150" alt="Profile Picture">--%>
-				<img src="/uploadProfile/${member.profile }" alt="Profile Picture">
+					<c:choose>
+						<c:when test="${loggedEnterprise.profile eq 'null'}">
+							<img src="../img/basic_profile.svg" alt="없음">
+						</c:when>
+						<c:otherwise>
+							<img src="/uploadProfile/${loggedEnterprise.profile }" alt="+++++++">
+						</c:otherwise>
+					</c:choose>
 				<div class="edit-button">
 					<%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
 					<%--                        </div>--%>
-					<button id="editBtn" class="btn" style="background: none; border: none;">Edit</button>
+					<button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>
 					<!-- 회원가입 확인 Modal-->
 					<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
 						 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -61,24 +68,24 @@
 				<table class="table table-striped">
 					<tbody>
 					<tr>
-						<th scope="row" class="w-25">Name</th>
-						<td class="w-75">${member.name }</td>
+						<th scope="row" class="w-25">법인명</th>
+						<td class="w-75">${loggedEnterprise.name }</td>
 					</tr>
 					<tr>
-						<th scope="row" class="w-25">NickName</th>
-						<td class="w-75">${member.nickname }</td>
+						<th scope="row" class="w-25">대표자</th>
+						<td class="w-75">${loggedEnterprise.ceo }</td>
 					</tr>
 					<tr>
 						<th scope="row" class="w-25">Address</th>
-						<td class="w-75">${member.address }</td>
+						<td class="w-75">${loggedEnterprise.address }</td>
 					</tr>
 					<tr>
 						<th scope="row" class="w-25">Address Detail</th>
-						<td class="w-75">${member.addressDetail }</td>
+						<td class="w-75">${loggedEnterprise.addressDetail }</td>
 					</tr>
 					<tr>
-						<th scope="row" class="w-25">E-Mail</th>
-						<td class="w-75">${member.email }</td>
+						<th scope="row" class="w-25">tel</th>
+						<td class="w-75">${loggedEnterprise.tel }</td>
 					</tr>
 					</tbody>
 				</table>

@@ -1,5 +1,6 @@
 package com.health.dao;
 
+import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
 import com.health.mybatis.MyBatisConnectionFactory;
@@ -47,5 +48,13 @@ public class PersonalDao {
         result = sqlSession.update("withdrawMember", userNo);
         sqlSession.close();
         return result;
+    }
+
+    public EnterpriseDto EnterpriseInfo(int enterpriseNo) {
+        EnterpriseDto enterprise;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        enterprise = sqlSession.selectOne("enterpriseInfo", enterpriseNo);
+        sqlSession.close();
+        return enterprise;
     }
 }

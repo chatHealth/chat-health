@@ -92,7 +92,7 @@ public class EnterpriseJoinProcess extends HttpServlet {
 				parameterDto.setName(name);
 				parameterDto.setCeo(ceo);
 				parameterDto.setAddress(address);
-				parameterDto.setAddressDatail(addressDetail);
+				parameterDto.setAddressDetail(addressDetail);
 				parameterDto.setTel(tel);
 				parameterDto.setProfile(realUploadPath + File.separator + newFileName);
 				parameterDto.setAccepted(accepted);

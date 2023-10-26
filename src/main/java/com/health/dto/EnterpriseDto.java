@@ -82,7 +82,7 @@ public class EnterpriseDto {
 		return addressDetail;
 	}
 
-	public void setAddressDatail(String addressDetail) {
+	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
 
