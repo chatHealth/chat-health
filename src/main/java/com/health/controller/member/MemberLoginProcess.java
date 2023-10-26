@@ -13,7 +13,7 @@ import java.io.IOException;
 import com.health.dao.MemberDao;
 import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
-import com.health.dto.ModalState;
+import com.health.util.ModalState;
 import com.health.util.ScriptWriter;
 
 @WebServlet("/member/login-process")

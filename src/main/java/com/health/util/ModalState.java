@@ -1,4 +1,4 @@
-package com.health.dto;
+package com.health.util;
 
 public class ModalState {
 	private String msg;

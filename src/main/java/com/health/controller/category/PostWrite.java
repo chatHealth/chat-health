@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -32,9 +34,16 @@ public class PostWrite extends HttpServlet {
 		List<SymptomDto> symptomList = symptomDao.getAllSymptom();
 		List<MaterialDto> materialList = materialDao.getAllMaterial();
 		
+		
 		request.setAttribute("symptomList", symptomList);
 		request.setAttribute("materialList", materialList);
 		
+		//nav
+		HttpSession session = request.getSession();
+		if(session.getAttribute("navSymptomList")==null) {
+			session.setAttribute("navSymptomList", SymptomDao.getInstance().getAllSymptom());
+		}
+				
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/post/write.jsp");
 		dispatcher.forward(request, response); 
 	}
