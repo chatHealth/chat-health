@@ -28,22 +28,6 @@ public class MemberProfileImage extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Part part = request.getPart("profileImage");
 
-
-        //root/uploadPath 경로 설정
-//        String path = (File.separator + "uploadPath");
-//        File Folder = new File(path);
-//        if (!Folder.exists()) {
-//            try{
-//                Folder.mkdir(); //폴더 생성합니다. ("새폴더"만 생성)
-//                System.out.println("폴더가 생성완료.");
-//            }
-//            catch(Exception e){
-//                e.getStackTrace();
-//            }
-//        }
-
-        //folder 없으면 만들기
-
         //Content-type 이 png, jpeg, jpg, gif 일 때만 받기
         String contentType = part.getContentType();
         String ext = contentType.split("/")[1];
@@ -53,18 +37,14 @@ public class MemberProfileImage extends HttpServlet {
         if (!(Arrays.asList(images).contains(contentType))) {
             ScriptWriter.alertAndBack(response, "이미지 파일만 등록 가능");
         } else {
-            String uploadDir = "/Users/wonu/Desktop/uploadProfile";
-
-//        File profileImageDir = new File(uploadDir);
+            //directory 환경변수 설정
+            String uploadDir = System.getenv("upload");
 
             HttpSession session = request.getSession();
-//            MemberDto loginMember = (MemberDto) session.getAttribute("loginSession");
             MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
 
-            String filename = loggedMember.getUserNo() + "_profileImage." + ext;
-
-
-            part.write(uploadDir + File.separator +filename);
+            String filename = loggedMember.getUserNo() + loggedMember.getUserNo() + "_profileImage." + ext;
+            part.write(uploadDir + File.separator + filename);
 
             MemberDto updateProfileMember = new MemberDto();
 
