@@ -3,7 +3,7 @@
 <%@ include file="../include/header.jsp"%>
 
 
-<div class="container main-category">
+<div class="container ">
 
 	<h2>Write</h2>
 

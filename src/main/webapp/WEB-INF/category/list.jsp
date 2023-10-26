@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
+<%@ include file="../include/nav.jsp"%>
 
-
-<div class="main-category">
+<div class="">
 	<div class="container album py-5 bg-light">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 

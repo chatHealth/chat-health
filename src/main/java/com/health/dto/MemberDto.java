@@ -2,7 +2,7 @@ package com.health.dto;
 
 public class MemberDto {
 	private int userNo;
-	private String nickname;
+	private String nickName;
 	private String id;
 	private String pw;
 	private String name;
@@ -22,12 +22,12 @@ public class MemberDto {
 	}
 
 
-	public MemberDto(int userNo, String nickname, String id, String pw, String name, String birthDate, String gender,
+	public MemberDto(int userNo, String nickName, String id, String pw, String name, String birthDate, String gender,
 			String email, String address, String addressDetail, String joinDate, String profile, String deletedDate,
 			int grade) {
 		super();
 		this.userNo = userNo;
-		this.nickname = nickname;
+		this.nickName = nickName;
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -53,13 +53,13 @@ public class MemberDto {
 	}
 
 
-	public String getNickname() {
-		return nickname;
+	public String getNickName() {
+		return nickName;
 	}
 
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 
@@ -185,7 +185,7 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "MemberDto [userNo=" + userNo + ", nickname=" + nickname + ", id=" + id + ", pw=" + pw + ", name=" + name
+		return "MemberDto [userNo=" + userNo + ", nickName=" + nickName + ", id=" + id + ", pw=" + pw + ", name=" + name
 				+ ", birthDate=" + birthDate + ", gender=" + gender + ", email=" + email + ", address=" + address
 				+ ", addressDetail=" + addressDetail + ", joinDate=" + joinDate + ", profile=" + profile
 				+ ", deletedDate=" + deletedDate + ", grade=" + grade + "]";
