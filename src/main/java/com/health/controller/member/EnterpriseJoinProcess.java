@@ -107,6 +107,9 @@ public class EnterpriseJoinProcess extends HttpServlet {
 					session.setAttribute("modalState", modalState);
 					response.sendRedirect("../member/login");
 				} else {
+					HttpSession session = request.getSession();
+					ModalState modalState = new ModalState("show","오류입니다.");
+					session.setAttribute("modalState", modalState);
 					response.sendRedirect("../member/enterprise-join");
 					}
 	}

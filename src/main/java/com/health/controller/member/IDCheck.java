@@ -12,7 +12,6 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 import com.health.dao.MemberDao;
-import com.health.dto.IdCheckDto;
 
 @WebServlet("/member/id-check")
 public class IDCheck extends HttpServlet {
@@ -26,14 +25,13 @@ public class IDCheck extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String id = request.getParameter("id");
-		IdCheckDto idCheckDto = new IdCheckDto(id,id);
-		int result = memberDao.idCheck(idCheckDto); //0,1
+		int result = memberDao.idCheck(id); //0,1
 		Map<String,Integer> countMap = new HashMap<>();
 		countMap.put("count", result);
 		Gson gson = new Gson();
 		String resultJson = gson.toJson(countMap);
 		request.setAttribute("resultJson", resultJson);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/member/idCheck.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/member/id-check.jsp");
 		dispatcher.forward(request, response);
 	}
 

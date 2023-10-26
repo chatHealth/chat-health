@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
 <link rel="stylesheet" href="../css/select2-bootstrap-5-theme.min.css" />
 <link rel="stylesheet" href="../css/select2-bootstrap-5-theme.rtl.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
 
 

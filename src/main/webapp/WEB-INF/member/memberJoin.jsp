@@ -49,12 +49,12 @@
 								placeholder="user id" name="id" />
 							</div>
 							<div class="col-6  mt-3 d-flex align-items-baseline px-0">
-								<button class="btn btn-primary mt-3" id="btnIDCheck" >아이디 중복 확인</button>
+								<button class="btn btn-primary mt-3" id="btnIDCheck">아이디 중복 확인</button>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>   
 			    
         <div class="mb-3"><!--비번-->
           
@@ -78,31 +78,9 @@
 		  <input type="text" id="sample4_detailAddress" placeholder="상세주소"name="addressDetail">
 		  <input type="text" id="sample4_extraAddress" placeholder="참고항목">
 
-		
-        </div>
-        <!-- 프로필 이미지 삽입 -->
-        <label for="profile">프로필 사진</label>
-        <div class="mb-3">
-			<div class="col-20 mt-3 ">	
-            	<input type="file" class="form-control" id="profile" placeholder="png,jpg" name="profile"
-            	accept="image/gif, image/jpeg, image/png" />
-			</div>
-		<input type="hidden" name="grade" value="10" >
-		
-        <div class="mt-3 form-check">
-          <input type="checkbox" class="form-check-input mt-5" required/>
-          <label class="form-check-label w-100 mt-5" for="accepted"  >
-          (필수) <a href="../useAgree.jsp" target="_blank">이용약관</a>과 <a href="../personal.jsp" target="_blank">개인정보 수집 및 이용</a>에 동의합니다.
-          </label>
-          
-        </div>
-        <button type="submit" class="btn btn-primary w-100 mt-20" name="">회원가입 신청하기</button>
-      </div>
-    </form>
-    
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!--API연결-->
-    
-<script> <!--JS 주소찾기, 아이디중복체크-->
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -157,37 +135,26 @@
             }
         }).open();
     }
-    
-    	//2. 아이디 중복체크
-	   $('#btnIDCheck').on('click', function(){
-	       $.ajax({
-	          url:"../member/id-check",
-	          data: {
-	        	  id: $("#id").val()
-	          },
-	          method: "get",  //없어도 get으로 처리됨
-	          success: function(data){
-	        	  console.log(data)
-	             if(data.count>0){
-	                alert("이미 사용중인 아이디입니다.")
-	                $("#id").val("");
-	                $("#id").focus();
-	             }else{
-	            	const useID = confirm("쓸 수 있는 아이디. 사용하시겠어요?");
-	                if(id) $("#id").attr("readonly", true);
-	                isIDCheck = true;
-	             }
-	          },
-	          fail:function(error){
-	             console.log(error);
-	          },
-	          
-	          complete:function(data){	             
-	          }
-	       });	       
-	       return false;
-	    });
 </script>
-
+        </div>
+        <!-- 프로필 이미지 삽입 -->
+        <label for="profile">프로필 사진</label>
+        <div class="mb-3">
+			<div class="col-20 mt-3 ">	
+            	<input type="file" class="form-control" id="profile" placeholder="png,jpg" name="profile"
+            	accept="image/gif, image/jpeg, image/png" />
+			</div>
+		<input type="hidden" name="grade" value="10" >
+		
+        <div class="mt-3 form-check">
+          <input type="checkbox" class="form-check-input mt-5" required/>
+          <label class="form-check-label w-100 mt-5" for="accepted"  >
+          (필수) <a href="../useAgree.jsp" target="_blank">이용약관</a>과 <a href="../personal.jsp" target="_blank">개인정보 수집 및 이용</a>에 동의합니다.
+          </label>
+          
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mt-20" name="">회원가입 신청하기</button>
+      </div>
+    </form>
 
 <%@ include file="../include/footer.jsp"%>

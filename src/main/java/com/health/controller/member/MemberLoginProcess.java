@@ -34,7 +34,6 @@ public class MemberLoginProcess extends HttpServlet {
 		String userPW= request.getParameter("userPW");
 
 		String isEnterprise = request.getParameter("isEnterprise");
-
 		
 		
 		if(isEnterprise == null) { // 1. 개인인 경우
