@@ -8,13 +8,12 @@ public class PostDto {
 	private String postImg;
 	private String regDate;
 	private String deletedDate;
-	
+
 	public PostDto() {
-	
 	}
 
-	public PostDto(int postNo, int enterpriseNo, String title, String content, String postImg, 
-			String regDate, String deletedDate) {
+	public PostDto(int postNo, int enterpriseNo, String title, String content, String postImg,
+				   String regDate, String deletedDate) {
 		super();
 		this.postNo = postNo;
 		this.enterpriseNo = enterpriseNo;
@@ -65,7 +64,6 @@ public class PostDto {
 		this.postImg = postImg;
 	}
 
-
 	public String getRegDate() {
 		return regDate;
 	}
@@ -81,7 +79,6 @@ public class PostDto {
 	public void setDeletedDate(String deletedDate) {
 		this.deletedDate = deletedDate;
 	}
-	
-	
+
 
 }

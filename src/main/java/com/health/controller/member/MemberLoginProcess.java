@@ -31,10 +31,9 @@ public class MemberLoginProcess extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userID= request.getParameter("userID");
-		String userPW= request.getParameter("userPW");		
+		String userPW= request.getParameter("userPW");
 		String isEnterprise = request.getParameter("isEnterprise");
 
-		
 		
 		
 		if(isEnterprise == null) { // 1. 개인인 경우
@@ -77,7 +76,7 @@ public class MemberLoginProcess extends HttpServlet {
 			
 
 		
-		
+
 	}
 
 }
