@@ -24,15 +24,18 @@ public class MemberDao{
 	public MemberDto loginMember(MemberDto memberDto) {
 		MemberDto loggedMember = null;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		
 		loggedMember = sqlSession.selectOne("loginMember",memberDto);
+	
 		sqlSession.close();
 		return loggedMember;
 	}
+
 	
 	public EnterpriseDto loginEnterprise(EnterpriseDto enterpriseDto) {
 		EnterpriseDto loggedMember = null;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-		loggedMember = sqlSession.selectOne("loginMember",enterpriseDto);
+		loggedMember = sqlSession.selectOne("loginEnterprise",enterpriseDto);
 		sqlSession.close();
 		return loggedMember;
 	}
