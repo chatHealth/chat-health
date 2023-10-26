@@ -15,8 +15,6 @@
 			<h4 class="mb-3">비밀번호 변경</h4>
 			<form action="../personal/member-password-process" class="needs-validation" novalidate="" method="post">
 				<div class="row g-3">
-					<c:choose>
-						<c:when test="${loggedMember ne null}">
 					<div class="col-12">
 						<label for="password" class="form-label">비밀번호</label>
 						<div class="input-group has-validation">
@@ -45,9 +43,6 @@
 							</div>
 						</div>
 					</div>
-						</c:when>
-						<c:when test="${loggedEnterprise ne null}"></c:when>
-					</c:choose>
 				<button class="w-100 btn btn-primary btn-lg" type="submit">비밀번호 변경</button>
 				<button class="w-100 btn btn-primary btn-lg" type="submit">취소</button>
 				</div>

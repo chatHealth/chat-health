@@ -26,4 +26,10 @@
     <select id="enterpriseInfo" resultType="EnterpriseDto" parameterType="int">
         select * from enterprise where enterpriseNo = #{enterpriseNo}
     </select>
+    <select id="enterprisePassword" resultType="String" parameterType="int">
+        select pw from enterprise where enterpriseNo = #{enterpriseNo}
+    </select>
+    <update id="updateEntPassword" parameterType="EnterpriseDto">
+        update enterprise set pw = #{pw} where enterpriseNo=#{enterpriseNo}
+    </update>
 </mapper>

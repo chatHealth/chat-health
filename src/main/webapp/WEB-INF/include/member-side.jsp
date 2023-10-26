@@ -115,7 +115,7 @@
           <h1>enterprise info</h1>
           <ul>
             <li><a href="../personal/member-info">내 정보</a></li>
-            <li><a href="../personal/enterprise-password">비밀번호 변경</a></li>
+            <li><a href="../personal/member-password">비밀번호 변경</a></li>
             <li><a href="../personal/enterprise-post">내 상품 관리</a></li>
             <li><a href="../personal/enterprise-withdraw">회원 탈퇴</a></li>
           </ul>

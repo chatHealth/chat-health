@@ -57,4 +57,20 @@ public class PersonalDao {
         sqlSession.close();
         return enterprise;
     }
+
+    public String enterprisePassword(int enterpriseNo) {
+        String pw;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        pw = sqlSession.selectOne("enterprisePassword", enterpriseNo);
+        sqlSession.close();
+        return pw;
+    }
+
+    public int updateEntPassword(EnterpriseDto enterpriseDto) {
+        int result;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("updateEntPassword", enterpriseDto);
+        sqlSession.close();
+        return result;
+    }
 }

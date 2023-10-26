@@ -2,6 +2,7 @@ package com.health.controller.personal;
 
 import com.health.dao.MemberDao;
 import com.health.dao.PersonalDao;
+import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
 import com.health.util.ScriptWriter;
 import jakarta.servlet.*;
@@ -35,24 +36,46 @@ public class MemberPasswordProcess extends HttpServlet {
 
         HttpSession session = request.getSession();
         MemberDto member = (MemberDto) session.getAttribute("loggedMember");
-        int userNo = member.getUserNo();
-        System.out.println("userNo = " + userNo);
-        String memberPassword = personalDao.memberPassword(userNo);
+        EnterpriseDto enterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
+        if (member != null) {
+            int userNo = member.getUserNo();
+            String memberPassword = personalDao.memberPassword(userNo);
 
 
-        if (!(password.equals(passwordCheck) || memberPassword.equals(password) || password.isEmpty() || newPassword.isEmpty())) {
+            if (!(password.equals(passwordCheck) || memberPassword.equals(password) || password.isEmpty() || newPassword.isEmpty())) {
 //          비밀번호 확인
-            ScriptWriter.alertAndBack(response, "비밀번호 확인");
-        } else {
-            MemberDto updatePasswordMember = new MemberDto();
-            updatePasswordMember.setPw(newPassword);
-            updatePasswordMember.setUserNo(userNo);
-            int result = memberDao.updatePassword(updatePasswordMember);
-            if (result > 0) {
-                session.invalidate();
-                ScriptWriter.alertAndGo(response, "재로그인 필요", "../member/login");
+                ScriptWriter.alertAndBack(response, "비밀번호 확인");
             } else {
-                ScriptWriter.alertAndBack(response, "오류");
+                MemberDto updatePasswordMember = new MemberDto();
+                updatePasswordMember.setPw(newPassword);
+                updatePasswordMember.setUserNo(userNo);
+                int result = memberDao.updatePassword(updatePasswordMember);
+                if (result > 0) {
+                    session.invalidate();
+                    ScriptWriter.alertAndGo(response, "재로그인 필요", "../member/login");
+                } else {
+                    ScriptWriter.alertAndBack(response, "오류");
+                }
+            }
+        } else if (enterprise != null) {
+            int enterpriseNo = enterprise.getEnterpriseNo();
+            String enterprisePassword = personalDao.enterprisePassword(enterpriseNo);
+
+
+            if (!(password.equals(passwordCheck) || enterprisePassword.equals(password) || password.isEmpty() || newPassword.isEmpty())) {
+//          비밀번호 확인
+                ScriptWriter.alertAndBack(response, "비밀번호 확인");
+            } else {
+                EnterpriseDto updatePasswordEnt = new EnterpriseDto();
+                updatePasswordEnt.setPw(newPassword);
+                updatePasswordEnt.setEnterpriseNo(enterpriseNo);
+                int result = personalDao.updateEntPassword(updatePasswordEnt);
+                if (result > 0) {
+                    session.invalidate();
+                    ScriptWriter.alertAndGo(response, "재로그인 필요", "../member/login");
+                } else {
+                    ScriptWriter.alertAndBack(response, "오류");
+                }
             }
         }
     }
