@@ -33,6 +33,7 @@ public class MemberLoginProcess extends HttpServlet {
 		String userID= request.getParameter("userID");
 		String userPW= request.getParameter("userPW");
 		String isEnterprise = request.getParameter("isEnterprise");
+
 		
 		
 		
