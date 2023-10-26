@@ -89,7 +89,7 @@ public class MemberJoinProcess extends HttpServlet {
 						parameterDto.setId(id);
 						parameterDto.setEmail(email);
 						parameterDto.setName(name);
-						parameterDto.setNickname(nickname);
+						parameterDto.setNickName(nickname);
 						parameterDto.setPw(pw);
 						parameterDto.setGender(gender);
 						parameterDto.setAddress(address);
@@ -104,7 +104,6 @@ public class MemberJoinProcess extends HttpServlet {
 								
 						
 						if(result>0) {
-							HttpSession session = request.getSession();
 							response.sendRedirect("../member/login");
 						} else {
 							HttpSession session = request.getSession();

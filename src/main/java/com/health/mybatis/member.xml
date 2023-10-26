@@ -4,8 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.helath.mybatis">
 	<select id="loginMember" resultType="MemberDto" parameterType="MemberDto">
-		SELECT * FROM member
-		WHERE ID = #{id} AND PW = #{pw}
+		SELECT * FROM MEMBER 
+		WHERE id = #{id} AND pw = #{pw}
 	</select>
 	<select id="loginEnterprise" resultType="EnterpriseDto" parameterType="EnterpriseDto">
 		SELECT * FROM enterprise
@@ -41,14 +41,17 @@
 														#{profile},
 														#{ceo},
 														#{address},
+														#{addressDetail},
 														#{tel},
 														#{accepted},
-													 	null,
-														#{addressDetail}
+													 	null					
 													)
 	</insert>
-	<select id="idCheck" resultType="int" parameterType="String">
-		select count(*) as count from member where id = #{id}
+	<select id="idCheck" resultType="int" parameterType="IdCheckDto">
+		SELECT COUNT(*) as count FROM (SELECT ID FROM Member WHERE ID =#{memberId}
+    		UNION ALL
+    	SELECT ID FROM Enterprise WHERE ID = #{enterId}
+	) combined
 	</select>
 	
 </mapper>

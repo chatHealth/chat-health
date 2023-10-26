@@ -8,14 +8,14 @@ public class MaterialDto {
 	private String unit;
 	private String recognition;
 	private String caution;
-	private String function;
+	private String functions;
 	
 	public MaterialDto() {
 		
 	}
 
 	public MaterialDto(int materialNo, String materialName, String highLimit, String lowLimit, String unit,
-			String recognition, String caution, String function) {
+			String recognition, String caution, String functions) {
 		super();
 		this.materialNo = materialNo;
 		this.materialName = materialName;
@@ -24,7 +24,7 @@ public class MaterialDto {
 		this.unit = unit;
 		this.recognition = recognition;
 		this.caution = caution;
-		this.function = function;
+		this.functions = functions;
 	}
 
 	public int getMaterialNo() {
@@ -83,12 +83,12 @@ public class MaterialDto {
 		this.caution = caution;
 	}
 
-	public String getFunction() {
-		return function;
+	public String getFunctions() {
+		return functions;
 	}
 
-	public void setFunction(String function) {
-		this.function = function;
+	public void setFunctions(String functions) {
+		this.functions = functions;
 	}
 	
 	
