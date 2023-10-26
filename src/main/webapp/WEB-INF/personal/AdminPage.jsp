@@ -3,4 +3,8 @@
 <%@ include file="../include/header.jsp"%>
 <%@ include file="../include/admin-side.jsp"%>
 
+<div>
+
+</div>
+
 <%@ include file="../include/footer.jsp"%>
