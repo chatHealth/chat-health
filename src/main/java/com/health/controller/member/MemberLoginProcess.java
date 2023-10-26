@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import java.io.Console;
 import java.io.IOException;
 
 import com.health.dao.MemberDao;
@@ -33,28 +34,31 @@ public class MemberLoginProcess extends HttpServlet {
 		String userID= request.getParameter("userID");
 		String userPW= request.getParameter("userPW");
 		String isEnterprise = request.getParameter("isEnterprise");
-
 		
 		
-		if(isEnterprise == null) { // 1. 개인인 경우
+		if(isEnterprise.equals("member")) { // 1. 개인인 경우
 			MemberDto memberDto = new MemberDto();
 			MemberDto loggedMember = null;
 			memberDto.setId(userID);
 			memberDto.setPw(userPW);
+			
 			loggedMember = memberDao.loginMember(memberDto);
 		
 			if(loggedMember!=null) {
 				HttpSession loginSession = request.getSession();
-				ModalState modalState = new ModalState("show","로그인되었습니다.");
-				loginSession.setAttribute("modalState", modalState);
-				loggedMember.setPw(null);
+				loggedMember.setPw(null);				
+				
 				loginSession.setAttribute("loggedMember", loggedMember);
+				
+				if(loggedMember.getGrade() == 1) {
+					response.sendRedirect("../admin");				
+				}else{response.sendRedirect("../category/list");} //메인페이지로 수정 필요
 	
-				response.sendRedirect("../category/list"); //메인페이지로 수정 필요 
+				
 			} else {
 				ScriptWriter.alertAndBack(response, "아이디 혹은 비밀번호가 일치하지 않습니다.");
 			}
-		} else if (isEnterprise.equals("imEnterprise")) {	 //2. 사업자인경우
+		} else if (isEnterprise.equals("enterprise")) {	 //2. 사업자인경우
 			EnterpriseDto enterpriseDto = new EnterpriseDto();
 			EnterpriseDto loggedMember = null;
 			enterpriseDto.setId(userID);
@@ -63,8 +67,6 @@ public class MemberLoginProcess extends HttpServlet {
 			
 			if(loggedMember!=null) {  //login success
 				HttpSession loginSession = request.getSession();
-				ModalState modalState = new ModalState("show","로그인되었습니다.");
-				loginSession.setAttribute("modalState", modalState);
 				loggedMember.setPw(null);
 				loginSession.setAttribute("loggedEnterprise", loggedMember);
 				
