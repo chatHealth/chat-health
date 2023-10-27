@@ -29,15 +29,35 @@ public class CategoryList extends HttpServlet {
 
     private final PostDao postDao = PostDao.getInstance();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<PostDto> postList = postDao.getAllPost();
-		if(postList.size() == 0) { postList = null; }
-		request.setAttribute("postList", postList);
 		
-		//nav
+		// 0. nav
 		HttpSession session = request.getSession();
 		if(session.getAttribute("navSymptomList")==null) {
 			session.setAttribute("navSymptomList", SymptomDao.getInstance().getAllSymptom());
 		}
+		
+		// 1. post list get
+		List<PostDto> postList = null;
+		
+		String keyword = request.getParameter("keyword");
+		String symp = request.getParameter("symp");
+		
+		int sympNo = 0;
+		if(symp != null) sympNo=Integer.parseInt(symp);
+		
+		if(keyword == null) { // 1) 검색창으로 온경우
+			
+		}else if(sympNo > 0) {  // 2) 증상 선택으로 온경우
+			
+		}else {  // 3) 전체
+			postList = postDao.getAllPost();
+		}
+		
+		
+		
+		// 2. post list send
+		//if(postList.size() == 0) { postList = null; }
+		request.setAttribute("postList", postList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/category/list.jsp");
 		dispatcher.forward(request, response); 
