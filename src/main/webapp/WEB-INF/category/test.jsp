@@ -51,22 +51,6 @@
 
 
 
-<table class="table">
-				<tbody>
-					<tr>
-						<td><button type="button" class="btn btn-outline-primary">Left</button></td>
-						<td>Otto</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>e
-					</tr>
-
-				</tbody>
-			</table>
 
 
 

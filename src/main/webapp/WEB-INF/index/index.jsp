@@ -54,17 +54,17 @@
         </div>
         
 		<div class="container col-lg-6 col-6  text-left mt-5">
-			<form action="../category/list">
+			<form action="../category/list" method="get">
 				<div class="input-group main-search-part ">
-					<input type="text" class="form-control " placeholder="Search for products">
+					<input type="text" class="form-control " placeholder="Search for products" name="keyword" id="keyword">
 			
 					<div class="input-group-append ">
-						<button type="button" class="btn btn-primary main-search-button ">  	
+						<button class="btn btn-primary main-search-button ">  	
             		    	search
 							<svg  width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 							</svg>
-              		</button>
+              			</button>
 					</div>
 				</div>
 			</form>
@@ -80,27 +80,50 @@
 	<div class="row align-items-md-stretch">
 		<div class="h-100 p-5 bg-body-tertiary border rounded-3">
 
-			<c:forEach items="${ symptomList }" var="symptom" varStatus="status">
-			
-			<a href="../category/list?symp=${ symptom.sympNo }" class="nav-link link-body-emphasis">
-				<button type="button" class="btn btn-outline-primary"> 
-					${symptom.symptomName } 
-				</button>
-			</a>
-       		
-       		</c:forEach>
+
+			<div class="container main-category-buttons">
+				<div class="row ">
+				
+					<c:forEach items="${ symptomList }" var="symptom"
+						varStatus="status">
+
+						<div class="col-md-3 ">
+							<a href="../category/list?symp=${ symptom.sympNo }"
+								class="nav-link link-body-emphasis">
+								<button type="button" class="btn btn-outline-primary main-category-buttons-element">
+									${symptom.symptomName }</button>
+							</a>
+						</div>
+
+					</c:forEach>
+					
+				</div>
+			</div>
 
 		</div>
 	</div>
 
 
 
-		
+
+
 	<!-- footer -->
     <footer class="pt-3 mt-4 text-body-secondary border-top">
     </footer>
-  </div>
+
+
+
+	<script>
+		$(".main-search-button").on("click", function(e) {
+			if ($("#keyword").val().trim() === "") {
+				alert("검색어를입력하세요");
+				$("#keyword").val("");
+				$("#keyword").focus();
+				return false;
+			}
+		});
+	</script>
+	
+	
     
- 
- 
- <%@ include file="../include/footer.jsp"%>
+  <%@ include file="../include/footer.jsp"%>
