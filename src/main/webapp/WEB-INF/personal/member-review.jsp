@@ -26,8 +26,8 @@
 			<th scope="row">${review.ROWNUM }</th>
 			<c:choose>
 				<c:when test="${review.POSTDELEDDATE eq null}">
-					<td class="entP"><a href="../view/product?${review.POSTNO}"><img src="/upload/${review.POSTIMG}" style="height:100px"  alt="postImg"/></a></td>
-					<td class="entP"><a href="../view/product?${review.POSTNO}">${review.POSTTITLE}</a></td>
+					<td class="entP"><a href="../view/product?no=${review.POSTNO}"><img src="/upload/${review.POSTIMG}" style="height:100px"  alt="postImg"/></a></td>
+					<td class="entP"><a href="../view/product?no=${review.POSTNO}">${review.POSTTITLE}</a></td>
 				</c:when>
 				<c:otherwise>
 					<td class="entP">삭제된 상품입니다.</td>

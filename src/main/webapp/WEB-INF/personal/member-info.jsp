@@ -26,7 +26,7 @@
                 </c:choose>
                 <div class="edit-button">
                     <button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>
-                    <!-- 회원가입 확인 Modal-->
+                    <!-- 프로필 사진 업로드 Modal-->
                     <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
