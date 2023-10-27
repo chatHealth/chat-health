@@ -142,7 +142,7 @@
 			</div>
 		</form>
 
-
+<!--  -->
 		<!-- /END THE FEATURETTES -->
 
 	</div>
