@@ -15,11 +15,11 @@ public class ReviewDto {
 		
 	};
 	
-	public ReviewDto(int reviewNo, int usweNo, int postNo, String title, String content, String regDate, String helpful,
+	public ReviewDto(int reviewNo, int userNo, int postNo, String title, String content, String regDate, String helpful,
 			String deletedDate) {
 		super();
 		this.reviewNo = reviewNo;
-		this.usweNo = usweNo;
+		this.userNo = userNo;
 		this.postNo = postNo;
 		this.title = title;
 		this.content = content;
@@ -36,12 +36,12 @@ public class ReviewDto {
 		this.reviewNo = reviewNo;
 	}
 
-	public int getUsweNo() {
-		return usweNo;
+	public int getuserNo() {
+		return userNo;
 	}
 
-	public void setUsweNo(int usweNo) {
-		this.usweNo = usweNo;
+	public void setuserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public int getPostNo() {
