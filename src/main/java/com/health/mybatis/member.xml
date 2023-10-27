@@ -16,7 +16,7 @@
 	<insert id="insertMember" parameterType="MemberDto">
 		insert into member values(
 									seq_member.nextval,
-									#{nickname},
+									#{nickName},
 									#{id},
 									#{pw},
 									#{name},
@@ -54,6 +54,23 @@
     	SELECT ID FROM Enterprise WHERE ID = #{enterId}
 	) combined
 	</select>
+	
+	<select id="getUser" resultType ="MemberDto">
+	SELECT userno, id, nickname,name,gender, joindate , deleteddate FROM MEMBER ORDER BY USERNO  ASC
+	</select>
+
+	<select id="getEnterprise" resultType ="EnterpriseDto">
+	SELECT ENTERPRISENO, id, name,  deleteddate FROM Enterprise ORDER BY ENTERPRISENO  ASC
+	</select>
+	
+	
+	<update id="entWithdraw" parameterType="int" >
+		UPDATE ENTERPRISE  SET deletedDate = SYSDATE  WHERE ENTERPRISENO = #{enterpriseNo}
+	</update>
+	
+	<update id="deleteMember" parameterType="int">
+		UPDATE Member  SET deletedDate = SYSDATE  WHERE userNo = #{userNo}
+	</update>
 
 	<update id="updateMember" parameterType="MemberDto">
 		update member set nickname = #{nickName}, address = #{address}, addressDetail=#{addressDetail}, email = #{email} where userno = #{userNo}

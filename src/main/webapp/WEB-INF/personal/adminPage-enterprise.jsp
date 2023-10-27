@@ -5,25 +5,19 @@
 <div class="admin-contents text-center">
 	<table class="table table-striped table-hover">
 		<tr>
-			<td>회원번호</td>
+			<td>회원 번호</td>
 			<td>아이디</td>
-			<td>닉네임</td>
-			<td>이름</td>
-			<td>성별</td>
-			<td>가입 일자</td>
+			<td>상호명</td>
 			<td>탈퇴</td>
 		</tr>
 		<c:forEach items="${userList}" var="item">
 			<c:if test="${empty item.deletedDate}">
-				<tr data-no="${item.userNo}">
-					<td>${item.userNo}</td>
+				<tr data-no="${item.enterpriseNo}">
+					<td>${item.enterpriseNo}</td>
 					<td>${item.id}</td>
-					<td>${item.nickName}</td>
 					<td>${item.name}</td>
-					<td>${item.gender}</td>
-					<td>${item.joinDate}</td>
 					<td style="display: none;">${item.deletedDate}</td>
-					<td><button type="button" data-userno="${item.userNo}"
+					<td><button type="button" data-userno="${item.enterpriseNo}"
 							class="btn btn-delete btn-outline-danger btn-sm"
 							data-bs-toggle="modal" data-bs-target="#exampleModal">강제
 							탈퇴</button></td>
@@ -48,39 +42,41 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary"
 					data-bs-dismiss="modal">삭제 취소하기</button>
-				<button type="button" class="btn btn-danger" id="memWithdraw">삭제하기</button>
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="memWithdraw">삭제하기</button>
 			</div>
 		</div>
 	</div>
 </div>
-<p>${item.userNo}</p>
+<p>${item.enterpriseNo}</p>
 <script>
 	console.log($("#memWithdraw"));
-	let sendUserNo = null;
+	let sendenterpriseNo = null;
 	$(".btn-delete").on("click", function() {
 		console.log($(this));
-		sendUserNo = $(this).data("userno");
+		sendEnterpriseNo = $(this).data("userno");
 	})
 
 	$("#memWithdraw").on("click", function() {
-		console.log("삭제하기 눌렀음");
+		console.log(sendEnterpriseNo);
 		// Ajax 요청을 보내고 백엔드 코드 실행
 		$.ajax({
 			type : "POST", // 또는 "GET" 등 HTTP 메소드 설정
 			data : {
-				userNo : sendUserNo
+				userNo : sendEnterpriseNo
 			},
-			url : "../personal/admin-withdraw",
+			url : "../personal/admin-entWithdraw-process",
 			success : function(data) {
 				// 백엔드에서 반환된 데이터를 처리
 				console.log(data);
 				if (data.isDelete === "ok") {
+					
 					alert("강제 탈퇴 완료")
 					location.reload();
 				}
 			},
 			error : function(error) {
 				// 오류 처리
+				
 				alert("알수 없는 오류가 발생. 시스템관리자에게 문의하세요")
 				location.reload();
 			}
