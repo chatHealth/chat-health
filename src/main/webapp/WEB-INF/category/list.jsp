@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/header-main.jsp"%>
 <%@ include file="../include/nav.jsp"%>
 
+
 <div class="">
+
+	<!-- 1. show material -->
+	<div>
+	
+	</div>
+	
+	
 	<div class="container album py-5 bg-light">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-
+			
+			<!-- 2. no content -->
 			<c:choose>
 				<c:when test="${ empty postList }">
 					<div class="no-category-content"> <h2> 게시글이 없습니다</h2></div>
@@ -14,6 +23,7 @@
 			<c:otherwise>
 				
 	
+			<!-- 3. show postList -->
 			<c:forEach items="${ postList }" var="post" varStatus="status">
 
 				<div class="col">
