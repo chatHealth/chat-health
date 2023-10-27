@@ -23,7 +23,7 @@
                     <img src="../img/basic_profile.svg" alt="없음">
                 </c:when>
                 <c:otherwise>
-                    <img src="/uploadProfile/${loggedMember.profile }" alt="+++++++">
+                    <img src="/upload/${loggedMember.profile }" alt="+++++++">
                 </c:otherwise>
                 </c:choose>
                 <div class="edit-button">
