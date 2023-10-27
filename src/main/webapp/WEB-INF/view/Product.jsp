@@ -29,6 +29,7 @@
 		<%@ include file="viewInclude/viewReview.jsp"%>
 		
 			<!--                    리뷰끝                    -->
+		<form action="reviewAdd" method="post">
 			<hr class="featurette-divider">
 		<form action="../review/ReviewAdd" method="post">
 					<input class="reviewtitle" type="text"  id="retitle" name = "retitle" placeholder="리뷰 제목"/>
@@ -37,6 +38,8 @@
 				 <button value="submit">리뷰등록</button>
 			</div>
 		</form>
+
+<!--  -->
 		<!-- /END THE FEATURETTES -->
 	</div>
 

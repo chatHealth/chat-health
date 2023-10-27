@@ -48,29 +48,6 @@
 
 /** yong end **/
 
-/** rang **/
-.ck-editor__editable_inline {
-	min-height: 400px !important;
-}
-.ck-editor__editable p {margin: 0}
-
-.main-category{
-	display: flex;
-}
-
-.profile-small {
-		width:100px;
-		height: 100px;
-		object-fit:contain;
-		border-radius: 100px ;
-	}
-
-.no-category-content{
-	width:100%;	
-	height: 100%;
-}
-
-/* rang end */
 
 /* sun */
 
@@ -98,7 +75,6 @@
 
 .reviewdata{
 	display: flex;
-	align-items:;
 }
 
 .reviewUserInfo{
@@ -138,6 +114,7 @@
 	padding: 10px;
 	margin: 10px;
 }
+
 
 
 /*sun end*/

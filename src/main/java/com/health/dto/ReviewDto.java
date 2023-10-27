@@ -22,7 +22,7 @@ public class ReviewDto {
 				+ ", content=" + content + ", regDate=" + regDate + ", helpful=" + helpful + ", deletedDate="
 				+ deletedDate + "]";
 	}
-	public ReviewDto(int reviewNo, int userNo, int postNo, String title, String content, String regDate, int helpful,
+	public ReviewDto(int reviewNo, int userNo, int postNo, String title, String content, String regDate,int helpful,
 			String deletedDate) {
 		super();
 		this.reviewNo = reviewNo;
@@ -44,6 +44,13 @@ public class ReviewDto {
 		return userNo;
 	}
 	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+	public int getuserNo() {
+		return userNo;
+	}
+
+	public void setuserNo(int userNo) {
 		this.userNo = userNo;
 	}
 	public int getPostNo() {
@@ -82,6 +89,8 @@ public class ReviewDto {
 	public void setDeletedDate(String deletedDate) {
 		this.deletedDate = deletedDate;
 	}
+
+	
 	
 	
 	
