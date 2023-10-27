@@ -91,7 +91,17 @@
 
 /*sun end*/
 
+/* wonu */
 
+
+#preview{
+	height:300px;
+	width: 300px;
+	object-fit: contain;
+}
+
+
+/*wonu end*/
 
 
 

@@ -23,7 +23,7 @@
                     <img src="../img/basic_profile.svg" alt="없음">
                 </c:when>
                 <c:otherwise>
-                    <img src="/upload/${loggedMember.profile }" alt="+++++++">
+                    <img src="/upload/${loggedMember.profile }" alt="멤버프로필">
                 </c:otherwise>
                 </c:choose>
                 <div class="edit-button">
@@ -44,8 +44,18 @@
                                         <!-- 프로필 사진 업로드 양식 -->
                                         <div class="form-group">
                                             <%--                                    <label for="profileImage">프로필 사진 업로드</label>--%>
+
+                                                <c:choose>
+                                                    <c:when test="${loggedMember.profile eq 'null'}">
+                                                        <img src="../img/basic_profile.svg" alt="없음" id="preview" />
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <img src="/upload/${loggedMember.profile }" alt="멤버프로필" id="preview" />
+                                                    </c:otherwise>
+                                                </c:choose>
                                             <input type="file" class="form-control-file" id="profileImage"
-                                                   name="profileImage" accept="image/jpeg, image/jpg, image/gif, image/png">
+                                                   name="profileImage" accept="image/*"  />
+<%--                                                <div id="image_container"></div>--%>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -106,5 +116,19 @@
         e.preventDefault();
         $('#editModal').modal("hide");
     });
+
+    $('#profileImage').change(function(){
+        setImageFromFile(this, '#preview');
+    });
+
+    function setImageFromFile(input, expression) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(expression).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 <%@ include file="../include/footer.jsp" %>
