@@ -30,4 +30,4 @@
 <body>
 
 	
-	<main class="main main-category">
+	<main class="main ">

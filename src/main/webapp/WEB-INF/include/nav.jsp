@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
-	
+
+<div class="main-category">
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
 
 	<c:choose>
@@ -45,7 +45,7 @@
 			<div class="d-flex justify-content-center">
 				<img src=${loggedAdmin.profile}" class="profile-small mt-3 ">
 			</div>
-			<a href="../member/login" class="btn btn-outline-primary mt-3">${ loggedAdmin.nickName}</a>
+			<a href="../personal/member-manage" class="btn btn-outline-primary mt-3">${ loggedAdmin.nickName}</a>
 			<a href="../post/write" class="btn btn-outline-primary mt-3">글쓰기</a>
 		</c:when>
 		
@@ -75,6 +75,3 @@
       
     </ul>
  </div>   
-  
-  
-  <%@ include file="../include/footer.jsp"%>
