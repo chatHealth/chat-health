@@ -2,7 +2,7 @@ package com.health.dto;
 
 public class ReviewDto {
 	private int reviewNo;
-	private int usweNo;
+	private int userNo;
 	private int postNo;
 	private String title;
 	private String content;
@@ -91,6 +91,8 @@ public class ReviewDto {
 	public void setDeletedDate(String deletedDate) {
 		this.deletedDate = deletedDate;
 	}
+
+	
 	
 	
 	
