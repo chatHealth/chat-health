@@ -15,7 +15,7 @@
 			<div class="row">
 				<c:forEach items="${userLikes }" var="image" varStatus="loop">
 				<div class="col-md-3">
-					<a href="#"><div class="card">
+					<a href="../view/product?${image.postNo }"><div class="card">
 						<img src="/upload/${image.postImg }" alt="" class="card-img-top">
 						<div class="card-body">
 							<p class="card-text">${image.title }</p>

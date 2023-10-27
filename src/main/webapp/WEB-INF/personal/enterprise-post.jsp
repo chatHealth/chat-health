@@ -23,7 +23,7 @@
 	<c:forEach items="${posts }" var="post" varStatus="loop">
 	<tr>
 		<th scope="row">${post.rowNum }</th>
-		<td class="entP"><a href="#">${post.title }</a></td>
+		<td class="entP"><a href="../view/product?${post.postNo}">${post.title }</a></td>
 		<td>${post.regDate }</td>
 	</tr>
 	</c:forEach>

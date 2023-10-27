@@ -96,8 +96,17 @@ public class PersonalDao {
         List<PostPageDto> entPosts;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         entPosts = sqlSession.selectList("entPosts", no);
-        System.out.println("entPosts = " + entPosts.size());
         sqlSession.close();
         return entPosts;
+    }
+
+    public List<HashMap<String, Object>> memReview(int no) {
+        List<HashMap<String, Object>> list;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        System.out.println("no = " + no);
+        list = sqlSession.selectList("memReview", no);
+        System.out.println("list.size() = " + list.size());
+        sqlSession.close();
+        return list;
     }
 }

@@ -41,4 +41,12 @@
     <select id="entPosts" resultType="PostPageDto" parameterType="int">
         select rowNum, postNo, title, to_char(regDate,'yyyy.mm.dd') as regDate from post where enterpriseNo = #{no} and deletedDate is null
     </select>
+<!--    member review 조회-->
+    <select id="memReview" resultType="Map" parameterType="int">
+        SELECT rownum, postimg, REVIEWNO, r.postno AS postno, r.title AS title,
+        to_char(r.regdate, 'yyyy.mm.dd') AS regdate, p.title AS postTitle,
+        p.DELETEDDATE AS postdeleteddate
+        FROM REVIEW r INNER JOIN post p
+        ON r.postno = p.postno WHERE r.DELETEDDATE IS NULL AND userno = #{no}
+    </select>
 </mapper>
