@@ -3,9 +3,11 @@ package com.health.dao;
 import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
+import com.health.dto.PostPageDto;
 import com.health.mybatis.MyBatisConnectionFactory;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class PersonalDao {
@@ -90,5 +92,12 @@ public class PersonalDao {
         return result;
     }
 
-    public List
+    public List<PostPageDto> entPost(int no) {
+        List<PostPageDto> entPosts;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        entPosts = sqlSession.selectList("entPosts", no);
+        System.out.println("entPosts = " + entPosts.size());
+        sqlSession.close();
+        return entPosts;
+    }
 }

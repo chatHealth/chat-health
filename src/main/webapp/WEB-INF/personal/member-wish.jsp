@@ -11,7 +11,6 @@
 <%@ include file="../include/member-side.jsp" %>
 
 		<!-- Content -->
-		<div class="col-9 content">
 			<h2>좋아요</h2>
 			<div class="row">
 				<c:forEach items="${userLikes }" var="image" varStatus="loop">

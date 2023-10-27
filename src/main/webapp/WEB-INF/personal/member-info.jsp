@@ -11,13 +11,11 @@
 <%@ include file="../include/member-side.jsp" %>
 
 <!-- Content -->
-<div class="col-9 content">
     <!-- Profile Picture and Table on the Same Row -->
     <div class="row" style="padding-top: 10%;">
         <div class="col-4">
             <!-- Profile Picture -->
             <div class="profile-picture">
-                <%--                        <img src="https://via.placeholder.com/150" alt="Profile Picture">--%>
                 <c:choose>
                 <c:when test="${loggedMember.profile eq 'null'}">
                     <img src="../img/basic_profile.svg" alt="없음">
@@ -27,8 +25,6 @@
                 </c:otherwise>
                 </c:choose>
                 <div class="edit-button">
-                    <%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
-                    <%--                        </div>--%>
                     <button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>
                     <!-- 회원가입 확인 Modal-->
                     <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
@@ -43,8 +39,6 @@
                                     <div class="modal-body">
                                         <!-- 프로필 사진 업로드 양식 -->
                                         <div class="form-group">
-                                            <%--                                    <label for="profileImage">프로필 사진 업로드</label>--%>
-
                                                 <c:choose>
                                                     <c:when test="${loggedMember.profile eq 'null'}">
                                                         <img src="../img/basic_profile.svg" alt="없음" id="preview" />
@@ -55,7 +49,6 @@
                                                 </c:choose>
                                             <input type="file" class="form-control-file" id="profileImage"
                                                    name="profileImage" accept="image/*"  />
-<%--                                                <div id="image_container"></div>--%>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

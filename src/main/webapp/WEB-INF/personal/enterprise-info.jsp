@@ -11,7 +11,6 @@
 <%@ include file="../include/member-side.jsp" %>
 
 <!-- Content -->
-<div class="col-9 content">
 	<!-- Profile Picture and Table on the Same Row -->
 	<div class="row" style="padding-top: 10%;">
 		<div class="col-4">
