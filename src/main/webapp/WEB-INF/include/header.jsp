@@ -16,6 +16,8 @@
 <script src="../js/bootstrap.bundle.min.js"></script>
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <link href="../css/layout.css" rel="stylesheet" />
+<link href="../css/rang.css" rel="stylesheet" />
+
 
 <!-- post) ckeditor  -->
 <script src="../js/ckeditor.js"></script>
@@ -30,4 +32,4 @@
 <body>
 
 	
-	<main class="main main-category">
+	<main class="main ">
