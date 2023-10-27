@@ -64,10 +64,15 @@
     
     
     <ul class="nav nav-pills flex-column mb-auto">
+      <li>
+        <a href="../category/list" class="nav-link link-body-emphasis">
+          전체
+        </a>
+      </li>
       
       <c:forEach items="${ navSymptomList }" var="symptom" varStatus="status">
       <li>
-        <a href="#sympNo" class="nav-link link-body-emphasis">
+        <a href="../category/list?symp=${ symptom.sympNo }" class="nav-link link-body-emphasis">
           ${symptom.symptomName }
         </a>
       </li>
