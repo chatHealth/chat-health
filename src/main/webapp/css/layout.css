@@ -75,9 +75,19 @@
 
 .main-logo-chat-health {
     color: #D19C97 !important;
+    white-space: nowrap;
 }
 .font-weight-bold {
     font-weight: 700 !important;
+}
+
+.main-search-part{
+	width: 700px;
+	height: 80px;
+}
+.main-search-button{
+	width: 200px;
+	height: 80px;
 }
 
 /* rang end */

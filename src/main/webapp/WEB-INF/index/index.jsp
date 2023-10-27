@@ -3,12 +3,15 @@
 <%@ include file="../include/header.jsp"%>
 
 
-<!-- 1. main header) logo/ button-box -->
-<div class="row align-items-center py-3 px-xl-5 ">
-	<div class="d-flex ">
+<div class="container container_rang py-4">
+
+	<!-- 1. main header) logo/ button-box -->
+    <header class="pb-3 mb-4 border-bottom">
+      <div class="row align-items-center py-3 px-xl-5 ">
+		<div class="d-flex ">
 	
 		<a href="../index/index" class="text-decoration-none">
-			<h1 class="m-0 display-5 font-weight-bold main-logo-chat-health col-3">chaht-health</h1>
+			<h1 class="m-0 display-5 font-weight-bold main-logo-chat-health col-3">chat-health</h1>
 		</a>
 		
 		<div class=" button-box text-right d-flex justify-content-end container-fluid ">
@@ -36,42 +39,68 @@
 		</c:choose>
 	</div>
 	
-	</div></div>
-</div>
+	</div></div> </div>
+    </header>
 
 
-<!-- 2. search place -->
-<div class="container col-lg-6 col-6  text-left mt-5">
-	<form action="../category/list">
-		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Search for products">
+
+	<!-- 2. search place -->	
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-5">
+      
+      	<div class="Phrases-part mx-auto text-center">
+       	 	<h1 class="display-5 fw-bold"> 안내내용 </h1>
+        	<p class="fs-4">홍보문구 주절주절</p>
+        </div>
+        
+		<div class="container col-lg-6 col-6  text-left mt-5">
+			<form action="../category/list">
+				<div class="input-group main-search-part ">
+					<input type="text" class="form-control " placeholder="Search for products">
 			
-			<div class="input-group-append">
-				<button type="button" class="btn btn-primary">  	
-                	search
-					<svg  width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-					</svg>
-              </button>
-			</div>
+					<div class="input-group-append ">
+						<button type="button" class="btn btn-primary main-search-button ">  	
+            		    	search
+							<svg  width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+							</svg>
+              		</button>
+					</div>
+				</div>
+			</form>
 		</div>
-	</form>
-</div>
+        
+      </div>
+    </div>
+
+
+	
+	
+	<!-- 3. category button -->
+	<div class="row align-items-md-stretch">
+		<div class="h-100 p-5 bg-body-tertiary border rounded-3">
+
+			<c:forEach items="${ symptomList }" var="symptom" varStatus="status">
+			
+			<a href="../category/list?symp=${ symptom.sympNo }" class="nav-link link-body-emphasis">
+				<button type="button" class="btn btn-outline-primary"> 
+					${symptom.symptomName } 
+				</button>
+			</a>
+       		
+       		</c:forEach>
+
+		</div>
+	</div>
 
 
 
-<!-- 3. category button -->
-    <ul class="">
-      
-      <c:forEach items="${ symptomList }" var="symptom" varStatus="status">
-      <li>
-        <a href="#sympNo" class="nav-link link-body-emphasis">
-          ${symptom.symptomName }
-        </a>
-      </li>
-     </c:forEach>
-      
-    </ul>
+		
+	<!-- footer -->
+    <footer class="pt-3 mt-4 text-body-secondary border-top">
+    </footer>
+  </div>
     
-    
-<%@ include file="../include/footer.jsp"%>
+ 
+ 
+ <%@ include file="../include/footer.jsp"%>
