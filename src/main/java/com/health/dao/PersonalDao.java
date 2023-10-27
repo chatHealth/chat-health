@@ -42,10 +42,10 @@ public class PersonalDao {
         return pw;
     }
 
-    public int memberWithdraw(int userNo) {
+    public int memWithdraw(int userNo) {
         int result = 0;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-        result = sqlSession.update("withdrawMember", userNo);
+        result = sqlSession.update("memWithdraw", userNo);
         sqlSession.close();
         return result;
     }
@@ -89,4 +89,6 @@ public class PersonalDao {
         sqlSession.close();
         return result;
     }
+
+    public List
 }

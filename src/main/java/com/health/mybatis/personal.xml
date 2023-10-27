@@ -17,7 +17,7 @@
     <select id="memberPassword" resultType="String" parameterType="int">
         select pw from member where userno = #{userNo}
     </select>
-    <update id="withdrawMember" parameterType="int">
+    <update id="memWithdraw" parameterType="int">
         update member set deleteddate = sysdate where userno = #{userNo}
     </update>
     <update id="updateEnterprise" parameterType="EnterpriseDto">
@@ -38,4 +38,7 @@
     <update id="entProfileImg" parameterType="EnterpriseDto">
         update enterprise set profile = #{profile} where enterpriseNo = #{enterpriseNo}
     </update>
+    <select id="entPost" parameterType="int">
+        SELECT postNo FROM POST WHERE enterpriseNo = #{enterpriseNo} and deletedDate = NULL
+    </select>
 </mapper>
