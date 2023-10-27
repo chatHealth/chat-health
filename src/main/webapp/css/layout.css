@@ -50,7 +50,7 @@
 
 /** rang **/
 .ck-editor__editable_inline {
-	min-height: 400px !important; 
+	min-height: 400px !important;
 }
 .ck-editor__editable p {margin: 0}
 
@@ -78,10 +78,10 @@
 .product_row {
 	display: flex;
 	align-items: center;
-	
+
 }
 .comment_box{
-	
+
 }
 .comment_text{
 	width: 600px;

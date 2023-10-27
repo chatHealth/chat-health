@@ -90,6 +90,13 @@ public class MemberDao{
 		return result;
 	}
 
+	public int updateEnterprise(EnterpriseDto enterpriseDto) {
+		int result = 0;
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.update("updateEnterprise", enterpriseDto);
+		sqlSession.close();
+		return result;
+	}
 }
 
 
