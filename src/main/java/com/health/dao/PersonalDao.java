@@ -1,5 +1,6 @@
 package com.health.dao;
 
+import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
 import com.health.mybatis.MyBatisConnectionFactory;
@@ -45,6 +46,46 @@ public class PersonalDao {
         int result = 0;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         result = sqlSession.update("withdrawMember", userNo);
+        sqlSession.close();
+        return result;
+    }
+
+    public EnterpriseDto EnterpriseInfo(int enterpriseNo) {
+        EnterpriseDto enterprise;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        enterprise = sqlSession.selectOne("enterpriseInfo", enterpriseNo);
+        sqlSession.close();
+        return enterprise;
+    }
+
+    public String enterprisePassword(int enterpriseNo) {
+        String pw;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        pw = sqlSession.selectOne("enterprisePassword", enterpriseNo);
+        sqlSession.close();
+        return pw;
+    }
+
+    public int updateEntPassword(EnterpriseDto enterpriseDto) {
+        int result;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("updateEntPassword", enterpriseDto);
+        sqlSession.close();
+        return result;
+    }
+
+    public int entWithdraw(int enterpriseNo) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("entWithdraw", enterpriseNo);
+        sqlSession.close();
+        return result;
+    }
+
+    public int updateProfileImage(EnterpriseDto enterpriseDto) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("entProfileImg", enterpriseDto);
         sqlSession.close();
         return result;
     }
