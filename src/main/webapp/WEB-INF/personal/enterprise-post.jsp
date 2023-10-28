@@ -12,6 +12,13 @@
 
 <table class="table">
 	<h2>내 상품 관리</h2>
+	<c:if test="${empty posts}">
+		<p class="fs-5 col-md-8">아직 등록된 상품이 없습니다</p>
+		<div class="mb-5">
+			<a href="../post/write" class="btn btn-primary btn-lg px-4">새 상품 등록</a>
+		</div>
+	</c:if>
+	<c:if test="${not empty posts}">
 	<thead>
 	<tr>
 		<th scope="col">#</th>
@@ -19,6 +26,7 @@
 		<th scope="col">등록 일자</th>
 	</tr>
 	</thead>
+	</c:if>
 	<tbody>
 	<c:forEach items="${posts }" var="post" varStatus="loop">
 	<tr>

@@ -12,6 +12,13 @@
 
 <table class="table">
 	<h2>my review</h2>
+	<c:if test="${empty reviews}">
+		<p class="fs-5 col-md-8">아직 등록된 리뷰가 없습니다</p>
+		<div class="mb-5">
+			<a href="../category/list" class="btn btn-primary btn-lg px-4">둘러보러 가기</a>
+		</div>
+	</c:if>
+	<c:if test="${not empty reviews.size()}">
 	<thead>
 	<tr>
 		<th scope="col">#</th>
@@ -21,6 +28,7 @@
 	</tr>
 	</thead>
 	<tbody>
+	</c:if>
 	<c:forEach items="${reviews }" var="review" varStatus="loop">
 		<tr>
 			<th scope="row">${review.ROWNUM }</th>

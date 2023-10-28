@@ -11,7 +11,13 @@
 <%@ include file="../include/member-side.jsp" %>
 
 		<!-- Content -->
-			<h2>좋아요</h2>
+			<h2>My Wish</h2>
+			<c:if test="${empty userlikes }">
+			<p class="fs-5 col-md-8">아직 담은 상품이 없어요</p>
+			<div class="mb-5">
+				<a href="../category/list" class="btn btn-primary btn-lg px-4">둘러보러 가기</a>
+			</div>
+			</c:if>
 			<div class="row">
 				<c:forEach items="${userLikes }" var="image" varStatus="loop">
 				<div class="col-md-3">

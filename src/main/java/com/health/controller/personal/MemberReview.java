@@ -24,7 +24,6 @@ public class MemberReview extends HttpServlet {
             int userNo = loggedMember.getUserNo();
             List<HashMap<String, Object>> memReviews = personalDao.memReview(userNo);
             request.setAttribute("reviews", memReviews);
-            System.out.println(memReviews.size());
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-review.jsp");
             dispatcher.forward(request, response);
         }

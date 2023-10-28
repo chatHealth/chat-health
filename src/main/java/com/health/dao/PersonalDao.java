@@ -103,9 +103,7 @@ public class PersonalDao {
     public List<HashMap<String, Object>> memReview(int no) {
         List<HashMap<String, Object>> list;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-        System.out.println("no = " + no);
         list = sqlSession.selectList("memReview", no);
-        System.out.println("list.size() = " + list.size());
         sqlSession.close();
         return list;
     }
