@@ -25,7 +25,7 @@ public class MemberModify extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/enterprise-modify.jsp");
             requestDispatcher.forward(request, response);
         } else {
-            ScriptWriter.alertAndBack(response, "잘못된 접근입니다.");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
         }
     }
 

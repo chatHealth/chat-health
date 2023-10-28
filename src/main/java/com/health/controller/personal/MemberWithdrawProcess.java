@@ -58,6 +58,8 @@ public class MemberWithdrawProcess extends HttpServlet {
                     ScriptWriter.alertAndBack(response, "오류");
                 }
             }
+        }else{
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
         }
     }
 }

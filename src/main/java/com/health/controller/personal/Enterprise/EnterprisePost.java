@@ -22,7 +22,7 @@ public class EnterprisePost extends HttpServlet {
         EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
         if (loggedEnterprise == null || loggedMember != null) {
-            ScriptWriter.alertAndBack(response, "잘못된 접근입니다.");
+            ScriptWriter.alertAndGo(response, "잘못된 접근입니다.", "../");
         }
 
 //        HashMap<String, Object> map = new HashMap<>();

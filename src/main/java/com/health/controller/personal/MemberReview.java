@@ -19,7 +19,7 @@ public class MemberReview extends HttpServlet {
         HttpSession session = request.getSession();
         MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
         if (loggedMember == null) {
-            ScriptWriter.alertAndBack(response, "잘못된 접근입니다.");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
         }else{
             int userNo = loggedMember.getUserNo();
             List<HashMap<String, Object>> memReviews = personalDao.memReview(userNo);
