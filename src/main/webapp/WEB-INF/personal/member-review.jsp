@@ -18,7 +18,7 @@
 			<a href="../category/list" class="btn btn-primary btn-lg px-4">둘러보러 가기</a>
 		</div>
 	</c:if>
-	<c:if test="${not empty reviews.size()}">
+	<c:if test="${not empty reviews}">
 	<thead>
 	<tr>
 		<th scope="col">#</th>

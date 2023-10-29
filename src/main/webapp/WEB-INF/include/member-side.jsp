@@ -8,91 +8,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
+<link href="../css/mypage.css" rel="stylesheet" />
 
-<style>
-  .sidebar {
-    background-color: #f8f9fa; /* Lighter color */
-    width: 240px; /* Fixed width */
-    height: 100%; /* 100% height */
-    overflow-y: auto;
-    position: fixed;
-    left: 0;
-  }
-
-  .sidebar h1 {
-    color: #000000;
-    font-size: 1.5rem;
-    margin: 20px;
-  }
-
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .sidebar ul li {
-    margin-bottom: 10px;
-  }
-
-  .sidebar a {
-    text-decoration: none;
-    color: #000000;
-    transition: color 0.3s, background-color 0.3s; /* Transition properties */
-    padding: 10px; /* Add padding to create background space */
-  }
-
-  .sidebar a:hover {
-    color: #6c757d; /* Text color on hover */
-    background-color: #f8f9fa; /* Background color on hover */
-  }
-
-  .content {
-    background-color: #ffffff;
-    padding: 20px;
-    margin-left: 240px; /* Adjust this margin for the initial sidebar width */
-  }
-
-  .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto;
-  }
-
-  .profile-picture img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .edit-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-  }
-
-  .table-container {
-    position: relative;
-  }
-
-  .info-text {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 0.8rem;
-    color: #6c757d;
-  }
-
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 0;
-    }
-    .content {
-      margin-left: 0;
-    }
-  }
-</style>
 <div class="container-fluid">
   <div class="row">
     <%--        <button class="btn btn-primary mt-2 ml-2" id="sidebar-toggle">Toggle Sidebar</button>--%>
@@ -103,21 +20,21 @@
         <c:when test="${loggedMember ne null}">
           <h1>user info</h1>
           <ul>
-            <li><a href="../personal/member-info">내 정보</a></li>
-            <li><a href="../personal/member-password">비밀번호 변경</a></li>
-            <li><a href="../personal/member-wish">관심 제품</a></li>
-            <li><a href="../personal/member-review">내 리뷰</a></li>
-            <li><a href="../personal/member-comments">내 댓글</a></li>
-            <li><a href="../personal/member-withdraw">회원 탈퇴</a></li>
+            <li><a class="nav-link " href="../personal/member-info">내 정보</a></li>
+            <li><a class="nav-link " href="../personal/member-password">비밀번호 변경</a></li>
+            <li><a class="nav-link " href="../personal/member-wish">관심 제품</a></li>
+            <li><a class="nav-link " href="../personal/member-review">내 리뷰</a></li>
+            <li><a class="nav-link " href="../personal/member-comments">내 댓글</a></li>
+            <li><a class="nav-link " href="../personal/member-withdraw">회원 탈퇴</a></li>
           </ul>
         </c:when>
         <c:when test="${loggedEnterprise ne null}">
           <h1>enterprise info</h1>
           <ul>
-            <li><a href="../personal/member-info">기업 정보</a></li>
-            <li><a href="../personal/member-password">비밀번호 변경</a></li>
-            <li><a href="../personal/enterprise-post">내 상품 관리</a></li>
-            <li><a href="../personal/member-withdraw">회원 탈퇴</a></li>
+            <li><a class="nav-link " href="../personal/member-info">기업 정보</a></li>
+            <li><a class="nav-link " href="../personal/member-password">비밀번호 변경</a></li>
+            <li><a class="nav-link " href="../personal/enterprise-post">내 상품 관리</a></li>
+            <li><a class="nav-link " href="../personal/member-withdraw">회원 탈퇴</a></li>
           </ul>
         </c:when>
         <c:otherwise>
