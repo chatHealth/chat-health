@@ -132,6 +132,14 @@ public class MemberDao{
         sqlSession.close();
         return result;
     }
+	
+	public int entAccept(int enterpriseNo) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("entAccept", enterpriseNo);
+        sqlSession.close();
+        return result;
+    }
 }
 
 
