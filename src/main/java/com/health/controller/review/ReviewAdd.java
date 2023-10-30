@@ -24,7 +24,7 @@ public class ReviewAdd extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ReviewDto reviewDto = new ReviewDto();
 		ReviewDao reviewDao = new ReviewDao();
@@ -39,14 +39,14 @@ public class ReviewAdd extends HttpServlet {
 
 		// reviewDto.setUserNo(loggedMember.getUserNo());
 
-		reviewDto.setUserNo(1231);
+		reviewDto.setUserNo(123);
 		reviewDto.setPostNo(5);
 		reviewDto.setTitle(retitle);
 		reviewDto.setContent(recontent);
 		reviewDto.setHelpful(0);
-
+		System.out.println("47==="+reviewDto.toString());
 		int result = reviewDao.insertRivew(reviewDto);
-
+		System.out.println("여기 안나옴");
 		if (result > 0) {
 			// String msg = URLEncoder.encode("글이 등록되었습니다.", StandardCharsets.UTF_8);
 			// response.sendRedirect("../board/list?state=show&msg="+msg);
@@ -58,5 +58,10 @@ public class ReviewAdd extends HttpServlet {
 //			session.setAttribute("modalState", modalState);
 //			response.sendRedirect("../board/list");
 		}
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 }
