@@ -10,7 +10,7 @@
 <%@ include file="../include/header-main.jsp" %>
 <link href="../css/mypage.css" rel="stylesheet" />
 
-<div class="container-fluid">
+<div class="container-fluid centered-page">
   <div class="row">
     <%--        <button class="btn btn-primary mt-2 ml-2" id="sidebar-toggle">Toggle Sidebar</button>--%>
 

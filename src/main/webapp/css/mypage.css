@@ -1,9 +1,8 @@
 .sidebar {
     background-color: #f8f9fa; /* Lighter color */
-    width: 240px; /* Fixed width */
-    height: 100%; /* 100% height */
+    width: 240px;
+    height: 50vh;
     overflow-y: auto;
-    position: fixed;
     left: 0;
 }
 
@@ -37,7 +36,7 @@
 .content {
     background-color: #ffffff;
     padding: 20px;
-    margin-left: 240px; /* Adjust this margin for the initial sidebar width */
+    /*margin-left: 240px; !* Adjust this margin for the initial sidebar width *!*/
 }
 
 .profile-picture {
@@ -74,13 +73,19 @@
 
 @media (max-width: 768px) {
     .sidebar {
-        width: 0;
+        width: 0vh;
     }
     .content {
         margin-left: 0;
     }
+    .row{
+        width:0;
+    }
 }
 
-.main{
-    max-width:1300px;
+.centered-page{display: flex;
+justify-content: center;
+/*align-items: center;*/
+min-height: 50vh;
+max-width: 120vh;
 }

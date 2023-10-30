@@ -24,7 +24,7 @@ public class MemberWish extends HttpServlet {
         HttpSession session = request.getSession();
         MemberDto member = (MemberDto) session.getAttribute("loggedMember");
         if (member == null) {
-            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../index/index");
         }
         int userNo = member.getUserNo();
 
