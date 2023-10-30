@@ -4,7 +4,7 @@
 <%@ include file="../include/nav.jsp"%>
 
 
-<div class="">
+<div class="container">
 
 	<!-- 1. show material -->
 
@@ -40,24 +40,20 @@
 			<!-- 2. no content -->
 			<c:choose>
 				<c:when test="${ empty postList }">
-					<div class="no-category-content">
-						<h2>게시글이 없습니다</h2>
+					<div class="no-category-content d-flex align-items-center justify-content-center">
+						<h2 class="use-main-color">게시글이 없습니다</h2>
 					</div>
 				</c:when>
 				<c:otherwise>
 
 
 					<!-- 3. show postList -->
-					<div class="sort-select">
-						<form action="../category/list" method="get" name="sort-select"
-							id="sort-select">
-							<select class="form-select" aria-label="Default select example"
-								name="sort" id="sort">
+					<div class="sort-select d-flex justify-content-start">
+						<form action="../category/list" method="get" name="sort-select" id="sort-select">
+							<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
 								<option value="recent" ${param.sort=='recent'?'selected':null }>최신순</option>
-								<option value="recommended"
-									${param.sort=='recommended'?'selected':null }>추천순</option>
-								<option value="reviewed"
-									${param.sort=='reviewed'?'selected':null }>리뷰순</option>
+								<option value="recommended" ${param.sort=='recommended'?'selected':null }>추천순</option>
+								<option value="reviewed" ${param.sort=='reviewed'?'selected':null }>리뷰순</option>
 							</select>
 						</form>
 					</div>
@@ -76,7 +72,8 @@
 
 								<div class="col">
 									<div class="card shadow-sm">
-										<a href="../view/product?no=${post.postNo }"> <svg
+										<a href="../view/product?no=${post.postNo }"> 
+										<svg
 												class="bd-placeholder-img card-img-top" width="100%"
 												height="225" xmlns="http://www.w3.org/2000/svg" role="img"
 												aria-label="Placeholder: Thumbnail"
@@ -89,16 +86,15 @@
 										</a>
 
 										<div class="card-body">
-											<a href="../view/product?no=${post.postNo }"><p
-													class="card-text category-title">${ post.title }</p> </a>
-											<div
-												class="d-flex justify-content-between align-items-center">
+											<a href="../view/product?no=${post.postNo }">
+												<p class="card-text category-title">${ post.title }</p> 
+											</a>
+											<div class="d-flex justify-content-between align-items-center">
 												<div class="btn-group">
-													<button type="button"
-														class="btn btn-sm btn-outline-secondary">수정</button>
-													<button type="button"
-														class="btn btn-sm btn-outline-secondary">삭제</button>
+													<a href="../post/modify" class="btn btn-outline-secondary mt-3">수정</a>
+													<a href="../post/delete" class="btn btn-outline-secondary mt-3">삭제</a>
 												</div>
+												
 												<small class="text-muted"> 회사명 </small>
 											</div>
 										</div>
@@ -118,8 +114,12 @@
 	<!-- 4. review -->
 
 
-</div>
 
+
+
+
+
+</div>
 
 
 <%@ include file="../include/footer.jsp"%>

@@ -10,8 +10,27 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>PostModify</display-name>
+    <servlet-name>PostModify</servlet-name>
+    <servlet-class>com.health.controller.category.PostModify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostModify</servlet-name>
+    <url-pattern>/PostModify</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PostDelete</display-name>
+    <servlet-name>PostDelete</servlet-name>
+    <servlet-class>com.health.controller.category.PostDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostDelete</servlet-name>
+    <url-pattern>/PostDelete</url-pattern>
+  </servlet-mapping>
 </web-app>
-
 <!--
   <servlet>
     <description></description>
