@@ -33,7 +33,7 @@
         <label class="form-check-label1" for="isEnterprise"> 사업자회원</label>-->
         
         <div class="form-check">
-  			<input class="form-check-input" type="radio" name="isEnterprise" id="imMember" value="member">
+  			<input class="form-check-input" type="radio" name="isEnterprise" id="imMember" value="member" checked="checked">
   			<label class="form-check-label" for="imMember">개인회원</label> 
   			<input class="form-check-input1" type="radio" name="isEnterprise" id="imEnterprise" value="enterprise">
   			<label class="form-check-label" for="imEnterprise">사업자회원</label>
