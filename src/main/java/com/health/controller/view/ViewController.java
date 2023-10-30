@@ -19,7 +19,7 @@ public class ViewController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/view/Product.jsp");
+				request.getRequestDispatcher("/WEB-INF/view/product.jsp");
 		dispatcher.forward(request, response);
 	}
 
