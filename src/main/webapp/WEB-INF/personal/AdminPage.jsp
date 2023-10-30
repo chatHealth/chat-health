@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/admin-side.jsp"%>
 
-<div class="admin-contents text-center ">
+<div class="admin-contents text-center">
 	<table class="table  certain-width table-hover">
 	<thead>
 		<tr>
