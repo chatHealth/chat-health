@@ -3,17 +3,9 @@
 <%@ include file="../include/header.jsp" %>
 
 <style>
-	.admin-contents{
-	width:100vw;
-	
-  }
   .sidebar {
     background-color: #f8f9fa; /* Lighter color */
-<<<<<<< HEAD
     width: 240px; /* Fixed width */
-=======
-    width: 200px; /* Fixed width */
->>>>>>> 84a6a6369089db47ab8b22abad1d7d182453f553
     height: 100%; /* 100% height */
     position: fixed;
     left: 0;
@@ -46,52 +38,30 @@
     background-color: #f8f9fa; /* Background color on hover */
   }
 
-  .content {
-    background-color: #ffffff;
-    padding: 20px;
-    margin-left: 240px; /* Adjust this margin for the initial sidebar width */
-  }
 
-  .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto;
-  }
-
-  .profile-picture img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .edit-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-  }
-
-  .table-container {
-    position: relative;
-  }
-
-  .info-text {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 0.8rem;
-    color: #6c757d;
-  }
+.admin-contents{
+	position: relative;
+	left: 241px;
+}
 
   @media (max-width: 768px) {
     .sidebar {
       width: 0;
     }
-    .content {
-      margin-left: 0;
-    }
   }
+  
+  .certain-width{
+  width: 90%;
+  table-layout: fixed;
+  }
+  certain-width th, certain-width td {
+  width: 50%; 
+  padding: 5px; 
+  text-align: center; 
+}
+
+
+
 </style>
 
 <div class="container-fluid left" style="text-align: center;"> <!-- 어드민 사이드바 메뉴 목록 -->
@@ -99,25 +69,17 @@
 
     <!-- Sidebar -->
     <div class="col sidebar">
-<<<<<<< HEAD
       <h3>관리자 페이지</h3></br>
       <p >어서오세요, admin님</p>
       <span style="border-top: 2px solid #ccc; display: block; margin: 10px 0;"></span>
       <ul> <!-- 메인화면으로 돌아가기 링크 추가하기 -->
-      	<li><a href="../category/index/index"><img alt="홈 로고" src="../img/home.png">메인 페이지</a></li>
+      	<li><a href="../index/index"><img alt="홈 로고" src="../img/home.png">메인 페이지</a></li>
       	<span style="border-top: 1px solid #ccc; display: block; margin: 10px 13px;"></span>
         <li><a href="../personal/member-manage"><img alt="개인 로고" src="../img/account.png">개인회원 관리</a></li>
         <span style="border-top: 1px solid #ccc; display: block; margin: 10px 13px;"></span>
         <li><a href="../personal/enterprise-manage"><img alt="사업자 로고" src="../img/office.png">사업자회원 관리</a></li>
-=======
-      <h3>관리자 페이지</h3>
-      <p >어서오세요, admin님</p>
-      <span style="border-top: 2px solid #ccc; display: block; margin: 10px 0;"></span>
-      <ul> <!-- 관리자페이지 버튼누르면 연결될거 생각하기 -->
-        <li><a href="../personal/member-manage">개인회원 관리</a></li>
         <span style="border-top: 1px solid #ccc; display: block; margin: 10px 13px;"></span>
-        <li><a href="../personal/enterprise-manage">사업자회원 관리</a></li>
->>>>>>> 84a6a6369089db47ab8b22abad1d7d182453f553
+        <li><a href="../personal/admin-accept-info"><img alt="승인 로고" src="../img/check.png">사업자회원 승인</a></li>
       </ul>
     </div>
  </div>

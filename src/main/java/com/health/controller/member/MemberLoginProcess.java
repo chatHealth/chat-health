@@ -73,7 +73,7 @@ public class MemberLoginProcess extends HttpServlet {
 				loggedMember.setPw(null);
 				loginSession.setAttribute("loggedEnterprise", loggedMember);
 				
-				response.sendRedirect("../category/list"); //메인페이지로 수정 필요 
+				response.sendRedirect("../index/index");
 			} else {  // login fail
 				ScriptWriter.alertAndBack(response, "아이디 혹은 비밀번호가 일치하지 않습니다.");
 			}
