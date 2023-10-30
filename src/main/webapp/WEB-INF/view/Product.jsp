@@ -14,6 +14,7 @@
 	<!-- 제품정보 -->
 	<div class="row featurette">
 		<div class="col-md-7">
+		<h2>${no }</h2>
 			<h2 class="featurette-heading fw-normal lh-1">
 				First featurette heading. <span class="text-body-secondary">It’ll
 					blow your mind.</span>
@@ -31,6 +32,9 @@
 	<!--                    리뷰끝                    -->
 	<hr class="featurette-divider">
 
+
+	<c:choose >
+	<c:when test="${loggedMember ne null }">
 	<form action="../review/ReviewAdd" method="post">
 		<div>
 			<input class="reviewtitle" type="text" id="retitle" name="retitle"				placeholder="리뷰 제목" />
@@ -40,6 +44,16 @@
 			</div>
 		</div>
 	</form>
+	</c:when>
+	<c:otherwise>
+	 <div>
+			
+			<div class="commetbox">
+			<h2>댓글을 작성하려면 로그인하세요.</h2>
+			</div>
+		</div>
+	</c:otherwise>
+	</c:choose>
 </div>
 
 
