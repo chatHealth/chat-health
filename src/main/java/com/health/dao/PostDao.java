@@ -71,4 +71,27 @@ public class PostDao {
 		return resList;
 	}
 	
+	
+	// 4. postNo로 게시글 하나 가져오기
+	public PostDto getOnePost(int no) {
+		PostDto result = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.selectOne("getOnePost", no);
+		sqlSession.close();
+		
+		return result;
+	}
+	
+	//5. update
+	public int updatePost(PostDto postDto) {
+		int result = 0;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.update("updatePost",postDto);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 }
