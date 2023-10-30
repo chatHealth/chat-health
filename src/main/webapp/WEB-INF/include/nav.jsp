@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
-	
+
+<div class="main-category">
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
 
 	<c:choose>
@@ -28,7 +28,7 @@
 			<div class="d-flex justify-content-center">
 				<img src="${ loggedEnterprise.profile}" class="profile-small mt-3 ">
 			</div>
-			<a href="../personal/enterprise-info" class="btn btn-outline-primary mt-3">${loggedEnterprise.name }</a>
+			<a href="../personal/member-info" class="btn btn-outline-primary mt-3">${loggedEnterprise.name }</a>
 		
 		
 			<c:if test="${loggedEnterprise.accepted eq 0 }">
@@ -45,7 +45,7 @@
 			<div class="d-flex justify-content-center">
 				<img src=${loggedAdmin.profile}" class="profile-small mt-3 ">
 			</div>
-			<a href="../member/login" class="btn btn-outline-primary mt-3">${ loggedAdmin.nickName}</a>
+			<a href="../personal/member-manage" class="btn btn-outline-primary mt-3">${ loggedAdmin.nickName}</a>
 			<a href="../post/write" class="btn btn-outline-primary mt-3">글쓰기</a>
 		</c:when>
 		
@@ -64,10 +64,15 @@
     
     
     <ul class="nav nav-pills flex-column mb-auto">
+      <li>
+        <a href="../category/list" class="nav-link link-body-emphasis">
+          전체
+        </a>
+      </li>
       
       <c:forEach items="${ navSymptomList }" var="symptom" varStatus="status">
       <li>
-        <a href="#sympNo" class="nav-link link-body-emphasis">
+        <a href="../category/list?symp=${ symptom.sympNo }" class="nav-link link-body-emphasis">
           ${symptom.symptomName }
         </a>
       </li>
@@ -75,6 +80,3 @@
       
     </ul>
  </div>   
-  
-  
-  <%@ include file="../include/footer.jsp"%>
