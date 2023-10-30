@@ -67,4 +67,15 @@
 
 
 
+	<select id="getMaerialBySymptom" resultType="MaterialDto" parameterType="int">
+		SELECT * FROM material 
+			WHERE materialno in (
+			SELECT materialno
+				FROM SymptomPost INNER JOIN MaterialPost 
+				ON SymptomPost.postNo = MaterialPost.postNo
+				WHERE sympno=#{sympNo})
+	</select>
+	
+
+
 </mapper>

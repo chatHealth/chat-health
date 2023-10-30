@@ -12,9 +12,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import com.health.dao.MaterialDao;
 import com.health.dao.PostDao;
 import com.health.dao.SymptomDao;
 import com.health.dto.MaterialDto;
+import com.health.dto.MaterialPostDto;
 import com.health.dto.PostDto;
 import com.health.dto.SymptomDto;
 
@@ -30,6 +32,7 @@ public class CategoryList extends HttpServlet {
 
     private final PostDao postDao = PostDao.getInstance();
     private final SymptomDao symptomDao = SymptomDao.getInstance();
+    private final MaterialDao materialDao  = MaterialDao.getInstance();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 0. nav
@@ -79,11 +82,14 @@ public class CategoryList extends HttpServlet {
 		}
 		
 		
+		// 2. 영양소 얻어오기
+		List<MaterialDto> materialList = materialDao.getMaerialBySymptom(sympNo);
 		
-		// 2. post list send
+		// 3. send
 		//if(postList.size() == 0) { postList = null; }
 		request.setAttribute("postList", postList);
-
+		request.setAttribute("materialList", materialList);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/category/list.jsp");
 		dispatcher.forward(request, response); 
 	}
