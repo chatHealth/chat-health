@@ -76,6 +76,15 @@
 				WHERE sympno=#{sympNo})
 	</select>
 	
-
-
+	<select id="getOnePost" resultType="PostDto" parameterType = "int">
+		select * from post where postno = #{no}
+	</select>
+	
+	
+	<update id="updatePost" parameterType="PostDto">
+		update post
+		set enterpriseno=#{enterpriseNo}, title=#{title}, content=#{content}, postimg=#{postImg}
+		WHERE postno=#{postNo}	
+	</update>
+	
 </mapper>
