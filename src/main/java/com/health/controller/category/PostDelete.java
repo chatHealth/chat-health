@@ -1,4 +1,4 @@
-package com.health.controller.view;
+package com.health.controller.category;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -9,39 +9,34 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.List;
 
-import com.health.dao.ReviewDao;
-import com.health.dto.ReviewDto;
+import com.health.dao.SymptomDao;
 
-
-@WebServlet("/view/product")
-public class ViewController extends HttpServlet {
+@WebServlet("/post/delete")
+public class PostDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-    public ViewController() {
+       
+   
+    public PostDelete() {
         super();
     }
 
+    private final SymptomDao symptomDao = SymptomDao.getInstance();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 0. nav
+		HttpSession session = request.getSession();
+		if(session.getAttribute("navSymptomList")==null) {
+			session.setAttribute("navSymptomList", symptomDao.getAllSymptom());
+		}
 		
-		int no = Integer.parseInt(request.getParameter("no"));
-		ReviewDao reviewDao = new ReviewDao();
-		List<ReviewDto> reviewList = reviewDao.selectReview(no);
-		request.setAttribute("reviewList", reviewList);
 		
-		HttpSession session= request.getSession();
-		session.getAttribute("loggedMember");
-		
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/view/product.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/post/delete.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
+		
 	}
 
 }
