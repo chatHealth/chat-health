@@ -129,3 +129,4 @@
       </c:choose>
     </div>
   </div>
+<div class="col-9 content">

@@ -51,7 +51,7 @@ public class MemberLoginProcess extends HttpServlet {
 				
 				if(loggedMember.getGrade() == 1) {  // 관리자
 					loginSession.setAttribute("loggedAdmin", loggedMember);
-					response.sendRedirect("../personal/admin-info");				
+					response.sendRedirect("../personal/member-manage");				
 				}else{ //개인
 					loginSession.setAttribute("loggedMember", loggedMember);
 					response.sendRedirect("../index/index");

@@ -1,4 +1,4 @@
-package com.health.controller.member;
+package com.health.controller.personal;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -7,22 +7,31 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/personal/admin-info")
-public class AdminInfo extends HttpServlet {
+import com.health.dao.MemberDao;
+import com.health.dto.EnterpriseDto;
+
+@WebServlet("/personal/enterprise-manage")
+public class AdminEnterpriseInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public AdminInfo() {
+	private final MemberDao memberDao = MemberDao.getInstance();
+       
+    public AdminEnterpriseInfo() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<EnterpriseDto> userList = memberDao.getEnterprise();		
+		
+		request.setAttribute("userList", userList);
+		
 		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/member/adminInfo.jsp");
+				request.getRequestDispatcher("/WEB-INF/personal/adminPage-enterprise.jsp");
 		dispatcher.forward(request, response);
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

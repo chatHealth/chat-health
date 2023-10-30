@@ -11,7 +11,6 @@
 <%@ include file="../include/member-side.jsp" %>
 
 		<!-- Content -->
-		<div class="col-9 content">
 			<h1>Edit Member Profile</h1>
 			<form action="../personal/member-modify-process" method="post">
 				<div class="mb-3">

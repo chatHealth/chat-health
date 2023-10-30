@@ -3,9 +3,13 @@
 <%@ include file="../include/header.jsp" %>
 
 <style>
+	.admin-contents{
+	width:100vw;
+	
+  }
   .sidebar {
     background-color: #f8f9fa; /* Lighter color */
-    width: 15%; /* Fixed width */
+    width: 200px; /* Fixed width */
     height: 100%; /* 100% height */
     position: fixed;
     left: 0;
@@ -34,7 +38,7 @@
   }
 
   .sidebar a:hover {
-    color: #6c757d; /* Text color on hover */
+    color: #6c756d; /* Text color on hover */
     background-color: #f8f9fa; /* Background color on hover */
   }
 
@@ -85,22 +89,20 @@
     }
   }
 </style>
-<div class="container-fluid" style="text-align: center;"> <!-- 어드민 사이드바 메뉴 목록 -->
+
+<div class="container-fluid left" style="text-align: center;"> <!-- 어드민 사이드바 메뉴 목록 -->
   <div class="row">
-    <%--        <button class="btn btn-primary mt-2 ml-2" id="sidebar-toggle">Toggle Sidebar</button>--%>
 
     <!-- Sidebar -->
-    <div class="col sidebar" id="lnb">
+    <div class="col sidebar">
       <h3>관리자 페이지</h3>
       <p >어서오세요, admin님</p>
-      <span style="border-top: 1px solid #000; display: block; margin: 10px 0;"></span>
-      <ul>
-        <li><input type="button" value="memberManage" onclick="acyncMovePage('/test/test.do')"></li>
-        <li><input type="button" value="enterpriseManage" onclick="acyncMovePage('/test/test.do')"></li>
+      <span style="border-top: 2px solid #ccc; display: block; margin: 10px 0;"></span>
+      <ul> <!-- 관리자페이지 버튼누르면 연결될거 생각하기 -->
+        <li><a href="../personal/member-manage">개인회원 관리</a></li>
+        <span style="border-top: 1px solid #ccc; display: block; margin: 10px 13px;"></span>
+        <li><a href="../personal/enterprise-manage">사업자회원 관리</a></li>
       </ul>
     </div>
  </div>
-</div>
-<div id="bodyContents">
-
 </div>
