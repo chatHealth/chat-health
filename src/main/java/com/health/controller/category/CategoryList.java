@@ -47,25 +47,34 @@ public class CategoryList extends HttpServlet {
 		//map.put("end", end);
 		
 		
+		// 2) 정렬
+		String sort = request.getParameter("sort");
+		if(sort==null || sort.equals("recent")) {
+			map.put("sort", "recent");
+		} else if (sort.equals("recommended")){
+			map.put("sort", "recommended");
+		} else if (sort.equals("reviewed")) {
+			map.put("sort", "reviewed");
+		}
 		
-		// 2) 증상, 키워드 얻어오기
+		// 3) 증상, 키워드 얻어오기
 		String keyword = request.getParameter("keyword");
 		String symp = request.getParameter("symp");
 		int sympNo = 0;
 		if(symp != null) sympNo=Integer.parseInt(symp);
 		
 		// 3) real get part, set info
-		if(sympNo > 0) { // 1) 증상선택 온경우
+		if(sympNo > 0) { 								// 1) 증상선택 온경우
 			map.put("sympNo", symp);
 			postList = postDao.getPostForSympno(map);
 			
 			request.setAttribute("info", symptomDao.getsymptName(sympNo));
-		}else if(keyword != null) {  // 2) 검색창으로 온경우
+		}else if(keyword != null) { 					 // 2) 검색창으로 온경우
 			map.put("keyword", keyword);
 			postList = postDao.getPostForKeyword(map);
 			
 			request.setAttribute("info", keyword);
-		}else {  // 3) 전체
+		}else {  											// 3) 전체
 			postList = postDao.getPostForAll(map);
 		}
 		

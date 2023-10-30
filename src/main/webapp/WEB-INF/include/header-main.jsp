@@ -15,10 +15,14 @@
 		
 		
 		<!-- 2. info -->
-			<div class="category-info">
+			<div class="category-info container">
 				<c:choose>
 					<c:when test="${not empty info }">
-						${info }
+					
+						<div class="container row align-items-center py-3 px-xl-5">
+							<p class="m-0 col-3">${info }</p>
+						</div>
+					
 					</c:when>
 					<c:otherwise>
 
