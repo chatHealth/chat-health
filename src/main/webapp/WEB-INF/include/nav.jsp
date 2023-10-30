@@ -28,7 +28,7 @@
 			<div class="d-flex justify-content-center">
 				<img src="${ loggedEnterprise.profile}" class="profile-small mt-3 ">
 			</div>
-			<a href="../personal/enterprise-info" class="btn btn-outline-primary mt-3">${loggedEnterprise.name }</a>
+			<a href="../personal/member-info" class="btn btn-outline-primary mt-3">${loggedEnterprise.name }</a>
 		
 		
 			<c:if test="${loggedEnterprise.accepted eq 0 }">

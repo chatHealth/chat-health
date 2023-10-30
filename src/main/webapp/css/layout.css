@@ -117,10 +117,24 @@
 }
 
 
-
 /*sun end*/
 
+/* wonu */
 
 
+#preview{
+	height:300px;
+	width: 300px;
+	object-fit: contain;
+}
 
+.entP > a{
+	color: inherit;
+	text-decoration: none;
+}
+.entP >a:hover{
+	color:gray;
+}
+
+/*wonu end*/
 
