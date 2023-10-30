@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import com.health.dao.PostDao;
@@ -28,30 +29,44 @@ public class CategoryList extends HttpServlet {
 
 
     private final PostDao postDao = PostDao.getInstance();
+    private final SymptomDao symptomDao = SymptomDao.getInstance();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 0. nav
 		HttpSession session = request.getSession();
 		if(session.getAttribute("navSymptomList")==null) {
-			session.setAttribute("navSymptomList", SymptomDao.getInstance().getAllSymptom());
+			session.setAttribute("navSymptomList", symptomDao.getAllSymptom());
 		}
 		
 		// 1. post list get
+		//1) 초기화
 		List<PostDto> postList = null;
-		postList = postDao.getAllPost();
+		HashMap<String,String> map = new HashMap<>();   // sort, 페이지, 증상번호 저장, 키워드 저장
 		
+		//map.put("start", start);
+		//map.put("end", end);
+		
+		
+		
+		// 2) 증상, 키워드 얻어오기
 		String keyword = request.getParameter("keyword");
 		String symp = request.getParameter("symp");
-		
 		int sympNo = 0;
 		if(symp != null) sympNo=Integer.parseInt(symp);
 		
-		if(keyword == null) { // 1) 검색창으로 온경우
+		// 3) real get part, set info
+		if(sympNo > 0) { // 1) 증상선택 온경우
+			map.put("sympNo", symp);
+			postList = postDao.getPostForSympno(map);
 			
-		}else if(sympNo > 0) {  // 2) 증상 선택으로 온경우
+			request.setAttribute("info", symptomDao.getsymptName(sympNo));
+		}else if(keyword != null) {  // 2) 검색창으로 온경우
+			map.put("keyword", keyword);
+			postList = postDao.getPostForKeyword(map);
 			
+			request.setAttribute("info", keyword);
 		}else {  // 3) 전체
-			postList = postDao.getAllPost();
+			postList = postDao.getPostForAll(map);
 		}
 		
 		

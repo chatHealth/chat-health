@@ -15,13 +15,20 @@
 		
 		
 		<!-- 2. info -->
-		<div class="">
-		
-		</div>
-		
-		
-		
-		<!-- 3. serch place -->
+			<div class="category-info">
+				<c:choose>
+					<c:when test="${not empty info }">
+						${info }
+					</c:when>
+					<c:otherwise>
+
+					</c:otherwise>
+				</c:choose>
+			</div>
+
+
+
+			<!-- 3. serch place -->
 		<div class=" button-box text-right d-flex justify-content-end container-fluid mr-5 ">
 			<div class="text-left mt-3">
 			<form action="../category/list" method="get">

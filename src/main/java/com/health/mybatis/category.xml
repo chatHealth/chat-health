@@ -5,10 +5,6 @@
 
 <mapper namespace="com.health.mybatis">
 
-	<select id="getAllPost" resultType="PostDto">
-		select * from post
-	</select>
-
 	<select id="getAllSymptom" resultType="SymptomDto">
 		select * from symptom
 	</select>
@@ -16,9 +12,13 @@
 	<select id="getAllMaterial" resultType="MaterialDto">
 		select * from material
 	</select>
-
+	
 	<select id="seqPostNextVal" resultType="int">
 		select seq_post.nextval from dual
+	</select>
+	
+	<select id="getsymptName" resultType="string" parameterType = "int">
+		select symptomname from symptom WHERE sympno = ${sympNo}
 	</select>
 
 	<insert id="insertPost" parameterType="PostDto">
@@ -37,6 +37,22 @@
 	</insert>
 
 
+
+
+	
+	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">
+		SELECT * FROM post 
+		WHERE postno in ( SELECT postno FROM symptompost 
+		WHERE sympno = CAST(#{sympNo} as number))
+	</select>
+	
+	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
+		SELECT * FROM post WHERE title LIKE '%'||#{keyword}||'%'
+	</select>
+
+	<select id="getPostForAll" resultType="PostDto" parameterType = "HashMap">
+		select * from post
+	</select>
 
 
 
