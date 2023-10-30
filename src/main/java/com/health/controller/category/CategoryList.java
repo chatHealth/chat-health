@@ -38,6 +38,7 @@ public class CategoryList extends HttpServlet {
 		
 		// 1. post list get
 		List<PostDto> postList = null;
+		postList = postDao.getAllPost();
 		
 		String keyword = request.getParameter("keyword");
 		String symp = request.getParameter("symp");
