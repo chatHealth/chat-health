@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import org.apache.catalina.Session;
+//import org.apache.catalina.Session;
 
 import com.health.dao.ReviewDao;
 import com.health.dto.MemberDto;

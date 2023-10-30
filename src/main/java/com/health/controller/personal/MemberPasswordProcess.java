@@ -10,7 +10,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(name = "MemberPasswordProcess", value = "/personal/member-password-process")
 public class MemberPasswordProcess extends HttpServlet {
@@ -77,6 +76,8 @@ public class MemberPasswordProcess extends HttpServlet {
                     ScriptWriter.alertAndBack(response, "오류");
                 }
             }
+        }else{
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
         }
     }
 }

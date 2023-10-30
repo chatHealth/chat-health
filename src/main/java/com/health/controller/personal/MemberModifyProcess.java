@@ -24,9 +24,10 @@ public class MemberModifyProcess extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-//        MemberDto loginMember = (MemberDto) session.getAttribute("member");
-//        int userNo = loginMember.getUserNo();
         MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
+        if (loggedMember == null) {
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
+        }
         int userNo = loggedMember.getUserNo();
 
         String nickName = request.getParameter("nickName");
