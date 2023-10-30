@@ -46,6 +46,7 @@
 	display: none;
 }
 
+
 /** yong end **/
 
 
@@ -57,12 +58,13 @@
 	align-items: center;
 }
 .imgbox{
-	width: 530px;
-	height: 530px;
+	margin-left: 100px;
+	width: 430px;
+	height: 430px;
 }
 .imgtest{
-	width: 500px;
-	height: 500px;
+	width: 400px;
+	height: 400px;
 }
 /*sun review*/
 .reviewStart{

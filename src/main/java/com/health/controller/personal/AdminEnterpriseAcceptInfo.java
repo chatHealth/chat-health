@@ -11,32 +11,28 @@ import java.util.List;
 
 import com.health.dao.MemberDao;
 import com.health.dto.EnterpriseDto;
-import com.health.dto.MemberDto;
 
-@WebServlet("/personal/member-manage")
-public class AdminInfo extends HttpServlet {
+@WebServlet("/personal/admin-accept-info")
+public class AdminEnterpriseAcceptInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final MemberDao memberDao = MemberDao.getInstance();
-     
-    public AdminInfo() {
-        super();
-        
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<MemberDto> userList = memberDao.getUser();		
-		
-		request.setAttribute("userList", userList);
-		
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/personal/AdminPage.jsp");
-		dispatcher.forward(request, response);
-		
-		
+	public AdminEnterpriseAcceptInfo() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		List<EnterpriseDto> userList = memberDao.getEnterprise();
+
+		request.setAttribute("userList", userList);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/personal/adminPage-accept.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

@@ -2,8 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/admin-side.jsp"%>
 
-<div class="admin-contents text-center">
-	<table class="table table-striped table-hover">
+<div class="admin-contents text-center ">
+	<table class="table  certain-width table-hover">
+	<thead>
 		<tr>
 			<td>회원번호</td>
 			<td>아이디</td>
@@ -13,8 +14,10 @@
 			<td>가입 일자</td>
 			<td>탈퇴</td>
 		</tr>
+	</thead>
+	<tbody>
 		<c:forEach items="${userList}" var="item">
-			<c:if test="${empty item.deletedDate}">
+			<c:if test="${empty item.deletedDate && item.userNo!=0}">
 				<tr data-no="${item.userNo}">
 					<td>${item.userNo}</td>
 					<td>${item.id}</td>
@@ -30,7 +33,7 @@
 				</tr>
 			</c:if>
 		</c:forEach>
-
+	</tbody>
 	</table>
 </div>
 <!-- Modal -->

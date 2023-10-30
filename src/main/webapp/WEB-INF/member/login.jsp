@@ -4,17 +4,17 @@
 <div class="form-signin w-25 position-absolute top-50 start-50 translate-middle">
   <form action="../member/login-process" method="post" >
     
-    <h1 class="h3 mb-3 fw-normal">로그인</h1>
+    <h1 class="h3 mb-5 fw-normal">로그인</h1>
 
-    <div class="form-floating mb-3">
-    <label for="userID">아이디</label>
-      <input type="text" class="form-control" id="userID" placeholder="ID" name="userID" 
+    <div class="mb-2">
+    <label for="userID" class="mb-3">아이디</label>
+      <input type="text" class="form-control" id="userID" placeholder="아이디" name="userID" 
       value="${cookie.saveIDCookie.value}"> 
       
     </div>
-    <div class="form-floating mb-3">
-    <label for="userPW">비밀번호</label>
-      <input type="password" class="form-control" id="userPW" placeholder="Password" name="userPW">      
+    <div class="mb-2">
+    <label for="userPW" class="mb-3">비밀번호</label>
+      <input type="password" class="form-control" id="userPW" placeholder="비밀번호" name="userPW">      
     </div>
 
     <div class="checks mb-4">    	
@@ -27,10 +27,6 @@
       </div>
       
       <div class="radio-enterprise mb-3">
-        <!--  <input class="form-check-input1" type="radio" value="imMember" id="imMember" name="imMember">
-        <label class="form-check-label1" for="imMember"> 개인회원</label>
-        <input class="form-check-input1" type="radio" value="imEnterprise" id="isEnterprise" name="isEnterprise"> 
-        <label class="form-check-label1" for="isEnterprise"> 사업자회원</label>-->
         
         <div class="form-check">
   			<input class="form-check-input" type="radio" name="isEnterprise" id="imMember" value="member" checked="checked">

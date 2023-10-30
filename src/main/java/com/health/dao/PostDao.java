@@ -1,5 +1,6 @@
 package com.health.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,14 +36,39 @@ public class PostDao {
 		return result;
 	}
 	
-	// 3. 모든 post list 가져오기
-	public List<PostDto> getAllPost() {
+	
+	// 3. 
+	// 증상으로 post list 가져오기
+	public List<PostDto> getPostForSympno(HashMap<String,String> map) {
 		List<PostDto> resList = null;
 		
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-		resList = sqlSession.selectList("getAllPost");
+		resList = sqlSession.selectList("getPostForSympno", map);
 		sqlSession.close();
 		
 		return resList;
 	}
+	
+	// 키워드로  post list 가져오기
+	public List<PostDto> getPostForKeyword(HashMap<String,String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForKeyword", map);
+		sqlSession.close();
+		
+		return resList;
+	}
+	
+	// 모든 post list 가져오기
+	public List<PostDto> getPostForAll(HashMap<String,String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForAll", map );
+		sqlSession.close();
+		
+		return resList;
+	}
+	
 }
