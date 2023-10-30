@@ -4,6 +4,7 @@ import com.health.dao.MemberDao;
 import com.health.dao.PersonalDao;
 import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
+import com.health.util.ScriptWriter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -22,6 +23,9 @@ public class MemberWish extends HttpServlet {
 
         HttpSession session = request.getSession();
         MemberDto member = (MemberDto) session.getAttribute("loggedMember");
+        if (member == null) {
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
+        }
         int userNo = member.getUserNo();
 
         List<PostDto> userLikePosts = personalDao.userLikePosts(userNo);

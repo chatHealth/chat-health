@@ -25,6 +25,10 @@ public class EnterpriseModifyProcess extends HttpServlet {
         HttpSession session = request.getSession();
         EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
+        if (loggedEnterprise == null) {
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.","../");
+        }
+
         String tel = request.getParameter("tel");
         String ceo = request.getParameter("ceo");
         String address = request.getParameter("address");

@@ -134,7 +134,7 @@
 	text-decoration: none;
 }
 .entP >a:hover{
-	color:gray;
+	text-decoration: underline;
 }
 
 /*wonu end*/
