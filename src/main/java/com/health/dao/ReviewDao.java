@@ -1,5 +1,7 @@
 package com.health.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.health.dto.ReviewDto;
@@ -13,6 +15,14 @@ public class ReviewDao {
 		sqlSession.close();
 		return result;
 	}
+	
+	public List<ReviewDto> selectReview(int no) {
+		List<ReviewDto> result;
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.selectList("reviewDate",no);
+		sqlSession.close();
+		return result;
+	} 
 }
 
 
