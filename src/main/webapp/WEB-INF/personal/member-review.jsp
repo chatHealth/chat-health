@@ -45,7 +45,6 @@
 		</tr>
 	</tbody>
 	</c:forEach>
-	</c:if>
 </table>
 <nav aria-label="Page navigation example">
 	<ul class="pagination">
@@ -64,6 +63,7 @@
 		</li>
 	</ul>
 </nav>
+	</c:if>
 </div>
 
 <%@ include file="../include/footer.jsp"%>
