@@ -11,7 +11,6 @@
 <%@ include file="../include/member-side.jsp" %>
 
 <!-- Content -->
-<div class="col-9 content">
     <h4 class="mb-3">회원 탈퇴</h4>
     <form action="../personal/member-withdraw-process" class="needs-validation" onsubmit="return confirm('정말 탈퇴하시겠습니까?')" method="post">
         <div class="row g-3">

@@ -3,9 +3,11 @@ package com.health.dao;
 import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
+import com.health.dto.PostPageDto;
 import com.health.mybatis.MyBatisConnectionFactory;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class PersonalDao {
@@ -42,10 +44,10 @@ public class PersonalDao {
         return pw;
     }
 
-    public int memberWithdraw(int userNo) {
+    public int memWithdraw(int userNo) {
         int result = 0;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-        result = sqlSession.update("withdrawMember", userNo);
+        result = sqlSession.update("memWithdraw", userNo);
         sqlSession.close();
         return result;
     }
@@ -88,5 +90,23 @@ public class PersonalDao {
         result = sqlSession.update("entProfileImg", enterpriseDto);
         sqlSession.close();
         return result;
+    }
+
+    public List<PostPageDto> entPost(int no) {
+        List<PostPageDto> entPosts;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        entPosts = sqlSession.selectList("entPosts", no);
+        sqlSession.close();
+        return entPosts;
+    }
+
+    public List<HashMap<String, Object>> memReview(int no) {
+        List<HashMap<String, Object>> list;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        System.out.println("no = " + no);
+        list = sqlSession.selectList("memReview", no);
+        System.out.println("list.size() = " + list.size());
+        sqlSession.close();
+        return list;
     }
 }

@@ -10,7 +10,6 @@
 <%@ include file="../include/member-side.jsp" %>
 
 <!-- Content -->
-<div class="col-9 content">
   <h1>Edit Enterprise Profile</h1>
   <form action="../personal/enterprise-modify-process" method="post">
     <div class="mb-3">

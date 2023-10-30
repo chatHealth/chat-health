@@ -1,5 +1,8 @@
 package com.health.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.health.dto.EnterpriseDto;
@@ -97,6 +100,38 @@ public class MemberDao{
 		sqlSession.close();
 		return result;
 	}
+	
+	public List<MemberDto> getUser() {
+		List<MemberDto> userList = new ArrayList<>();
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		userList = sqlSession.selectList("getUser");
+		sqlSession.close();
+		return userList;
+	}
+	
+	public List<EnterpriseDto> getEnterprise() {
+		List<EnterpriseDto> enterpriseList = new ArrayList<>();
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		enterpriseList = sqlSession.selectList("getEnterprise");
+		sqlSession.close();
+		return enterpriseList;
+	}
+	
+	public int memWithdraw(int userNo) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("deleteMember", userNo);
+        sqlSession.close();
+        return result;
+    }
+	
+	public int entWithdraw(int enterpriseNo) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.update("entWithdraw", enterpriseNo);
+        sqlSession.close();
+        return result;
+    }
 }
 
 

@@ -11,26 +11,22 @@
 <%@ include file="../include/member-side.jsp" %>
 
 <!-- Content -->
-<div class="col-9 content">
     <!-- Profile Picture and Table on the Same Row -->
     <div class="row" style="padding-top: 10%;">
         <div class="col-4">
             <!-- Profile Picture -->
             <div class="profile-picture">
-                <%--                        <img src="https://via.placeholder.com/150" alt="Profile Picture">--%>
                 <c:choose>
                 <c:when test="${loggedMember.profile eq 'null'}">
                     <img src="../img/basic_profile.svg" alt="없음">
                 </c:when>
                 <c:otherwise>
-                    <img src="/upload/${loggedMember.profile }" alt="+++++++">
+                    <img src="/upload/${loggedMember.profile }" alt="멤버프로필">
                 </c:otherwise>
                 </c:choose>
                 <div class="edit-button">
-                    <%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
-                    <%--                        </div>--%>
                     <button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>
-                    <!-- 회원가입 확인 Modal-->
+                    <!-- 프로필 사진 업로드 Modal-->
                     <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -43,9 +39,16 @@
                                     <div class="modal-body">
                                         <!-- 프로필 사진 업로드 양식 -->
                                         <div class="form-group">
-                                            <%--                                    <label for="profileImage">프로필 사진 업로드</label>--%>
+                                                <c:choose>
+                                                    <c:when test="${loggedMember.profile eq 'null'}">
+                                                        <img src="../img/basic_profile.svg" alt="없음" id="preview" />
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <img src="/upload/${loggedMember.profile }" alt="멤버프로필" id="preview" />
+                                                    </c:otherwise>
+                                                </c:choose>
                                             <input type="file" class="form-control-file" id="profileImage"
-                                                   name="profileImage" accept="image/jpeg, image/jpg, image/gif, image/png">
+                                                   name="profileImage" accept="image/*"  />
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -106,5 +109,19 @@
         e.preventDefault();
         $('#editModal').modal("hide");
     });
+
+    $('#profileImage').change(function(){
+        setImageFromFile(this, '#preview');
+    });
+
+    function setImageFromFile(input, expression) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(expression).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 <%@ include file="../include/footer.jsp" %>
