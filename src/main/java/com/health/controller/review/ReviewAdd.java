@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import org.apache.catalina.Session;
+//import org.apache.catalina.Session;
 
 import com.health.dao.ReviewDao;
 import com.health.dto.MemberDto;
@@ -40,24 +40,12 @@ public class ReviewAdd extends HttpServlet {
 		// reviewDto.setUserNo(loggedMember.getUserNo());
 
 		reviewDto.setUserNo(123);
-		reviewDto.setPostNo(5);
+		reviewDto.setPostNo(2);
 		reviewDto.setTitle(retitle);
 		reviewDto.setContent(recontent);
 		reviewDto.setHelpful(0);
 
 		int result = reviewDao.insertRivew(reviewDto);
-		
-		if (result > 0) {
-			// String msg = URLEncoder.encode("글이 등록되었습니다.", StandardCharsets.UTF_8);
-			// response.sendRedirect("../board/list?state=show&msg="+msg);
-
-			HttpSession session = request.getSession();
-			response.sendRedirect("../view/product");
-
-//			ModalState modalState = new ModalState("show","글이 등록되었습니다.");
-//			session.setAttribute("modalState", modalState);
-//			response.sendRedirect("../board/list");
-		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

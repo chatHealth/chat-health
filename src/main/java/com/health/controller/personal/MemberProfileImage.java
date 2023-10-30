@@ -11,7 +11,6 @@ import jakarta.servlet.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Arrays;
 
 @WebServlet(name = "MemberProfileImage", value = "/personal/member-profile-image")

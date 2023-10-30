@@ -22,16 +22,8 @@ public class EnterprisePost extends HttpServlet {
         EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
         if (loggedEnterprise == null || loggedMember != null) {
-            ScriptWriter.alertAndBack(response, "잘못된 접근입니다.");
+            ScriptWriter.alertAndGo(response, "잘못된 접근입니다.", "../");
         }
-
-//        HashMap<String, Object> map = new HashMap<>();
-//        map.put("start", 1);
-//        map.put("end", 10);
-//        map.put("enterpriseNo", loggedEnterprise1.getEnterpriseNo());
-//        System.out.println(map.get("enterpriseNo"));
-
-//        System.out.println("loggedEnterprise1 = " + loggedEnterprise1.getEnterpriseNo());
 
         int enterpriseNo = loggedEnterprise.getEnterpriseNo();
         List<PostPageDto> posts = personalDao.entPost(enterpriseNo);
