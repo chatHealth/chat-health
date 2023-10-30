@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/header-main.jsp"%>
 <%@ include file="../include/nav.jsp"%>
 
 <div class="container ">
@@ -8,7 +8,7 @@
 	<h2>Write</h2>
 
 	<form action="../post/write-process" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="enterpriseNo" value="123">
+		<input type="hidden" name="enNo" value="${loggedEnterprise.enterpriseNo }">
 
 		<div class="form-floating mb-3">
 			<input type="text" class="form-control" id="title"
@@ -35,8 +35,7 @@
 					aria-label="Small select example" data-style="btn-primary">
 					<c:forEach items="${ symptomList }" var="symptom"
 						varStatus="status">
-						<option value="${symptom.sympNo }">
-							${symptom.symptomName}</option>
+						<option value="${symptom.sympNo }"> ${symptom.symptomName}</option>
 					</c:forEach>
 				</select>
 			</div>

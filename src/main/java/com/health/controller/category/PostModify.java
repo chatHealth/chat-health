@@ -6,7 +6,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+import java.util.List;
+
+import com.health.dao.MaterialDao;
+import com.health.dao.PostDao;
+import com.health.dao.SymptomDao;
+import com.health.dto.MaterialDto;
+import com.health.dto.PostDto;
+import com.health.dto.SymptomDto;
 
 @WebServlet("/post/modify")
 public class PostModify extends HttpServlet {
@@ -16,11 +26,31 @@ public class PostModify extends HttpServlet {
         super();
     }
 
+	private final PostDao postDao = PostDao.getInstance();
+	private final SymptomDao symptomDao = SymptomDao.getInstance();
+		private final MaterialDao materialDao = MaterialDao.getInstance();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 0. nav
+		HttpSession session = request.getSession();
+		if(session.getAttribute("navSymptomList")==null) {
+			session.setAttribute("navSymptomList", symptomDao.getAllSymptom());
+		}
 		
+		// 1. get one post
+		int no=0;
+		String strNo = request.getParameter("no");
+		if(strNo != null) no = Integer.parseInt(strNo);
+		PostDto post =  postDao.getOnePost(no);
+
+		// 2. symptom material
+		List<SymptomDto> symptomList = symptomDao.getAllSymptom();
+		List<MaterialDto> materialList = materialDao.getAllMaterial();
 		
+		request.setAttribute("symptomList", symptomList);
+		request.setAttribute("materialList", materialList);
 		
-		
+		// 3. send
+		request.setAttribute("post", post);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/post/modify.jsp");
 		dispatcher.forward(request, response);
 	}

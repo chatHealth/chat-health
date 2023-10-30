@@ -9,15 +9,16 @@
 
 	<h2>Write</h2>
 
-	<form action="../post/write-process" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="enterpriseNo" value="123">
+	<form action="../post/modify-process" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="enNo" value="${loggedEnterprise.enterpriseNo }">
+		<input type="hidden" name="postNo" value="${post.postNo }">
 
 		<div class="form-floating mb-3">
-			<input type="text" class="form-control" id="title"
-				placeholder="title" name="title"> <label for="title">title</label>
+			<input type="text" class="form-control" id="title" placeholder="title" name="title" value="${post.title }"> 
+			<label for="title">title</label>
 		</div>
 		<div class="form-floating">
-			<textarea class="form-control" id="content" name="content"> </textarea>
+			<textarea class="form-control" id="content" name="content"> ${post.content } </textarea>
 		</div>
 
 
@@ -26,7 +27,7 @@
 			<div class="col-3 mt-3 ">
 				<input type="file" class="form-control" id="titleImg"
 					placeholder="png,jpg" name="titleImg"
-					accept="image/gif, image/jpeg, image/png" />
+					accept="image/gif, image/jpeg, image/png" value="${post.postImg }"/>
 				<!-- <label for="titleImg" class="form-label"> 제품대표 이미지  </label>  -->
 			</div>
 
@@ -37,8 +38,7 @@
 					aria-label="Small select example" data-style="btn-primary">
 					<c:forEach items="${ symptomList }" var="symptom"
 						varStatus="status">
-						<option value="${symptom.sympNo }">
-							${symptom.symptomName}</option>
+						<option value="${symptom.sympNo }"> ${symptom.symptomName}</option>
 					</c:forEach>
 				</select>
 			</div>

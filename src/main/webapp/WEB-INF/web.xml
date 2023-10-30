@@ -30,6 +30,16 @@
     <servlet-name>PostDelete</servlet-name>
     <url-pattern>/PostDelete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PostModifyProcess</display-name>
+    <servlet-name>PostModifyProcess</servlet-name>
+    <servlet-class>com.health.controller.category.PostModifyProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostModifyProcess</servlet-name>
+    <url-pattern>/PostModifyProcess</url-pattern>
+  </servlet-mapping>
 </web-app>
 <!--
   <servlet>
