@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PersonalDao {
 
@@ -100,11 +101,19 @@ public class PersonalDao {
         return entPosts;
     }
 
-    public List<HashMap<String, Object>> memReview(int no) {
+    public List<HashMap<String, Object>> memReview(Map<String, Integer> map) {
         List<HashMap<String, Object>> list;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-        list = sqlSession.selectList("memReview", no);
+        list = sqlSession.selectList("memReview", map);
         sqlSession.close();
         return list;
+    }
+
+    public int memReviewsCount(int no) {
+        int result;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.selectOne("merReviewsCount", no);
+        sqlSession.close();
+        return result;
     }
 }

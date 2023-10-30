@@ -28,10 +28,9 @@
 	</tr>
 	</thead>
 	<tbody>
-	</c:if>
 	<c:forEach items="${reviews }" var="review" varStatus="loop">
 		<tr>
-			<th scope="row">${review.ROWNUM }</th>
+			<th scope="row">${review.RNUM }</th>
 			<c:choose>
 				<c:when test="${review.POSTDELEDDATE eq null}">
 					<td class="entP"><a href="../view/product?no=${review.POSTNO}"><img src="/upload/${review.POSTIMG}" style="height:100px"  alt="postImg"/></a></td>
@@ -44,8 +43,27 @@
 			<td class="entP"><a href="#">${review.TITLE }</a></td>
 			<td class="entP">${review.REGDATE }</td>
 		</tr>
-	</c:forEach>
 	</tbody>
+	</c:forEach>
+	</c:if>
 </table>
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		<li class="page-item">
+			<a class="page-link" href="#" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<c:forEach var="page" begin="1" end="${pages}">
+			<li class="page-item"><a class="page-link" href="../personal/member-review?idx=${page}">${page}</a></li>
+		</c:forEach>
+		<li class="page-item">
+			<a class="page-link" href="#" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>
 </div>
+
 <%@ include file="../include/footer.jsp"%>
