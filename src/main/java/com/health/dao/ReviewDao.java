@@ -1,6 +1,7 @@
 package com.health.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -16,10 +17,17 @@ public class ReviewDao {
 		return result;
 	}
 	
-	public List<ReviewDto> selectReview(int no) {
-		List<ReviewDto> result;
+	public List<Map<String,Object>> selectReview(int no) {
+		List<Map<String,Object>> result;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		result = sqlSession.selectList("reviewDate",no);
+		sqlSession.close();
+		return result;
+	}
+	public List<Map<String,Object>> postInfo(int no) {
+		List<Map<String,Object>> result;
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.selectList("postInfo",no);
 		sqlSession.close();
 		return result;
 	} 
