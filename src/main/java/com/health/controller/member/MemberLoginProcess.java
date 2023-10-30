@@ -15,6 +15,8 @@ import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
 import com.health.util.ModalState;
 import com.health.util.ScriptWriter;
+import com.health.util.CookieManager;
+
 
 @WebServlet("/member/login-process")
 public class MemberLoginProcess extends HttpServlet {
@@ -34,7 +36,7 @@ public class MemberLoginProcess extends HttpServlet {
 		String userID= request.getParameter("userID");
 		String userPW= request.getParameter("userPW");
 		String isEnterprise = request.getParameter("isEnterprise");
-		
+		String saveID = request.getParameter("saveID");
 		
 		if(isEnterprise.equals("member")) { // 1. 개인인 경우
 			MemberDto memberDto = new MemberDto();
@@ -43,7 +45,7 @@ public class MemberLoginProcess extends HttpServlet {
 			memberDto.setPw(userPW);
 			
 			loggedMember = memberDao.loginMember(memberDto);
-		
+			
 			if(loggedMember!=null) {
 				HttpSession loginSession = request.getSession();
 				loggedMember.setPw(null);			
@@ -54,6 +56,15 @@ public class MemberLoginProcess extends HttpServlet {
 					response.sendRedirect("../personal/member-manage");				
 				}else{ //개인
 					loginSession.setAttribute("loggedMember", loggedMember);
+					if (saveID != null) {
+						if (saveID.equals("rememberMe")) {
+							CookieManager.createCookie(response, "saveIDCookie", userID, 60 * 60 * 24 * 5);
+						} else {
+							CookieManager.deleteCookie(response, "saveIDCookie");
+						}
+					} else {
+						CookieManager.deleteCookie(response, "saveIDCookie");
+					}
 					response.sendRedirect("../index/index");
 					} 
 	
@@ -73,7 +84,17 @@ public class MemberLoginProcess extends HttpServlet {
 				loggedMember.setPw(null);
 				loginSession.setAttribute("loggedEnterprise", loggedMember);
 				
-				response.sendRedirect("../category/list"); //메인페이지로 수정 필요 
+				if (saveID != null) {
+					if (saveID.equals("rememberMe")) {
+						CookieManager.createCookie(response, "saveIDCookie", userID, 60 * 60 * 24 * 5);
+					} else {
+						CookieManager.deleteCookie(response, "saveIDCookie");
+					}
+				} else {
+					CookieManager.deleteCookie(response, "saveIDCookie");
+				}
+				
+				response.sendRedirect("../index/index");
 			} else {  // login fail
 				ScriptWriter.alertAndBack(response, "아이디 혹은 비밀번호가 일치하지 않습니다.");
 			}
