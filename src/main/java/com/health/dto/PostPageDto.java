@@ -1,6 +1,6 @@
 package com.health.dto;
 
-public class PostPageDto {
+public class PostPageDto extends PageDto{
     private int rowNum;
     private int postNo;
     private String title;

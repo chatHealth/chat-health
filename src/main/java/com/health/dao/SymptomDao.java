@@ -26,5 +26,15 @@ public class SymptomDao {
 	}
 	
 	
+	// 2. sympno로 이름 출력
+	public String getsymptName(int sympNo) {
+		String result = "";
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.selectOne("getsymptName", sympNo);
+		sqlSession.close();
+		return result;
+	}
+	
+	
 	
 }

@@ -22,7 +22,7 @@ public class MemberLogout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		ScriptWriter.alertAndGo(response, "로그아웃되었습니다.","../");
+		ScriptWriter.alertAndGo(response, "로그아웃되었습니다.","../index/index");
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

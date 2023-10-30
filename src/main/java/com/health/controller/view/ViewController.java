@@ -34,7 +34,7 @@ public class ViewController extends HttpServlet {
 		session.getAttribute("loggedMember");
 		
 		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/view/product.jsp");
+				request.getRequestDispatcher("/WEB-INF/view/Product.jsp");
 		dispatcher.forward(request, response);
 	}
 
