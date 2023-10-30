@@ -33,7 +33,7 @@
 			</c:when>
 			
 			<c:otherwise>
-					<a href="../member/member-join" class="btn btn-outline-primary mt-3"> 회원가입 </a> 
+					<a href="../member/join-select" class="btn btn-outline-primary mt-3"> 회원가입 </a> 
 					<a href="../member/login" class="btn btn-outline-primary mt-3"> 로그인 </a>
 			</c:otherwise>
 		</c:choose>
