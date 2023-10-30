@@ -23,7 +23,7 @@
 			</c:when>
 
 			<c:when test="${ not empty loggedEnterprise }">
-					<a href="../personal/enterprise-info" class="btn btn-outline-primary mt-3"> ${loggedEnterprise.name } </a> 
+					<a href="../personal/member-info" class="btn btn-outline-primary mt-3"> ${loggedEnterprise.name } </a>
 					<a href="../member/logout" class="btn btn-outline-primary mt-3"> 로그아웃 </a>
 			</c:when>
 			

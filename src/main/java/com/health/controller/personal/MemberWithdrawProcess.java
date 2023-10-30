@@ -35,7 +35,7 @@ public class MemberWithdrawProcess extends HttpServlet {
             if (!(password.equals(passwordCheck) && !password.equals("") && password.equals(memberPassword))) {
                 ScriptWriter.alertAndBack(response, "비밀번호를 확인하세요.");
             } else {
-                int result = personalDao.memberWithdraw(loggedNo);
+                int result = personalDao.memWithdraw(loggedNo);
                 if (result > 0) {
                     session.invalidate();
                     ScriptWriter.alertAndGo(response, "탈퇴되었습니다.", "../index/index");
