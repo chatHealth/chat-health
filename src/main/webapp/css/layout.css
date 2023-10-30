@@ -52,17 +52,67 @@
 /* sun */
 
 
-.product_row {
+.productbox {
 	display: flex;
 	align-items: center;
-
 }
-.comment_box{
-
+.imgbox{
+	width: 530px;
+	height: 530px;
 }
-.comment_text{
+.imgtest{
+	width: 500px;
+	height: 500px;
+}
+/*sun review*/
+.reviewStart{
+	text-align: center;
+	background-color: lightgrey;
+}
+
+
+
+
+.reviewdata{
+	display: flex;
+}
+
+.reviewUserInfo{
+	display: flex;
+	margin:10px;
+	padding: 5px;
+}
+.reviewUser{
+	width: 200px;
+	height: 15px;
+}
+
+.btnGood{
+	margin-left: 58%;
+}
+.btnGdfdsf{
+	width: 100px;
+}
+
+.reviewContentbox{
+	border: solid;
+}
+
+.reviewContent{
+	padding: 5px;
+}
+
+
+
+.reviewtitle{
+	margin: 10px;
+}
+
+.reviewtext{
 	width: 600px;
 	height: 100px;
+	padding: 10px;
+	margin: 10px;
 }
 
 
