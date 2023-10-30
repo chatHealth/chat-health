@@ -46,13 +46,7 @@ public class ReviewDto {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-	public int getuserNo() {
-		return userNo;
-	}
-
-	public void setuserNo(int userNo) {
-		this.userNo = userNo;
-	}
+	
 	public int getPostNo() {
 		return postNo;
 	}
