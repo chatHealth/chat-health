@@ -4,7 +4,7 @@
 <%@ include file="../include/nav.jsp"%>
 
 
-<div class="">
+<div class="container">
 
 	<!-- 1. show material -->
 
