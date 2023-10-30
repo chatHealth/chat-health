@@ -29,16 +29,10 @@ public class ReviewAdd extends HttpServlet {
 		ReviewDto reviewDto = new ReviewDto();
 		ReviewDao reviewDao = new ReviewDao();
 
-//		HttpSession loggedSession = request.getSession();
-//		MemberDto loggedMember = (MemberDto)loggedSession.getAttribute("loggedMember");
-
-		// System.out.println(loggedMember.getUserNo());
-
 		String recontent = request.getParameter("recontent");
 		String retitle = request.getParameter("retitle");
 
-		// reviewDto.setUserNo(loggedMember.getUserNo());
-
+		
 		reviewDto.setUserNo(123);
 		reviewDto.setPostNo(2);
 		reviewDto.setTitle(retitle);
@@ -46,6 +40,7 @@ public class ReviewAdd extends HttpServlet {
 		reviewDto.setHelpful(0);
 
 		int result = reviewDao.insertRivew(reviewDto);
+			
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

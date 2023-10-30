@@ -40,6 +40,16 @@
     <servlet-name>PostModifyProcess</servlet-name>
     <url-pattern>/PostModifyProcess</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Viewl</display-name>
+    <servlet-name>Viewl</servlet-name>
+    <servlet-class>com.health.controller.view.Viewl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Viewl</servlet-name>
+    <url-pattern>/Viewl</url-pattern>
+  </servlet-mapping>
 </web-app>
 <!--
   <servlet>
