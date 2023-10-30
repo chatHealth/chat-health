@@ -19,17 +19,23 @@ import com.health.dto.ReviewDto;
 @WebServlet("/view/product")
 public class ViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static ReviewDao reviewDao = new ReviewDao();
 	
     public ViewController() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int no = Integer.parseInt(request.getParameter("no"));
-		ReviewDao reviewDao = new ReviewDao();
+		//리뷰정보전달
 		List<Map<String,Object>> reviewList = reviewDao.selectReview(no);
 		request.setAttribute("reviewList", reviewList);
+		
+		
+		//제품정보전달
+		List<Map<String,Object>> postInfo = reviewDao.selectReview(no);
+		request.setAttribute("postInfo", postInfo);
+		
 		
 		HttpSession session= request.getSession();
 		session.getAttribute("loggedMember");

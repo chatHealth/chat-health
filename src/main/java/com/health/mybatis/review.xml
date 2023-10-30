@@ -16,7 +16,7 @@
  	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME 
 					FROM post r LEFT JOIN enterprise m
 					ON r.ENTERPRISENO =m.ENTERPRISENO 
-					WHERE postno=#{no};
+					WHERE postNo=#{no}
  </select>
  
  
