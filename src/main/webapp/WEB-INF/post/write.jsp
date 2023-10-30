@@ -46,10 +46,8 @@
 					multiple="multiple" data-placeholder="원재료"
 					class="form-select form-select-sm selectpicker"
 					aria-label="Small select example" data-style="btn-primary">
-					<c:forEach items="${ materialList }" var="material"
-						varStatus="status">
-						<option value="${material.materialNo }">
-							${material.materialName}</option>
+					<c:forEach items="${ materialList }" var="material" varStatus="status">
+						<option value="${material.materialNo }"> ${material.materialName}</option>
 					</c:forEach>
 				</select>
 			</div>

@@ -8,22 +8,33 @@
 		<div class="d-flex ">
 	
 		<!--  1. logo -->
-		<a href="../index/index" class="text-decoration-none">
+		<a href="../index/index" class="text-decoration-none mt-3">
 			<h1 class="m-0 display-5 font-weight-bold main-logo-chat-health col-3">chat-health</h1>
 		</a>
 		
 		
 		
 		<!-- 2. info -->
-		<div class="">
-		
-		</div>
-		
-		
-		
-		<!-- 3. serch place -->
-		<div class=" button-box text-right d-flex justify-content-end container-fluid ">
-			<div class="container col-lg-6 col-6  text-left mt-5">
+			<div class="category-info container">
+				<c:choose>
+					<c:when test="${not empty info }">
+					
+						<div class="container row align-items-center py-3 px-xl-5">
+							<p class="m-0 col-3">${info }</p>
+						</div>
+					
+					</c:when>
+					<c:otherwise>
+
+					</c:otherwise>
+				</c:choose>
+			</div>
+
+
+
+			<!-- 3. serch place -->
+		<div class=" button-box text-right d-flex justify-content-end container-fluid mr-5 ">
+			<div class="text-left mt-3">
 			<form action="../category/list" method="get">
 				<div class="input-group main-header-search-part ">
 					<input type="text" class="form-control " placeholder="Search for products" name="keyword" id="keyword">
