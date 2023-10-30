@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import com.health.dao.ReviewDao;
 import com.health.dto.ReviewDto;
@@ -27,7 +28,7 @@ public class ViewController extends HttpServlet {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		ReviewDao reviewDao = new ReviewDao();
-		List<ReviewDto> reviewList = reviewDao.selectReview(no);
+		List<Map<String,Object>> reviewList = reviewDao.selectReview(no);
 		request.setAttribute("reviewList", reviewList);
 		
 		HttpSession session= request.getSession();

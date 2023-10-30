@@ -14,7 +14,7 @@
 	<!-- 제품정보 -->
 	<div class="row featurette">
 		<div class="col-md-7">
-		<h2>${no }</h2>
+		<h2>${no}</h2>
 			<h2 class="featurette-heading fw-normal lh-1">
 				First featurette heading. <span class="text-body-secondary">It’ll
 					blow your mind.</span>
