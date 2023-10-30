@@ -3,12 +3,36 @@
 <%@ include file="../include/admin-side.jsp"%>
 
 <div class="admin-contents text-center">
-	<table class="table table-striped table-hover">
+	<table class="table table-striped table-hover"> <!-- 사업자 강제탈퇴 테이블 -->
 		<tr>
 			<td>회원 번호</td>
 			<td>아이디</td>
 			<td>상호명</td>
 			<td>탈퇴</td>
+		</tr>
+		<c:forEach items="${userList}" var="item">
+			<c:if test="${empty item.deletedDate}">
+				<tr data-no="${item.enterpriseNo}">
+					<td>${item.enterpriseNo}</td>
+					<td>${item.id}</td>
+					<td>${item.name}</td>
+					<td style="display: none;">${item.deletedDate}</td>
+					<td><button type="button" data-userno="${item.enterpriseNo}"
+							class="btn btn-delete btn-outline-danger btn-sm"
+							data-bs-toggle="modal" data-bs-target="#exampleModal">강제
+							탈퇴</button></td>
+				</tr>
+			</c:if>
+		</c:forEach>
+
+	</table>
+	
+	<table class="table table-striped table-hover">
+		<tr>
+			<td>회원 번호</td>
+			<td>아이디</td>
+			<td>상호명</td>
+			<td>가입승인하기</td>
 		</tr>
 		<c:forEach items="${userList}" var="item">
 			<c:if test="${empty item.deletedDate}">

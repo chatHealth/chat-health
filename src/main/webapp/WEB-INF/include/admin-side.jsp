@@ -9,7 +9,7 @@
   }
   .sidebar {
     background-color: #f8f9fa; /* Lighter color */
-    width: 200px; /* Fixed width */
+    width: 240px; /* Fixed width */
     height: 100%; /* 100% height */
     position: fixed;
     left: 0;
@@ -95,13 +95,15 @@
 
     <!-- Sidebar -->
     <div class="col sidebar">
-      <h3>관리자 페이지</h3>
+      <h3>관리자 페이지</h3></br>
       <p >어서오세요, admin님</p>
       <span style="border-top: 2px solid #ccc; display: block; margin: 10px 0;"></span>
-      <ul> <!-- 관리자페이지 버튼누르면 연결될거 생각하기 -->
-        <li><a href="../personal/member-manage">개인회원 관리</a></li>
+      <ul> <!-- 메인화면으로 돌아가기 링크 추가하기 -->
+      	<li><a href="../category/index/index"><img alt="홈 로고" src="../img/home.png">메인 페이지</a></li>
+      	<span style="border-top: 1px solid #ccc; display: block; margin: 10px 13px;"></span>
+        <li><a href="../personal/member-manage"><img alt="개인 로고" src="../img/account.png">개인회원 관리</a></li>
         <span style="border-top: 1px solid #ccc; display: block; margin: 10px 13px;"></span>
-        <li><a href="../personal/enterprise-manage">사업자회원 관리</a></li>
+        <li><a href="../personal/enterprise-manage"><img alt="사업자 로고" src="../img/office.png">사업자회원 관리</a></li>
       </ul>
     </div>
  </div>
