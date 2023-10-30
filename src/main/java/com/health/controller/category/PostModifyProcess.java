@@ -23,11 +23,11 @@ import com.health.dto.MaterialPostDto;
 import com.health.dto.PostDto;
 import com.health.dto.SymptomPostDto;
 
-@WebServlet("/post/write-process")
-public class PostWriteProcess extends HttpServlet {
+@WebServlet("/post/modify-process")
+public class PostModifyProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public PostWriteProcess() {
+	public PostModifyProcess() {
 		super();
 	}
 
@@ -90,7 +90,7 @@ public class PostWriteProcess extends HttpServlet {
 		}
 		
 		//3. post insert
-		int postNo = postDao.seqPostNextVal();
+		int postNo = Integer.parseInt(request.getParameter("postNo")); 
 		
 		PostDto postDto = new PostDto();
 		postDto.setPostNo(postNo);
@@ -98,56 +98,56 @@ public class PostWriteProcess extends HttpServlet {
 		postDto.setTitle(title);
 		postDto.setContent(content);
 		postDto.setPostImg(saveDir + File.separator + newFileName);
-		int postRes = postDao.insertPost(postDto);
+		int postRes = postDao.updatePost(postDto);
 		
 		
-		// 4. symptom, material insert
-		int tmp;
-		int symptomRes = 0;
-		if (symptomOptions != null) {
-			for (String symptom : symptomOptions) {
-				SymptomPostDto spDto= new SymptomPostDto();
-				spDto.setPostNo(postNo);
-				spDto.setsympNo(Integer.parseInt(symptom));
-				tmp = spDao.insertSymptomPost(spDto);
-				symptomRes+=tmp;
-			}
-		}
-		
-		int materialRes = 0;
-		if (materialOptions != null) {
-			for (String material : materialOptions) {
-				MaterialPostDto mpDto= new MaterialPostDto();
-				mpDto.setPostNo(postNo);
-				mpDto.setMaterialNo(Integer.parseInt(material));
-				tmp=mpDao.insertMateriaPost(mpDto);
-				materialRes+=tmp;
-			}
-		}
-		
-		
-		// 5. res: 모두 insert 되었는지 확인
-		int sLen = 0;
-		if (symptomOptions != null) { sLen = symptomOptions.length; }
-		
-		int mLen = 0;
-		if (materialOptions != null) { mLen = materialOptions.length; }
-		
-		if(postRes + symptomRes + materialRes == sLen + mLen + 1) {
-			//HttpSession session = request.getSession();
-			//ModalState modalState = new ModalState("show", "글이 등록되었습니다"); 
-			//session.setAttribute("modalState", modalState);
-			
-			request.setAttribute("no", postNo);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/product.jsp");
-			dispatcher.forward(request, response);
-		}
-		else {
-			System.err.println("글이 작성되지 않았습니다"); 
-			if(postRes == 0) System.err.println("글이잘못되었습니다");
-			if(symptomRes < sLen) System.err.println("증상이 잘못되었습니다");
-			if(materialRes < mLen) System.err.println("원재료가 잘못되었습니다");
-		}
+//		// 4. symptom, material insert
+//		int tmp;
+//		int symptomRes = 0;
+//		if (symptomOptions != null) {
+//			for (String symptom : symptomOptions) {
+//				SymptomPostDto spDto= new SymptomPostDto();
+//				spDto.setPostNo(postNo);
+//				spDto.setsympNo(Integer.parseInt(symptom));
+//				tmp = spDao.insertSymptomPost(spDto);
+//				symptomRes+=tmp;
+//			}
+//		}
+//		
+//		int materialRes = 0;
+//		if (materialOptions != null) {
+//			for (String material : materialOptions) {
+//				MaterialPostDto mpDto= new MaterialPostDto();
+//				mpDto.setPostNo(postNo);
+//				mpDto.setMaterialNo(Integer.parseInt(material));
+//				tmp = mpDao.insertMateriaPost(mpDto);
+//				materialRes+=tmp;
+//			}
+//		}
+//		
+//		
+//		// 5. res: 모두 insert 되었는지 확인
+//		int sLen = 0;
+//		if (symptomOptions != null) { sLen = symptomOptions.length; }
+//		
+//		int mLen = 0;
+//		if (materialOptions != null) { mLen = materialOptions.length; }
+//		
+//		if(postRes + symptomRes + materialRes == sLen + mLen + 1) {
+//			//HttpSession session = request.getSession();
+//			//ModalState modalState = new ModalState("show", "글이 등록되었습니다"); 
+//			//session.setAttribute("modalState", modalState);
+//			
+//			request.setAttribute("no", postNo);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/product.jsp");
+//			dispatcher.forward(request, response);
+//		}
+//		else {
+//			System.err.println("글이 작성되지 않았습니다"); 
+//			if(postRes == 0) System.err.println("글이잘못되었습니다");
+//			if(symptomRes < sLen) System.err.println("증상이 잘못되었습니다");
+//			if(materialRes < mLen) System.err.println("원재료가 잘못되었습니다");
+//		}
 		
 		
 	}
