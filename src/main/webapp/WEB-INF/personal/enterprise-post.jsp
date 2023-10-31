@@ -22,6 +22,7 @@
 	<c:if test="${not empty posts}">
 	<thead>
 	<tr>
+		<th scope="col">#</th>
 		<th scope="col" colspan="2">상품</th>
 		<th scope="col">등록 일자</th>
 		<th scope="col"><img src="../img/heart.png" class="img20"></th>
@@ -31,6 +32,7 @@
 	<tbody>
 	<c:forEach items="${posts }" var="post" varStatus="loop">
 	<tr>
+		<th scope="col">${post.rNum}</th>
 		<td class="entP"><a href="../view/product?no=${post.postNo}"><img src="/upload/${post.postImg}" class="img100"></a></td>
 		<td class="entP"><a href="../view/product?no=${post.postNo}">${post.title }</a></td>
 		<td>${post.regDate }</td>

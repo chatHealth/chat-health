@@ -4,6 +4,7 @@ import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
 import com.health.dto.PostPageDto;
+import com.health.dto.personal.MemberReviewPageDto;
 import com.health.mybatis.MyBatisConnectionFactory;
 import org.apache.ibatis.session.SqlSession;
 
@@ -101,8 +102,8 @@ public class PersonalDao {
         return entPosts;
     }
 
-    public List<HashMap<String, Object>> memReview(Map<String, Integer> map) {
-        List<HashMap<String, Object>> list;
+    public List<MemberReviewPageDto> memReview(Map<String, Integer> map) {
+        List<MemberReviewPageDto> list;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         list = sqlSession.selectList("memReview", map);
         sqlSession.close();

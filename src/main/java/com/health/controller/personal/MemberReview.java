@@ -2,6 +2,7 @@ package com.health.controller.personal;
 
 import com.health.dao.PersonalDao;
 import com.health.dto.MemberDto;
+import com.health.dto.personal.MemberReviewPageDto;
 import com.health.util.ScriptWriter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -20,7 +21,7 @@ public class MemberReview extends HttpServlet {
         HttpSession session = request.getSession();
         MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
         if (loggedMember == null) {
-            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../index/index");
         }else{
             int userNo = loggedMember.getUserNo();
             Map<String, Integer> map = new HashMap<>();
@@ -34,7 +35,7 @@ public class MemberReview extends HttpServlet {
             int pages = (int) Math.ceil(count / 10.0);
 
             request.setAttribute("pages", pages);
-            List<HashMap<String, Object>> memReviews = personalDao.memReview(map);
+            List<MemberReviewPageDto> memReviews = personalDao.memReview(map);
             request.setAttribute("reviews", memReviews);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-review.jsp");
             dispatcher.forward(request, response);
