@@ -39,16 +39,17 @@
         update enterprise set profile = #{profile} where enterpriseNo = #{enterpriseNo}
     </update>
     <select id="entPosts" resultType="PostPageDto" parameterType="Map">
-        SELECT * FROM (
-        SELECT ROWNUM rnum, POSTNO, likes, POSTIMG, regDate, title
-        FROM ( SELECT u.POSTNO, COUNT(*) AS likes, p.POSTIMG, TO_CHAR(p.REGDATE, 'yyyy.mm.dd') AS regDate, p.title
-        FROM USERLIKE u
-        INNER JOIN POST p ON p.POSTNO = u.POSTNO
-        INNER JOIN ENTERPRISE e ON p.ENTERPRISENO = e.ENTERPRISENO
-        WHERE p.DELETEDDATE IS NULL AND p.ENTERPRISENO= #{enterpriseNo}
-        GROUP BY u.POSTNO, p.POSTIMG, p.REGDATE, p.title
-        ) ORDER BY regdate desc)
-        WHERE rnum <![CDATA[>=]]> #{idx} and rnum <![CDATA[<]]> #{idx} + 10
+        SELECT * FROM(
+        SELECT ROWNUM rnum, postNo, title, postImg, regDate, likes
+        FROM (
+        SELECT p.postNo, p.title, p.postImg, TO_CHAR(p.regDate, 'yyyy.mm.dd') AS regDate, COUNT(ul.likeKey) AS likes
+        FROM Post p
+        LEFT JOIN UserLike ul ON p.postNo = ul.postNo
+        WHERE p.enterpriseNo = #{enterpriseNo} AND p.DELETEDDATE IS null
+        GROUP BY p.postNo, p.title, p.postImg, p.regDate
+        ORDER BY p.regDate DESC
+        ))
+        WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
 
     </select>
 <!--    member review 조회-->
