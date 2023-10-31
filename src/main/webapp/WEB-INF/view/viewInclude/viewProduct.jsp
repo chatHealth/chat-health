@@ -4,7 +4,7 @@
 	<div class="productbox">
 			<div class="box">
 				<div class="imgbox">
-					<img src="productEx.jpg" alt="" class="imgtest">
+					<img src="${postInfo.POSTIMG }" alt="" class="imgtest">
 				</div>
 			</div>
 			<div class="box2">
