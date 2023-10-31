@@ -32,6 +32,13 @@ public class HelpfulDao {
 			sqlSession.close();
 			return result;
 		} 
+		public int helpfulSame(int no) {
+			int result;
+			SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+			result = sqlSession.selectOne("helpfulSame",no);
+			sqlSession.close();
+			return result;
+		} 
 
 		
 		public int helpfulCancel(HelpfulDto helpfulDto) {

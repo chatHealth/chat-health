@@ -28,6 +28,9 @@
  <select id="helpFulCount" parameterType='int' resultType="int">
  	SELECT count(reviewNo) FROM HELPFUL WHERE reviewNo=#{reviewNo}
  </select>
+ <select id="helpfulSame" parameterType="int" resultType="int">
+ 		SELECT userNO FROM helpful WHERE userNO=#{userNo} AND reviewNO=#{reviewNo}
+ </select>
   
  
  

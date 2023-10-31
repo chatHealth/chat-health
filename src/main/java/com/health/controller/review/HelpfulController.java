@@ -13,6 +13,7 @@ import com.health.dao.HelpfulDao;
 import com.health.dao.PostDao;
 import com.health.dto.HelpfulDto;
 import com.health.dto.MemberDto;
+import com.health.util.ScriptWriter;
 
 @WebServlet("/review/HelpfulController")
 public class HelpfulController extends HttpServlet {
@@ -28,13 +29,24 @@ public class HelpfulController extends HttpServlet {
 		
 		HttpSession loggedSession = request.getSession();
 		MemberDto loggedMember = (MemberDto)loggedSession.getAttribute("loggedMember");
+		int no = Integer.parseInt(request.getParameter("productNo"));
+		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		
-		
+		int helpfulSame = helpfulDao.helpfulSame(reviewNo);
 		helpfulDto.setReviewNo(reviewNo);
-		helpfulDto.setUserNo(loggedMember.getUserNo());
 		
-		
+		if(loggedMember.getUserNo()==helpfulSame) {
+			helpfulDto.setUserNo(loggedMember.getUserNo());
+			helpfulDao.helpfulCancel(helpfulDto);
+			response.sendRedirect("../view/product?no="+no);
+		}if(loggedMember!= null){
+			helpfulDto.setUserNo(loggedMember.getUserNo());
+			helpfulDao.helpfulAdd(helpfulDto);
+			response.sendRedirect("../view/product?no="+no);
+		}else {
+			ScriptWriter.alertAndBack(response,"로그인한 사용자만 가능합니다");
+		}
 		
 	}
 

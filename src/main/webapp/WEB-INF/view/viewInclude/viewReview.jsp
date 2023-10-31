@@ -14,10 +14,10 @@
 													</div>
 													
 													<form action="../review/HelpfulController" method="post">
-													<input type="hidden" name="reviewNo" value="${review.REVIEWNO}" />
+													<input type="hidden" name="productNo" value="${postInfo.POSTNO}" />
 													<div class="btnGood">	
 														<button class="btnGdfdsf" type="submit">
-														  도움이돼요 ${review.HELPFUL}
+														  도움이돼요
 														</button>
 												</div>
 												</form>
