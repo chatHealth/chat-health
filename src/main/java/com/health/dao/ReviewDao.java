@@ -9,6 +9,11 @@ import com.health.dto.ReviewDto;
 import com.health.mybatis.MyBatisConnectionFactory;
 
 public class ReviewDao {
+	
+	private static final ReviewDao instance = new ReviewDao();
+	public static ReviewDao getInstance() { return instance; }
+	private ReviewDao() { }
+	
 	public int insertRivew(ReviewDto reviewDto) {
 		int result = 0;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();

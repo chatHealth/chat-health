@@ -94,4 +94,15 @@ public class PostDao {
 		return result;
 	}
 	
+	// 6. delete one
+	public int deletePost(int no) {
+		int result = 0;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.delete("deletePost",no);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 }
