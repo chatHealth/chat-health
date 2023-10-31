@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
-<h1 class="h3 mb-3 fw-normal">사업자 회원가입</h1>
+
 
 <form action="../member/enterprise-join-process" method="post" enctype="multipart/form-data">
       <div class="form-join m-auto">
+      <h1 class="mb-5">사업자 회원가입</h1>
         <div class="mb-3"><!--사업자번호-->          
           <label for="code" class="form-label">사업자번호</label>
           <input type="text" class="form-control" id="code" aria-describedby="idHelp" name="code" placeholder="000-00-00000" />
@@ -14,17 +15,17 @@
         
         <div class="mb-3"><!--상호명-->          
           <label for="companyName" class="form-label">상호명</label>
-          <input type="text" class="form-control" id="companyName" name="name"/>
+          <input type="text" class="form-control" id="companyName" name="name" placeholder="ex) 챗헬스 주식회사"/>
         </div>
         
         <div class="mb-3"><!--대표자-->
           
           <label for="ceo" class="form-label">대표자 명</label>
-          <input type="text" class="form-control" id="ceo" name="ceo"/>
+          <input type="text" class="form-control" id="ceo" name="ceo" placeholder="ex) 곽두팔"/>
         </div>
         <div class="mb-3"><!--전화번호-->          
           <label for="tel" class="form-label">사업장 연락처</label>
-          <input type="text" class="form-control" id="tel" name="tel" placeholder="ex)02-123-1234"/>
+          <input type="text" class="form-control" id="tel" name="tel" placeholder="ex) 02-123-1234"/>
         </div>
         
         <div class="mb-3"><!--비번-->
@@ -46,7 +47,7 @@
 		  <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
 		  <span id="guide" style="color:#999;display:none"></span>
 		  <input type="text" id="sample4_detailAddress" placeholder="상세주소"name="addressDetail">
-		  <input type="text" id="sample4_extraAddress" placeholder="참고항목">
+		  <input type="text" class="hidden" id="sample4_extraAddress" placeholder="참고항목">
 		</div>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

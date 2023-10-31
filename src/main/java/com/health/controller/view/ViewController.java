@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.health.dao.ReviewDao;
-import com.health.dto.ReviewDto;
 
 
 @WebServlet("/view/product")

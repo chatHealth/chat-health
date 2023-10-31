@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
-<h1 class="h3 mb-3 fw-normal">개인 회원가입</h1>
+
 
 <form action="../member/member-join-process" method="post" enctype="multipart/form-data">
       <div class="form-join m-auto">        
-			
+			<h1 class="h3 mb-5 fw-normal">개인 회원가입</h1>
+			<span class="border-bottom border-dark-subtle"></span>
 			<div class="mb-3"><!--닉네임-->
           
           <label for="nickname" class="form-label">닉네임</label>
@@ -15,7 +16,7 @@
         
         <div class="mb-3"><!--이메일-->          
           <label for="email" class="form-label">이메일</label>
-          <input type="text" class="form-control" id="email" name="email"/>
+          <input type="email" class="form-control" id="email" name="email"/>
         </div>
         
         <div class="mb-3"><!--이름-->
@@ -24,20 +25,21 @@
           <input type="text" class="form-control" id="name" name="name"/>
         </div>
         
-        <div class="form-check"><!--성별-->
-          
-          <label for="gender-f" class="form-label"><input type="radio" class="form-check-input" id="gender-f" name="gender" value="f">여성</label>
-          
-          <label for="gender-m" class="form-label"><input type="radio" class="form-check-input" id="gender-m" name="gender" value="m">남성</label>
-          
+        
+        <div class="form-check form-check-inline"><!--성별-->
+          <input type="radio" class="form-check-input" id="gender-f" name="gender" value="f">
+          <label for="gender-f" class="form-label">여성</label>
+          </div>
+          <div class="form-check form-check-inline mb-4">
+          <input type="radio" class="form-check-input" id="gender-m" name="gender" value="m">
+          <label for="gender-m" class="form-label">남성</label>          
         </div>
         
-        <!-- <div class="mb-3">생년월일
-          
-          <label for="birth" class="form-label">이름</label>
-          <input type="date" class="form-control" id=""" name="birth"/>
+         <div class="mb-3"> <!-- 생년월일 -->          
+          <label for="birth" class="form-label">생년월일</label>
+          <input type="date" class="form-control" id="birth" name="birth"/>
         </div>
-        -->
+        
         
          <div class="row d-flex mt-5 w-100"> <!-- 아이디 -->
 				<div>
