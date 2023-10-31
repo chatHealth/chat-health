@@ -93,8 +93,8 @@ public class PersonalDao {
         return result;
     }
 
-    public List<Map<String, Object>> entPost(Map<String, Integer> map) {
-        List<Map<String, Object>> entPosts;
+    public List<PostPageDto> entPost(Map<String, Integer> map) {
+        List<PostPageDto> entPosts;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         entPosts = sqlSession.selectList("entPosts", map);
         sqlSession.close();

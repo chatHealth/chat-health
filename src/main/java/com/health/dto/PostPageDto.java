@@ -1,19 +1,49 @@
 package com.health.dto;
 
 public class PostPageDto extends PageDto{
-    private int rowNum;
+    private int rNum;
     private int postNo;
     private String title;
     private String regDate;
 
-    public PostPageDto(int rowNum, int postNo, String title, String regDate) {
-        this.rowNum = rowNum;
+    private int likes;
+
+    private String postImg;
+
+    public PostPageDto(int rNum, int postNo, String title, String regDate, int likes, String postImg) {
+        this.rNum = rNum;
         this.postNo = postNo;
         this.title = title;
         this.regDate = regDate;
+        this.likes = likes;
+        this.postImg = postImg;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public String getPostImg() {
+        return postImg;
+    }
+
+    public void setPostImg(String postImg) {
+        this.postImg = postImg;
     }
 
     public PostPageDto() {
+    }
+
+    public int getrNum() {
+        return rNum;
+    }
+
+    public void setrNum(int rNum) {
+        this.rNum = rNum;
     }
 
     public int getPostNo() {
@@ -24,27 +54,19 @@ public class PostPageDto extends PageDto{
         this.postNo = postNo;
     }
 
-    public String getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(String regDate) {
-        this.regDate = regDate;
-    }
-
-    public int getRowNum() {
-        return rowNum;
-    }
-
-    public void setRowNum(int rowNum) {
-        this.rowNum = rowNum;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
     }
 }

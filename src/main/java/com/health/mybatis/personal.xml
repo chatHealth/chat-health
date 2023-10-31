@@ -38,19 +38,16 @@
     <update id="entProfileImg" parameterType="EnterpriseDto">
         update enterprise set profile = #{profile} where enterpriseNo = #{enterpriseNo}
     </update>
-    <select id="entPosts" resultType="Map" parameterType="Map">
-<!--        select (SELECT count(*) FROM userlike WHERE POSTNO = ) AS likes,-->
-<!--        postimg,rowNum, postNo, title, to_char(regDate,'yyyy.mm.dd') as regDate-->
-<!--        from post where enterpriseNo = 3 and deletedDate is NULL-->
-
-        SELECT * FROM(
-        SELECT rownum rnum, b.* from
-        (SELECT a.* FROM(
-        SELECT likes, postimg, p.postNo, title, to_char(regDate,'yyyy.mm.dd') as regDate from post p
-        left JOIN (SELECT userlike.POSTNO ,count(*) likes FROM USERLIKE
-        inner JOIN post ON
-        post.postno = userlike.POSTNO WHERE deleteddate IS NULL GROUP BY userlike.POSTNO) u ON u.POSTNO = p.POSTNO
-        where enterpriseNo = #{enterpriseNo} and deletedDate is NULL) a ORDER BY regdate desC) b)
+    <select id="entPosts" resultType="PostPageDto" parameterType="Map">
+        SELECT * FROM (
+        SELECT ROWNUM rnum, POSTNO, likes, POSTIMG, regDate, title
+        FROM ( SELECT u.POSTNO, COUNT(*) AS likes, p.POSTIMG, TO_CHAR(p.REGDATE, 'yyyy.mm.dd') AS regDate, p.title
+        FROM USERLIKE u
+        INNER JOIN POST p ON p.POSTNO = u.POSTNO
+        INNER JOIN ENTERPRISE e ON p.ENTERPRISENO = e.ENTERPRISENO
+        WHERE p.DELETEDDATE IS NULL AND p.ENTERPRISENO= #{enterpriseNo}
+        GROUP BY u.POSTNO, p.POSTIMG, p.REGDATE, p.title
+        ) ORDER BY regdate desc)
         WHERE rnum <![CDATA[>=]]> #{idx} and rnum <![CDATA[<]]> #{idx} + 10
 
     </select>
