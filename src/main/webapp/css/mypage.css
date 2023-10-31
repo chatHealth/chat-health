@@ -81,6 +81,9 @@
     .row{
         width:0;
     }
+    .min-h300{
+        min-width: 300px;
+    }
 }
 
 .centered-page{display: flex;
@@ -88,4 +91,12 @@ justify-content: center;
 /*align-items: center;*/
 min-height: 50vh;
 max-width: 120vh;
+}
+
+.img20{
+    height:20px;
+}
+
+.img100{
+    height:100px;
 }

@@ -18,7 +18,8 @@
 				<a href="../category/list" class="btn btn-primary btn-lg px-4">둘러보러 가기</a>
 			</div>
 			</c:if>
-			<div class="row">
+<c:if test="${not empty userLikes}">
+			<div class="row min-h300">
 				<c:forEach items="${userLikes }" var="image" varStatus="loop">
 				<div class="col-md-3">
 					<a href="../view/product?no=${image.POSTNO }"><div class="card">
@@ -32,7 +33,7 @@
 					<%-- 매 4번째 이미지마다 새로운 행 시작 --%>
 				<c:if test="${loop.index % 4 == 3}">
 			</div>
-			<div class="row">
+			<div class="row min-h300">
 				</c:if>
 				</c:forEach>
 			</div>
@@ -44,7 +45,7 @@
 			</a>
 		</li>
 		<c:forEach var="page" begin="1" end="${pages }">
-			<li class="page-item"><a class="page-link" href="../personal/member-review?idx=${page}">${page}</a></li>
+			<li class="page-item"><a class="page-link" href="../personal/member-wish?idx=${page}">${page}</a></li>
 		</c:forEach>
 		<li class="page-item">
 			<a class="page-link" href="#" aria-label="Next">
@@ -53,6 +54,7 @@
 		</li>
 	</ul>
 </nav>
+</c:if>
 		</div>
 	</div>
 </div>

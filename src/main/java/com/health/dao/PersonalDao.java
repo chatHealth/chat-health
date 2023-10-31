@@ -93,10 +93,10 @@ public class PersonalDao {
         return result;
     }
 
-    public List<PostPageDto> entPost(int no) {
-        List<PostPageDto> entPosts;
+    public List<Map<String, Object>> entPost(Map<String, Integer> map) {
+        List<Map<String, Object>> entPosts;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-        entPosts = sqlSession.selectList("entPosts", no);
+        entPosts = sqlSession.selectList("entPosts", map);
         sqlSession.close();
         return entPosts;
     }
@@ -121,6 +121,14 @@ public class PersonalDao {
         int result;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         result = sqlSession.selectOne("totalMemWish", no);
+        sqlSession.close();
+        return result;
+    }
+
+    public int totalEntPosts(int no) {
+        int result;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.selectOne("totalEntPosts", no);
         sqlSession.close();
         return result;
     }

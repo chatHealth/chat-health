@@ -44,6 +44,7 @@ public class MemberWish extends HttpServlet {
 
         List<PostDto> userLikePosts = personalDao.userLikePosts(map);
 
+        request.setAttribute("pages", pages);
         request.setAttribute("userLikes", userLikePosts);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-wish.jsp");
