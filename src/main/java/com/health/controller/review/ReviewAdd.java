@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import org.apache.catalina.Session;
 
+import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
 import com.health.dto.MemberDto;
 import com.health.dto.ReviewDto;
@@ -24,10 +25,10 @@ public class ReviewAdd extends HttpServlet {
 		super();
 	}
 
+	private final ReviewDao reviewDao = ReviewDao.getInstance();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ReviewDto reviewDto = new ReviewDto();
-		ReviewDao reviewDao = new ReviewDao();
 
 		HttpSession loggedSession = request.getSession();
 		MemberDto loggedMember = (MemberDto)loggedSession.getAttribute("loggedMember");

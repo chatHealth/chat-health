@@ -12,14 +12,17 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
+import com.health.dto.PostDto;
 import com.health.dto.ReviewDto;
 
 
 @WebServlet("/view/product")
 public class ViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static ReviewDao reviewDao = new ReviewDao();
+	private final PostDao postDao = PostDao.getInstance();
+	private static ReviewDao reviewDao =  ReviewDao.getInstance();
 	
     public ViewController() {
         super();

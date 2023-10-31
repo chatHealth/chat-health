@@ -10,8 +10,11 @@
 	<h2>Write</h2>
 
 	<form action="../post/modify-process" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="enNo" value="${loggedEnterprise.enterpriseNo }">
+		<input type="hidden" name="admin" value="${loggedAdmin.userNo }">
+		<input type="hidden" name="enpriseNo" value="${loggedEnterprise.enterpriseNo }">
 		<input type="hidden" name="postNo" value="${post.postNo }">
+		<input type="hidden" name="selectedSymptomList" value="${selectedSymptomList }">
+		<input type="hidden" name="selectedMaterialList" value="${selectedMaterialList }">
 
 		<div class="form-floating mb-3">
 			<input type="text" class="form-control" id="title" placeholder="title" name="title" value="${post.title }"> 
@@ -41,6 +44,8 @@
 						<option value="${symptom.sympNo }"> ${symptom.symptomName}</option>
 					</c:forEach>
 				</select>
+				
+		
 			</div>
 
 			<div class="col-3 mt-3">
@@ -52,6 +57,7 @@
 						<option value="${material.materialNo }"> ${material.materialName}</option>
 					</c:forEach>
 				</select>
+				
 			</div>
 		</div>
 
