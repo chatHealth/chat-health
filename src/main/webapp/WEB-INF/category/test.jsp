@@ -94,3 +94,5 @@ aria-autocomplete="list" placeholder="" style="width: 0.75em;">
  						<span class="select2-selection__choice__remove" role="presentation">×</span> ${symptom }</li>
 				</c:forEach>
 				</ul>
+				
+				

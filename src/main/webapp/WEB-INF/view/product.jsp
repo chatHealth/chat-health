@@ -14,7 +14,7 @@
 	<!-- 제품정보 -->
 	<div class="row featurette">
 		<div class="col-md-7">
-			${postInfo.CONTENT}
+			${postInfo.content}
 		</div>
 	</div>
 	<!--                          리뷰                         -->

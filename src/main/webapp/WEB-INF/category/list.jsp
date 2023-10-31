@@ -92,7 +92,7 @@
 											<div class="d-flex justify-content-between align-items-center">
 												<div class="btn-group">
 													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3">수정</a>
-													<a href="../post/deleteno=${post.postNo }" class="btn btn-outline-secondary mt-3">삭제</a>
+													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3">삭제</a>
 												</div>
 												
 												<small class="text-muted"> 회사명 </small>
