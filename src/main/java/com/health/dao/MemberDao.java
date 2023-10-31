@@ -120,7 +120,7 @@ public class MemberDao{
 	public int memWithdraw(int userNo) {
         int result = 0;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-        result = sqlSession.update("deleteMember", userNo);
+        result = sqlSession.update("memWithdraw", userNo);
         sqlSession.close();
         return result;
     }
@@ -129,6 +129,7 @@ public class MemberDao{
         int result = 0;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         result = sqlSession.update("entWithdraw", enterpriseNo);
+        
         sqlSession.close();
         return result;
     }

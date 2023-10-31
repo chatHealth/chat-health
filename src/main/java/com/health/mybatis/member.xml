@@ -63,14 +63,7 @@
 	SELECT ENTERPRISENO, id, name, accepted, deleteddate FROM Enterprise ORDER BY ENTERPRISENO  ASC
 	</select>
 	
-	
-	<update id="entWithdraw" parameterType="int" >
-		UPDATE ENTERPRISE  SET deletedDate = SYSDATE  WHERE ENTERPRISENO = #{enterpriseNo}
-	</update>
-	
-	<update id="deleteMember" parameterType="int">
-		UPDATE Member  SET deletedDate = SYSDATE  WHERE userNo = #{userNo}
-	</update>
+
 	
 	<update id="entAccept" parameterType="int">
 		UPDATE enterprise  SET accepted = 1  WHERE ENTERPRISENO = #{enterpriseNo}

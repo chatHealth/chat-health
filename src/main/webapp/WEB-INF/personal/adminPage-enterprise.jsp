@@ -3,7 +3,7 @@
 <%@ include file="../include/admin-side.jsp"%>
 
 <div class="admin-contents text-center">
-	<!-- 사업자 강제탈퇴 테이블 -->
+	<!-- 사업자 강제탈퇴 -->
 	<table class="table table-striped certain-width">
 		<thead>
 			<tr>
@@ -57,7 +57,6 @@
 	console.log($("#memWithdraw"));
 	let sendenterpriseNo = null;
 	$(".btn-delete").on("click", function() {
-		console.log($(this));
 		sendEnterpriseNo = $(this).data("userno");
 	})
 

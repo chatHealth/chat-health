@@ -11,32 +11,37 @@
           <label for="code" class="form-label">사업자번호</label>
           <input type="text" class="form-control" id="code" aria-describedby="idHelp" name="code" placeholder="000-00-00000" />
           <div id="idHelp" class="form-text">사업자 회원은 사업자번호를 아이디로 사용하게 됩니다.</div>
+          <div class="col-6 mt-2 align-items-baseline px-0">
+								<button class="btn btn-outline-primary mt-3" id="btnIDCheck" >아이디 중복 확인</button>
+							</div>
+          
         </div>
+        
         
         <div class="mb-3"><!--상호명-->          
           <label for="companyName" class="form-label">상호명</label>
-          <input type="text" class="form-control" id="companyName" name="name" placeholder="ex) 챗헬스 주식회사"/>
+          <input type="text" class="form-control" id="companyName" name="name" placeholder="ex) 챗헬스 주식회사" required/>
         </div>
         
         <div class="mb-3"><!--대표자-->
           
           <label for="ceo" class="form-label">대표자 명</label>
-          <input type="text" class="form-control" id="ceo" name="ceo" placeholder="ex) 곽두팔"/>
+          <input type="text" class="form-control" id="ceo" name="ceo" placeholder="ex) 곽두팔" required/>
         </div>
         <div class="mb-3"><!--전화번호-->          
           <label for="tel" class="form-label">사업장 연락처</label>
-          <input type="text" class="form-control" id="tel" name="tel" placeholder="ex) 02-123-1234"/>
+          <input type="text" class="form-control" id="tel" name="tel" placeholder="ex) 02-123-1234" required/>
         </div>
         
         <div class="mb-3"><!--비번-->
           
           <label for="password" class="form-label">비밀번호</label>
-          <input type="password" class="form-control" id="password" name="pw" oninput="check()"/>
+          <input type="password" class="form-control" id="password" name="pw" oninput="check()" required/>
         </div>
         <div class="mb-3"><!--비번확인-->
           
           <label for="password2" class="form-label">비밀번호 확인</label>
-          <input type="password" class="form-control mb-2" id="password2" name="pw2" oninput="check()"/>
+          <input type="password" class="form-control mb-2" id="password2" name="pw2" oninput="check()" required/>
           <span id="pwConfirm"></span>
         </div>
         <div class="mb-3"><!--사업장소재지,우편번호찾기 API 연동-->
@@ -141,5 +146,34 @@
     }
   };
 </script>
-
+<script> <!-- 아이디 중복 여부 확인 -->
+$('#btnIDCheck').on('click', function(){
+    $.ajax({
+       url:"../member/id-check",
+       data: {
+     	  id: $("#code").val()
+       },
+       method: "get",  //없어도 get으로 처리됨
+       success: function(data){
+     	  console.log(data)
+          if(data.count>0){
+             alert("이미 사용중인 아이디입니다.")
+             $("#code").val("");
+             $("#code").focus();
+          }else{
+         	const useID = confirm("쓸 수 있는 아이디. 사용하시겠어요?");
+             if(id) $("#code").attr("readonly", true);
+             isIDCheck = true;
+          }
+       },
+       fail:function(error){
+          console.log(error);
+       },
+       
+       complete:function(data){	             
+       }
+    });	       
+    return false;
+ });
+</script>
 <%@ include file="../include/footer.jsp"%>

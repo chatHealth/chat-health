@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/header-member.jsp"%>
 
 <div class="form-signin translate-middle w-25 position-absolute top-50 start-50">
 <h1 class="h3 mb-5 fw-normal">로그인</h1>

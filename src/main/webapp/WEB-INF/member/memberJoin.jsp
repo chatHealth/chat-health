@@ -11,23 +11,23 @@
 			<div class="mb-3"><!--닉네임-->
           
           <label for="nickname" class="form-label">닉네임</label>
-          <input type="text" class="form-control" id="nickname" name="nickname"/>
+          <input type="text" class="form-control" id="nickname" name="nickname" required/>
         </div>
         
         <div class="mb-3"><!--이메일-->          
           <label for="email" class="form-label">이메일</label>
-          <input type="email" class="form-control" id="email" name="email"/>
+          <input type="email" class="form-control" id="email" name="email" required/>
         </div>
         
         <div class="mb-3"><!--이름-->
           
           <label for="name" class="form-label">이름</label>
-          <input type="text" class="form-control" id="name" name="name"/>
+          <input type="text" class="form-control" id="name" name="name" required/>
         </div>
         
         
         <div class="form-check form-check-inline"><!--성별-->
-          <input type="radio" class="form-check-input" id="gender-f" name="gender" value="f">
+          <input type="radio" class="form-check-input" id="gender-f" name="gender" value="f" required>
           <label for="gender-f" class="form-label">여성</label>
           </div>
           <div class="form-check form-check-inline mb-4">
@@ -37,7 +37,7 @@
         
          <div class="mb-3"> <!-- 생년월일 -->          
           <label for="birth" class="form-label">생년월일</label>
-          <input type="date" class="form-control" id="birth" name="birth"/>
+          <input type="date" class="form-control" id="birth" name="birth" required/>
         </div>
         
         
@@ -48,7 +48,7 @@
 							<div class="col-6">
 								<label for="id" class="form-label">아이디</label> 
 								<input type="text" class="form-control" id="id"
-								placeholder="user id" name="id" />
+								placeholder="user id" name="id" required/>
 							</div>
 							<div class="col-6  mt-3 d-flex align-items-baseline px-0">
 								<button class="btn btn-primary mt-3" id="btnIDCheck" >아이디 중복 확인</button>
@@ -61,12 +61,12 @@
         <div class="mb-3"><!--비번-->
           
           <label for="password" class="form-label">비밀번호</label>
-          <input type="password" class="form-control" id="password" name="pw" oninput="check()"/>
+          <input type="password" class="form-control" id="password" name="pw" oninput="check()" required/>
         </div>
         <div class="mb-3"><!--비번확인-->
           
           <label for="password2" class="form-label">비밀번호 확인</label>
-          <input type="password" class="form-control mb-2" id="password2" name="pw2" oninput="check()"/>
+          <input type="password" class="form-control mb-2" id="password2" name="pw2" oninput="check()" required/>
           <span id="pwConfirm"></span>
         </div> 
           

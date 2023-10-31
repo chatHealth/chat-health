@@ -29,8 +29,9 @@ public class AdminEnterpriseWithdraw extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int intEnerpriseNo = Integer.parseInt(request.getParameter("userNo"));
+		int intEnerpriseNo = Integer.parseInt(request.getParameter("userNo"));		
 		int result = memberDao.entWithdraw(intEnerpriseNo);
+		
 		Gson gson = new Gson();
 		Map<String, String> map = new HashMap<>();
 		String resultJson = null;
