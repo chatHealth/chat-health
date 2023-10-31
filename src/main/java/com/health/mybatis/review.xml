@@ -18,6 +18,13 @@
 					ON r.ENTERPRISENO =m.ENTERPRISENO 
 					WHERE postNo=#{no}
  </select>
+ <select id="postMeterial" parameterType="int" resultType="Map">
+ 	SELECT p.POSTNO , t.MATERIALNAME  FROM POST p INNER JOIN MATERIALPOST m 
+					ON p.POSTNO = m.POSTNO 
+					INNER JOIN MATERIAL T
+					ON m.MATERIALNO = t.MATERIALNO 
+					WHERE p.POSTNO=#{no}
+ </select>
  
  
  

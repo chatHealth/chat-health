@@ -12,13 +12,11 @@
 
 	<hr class="featurette-divider">
 	<!-- 제품정보 -->
-			<c:forEach items="${postInfo}" var="post">
 	<div class="row featurette">
 		<div class="col-md-7">
-			${post.CONTENT}
+			${postInfo.CONTENT}
 		</div>
 	</div>
-	</c:forEach>
 	<!--                          리뷰                         -->
 	<hr class="featurette-divider">
 	<h1 class="reviewStart">리뷰</h1>
