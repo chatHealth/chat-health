@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -14,7 +14,7 @@
 			
 				<button type="button" class="btn btn-primary"" data-bs-dismiss="modal" id="modalAccept"> ${myModal.button1 }</button>
 				<c:if test="${myModal.button2 ne null }">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" > ${myModal.button2 }</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalReject" > ${myModal.button2 }</button>
 				</c:if>
 				
 			</div>

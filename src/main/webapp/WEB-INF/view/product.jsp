@@ -63,8 +63,21 @@ $("#modalAccept").on("click", function() {
 		type : "POST", 
 		data : {postNo : ${postInfo.POSTNO} },
 		url : "../post/delete-process",
+		
+		success : function(data) {
+			if (data.isAccepted === "ok") {
+
+				location.href="../category/list";
+			}
+		},
+		error : function(error) {
+
+			history.back();
+		}
 	});
 });
+
+
 
 </script>
 

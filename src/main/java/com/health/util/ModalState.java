@@ -16,12 +16,14 @@ public class ModalState {
 		this.state = state;
 		this.content = content;
 		this.button1 = "확인";
+		this.button2 = null;
 	}
 	public ModalState(String state, String title, String content, String button1) {  
 		this.state = state;
 		this.title = title;
 		this.content = content;
 		this.button1 = button1;
+		this.button2 = null;
 	}
 	public ModalState(String state, String title, String content, String button1, String button2) { //선택용
 		this.state = state;
