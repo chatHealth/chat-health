@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/header-member.jsp"%>
 
 
-
+<div class="form-join m-auto" >
 <form action="../member/enterprise-join-process" method="post" enctype="multipart/form-data">
-      <div class="form-join m-auto">
+      
       <h1 class="mb-5">사업자 회원가입</h1>
         <div class="mb-3"><!--사업자번호-->          
           <label for="code" class="form-label">사업자번호</label>
@@ -31,12 +31,13 @@
         <div class="mb-3"><!--비번-->
           
           <label for="password" class="form-label">비밀번호</label>
-          <input type="password" class="form-control" id="password" name="pw"/>
+          <input type="password" class="form-control" id="password" name="pw" oninput="check()"/>
         </div>
         <div class="mb-3"><!--비번확인-->
           
           <label for="password2" class="form-label">비밀번호 확인</label>
-          <input type="password" class="form-control" id="password2" name="pw2"/>
+          <input type="password" class="form-control mb-2" id="password2" name="pw2" oninput="check()"/>
+          <span id="pwConfirm"></span>
         </div>
         <div class="mb-3"><!--사업장소재지,우편번호찾기 API 연동-->
           
@@ -49,8 +50,28 @@
 		  <input type="text" id="sample4_detailAddress" placeholder="상세주소"name="addressDetail">
 		  <input type="text" class="hidden" id="sample4_extraAddress" placeholder="참고항목">
 		</div>
-		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+		
+        
+        <!-- 프로필 이미지 삽입 -->
+        <label for="profile">프로필 사진</label>
+        <div class="mb-5">
+			<div class="col-20 mt-3 ">	
+            	<input type="file" class="form-control" id="profile" placeholder="png,jpg" name="profile"
+            	accept="image/gif, image/jpeg, image/png" />
+			</div>
+		
+		
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="accepted" name="accepted" value="0" required/>
+          <label class="form-check-label w-100" name="accepted" for="accepted" >사업자 회원은 가입신청 후 승인완료 되면 활동 하실 수 있습니다.</label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" name="">회원가입 신청하기</button>
+      </div>
+    </form>
+  </div>
+    
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script> <!-- 주소입력 -->
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
         new daum.Postcode({
@@ -107,22 +128,18 @@
         }).open();
     }
 </script>
-        
-        <!-- 프로필 이미지 삽입 -->
-        <label for="profile">프로필 사진</label>
-        <div class="mb-3">
-			<div class="col-20 mt-3 ">	
-            	<input type="file" class="form-control" id="profile" placeholder="png,jpg" name="profile"
-            	accept="image/gif, image/jpeg, image/png" />
-			</div>
-		
-		
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="accepted" name="accepted" value="0" required/>
-          <label class="form-check-label w-100" for="accepted" value=0 >사업자 회원은 가입신청 후 승인완료 되면 활동 하실 수 있습니다.</label>
-        </div>
-        <button type="submit" class="btn btn-primary w-100" name="">회원가입 신청하기</button>
-      </div>
-    </form>
+<script> <!-- 비밀번호 일치 여부 확인 -->
+
+  function check(){
+	  
+    if ($("#password").val() == $("#password2").val()) {
+      // 비밀번호 일치
+    	$("#pwConfirm").text("비밀번호가 일치합니다.").css('color','green');
+    } else {
+      // 비밀번호 불일치 시 사용자 정의 유효성 메시지 설정
+    	 $("#pwConfirm").text("비밀번호가 일치하지 않습니다.").css('color','red');
+    }
+  };
+</script>
 
 <%@ include file="../include/footer.jsp"%>

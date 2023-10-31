@@ -42,8 +42,8 @@
     <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
   </form>
   
-  <div> 
-  <a href="../member/join-select" class="nav-link"><button class="btn btn-primary w-100 py-2 mt-3" type="submit">회원가입</button></a>
-  </div>
+ 
+  <p class="mt-4" style="text-align: center;">아직 회원이 아니신가요? <a href="../member/join-select">여기</a>를 눌러 회원가입 하세요!</p>
+  
 </div>
 <%@ include file="../include/footer.jsp"%>

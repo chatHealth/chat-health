@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/header-member.jsp"%>
 
 
 
@@ -61,13 +61,14 @@
         <div class="mb-3"><!--비번-->
           
           <label for="password" class="form-label">비밀번호</label>
-          <input type="password" class="form-control" id="password" name="pw"/>
+          <input type="password" class="form-control" id="password" name="pw" oninput="check()"/>
         </div>
         <div class="mb-3"><!--비번확인-->
           
           <label for="password2" class="form-label">비밀번호 확인</label>
-          <input type="password" class="form-control" id="password2" name="pw2"/>
-        </div>  
+          <input type="password" class="form-control mb-2" id="password2" name="pw2" oninput="check()"/>
+          <span id="pwConfirm"></span>
+        </div> 
           
         <div class="mb-3"><!--사업장소재지,우편번호찾기 API 연동-->
           
@@ -190,6 +191,18 @@
 	       return false;
 	    });
 </script>
+<script> <!-- 비밀번호 일치 여부 확인 -->
 
+  function check(){
+	  
+    if ($("#password").val() == $("#password2").val()) {
+      // 비밀번호 일치
+    	$("#pwConfirm").text("비밀번호가 일치합니다.").css('color','green');
+    } else {
+      // 비밀번호 불일치 시 사용자 정의 유효성 메시지 설정
+    	 $("#pwConfirm").text("비밀번호가 일치하지 않습니다.").css('color','red');
+    }
+  };
+</script>
 
 <%@ include file="../include/footer.jsp"%>

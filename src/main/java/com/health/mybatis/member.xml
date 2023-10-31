@@ -75,6 +75,10 @@
 	<update id="entAccept" parameterType="int">
 		UPDATE enterprise  SET accepted = 1  WHERE ENTERPRISENO = #{enterpriseNo}
 	</update>
+	
+	<update id="entReject" parameterType="int">
+		UPDATE enterprise  SET accepted = 2  WHERE ENTERPRISENO = #{enterpriseNo}
+	</update>
 
 	<update id="updateMember" parameterType="MemberDto">
 		update member set nickname = #{nickName}, address = #{address}, addressDetail=#{addressDetail}, email = #{email} where userno = #{userNo}
