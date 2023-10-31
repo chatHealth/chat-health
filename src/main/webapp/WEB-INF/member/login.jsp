@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<div class="form-signin w-25 position-absolute top-50 start-50 translate-middle">
+
+<div class="form-signin translate-middle w-25 position-absolute top-50 start-50">
+<h1 class="h3 mb-5 fw-normal">로그인</h1>
   <form action="../member/login-process" method="post" >
     
-    <h1 class="h3 mb-5 fw-normal">로그인</h1>
+    
 
     <div class="mb-2">
     <label for="userID" class="mb-3">아이디</label>
@@ -19,7 +21,7 @@
 
     <div class="checks mb-4">    	
       <div class="yuji mb-3">
-        <input class="form-check-input1" type="checkbox" value="rememberMe" id="saveID" name="saveID"
+        <input class="form-check-input" type="checkbox" value="rememberMe" id="saveID" name="saveID"
           <c:if test="${not empty cookie.saveIDCookie }">checked</c:if>>
           <label class="form-check-label1" for="saveID">
           아이디 기억하기
@@ -40,9 +42,8 @@
     <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
   </form>
   
-  <div> <!-- 회원가입버튼 누르면 개인회원/사업자회원 선택창으로 연결 -->
+  <div> 
   <a href="../member/join-select" class="nav-link"><button class="btn btn-primary w-100 py-2 mt-3" type="submit">회원가입</button></a>
   </div>
 </div>
-
 <%@ include file="../include/footer.jsp"%>

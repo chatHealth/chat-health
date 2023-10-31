@@ -33,8 +33,13 @@ public class ViewController extends HttpServlet {
 		request.setAttribute("reviewList", reviewList);
 		
 		//상품정보 전달
-		List<Map<String,Object>> postInfo = reviewDao.postInfo(no);
+		Map<String,Object> postInfo = reviewDao.postInfo(no);
 		request.setAttribute("postInfo", postInfo);
+		
+		
+		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
+		request.setAttribute("postMeterial", postMeterial);
+		
 		
 		
 		

@@ -39,6 +39,8 @@ public class MemberProfileImage extends HttpServlet {
         } else {
             //directory 환경변수 설정
             String uploadDir = System.getenv("upload");
+            
+            System.out.println(uploadDir);
 
             HttpSession session = request.getSession();
             MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
@@ -55,7 +57,7 @@ public class MemberProfileImage extends HttpServlet {
                 updateProfileMember.setUserNo(loggedMember.getUserNo());
 
                 int result = memberDao.updateProfileImage(updateProfileMember);
-
+                
                 if (result > 0) {
                     //프사 변경 완료
                     MemberDto updateProfile = personalDao.memberInfo(loggedMember.getUserNo());
