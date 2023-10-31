@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/header-main.jsp"%>
+<%@ include file="../include/nav.jsp"%>
 
-
+<div class="viewBody">
 <div class="container marketing">
 
 	<!-- 제품 정보 헤드 -->
@@ -17,6 +18,7 @@
 			${postInfo.CONTENT}
 		</div>
 	</div>
+		</div>
 	<!--                          리뷰                         -->
 	<hr class="featurette-divider">
 	<h1 class="reviewStart">리뷰</h1>
@@ -76,7 +78,6 @@ $("#modalAccept").on("click", function() {
 		}
 	});
 });
-
 
 
 </script>

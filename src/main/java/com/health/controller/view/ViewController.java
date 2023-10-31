@@ -29,15 +29,16 @@ public class ViewController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//리뷰전달
 		int no = Integer.parseInt(request.getParameter("no"));
-		//리뷰정보전달
 		List<Map<String,Object>> reviewList = reviewDao.selectReview(no);
 		request.setAttribute("reviewList", reviewList);
 		
-		
-		//제품정보전달
+		//상품정보 전달
 		Map<String,Object> postInfo = reviewDao.postInfo(no);
 		request.setAttribute("postInfo", postInfo);
+		
 		
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
 		request.setAttribute("postMeterial", postMeterial);
