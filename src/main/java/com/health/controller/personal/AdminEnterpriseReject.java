@@ -28,7 +28,7 @@ public class AdminEnterpriseReject extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int intEnerpriseNo = Integer.parseInt(request.getParameter("userNo"));
-		int result = memberDao.entAccept(intEnerpriseNo);
+		int result = memberDao.entReject(intEnerpriseNo);
 		Gson gson = new Gson();
 		Map<String, String> map = new HashMap<>();
 		String resultJson = null;
