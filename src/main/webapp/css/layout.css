@@ -44,7 +44,9 @@
 
 
 /* sun */
-
+.viewBody{
+	width: 70%;
+}
 
 .productbox {
 	display: flex;

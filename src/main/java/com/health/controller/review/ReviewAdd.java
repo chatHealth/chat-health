@@ -38,6 +38,7 @@ public class ReviewAdd extends HttpServlet {
 		String retitle = request.getParameter("retitle");
 		int no = Integer.parseInt(request.getParameter("no"));
 
+		
 
 		reviewDto.setUserNo(loggedMember.getUserNo());
 		reviewDto.setPostNo(no);
