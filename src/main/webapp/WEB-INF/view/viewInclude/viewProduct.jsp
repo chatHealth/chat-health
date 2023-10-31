@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-	
+<c:forEach items="${postInfo}" var="post">
 	<div class="productbox">
 			<div class="box">
 				<div class="imgbox">
@@ -9,13 +9,13 @@
 				</div>
 			</div>
 			<div class="box2">
-				<div id="titile">제품이름</div>
-				<div id="Name">회사이름</div>
-				<div id="RegDate">등록날자</div>
-				<div id="MaterialNo">주성분</div>
+				<h2>${post.TITLE }</h2>
+				<div id="Name">${post.NAME }</div>
+				<div id="RegDate">${post.REGDATE }</div>
+				<div id="MaterialNo"></div>
 			</div>
 		</div>
-	
+	</c:forEach>
 	
 </body>
 </html>
