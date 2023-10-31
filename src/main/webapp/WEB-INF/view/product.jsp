@@ -14,7 +14,7 @@
 	<!-- 제품정보 -->
 	<div class="row featurette">
 		<div class="col-md-7">
-			${postInfo.content}
+			${postInfo.CONTENT}
 		</div>
 	</div>
 	<!--                          리뷰                         -->
@@ -25,11 +25,11 @@
 	<!--                    리뷰끝                    -->
 	<hr class="featurette-divider">
 
+
 	<c:choose >
 	<c:when test="${loggedMember ne null }">
 	<form action="../review/ReviewAdd" method="post">
 		<div>
-			<input type="hidden" name="no" value="${param.no}" />
 			<input class="reviewtitle" type="text" id="retitle" name="retitle"				placeholder="리뷰 제목" />
 			<div class="commetbox">
 				<input class="reviewtext" type="text" id="recontent"					name="recontent" placeholder="리뷰글 작성" />
@@ -42,11 +42,7 @@
 	 <div>
 			
 			<div class="commetbox">
-			<h2>댓글을 작성하려면 로그인하세요.
-				<form action="../member/login" method="post">
-				<button valuew="submit">로그인</button>
-				</form>
-			</h2>
+			<h2>댓글을 작성하려면 로그인하세요.</h2>
 			</div>
 		</div>
 	</c:otherwise>
@@ -58,6 +54,18 @@
 <%@ include file="../include/footer.jsp"%>
 
 
+<script>
+// 1. delete modal 처리(rang 건들지 마시오)
 
+$("#modalAccept").on("click", function() {
+
+	$.ajax({
+		type : "POST", 
+		data : {postNo : ${postInfo.POSTNO} },
+		url : "../post/delete-process",
+	});
+});
+
+</script>
 
 

@@ -36,7 +36,7 @@ public class ViewController extends HttpServlet {
 		
 		
 		//제품정보전달
-		PostDto postInfo = postDao.getOnePost(no);
+		Map<String,Object> postInfo = reviewDao.postInfo(no);
 		request.setAttribute("postInfo", postInfo);
 		
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);

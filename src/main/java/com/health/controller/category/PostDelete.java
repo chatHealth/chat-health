@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import com.health.dao.PostDao;
+import com.health.dao.ReviewDao;
 import com.health.dao.SymptomDao;
 import com.health.dto.PostDto;
 import com.health.util.ModalState;
@@ -40,7 +41,7 @@ public class PostDelete extends HttpServlet {
 		
 		// 2. post
 		int no = Integer.parseInt(request.getParameter("no"));
-		PostDto postInfo = PostDao.getInstance().getOnePost(no);
+		Map<String,Object> postInfo = ReviewDao.getInstance().postInfo(no);
 		request.setAttribute("postInfo", postInfo);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/product.jsp");

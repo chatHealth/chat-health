@@ -29,7 +29,13 @@ public class ReviewDao {
 		sqlSession.close();
 		return result;
 	}
-
+	public Map<String,Object> postInfo(int no) {
+		Map<String,Object> result;
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.selectOne("postInfo",no);
+		sqlSession.close();
+		return result;
+	} 
 	public List<Map<String,Object>> postMeterial(int no) {
 		List<Map<String,Object>> result;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();

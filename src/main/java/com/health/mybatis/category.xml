@@ -44,7 +44,11 @@
 		delete from materialpost where postno = #{postNo} and materialno= #{materialNo}
 	</delete>
 
-
+	<update id="deletePost" parameterType="int">
+		update post
+		set deletedDate=sysdate
+		where postNo=#{no}
+	</update>
 
 	
 	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">

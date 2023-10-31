@@ -33,5 +33,3 @@
 					</div>
 					<hr class="featurette-divider">
 					</c:forEach>
-</body>
-</html>

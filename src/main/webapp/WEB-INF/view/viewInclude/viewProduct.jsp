@@ -4,7 +4,7 @@
 	<div class="productbox">
 			<div class="box">
 				<div class="imgbox">
-					<img src="${postInfo.postImg }" alt="" class="imgtest">
+					<img src="${postInfo.POSTIMG }" alt="" class="imgtest">
 				</div>
 			</div>
 			<div class="box2">
@@ -16,6 +16,3 @@
 				</c:forEach>
 			</div>
 		</div>
-	
-</body>
-</html>
