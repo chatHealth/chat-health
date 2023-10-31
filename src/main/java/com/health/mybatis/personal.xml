@@ -56,12 +56,21 @@
     </select>
 <!--    member review 조회-->
     <select id="memReview" resultType="Map" parameterType="Map">
-        SELECT a.* from
-        (SELECT rownum rnum, postimg, REVIEWNO, r.postno AS postno, r.title AS title,
+<!--        SELECT a.* from-->
+<!--        (SELECT rownum rnum, postimg, REVIEWNO, r.postno AS postno, r.title AS title,-->
+<!--        to_char(r.regdate, 'yyyy.mm.dd') AS regdate, p.title AS postTitle, r.DELETEDDATE rivewdeleteddate,-->
+<!--        p.DELETEDDATE AS postdeleteddate-->
+<!--        FROM REVIEW r left JOIN post p-->
+<!--        ON r.postno = p.postno WHERE USERno = #{no} and r.deleteddate is null) a-->
+<!--        WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}-->
+
+        SELECT b.* from(
+        SELECT rownum as rnum, a.* from
+        (SELECT postimg, REVIEWNO, r.postno AS postno, r.title AS title,
         to_char(r.regdate, 'yyyy.mm.dd') AS regdate, p.title AS postTitle, r.DELETEDDATE rivewdeleteddate,
         p.DELETEDDATE AS postdeleteddate
         FROM REVIEW r left JOIN post p
-        ON r.postno = p.postno WHERE USERno = #{no} and r.deleteddate is null) a
+        ON r.postno = p.postno WHERE USERno = #{56} and r.deleteddate is NULL order BY regdate desc) a ) b
         WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
     </select>
     <select id="merReviewsCount" resultType="int" parameterType="int">
