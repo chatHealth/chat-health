@@ -21,10 +21,10 @@ public class PersonalDao {
     private PersonalDao() {
     }
 
-    public List<PostDto> userLikePosts(int userNo) {
+    public List<PostDto> userLikePosts(HashMap<String, Integer> map) {
         List<PostDto> userLikePosts;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-        userLikePosts = sqlSession.selectList("memberWishPosts", userNo);
+        userLikePosts = sqlSession.selectList("memberWishPosts", map);
         sqlSession.close();
         return userLikePosts;
     }
@@ -113,6 +113,14 @@ public class PersonalDao {
         int result;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         result = sqlSession.selectOne("merReviewsCount", no);
+        sqlSession.close();
+        return result;
+    }
+
+    public int totalMemWish(int no) {
+        int result;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.selectOne("totalMemWish", no);
         sqlSession.close();
         return result;
     }

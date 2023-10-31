@@ -21,10 +21,10 @@
 			<div class="row">
 				<c:forEach items="${userLikes }" var="image" varStatus="loop">
 				<div class="col-md-3">
-					<a href="../view/product?no=${image.postNo }"><div class="card">
-						<img src="/upload/${image.postImg }" alt="" class="card-img-top">
+					<a href="../view/product?no=${image.POSTNO }"><div class="card">
+						<img src="/upload/${image.POSTIMG }" alt="" class="card-img-top">
 						<div class="card-body">
-							<p class="card-text">${image.title }</p>
+							<p class="card-text">${image.TITLE }</p>
 						</div>
 					</div>
 					</a>
@@ -36,6 +36,23 @@
 				</c:if>
 				</c:forEach>
 			</div>
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		<li class="page-item">
+			<a class="page-link" href="#" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<c:forEach var="page" begin="1" end="${pages }">
+			<li class="page-item"><a class="page-link" href="../personal/member-review?idx=${page}">${page}</a></li>
+		</c:forEach>
+		<li class="page-item">
+			<a class="page-link" href="#" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>
 		</div>
 	</div>
 </div>
