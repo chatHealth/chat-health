@@ -9,9 +9,9 @@
 				</div>
 			</div>
 			<div class="box2">
-				<h2>#{post.TITLE }</h2>
-				<div id="Name">#{post.NAME }</div>
-				<div id="RegDate">#{post.REGDATE }</div>
+				<h2>${post.TITLE }</h2>
+				<div id="Name">${post.NAME }</div>
+				<div id="RegDate">${post.REGDATE }</div>
 				<div id="MaterialNo"></div>
 			</div>
 		</div>
