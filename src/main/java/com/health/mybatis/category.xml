@@ -36,6 +36,13 @@
 		values(seq_materialPost.nextval, #{materialNo}, #{postNo})
 	</insert>
 
+	<delete id="deleteSymptomPost" parameterType="SymptomPostDto">
+		delete from symptompost where postno = #{postNo} and sympno= #{sympNo}
+	</delete>
+	
+	<delete id="deleteMaterialPost" parameterType="MaterialPostDto">
+		delete from materialpost where postno = #{postNo} and materialno= #{materialNo}
+	</delete>
 
 
 
@@ -84,7 +91,15 @@
 	<update id="updatePost" parameterType="PostDto">
 		update post
 		set enterpriseno=#{enterpriseNo}, title=#{title}, content=#{content}, postimg=#{postImg}
-		WHERE postno=#{postNo}	
+		where postno=#{postNo}	
 	</update>
+	
+	<select id="getSelectedSymptom" resultType="int" parameterType = "int">
+		select sympno from SymptomPost where postno = #{no}	
+	</select>
+	
+	<select id="getSelectedMaterial" resultType="int" parameterType = "int">
+		select materialno from materialpost where postno = #{no}	
+	</select>
 	
 </mapper>
