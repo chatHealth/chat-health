@@ -12,7 +12,12 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+
+import org.apache.ibatis.type.TypeReference;
 
 import com.health.dao.MaterialDao;
 import com.health.dao.MaterialPostDao;
@@ -43,13 +48,21 @@ public class PostModifyProcess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 1. 값 넘겨받기
-		int enNo = Integer.parseInt(request.getParameter("enNo"));
+		// String admin= request.getParameter("admin");
+		String enpriseNo= request.getParameter("enpriseNo");
+		int enNo = 0;    // if 0 이면, admin이다 
+		if(enpriseNo!=null&& !enpriseNo.isEmpty()) {
+			 enNo = Integer.parseInt(enpriseNo);
+			 
+		}
 		Part titleImg = request.getPart("titleImg");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String symptomOptions[] = request.getParameterValues("symptomOptions");
+		String symptomOptions[] = request.getParameterValues("symptomOptions");  //new 
 		String materialOptions[] = request.getParameterValues("materialOptions");
-
+		String selectedSymptomList = request.getParameter("selectedSymptomList");  //origin
+		String selectedMaterialList = request.getParameter("selectedMaterialList");
+		
 		
 		//2. < 이미지 처리 >
 		// 파일 업로드 경로 바깥에
@@ -101,53 +114,112 @@ public class PostModifyProcess extends HttpServlet {
 		int postRes = postDao.updatePost(postDto);
 		
 		
-//		// 4. symptom, material insert
-//		int tmp;
-//		int symptomRes = 0;
-//		if (symptomOptions != null) {
-//			for (String symptom : symptomOptions) {
-//				SymptomPostDto spDto= new SymptomPostDto();
-//				spDto.setPostNo(postNo);
-//				spDto.setsympNo(Integer.parseInt(symptom));
-//				tmp = spDao.insertSymptomPost(spDto);
-//				symptomRes+=tmp;
-//			}
-//		}
-//		
-//		int materialRes = 0;
-//		if (materialOptions != null) {
-//			for (String material : materialOptions) {
-//				MaterialPostDto mpDto= new MaterialPostDto();
-//				mpDto.setPostNo(postNo);
-//				mpDto.setMaterialNo(Integer.parseInt(material));
-//				tmp = mpDao.insertMateriaPost(mpDto);
-//				materialRes+=tmp;
-//			}
-//		}
-//		
-//		
-//		// 5. res: 모두 insert 되었는지 확인
-//		int sLen = 0;
-//		if (symptomOptions != null) { sLen = symptomOptions.length; }
-//		
-//		int mLen = 0;
-//		if (materialOptions != null) { mLen = materialOptions.length; }
-//		
-//		if(postRes + symptomRes + materialRes == sLen + mLen + 1) {
-//			//HttpSession session = request.getSession();
-//			//ModalState modalState = new ModalState("show", "글이 등록되었습니다"); 
-//			//session.setAttribute("modalState", modalState);
-//			
-//			request.setAttribute("no", postNo);
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/product.jsp");
-//			dispatcher.forward(request, response);
-//		}
-//		else {
-//			System.err.println("글이 작성되지 않았습니다"); 
-//			if(postRes == 0) System.err.println("글이잘못되었습니다");
-//			if(symptomRes < sLen) System.err.println("증상이 잘못되었습니다");
-//			if(materialRes < mLen) System.err.println("원재료가 잘못되었습니다");
-//		}
+		
+		
+		
+		// 4. symptom, material insert,delete
+		
+		// 1) symptom ) array -> list
+		List<Integer> newSymptom = new ArrayList<>();
+		if (symptomOptions != null) {
+			for (String element : symptomOptions) {
+				newSymptom.add(Integer.parseInt(element));
+			}
+		}
+		
+		List<Integer> originSymptom = new ArrayList<>();
+		String cleanInput = selectedSymptomList.replaceAll("[\\[\\] ]", "");
+		if (!cleanInput.isBlank()) {
+			String[] parts = cleanInput.split(",");
+			for (String part : parts) {
+				originSymptom.add(Integer.parseInt(part));
+			}
+		}
+
+		// 2) symptom insert,delete
+		if (!(originSymptom.size() == newSymptom.size() && originSymptom.containsAll(newSymptom))) { // 1- 같을땐 pass
+
+			
+			// 2- 새로운 요소를 찾아서 insert
+			for (Integer item : newSymptom) {
+				if (!originSymptom.contains(item)) {
+					SymptomPostDto spDto= new SymptomPostDto();
+					spDto.setPostNo(postNo);
+					spDto.setsympNo(item);
+					spDao.insertSymptomPost(spDto);
+					
+				}
+			}
+
+			// 3- 삭제된 요소를 찾아서 delete
+			for (Integer item : originSymptom) {
+				if (!newSymptom.contains(item)) {
+					SymptomPostDto spDto= new SymptomPostDto();
+					spDto.setPostNo(postNo);
+					spDto.setsympNo(item);
+					spDao.deleteSymptomPost(spDto);
+				}
+			}
+		}
+		
+		// 3) material) array -> list
+		List<Integer> newMaterial = new ArrayList<>();
+		if(materialOptions != null) {
+		for (String element : materialOptions) {
+			newMaterial.add(Integer.parseInt(element));
+			}
+		}
+		
+		List<Integer> originMaterial = new ArrayList<>();
+		String cleanInput2 = selectedMaterialList.replaceAll("[\\[\\] ]", "");
+		if (!cleanInput2.isBlank()) {
+			String[] parts2 = cleanInput2.split(",");
+			for (String part : parts2) {
+				originMaterial.add(Integer.parseInt(part));
+			}
+		}
+	
+		
+		// 4) material insert,delete
+		if (!(originMaterial.size() == newMaterial.size() && originMaterial.containsAll(newMaterial))) { // 1- 같을땐 pass
+
+			
+			// 2- 새로운 요소를 찾아서 insert
+			for (Integer item : newMaterial) {
+				if (!originMaterial.contains(item)) {
+					MaterialPostDto mpDto= new MaterialPostDto();
+					mpDto.setPostNo(postNo);
+					mpDto.setMaterialNo(item);
+					mpDao.insertMaterialPost(mpDto);
+				}
+			}
+
+			// 3- 삭제된 요소를 찾아서 delete
+			for (Integer item : originMaterial) {
+				if (!newMaterial.contains(item)) {
+					MaterialPostDto mpDto= new MaterialPostDto();
+					mpDto.setPostNo(postNo);
+					mpDto.setMaterialNo(item);
+					mpDao.deleteMaterialPost(mpDto);
+				}
+			}
+		}
+
+
+		
+		// 5. res: pos insert 되었는지 확인
+		if(postRes > 0) {
+			//HttpSession session = request.getSession();
+			//ModalState modalState = new ModalState("show", "글이 등록되었습니다"); 
+			//session.setAttribute("modalState", modalState);
+			
+			request.setAttribute("no", postNo);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/product.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			System.err.println("글이 수정되지 않았습니다"); 
+		}
 		
 		
 	}

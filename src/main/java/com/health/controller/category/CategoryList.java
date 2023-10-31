@@ -40,7 +40,7 @@ public class CategoryList extends HttpServlet {
 		if(session.getAttribute("navSymptomList")==null) {
 			session.setAttribute("navSymptomList", symptomDao.getAllSymptom());
 		}
-		
+				
 		// 1. post list get
 		//1) 초기화
 		List<PostDto> postList = null;

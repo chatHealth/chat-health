@@ -64,7 +64,7 @@
 	})
 
 	$("#entAccept").on("click", function() {
-		console.log(sendEnterpriseNo);
+		//console.log(sendEnterpriseNo);
 		// Ajax 요청을 보내고 백엔드 코드 실행
 		$.ajax({
 			type : "POST", // 또는 "GET" 등 HTTP 메소드 설정
@@ -74,7 +74,7 @@
 			url : "../personal/admin-entAccept-process",
 			success : function(data) {
 				// 백엔드에서 반환된 데이터를 처리
-				console.log(data);
+				//console.log(data);
 				if (data.isAccepted === "ok") {
 
 					alert("승인 완료")
