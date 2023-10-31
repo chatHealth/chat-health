@@ -12,6 +12,13 @@
 
 <table class="table">
 	<h2>my review</h2>
+	<c:if test="${empty reviews}">
+		<p class="fs-5 col-md-8">아직 등록된 리뷰가 없습니다</p>
+		<div class="mb-5">
+			<a href="../category/list" class="btn btn-primary btn-lg px-4">둘러보러 가기</a>
+		</div>
+	</c:if>
+	<c:if test="${not empty reviews}">
 	<thead>
 	<tr>
 		<th scope="col">#</th>
@@ -23,7 +30,7 @@
 	<tbody>
 	<c:forEach items="${reviews }" var="review" varStatus="loop">
 		<tr>
-			<th scope="row">${review.ROWNUM }</th>
+			<th scope="row">${review.RNUM }</th>
 			<c:choose>
 				<c:when test="${review.POSTDELEDDATE eq null}">
 					<td class="entP"><a href="../view/product?no=${review.POSTNO}"><img src="/upload/${review.POSTIMG}" style="height:100px"  alt="postImg"/></a></td>
@@ -36,8 +43,27 @@
 			<td class="entP"><a href="#">${review.TITLE }</a></td>
 			<td class="entP">${review.REGDATE }</td>
 		</tr>
-	</c:forEach>
 	</tbody>
+	</c:forEach>
 </table>
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		<li class="page-item">
+			<a class="page-link" href="#" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<c:forEach var="page" begin="1" end="${pages}">
+			<li class="page-item"><a class="page-link" href="../personal/member-review?idx=${page}">${page}</a></li>
+		</c:forEach>
+		<li class="page-item">
+			<a class="page-link" href="#" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>
+	</c:if>
 </div>
+
 <%@ include file="../include/footer.jsp"%>

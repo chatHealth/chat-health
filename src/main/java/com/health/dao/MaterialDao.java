@@ -33,6 +33,17 @@ public class MaterialDao {
 		
 		return resList;
 	}
+
+	// 2. 증상과 관련있는 영양소 (postNo로 조회) 모두 출력
+	public List<MaterialDto> getMaerialBySymptom(int sympNo) {
+		List<MaterialDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getMaerialBySymptom", sympNo);
+		sqlSession.close();
+		
+		return resList;
+	}
 	
 
 }

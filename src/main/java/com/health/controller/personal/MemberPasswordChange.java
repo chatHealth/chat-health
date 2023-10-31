@@ -18,7 +18,7 @@ public class MemberPasswordChange extends HttpServlet {
         Object loggedEnterprise = session.getAttribute("loggedEnterprise");
 
         if(loggedMember == null && loggedEnterprise==null) {
-            ScriptWriter.alertAndBack(response,"잘못된 접근입니다.");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
         }
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-password.jsp");
         requestDispatcher.forward(request, response);

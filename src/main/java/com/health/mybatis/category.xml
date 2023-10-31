@@ -5,10 +5,6 @@
 
 <mapper namespace="com.health.mybatis">
 
-	<select id="getAllPost" resultType="PostDto">
-		select * from post
-	</select>
-
 	<select id="getAllSymptom" resultType="SymptomDto">
 		select * from symptom
 	</select>
@@ -16,9 +12,13 @@
 	<select id="getAllMaterial" resultType="MaterialDto">
 		select * from material
 	</select>
-
+	
 	<select id="seqPostNextVal" resultType="int">
 		select seq_post.nextval from dual
+	</select>
+	
+	<select id="getsymptName" resultType="string" parameterType = "int">
+		select symptomname from symptom WHERE sympno = ${sympNo}
 	</select>
 
 	<insert id="insertPost" parameterType="PostDto">
@@ -39,5 +39,52 @@
 
 
 
+	
+	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">
+		SELECT * FROM post 
+		WHERE postno in ( SELECT postno FROM symptompost 
+		WHERE sympno = CAST(#{sympNo} as number))
+	</select>
+	
+	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
+		SELECT * FROM post WHERE title LIKE '%'||#{keyword}||'%'
+	</select>
 
+	<select id="getPostForAll" resultType="PostDto" parameterType = "HashMap">
+		select * from post
+			<choose>
+			<when test="sort=='recent'">
+				order by regdate desc
+			</when>
+			<when test="sort=='recommended'">
+				order by regdate desc
+			</when>
+			<when test="sort=='reviewed'">
+				order by regdate desc
+			</when>
+		</choose>
+	</select>
+
+
+
+	<select id="getMaerialBySymptom" resultType="MaterialDto" parameterType="int">
+		SELECT * FROM material 
+			WHERE materialno in (
+			SELECT materialno
+				FROM SymptomPost INNER JOIN MaterialPost 
+				ON SymptomPost.postNo = MaterialPost.postNo
+				WHERE sympno=#{sympNo})
+	</select>
+	
+	<select id="getOnePost" resultType="PostDto" parameterType = "int">
+		select * from post where postno = #{no}
+	</select>
+	
+	
+	<update id="updatePost" parameterType="PostDto">
+		update post
+		set enterpriseno=#{enterpriseNo}, title=#{title}, content=#{content}, postimg=#{postImg}
+		WHERE postno=#{postNo}	
+	</update>
+	
 </mapper>

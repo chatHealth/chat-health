@@ -25,7 +25,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="user-address" class="form-label">Address</label>
-					<input type="text" class="form-control" id="user-address" name="address" value=${loggedMember.address }>
+					<input type="text" class="form-control" id="user-address" name="address" readonly value=${loggedMember.address }>
 				</div>
 				<div class="mb-3">
 					<label for="addressDetail" class="form-label">Address Detail</label>
@@ -36,4 +36,20 @@
 		</div>
 	</div>
 </div>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	window.onload = function(){
+		document.getElementById("user-address").addEventListener("click", function(){ //주소입력칸을 클릭하면
+			//카카오 지도 발생
+			new daum.Postcode({
+				oncomplete: function(data) { //선택시 입력값 세팅
+					document.getElementById("user-address").value = data.address; // 주소 넣기
+					document.querySelector("input[name=addressDetail]").focus(); //상세입력 포커싱
+				}
+			}).open();
+		});
+	}
+</script>
+
 <%@ include file="../include/footer.jsp"%>

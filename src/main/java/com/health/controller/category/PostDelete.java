@@ -1,5 +1,6 @@
-package com.health.controller.member;
+package com.health.controller.category;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,21 +10,31 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import com.health.util.ScriptWriter;
+import com.health.dao.SymptomDao;
 
-@WebServlet("/member/logout")
-public class MemberLogout extends HttpServlet {
+@WebServlet("/post/delete")
+public class PostDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public MemberLogout() {
+       
+   
+    public PostDelete() {
         super();
     }
 
+    private final SymptomDao symptomDao = SymptomDao.getInstance();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 0. nav
 		HttpSession session = request.getSession();
-		session.invalidate();
-		ScriptWriter.alertAndGo(response, "로그아웃되었습니다.","../index/index");
+		if(session.getAttribute("navSymptomList")==null) {
+			session.setAttribute("navSymptomList", symptomDao.getAllSymptom());
+		}
+		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/post/delete.jsp");
+		dispatcher.forward(request, response);
 	}
+
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}

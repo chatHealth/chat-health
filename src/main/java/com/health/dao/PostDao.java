@@ -1,5 +1,6 @@
 package com.health.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,14 +36,62 @@ public class PostDao {
 		return result;
 	}
 	
-	// 3. 모든 post list 가져오기
-	public List<PostDto> getAllPost() {
+	
+	// 3. 
+	// 증상으로 post list 가져오기
+	public List<PostDto> getPostForSympno(HashMap<String,String> map) {
 		List<PostDto> resList = null;
 		
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-		resList = sqlSession.selectList("getAllPost");
+		resList = sqlSession.selectList("getPostForSympno", map);
 		sqlSession.close();
 		
 		return resList;
 	}
+	
+	// 키워드로  post list 가져오기
+	public List<PostDto> getPostForKeyword(HashMap<String,String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForKeyword", map);
+		sqlSession.close();
+		
+		return resList;
+	}
+	
+	// 모든 post list 가져오기
+	public List<PostDto> getPostForAll(HashMap<String,String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForAll", map );
+		sqlSession.close();
+		
+		return resList;
+	}
+	
+	
+	// 4. postNo로 게시글 하나 가져오기
+	public PostDto getOnePost(int no) {
+		PostDto result = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.selectOne("getOnePost", no);
+		sqlSession.close();
+		
+		return result;
+	}
+	
+	//5. update
+	public int updatePost(PostDto postDto) {
+		int result = 0;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.update("updatePost",postDto);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 }
