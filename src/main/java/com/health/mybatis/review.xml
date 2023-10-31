@@ -6,11 +6,11 @@
  
  <select id="reviewDate" parameterType="int" resultType="Map">
  	select r.REVIEWNO reviewno, r.USERNO userno,r.POSTNO postno,r.TITLE title, r.CONTENT content, r.REGDATE regdate,
- 	 r.HELPFUL helpful, r.DELETEDDATE deleteddate,m.NICKNAME nickname 
+ 	  r.DELETEDDATE deleteddate,m.NICKNAME nickname 
  					from Review r LEFT JOIN MEMBER m 
 	 					ON
 	 					r.USERNO = m.USERNO 
-	 					where postNo=#{no} 
+	 					where postNo=#{no} ORDER BY REGDATE desc
  </select>
  <select id="postInfo" parameterType="int" resultType="Map">
  	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME 
@@ -25,8 +25,10 @@
 					ON m.MATERIALNO = t.MATERIALNO 
 					WHERE p.POSTNO=#{no}
  </select>
- 
- 
+ <select id="helpFulCount" parameterType='int' resultType="int">
+ 	SELECT count(reviewNo) FROM HELPFUL WHERE reviewNo=#{reviewNo}
+ </select>
+  
  
  
  
@@ -55,8 +57,16 @@
 					DEFAULT
 )
  </insert>
- 
- 
+ <insert id="helpfulAdd" parameterType="HelpfulDto">
+ INSERT INTO HELPFUL values(
+	seq_helpful.nextval,
+	#{reviewNo},
+	#{userNo}
+	)
+ </insert>
+ <delete id="helpfulCancel" parameterType="HelpfulDto">
+ 	DELETE FROM HELPFUL WHERE userNo=#{userNO}
+ </delete>
  
  
  

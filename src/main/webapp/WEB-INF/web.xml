@@ -50,6 +50,16 @@
     <servlet-name>Viewl</servlet-name>
     <url-pattern>/Viewl</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HelpfulController</display-name>
+    <servlet-name>HelpfulController</servlet-name>
+    <servlet-class>com.health.controller.review.HelpfulController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelpfulController</servlet-name>
+    <url-pattern>/HelpfulController</url-pattern>
+  </servlet-mapping>
 </web-app>
 <!--
   <servlet>
