@@ -20,7 +20,7 @@
 								<c:forEach items="${ materialList }" var="material" varStatus="status">
 
 									<div class="col-md-3 ">
-										<a href="#material=${ material.materialNo }" class="nav-link link-body-emphasis">
+										<a href="../category/list?symp=${sympNo }&material=${ material.materialNo }" class="nav-link link-body-emphasis">
 											${material.materialName } 
 										</a>
 									</div>
