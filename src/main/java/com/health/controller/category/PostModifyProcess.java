@@ -27,6 +27,7 @@ import com.health.dao.SymptomPostDao;
 import com.health.dto.MaterialPostDto;
 import com.health.dto.PostDto;
 import com.health.dto.SymptomPostDto;
+import com.health.util.ModalState;
 
 @WebServlet("/post/modify-process")
 public class PostModifyProcess extends HttpServlet {
@@ -215,16 +216,14 @@ public class PostModifyProcess extends HttpServlet {
 		
 		// 5. res: pos insert 되었는지 확인
 		if(postRes > 0) {
-			//HttpSession session = request.getSession();
-			//ModalState modalState = new ModalState("show", "글이 등록되었습니다"); 
-			//session.setAttribute("modalState", modalState);
+			ModalState infoModal = new ModalState("show", "안내", "글이 수정되었습니다", "확인");
+			session.setAttribute("myModal", infoModal);
 			
-			request.setAttribute("no", postNo);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/product.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("../view/product?no="+postNo); 
 		}
 		else {
-			System.err.println("글이 수정되지 않았습니다"); 
+			ModalState infoModal = new ModalState("show", "안내", "글이 수정되지않았습니다", "확인");
+			session.setAttribute("myModal", infoModal);
 		}
 		
 		
