@@ -91,6 +91,7 @@ public class CategoryList extends HttpServlet {
 		request.setAttribute("postList", postList);
 		request.setAttribute("materialList", materialList);
 		
+	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/category/list.jsp");
 		dispatcher.forward(request, response); 
 	}
