@@ -7,8 +7,14 @@
 </c:if>
 
 </body>
-</html>
 
+<footer class="pt-2 mb-1 border-top">
+ <div>
+ 	
+ </div>
+</footer>
+
+</html>
 
 <script>
 		const myModal = new bootstrap.Modal("#myModal");

@@ -24,7 +24,7 @@ public class EnterprisePost extends HttpServlet {
         EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
         if (loggedEnterprise == null || loggedMember != null) {
-            ScriptWriter.alertAndGo(response, "잘못된 접근입니다.", "../");
+            ScriptWriter.alertAndGo(response, "잘못된 접근입니다.", "../index/index");
         }
 
         int idx = Integer.parseInt(request.getParameter("idx"));

@@ -25,7 +25,7 @@
 		<th scope="col" colspan="2" style="text-align: center">상품</th>
 		<th scope="col">리뷰</th>
 		<th scope="col">등록일</th>
-		<th scope="col"><img src="../img/like.png" class="img20"</th>
+		<th scope="col"><img src="../img/like.png" class="img20"/></th>
 	</tr>
 	</thead>
 	<tbody>

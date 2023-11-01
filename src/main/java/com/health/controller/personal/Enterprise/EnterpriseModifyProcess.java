@@ -26,7 +26,7 @@ public class EnterpriseModifyProcess extends HttpServlet {
         EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
         if (loggedEnterprise == null) {
-            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.","../");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.","../index/index");
         }
 
         String tel = request.getParameter("tel");
