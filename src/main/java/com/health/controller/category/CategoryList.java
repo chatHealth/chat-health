@@ -47,9 +47,19 @@ public class CategoryList extends HttpServlet {
 		List<PostDto> postList = null;
 		HashMap<String,String> map = new HashMap<>();   // sort, 페이지, 증상번호 저장, 키워드 저장
 		
-		// 1) 8개만 띄우기 or pagenation
-		map.put("start", "1");
-		map.put("end", "8");
+		// 1) 8개만 띄우기 or pagination
+		String pageStandard =  request.getParameter("ps");
+		
+		if(pageStandard==null || pageStandard.equals("eight")) {
+			map.put("start", "1");
+			map.put("end", "8");
+			request.setAttribute("ps","eight");
+		} else if (pageStandard.equals("all")){
+			map.put("start", "1");
+			map.put("end", "10");
+		}
+		System.out.println(pageStandard);
+		request.setAttribute("ps",pageStandard);
 		
 		
 		// 2) 정렬
@@ -105,7 +115,7 @@ public class CategoryList extends HttpServlet {
 		
 		
 		// 4. send
-		//if(postList.size() == 0) { postList = null; }
+		if(postList.size() == 0) { postList = null; }
 		request.setAttribute("postList", postList);
 		request.setAttribute("materialList", materialList);
 		

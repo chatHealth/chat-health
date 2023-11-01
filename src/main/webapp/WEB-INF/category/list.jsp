@@ -44,14 +44,14 @@
 						<h2 class="use-main-color">게시글이 없습니다</h2>
 					</div>
 				</c:when>
+				
 				<c:otherwise>
 
 
 
 			<!-- 3. show postList -->
 			<div class="sort-select d-flex justify-content-start">
-				<form action="../category/list?" method="get" name="sort-select"
-					id="sort-select">
+				<form action="../category/list" method="get" name="sort-select" id="sort-select">
 					<input type="hidden" name="symp" value="${sympNo}">
       				<input type="hidden" name="material" value="${materialNo}">
 					<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
@@ -60,7 +60,9 @@
 					</select>
 				</form>
 			</div>
+			
 			<script>
+			// select 변하면, symp,material hidden으로 값보내기 (쿼리스트링X)
 				$("#sort").on('change', function() {
 					$("#sort-select").submit();
 				});
@@ -114,23 +116,50 @@
 	
 	
 	
-	<!-- 4. review -->
+	<!-- 4. pagenation -->
+	<form action="../category/list" method="get" class="convey-form">
+		<input type="hidden" name="symp" value="${sympNo}">
+		<input type="hidden" name="material" value="${materialNo}">
+ 
+    			
+	<c:choose>
+	<c:when test="${ ps=='all' }">
+		<div class="d-flex align-items-center justify-content-center">
+			<h2 class="use-main-color">pagination</h2>
+		</div>
+	</c:when>
+	
+	<c:when test="${ postList ne null }"> 
+		<div class="d-flex align-items-center justify-content-center">
+			<a class="btn btn-outline-secondary mt-3 convey-btn" >
+				모든글보기
+				<input type="hidden" name="ps" value="all">
+			</a>
+		</div> 	
+	</c:when>
+	</c:choose>
 
+	</form>
 
+	</div>
 
-
-
-
-
-</div>
 
 
 <%@ include file="../include/footer.jsp"%>
 
+
 <script>
 
+//1. 수정 -> 모달 인정버튼 -> modify 페이지로
 $("#modalAccept").on("click", function() {
 
 	location.href="../post/modify";
 });
+
+//2. symp, material 숨겨서 보내기
+$(".convey-btn").on('click', function() {
+	 $(".convey-form").submit();
+	 return false;
+});
+
 </script>

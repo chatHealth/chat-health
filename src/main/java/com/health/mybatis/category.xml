@@ -5,6 +5,7 @@
 
 <mapper namespace="com.health.mybatis">
 
+	<!-- 3. write/delete post  -->
 	<select id="getAllSymptom" resultType="SymptomDto">
 		select * from symptom
 	</select>
@@ -54,6 +55,7 @@
 	</update>
 	
 	
+<!-- 1. get post by ver  -->
 
 	<select id="getPostForAll" resultType="PostDto" parameterType = "HashMap">
 	SELECT * from
@@ -134,7 +136,7 @@
 
 
 
-
+<!-- 2. post related -->
 	<select id="getMaerialBySymptom" resultType="MaterialDto"
 		parameterType="int">
 		SELECT Material.*
@@ -157,6 +159,7 @@
 		where postno=#{postNo}	
 	</update>
 	
+	<!-- 3. modify related -->
 	<select id="getSelectedSymptom" resultType="int" parameterType = "int">
 		select sympno from SymptomPost where postno = #{no}	
 	</select>
@@ -165,4 +168,5 @@
 		select materialno from materialpost where postno = #{no}	
 	</select>
 	
+<!-- 4. modify related -->
 </mapper>
