@@ -42,14 +42,7 @@
 .profile-picture img {
     width: 200px;
     height: 200px;
-<<<<<<< HEAD
-    
-=======
-
     border-radius:50%;
-
-
->>>>>>> 057bcecb3317885e41e9b4e053336b095024ca94
     overflow: hidden;
     position: relative;
     margin: 0 auto;
