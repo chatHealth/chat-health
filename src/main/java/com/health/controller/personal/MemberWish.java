@@ -11,7 +11,9 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "MemberWish", value = "/personal/member-wish")
 public class MemberWish extends HttpServlet {
@@ -24,12 +26,25 @@ public class MemberWish extends HttpServlet {
         HttpSession session = request.getSession();
         MemberDto member = (MemberDto) session.getAttribute("loggedMember");
         if (member == null) {
-            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../index/index");
         }
         int userNo = member.getUserNo();
 
-        List<PostDto> userLikePosts = personalDao.userLikePosts(userNo);
+        HashMap<String, Integer> map = new HashMap<>();
 
+        int idx = Integer.parseInt(request.getParameter("idx"));
+
+        idx = idx * 8 - 7;
+
+        map.put("userNo", userNo);
+        map.put("idx", idx);
+
+        int count = personalDao.totalMemWish(userNo);
+        int pages = (int) Math.ceil(count / 8.0);
+
+        List<PostDto> userLikePosts = personalDao.userLikePosts(map);
+
+        request.setAttribute("pages", pages);
         request.setAttribute("userLikes", userLikePosts);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-wish.jsp");
