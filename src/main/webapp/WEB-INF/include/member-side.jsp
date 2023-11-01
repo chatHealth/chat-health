@@ -48,9 +48,10 @@
               <p style="color:red">DENINED</p>
             </c:otherwise>
           </c:choose>
+          </div>
         </c:when>
         <c:otherwise>
-          </div>
+
           <script>
             alert("잘못된 접근입니다.");
             history.back();
