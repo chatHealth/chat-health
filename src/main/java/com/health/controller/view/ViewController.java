@@ -12,8 +12,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import com.health.dao.HelpfulDao;
 import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
+import com.health.dto.HelpfulDto;
 import com.health.dto.PostDto;
 import com.health.dto.ReviewDto;
 
@@ -23,6 +25,7 @@ public class ViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final PostDao postDao = PostDao.getInstance();
 	private static ReviewDao reviewDao =  ReviewDao.getInstance();
+	private static HelpfulDao helpfulDao =  HelpfulDao.getInstance();
 	
     public ViewController() {
         super();
@@ -39,12 +42,12 @@ public class ViewController extends HttpServlet {
 		Map<String,Object> postInfo = reviewDao.postInfo(no);
 		request.setAttribute("postInfo", postInfo);
 		
+
+		
 		
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
 		request.setAttribute("postMeterial", postMeterial);
-		
-		
-		
+	
 		
 		HttpSession session= request.getSession();
 		session.getAttribute("loggedMember");

@@ -47,6 +47,7 @@
 				<c:otherwise>
 
 
+
 			<!-- 3. show postList -->
 			<div class="sort-select d-flex justify-content-start">
 				<form action="../category/list?" method="get" name="sort-select"

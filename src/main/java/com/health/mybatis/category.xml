@@ -65,6 +65,7 @@
 			</when>
 			<when test="sort=='old'">
 				order by regdate
+
 			</when>
 		</choose>
 	</select>
@@ -116,6 +117,7 @@
 		<choose>
 			<when test="sort=='recent'">
 				order by regdate desc
+
 			</when>
 			<when test="sort=='old'">
 				order by regdate

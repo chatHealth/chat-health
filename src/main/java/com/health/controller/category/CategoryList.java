@@ -59,6 +59,7 @@ public class CategoryList extends HttpServlet {
 		} else if (sort.equals("old")){
 			map.put("sort", "old");
 			request.setAttribute("sort","old");
+
 		}
 		
 		// 3) 증상/재료/키워드 로 post 얻어오기
