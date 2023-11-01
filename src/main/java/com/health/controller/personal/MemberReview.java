@@ -27,8 +27,14 @@ public class MemberReview extends HttpServlet {
             Map<String, Integer> map = new HashMap<>();
 
             map.put("no", userNo);
-            int idx = Integer.parseInt(request.getParameter("idx"));
-            idx = 10 * idx - 9;
+
+            int idx;
+            if (request.getParameter("idx") == null) {
+                idx = 1;
+            } else {
+                idx = Integer.parseInt(request.getParameter("idx"));
+                idx = 10 * idx - 9;
+            }
             map.put("idx", idx);
 
             int count = personalDao.memReviewsCount(userNo);
