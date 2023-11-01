@@ -56,9 +56,13 @@
 	
 
 	<select id="getPostForAll" resultType="PostDto" parameterType = "HashMap">
-		select p.*, e.name from post p
-		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
-		where p.deletedDate is NULL
+	SELECT * from
+	(SELECT rownum AS num, b.* FROM
+	(
+	
+	select p.*, e.name from post p
+	LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+	where p.deletedDate is NULL
 			<choose>
 			<when test="sort=='recent'">
 				order by regdate desc
@@ -68,6 +72,9 @@
 
 			</when>
 		</choose>
+
+	) b
+	<![CDATA[) WHERE num >=CAST(#{start} as number) AND num<=CAST(#{end} as number)]]>
 	</select>
 
 	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">

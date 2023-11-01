@@ -47,8 +47,9 @@ public class CategoryList extends HttpServlet {
 		List<PostDto> postList = null;
 		HashMap<String,String> map = new HashMap<>();   // sort, 페이지, 증상번호 저장, 키워드 저장
 		
-		//map.put("start", start);
-		//map.put("end", end);
+		// 1) 8개만 띄우기 or pagenation
+		map.put("start", "1");
+		map.put("end", "8");
 		
 		
 		// 2) 정렬
@@ -70,6 +71,7 @@ public class CategoryList extends HttpServlet {
 		if(material != null && !material.isEmpty()) materialNo=Integer.parseInt(material);
 		String keyword = request.getParameter("keyword");
 
+		
 		// 3) real get part, set info
 		if(sympNo > 0 && materialNo==0) { 								// 1) 증상선택 온경우
 			map.put("sympNo", symp);
