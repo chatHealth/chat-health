@@ -47,6 +47,13 @@ public class PostModifyProcess extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
+		// 0. nav
+		HttpSession session = request.getSession();
+		if(session.getAttribute("navSymptomList")==null) {
+			session.setAttribute("navSymptomList", SymptomDao.getInstance().getAllSymptom());
+		}
+		
 		// 1. 값 넘겨받기
 		// String admin= request.getParameter("admin");
 		String enpriseNo= request.getParameter("enpriseNo");
@@ -178,8 +185,7 @@ public class PostModifyProcess extends HttpServlet {
 				originMaterial.add(Integer.parseInt(part));
 			}
 		}
-	
-		
+
 		// 4) material insert,delete
 		if (!(originMaterial.size() == newMaterial.size() && originMaterial.containsAll(newMaterial))) { // 1- 같을땐 pass
 

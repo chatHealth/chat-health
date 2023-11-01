@@ -94,5 +94,21 @@ aria-autocomplete="list" placeholder="" style="width: 0.75em;">
  						<span class="select2-selection__choice__remove" role="presentation">×</span> ${symptom }</li>
 				</c:forEach>
 				</ul>
-				
+			
+			
+<!--  -->
+<span
+					class="select2 select2-container select2-container--bootstrap-5 select2-container--open select2-container--above select2-container--focus"
+					dir="ltr" data-select2-id="1"><span class="selection"><span
+						class="select2-selection select2-selection--multiple"
+						role="combobox" aria-haspopup="true" aria-expanded="true"
+						tabindex="-1" aria-disabled="false"
+						aria-owns="select2-symptomOptions-results"
+						aria-activedescendant="select2-symptomOptions-result-12ha-7">
+						<ul class="select2-selection__rendered">
+								<c:forEach items="${ selectedSymptomList }" var="symptom" varStatus="status">
+						<li class="select2-selection__choice" title=" ${symptom}" data-select2-id="24">
+ 						<span class="select2-selection__choice__remove" role="presentation">×</span> ${symptom }</li>
+				</c:forEach>
+							</ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>	
 				
