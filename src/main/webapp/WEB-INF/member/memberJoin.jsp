@@ -160,9 +160,17 @@
             }
         }).open();
     }
-    
+</script>
+
+<script>    
     	//2. 아이디 중복체크
 	   $('#btnIDCheck').on('click', function(){
+		   if($("#id").val().trim()=== ""){
+				alert("아이디는 반드시 입력해야합니다.");
+				$("#id").val("");
+				$("#id").focus();
+				return false;
+			}
 	       $.ajax({
 	          url:"../member/id-check",
 	          data: {

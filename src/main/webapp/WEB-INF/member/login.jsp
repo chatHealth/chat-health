@@ -11,12 +11,12 @@
     <div class="mb-2">
     <label for="userID" class="mb-3">아이디</label>
       <input type="text" class="form-control" id="userID" placeholder="아이디" name="userID" 
-      value="${cookie.saveIDCookie.value}"> 
+      value="${cookie.saveIDCookie.value}" autofocus required> 
       
     </div>
     <div class="mb-2">
     <label for="userPW" class="mb-3">비밀번호</label>
-      <input type="password" class="form-control" id="userPW" placeholder="비밀번호" name="userPW">      
+      <input type="password" class="form-control" id="userPW" placeholder="비밀번호" name="userPW" required>      
     </div>
 
     <div class="checks mb-4">    	
@@ -43,7 +43,7 @@
   </form>
   
  
-  <p class="mt-4" style="text-align: center;">아직 회원이 아니신가요? <a href="../member/join-select">여기</a>를 눌러 회원가입 하세요!</p>
+  <p class="mt-4" style="text-align: center;">아직 회원이 아니신가요? <a href="../member/join-select">여기</a>를 눌러 회원가입 하기</p>
   
 </div>
 <%@ include file="../include/footer.jsp"%>

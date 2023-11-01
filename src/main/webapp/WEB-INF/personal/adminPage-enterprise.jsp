@@ -15,7 +15,7 @@
 		</thead>
 		<tbody class="table-hover">
 			<c:forEach items="${userList}" var="item">
-				<c:if test="${empty item.deletedDate}">
+				<c:if test="${empty item.deletedDate && item.accepted == 1}">
 					<tr data-no="${item.enterpriseNo}">
 						<td>${item.enterpriseNo}</td>
 						<td>${item.id}</td>
