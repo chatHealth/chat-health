@@ -16,3 +16,9 @@
 				</c:forEach>
 			</div>
 		</div>
+<<<<<<< HEAD
+=======
+	
+</body>
+</html>
+>>>>>>> 53f7e5693cef0df6bfaacd4fd0f00f45682b2494

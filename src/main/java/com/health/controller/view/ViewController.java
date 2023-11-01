@@ -42,16 +42,12 @@ public class ViewController extends HttpServlet {
 		Map<String,Object> postInfo = reviewDao.postInfo(no);
 		request.setAttribute("postInfo", postInfo);
 		
-////		//helpful전달
-//		HelpfulDto helpfulDto = new HelpfulDto();
-//		int helpful = helpfulDao.helpFulCount(7);
-//		System.out.println(helpful);
-//		request.setAttribute("helpful", helpful);
+
 		
 		
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
 		request.setAttribute("postMeterial", postMeterial);
-		
+	
 		
 		HttpSession session= request.getSession();
 		session.getAttribute("loggedMember");
