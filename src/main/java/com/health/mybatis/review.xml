@@ -10,7 +10,7 @@
  					from Review r LEFT JOIN MEMBER m 
 	 					ON
 	 					r.USERNO = m.USERNO 
-	 					where postNo=#{no} ORDER BY REGDATE desc
+	 					where postNo=#{no} ORDER BY helpfulcnt desc,REGDATE DESC
  </select>
  <select id="postInfo" parameterType="int" resultType="Map">
  	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME 

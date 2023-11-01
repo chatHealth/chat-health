@@ -11,8 +11,11 @@
 				<h2>${postInfo.TITLE }</h2>
 				<div id="Name">${postInfo.NAME }</div>
 				<div id="RegDate">${postInfo.REGDATE }</div>
+				<div id="MaterialNo">
+					 주성분 : 
 				<c:forEach items="${ postMeterial}" var="material">
-				<div id="MaterialNo"> 주성분 : ${material.MATERIALNAME }</div>
+					[ ${material.MATERIALNAME } ]
 				</c:forEach>
+				</div>
 			</div>
 		</div>

@@ -9,7 +9,7 @@
 
 												<div class="reviewdata">
 													<div class="reviewUserInfo">
-														<div class="reviewUser" id="nickName">닉네임 : ${review.NICKNAME } ${review.REVIEWNO }</div>
+														<div class="reviewUser" id="nickName">닉네임 : ${review.NICKNAME }</div>
 														<div class="reviewUser" id="RegDate">${review.REGDATE }</div>
 													</div>
 													
