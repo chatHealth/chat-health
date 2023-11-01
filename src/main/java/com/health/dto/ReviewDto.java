@@ -7,7 +7,6 @@ public class ReviewDto {
 	private String title;
 	private String content;
 	private String regDate;
-	private int helpful;
 	private String deletedDate;
 	
 	
@@ -19,10 +18,10 @@ public class ReviewDto {
 	@Override
 	public String toString() {
 		return "ReviewDto [reviewNo=" + reviewNo + ", userNo=" + userNo + ", postNo=" + postNo + ", title=" + title
-				+ ", content=" + content + ", regDate=" + regDate + ", helpful=" + helpful + ", deletedDate="
+				+ ", content=" + content + ", regDate=" + regDate  + ", deletedDate="
 				+ deletedDate + "]";
 	}
-	public ReviewDto(int reviewNo, int userNo, int postNo, String title, String content, String regDate,int helpful,
+	public ReviewDto(int reviewNo, int userNo, int postNo, String title, String content, String regDate,
 			String deletedDate) {
 		super();
 		this.reviewNo = reviewNo;
@@ -31,7 +30,6 @@ public class ReviewDto {
 		this.title = title;
 		this.content = content;
 		this.regDate = regDate;
-		this.helpful = helpful;
 		this.deletedDate = deletedDate;
 	}
 	public int getReviewNo() {
@@ -70,12 +68,6 @@ public class ReviewDto {
 	}
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
-	}
-	public int getHelpful() {
-		return helpful;
-	}
-	public void setHelpful(int helpful) {
-		this.helpful = helpful;
 	}
 	public String getDeletedDate() {
 		return deletedDate;

@@ -43,7 +43,6 @@ public class ReviewAdd extends HttpServlet {
 		reviewDto.setPostNo(2);
 		reviewDto.setTitle(retitle);
 		reviewDto.setContent(recontent);
-		reviewDto.setHelpful(0);
 
 		int result = reviewDao.insertRivew(reviewDto);
 	}

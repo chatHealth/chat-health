@@ -4,11 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.health.mybatis">
 
-    <select id="memberWishPosts" resultType="Map" parameterType="Map">
-        SELECT * From(
-        select rownum rnum,p.postno as postNo, title, postimg from post p
+    <select id="memberWishPosts" resultType="com.health.dto.personal.MemberReviewPageDto" parameterType="Map">
+        select * from (
+        SELECT rownum rnum, a.* From(
+        select p.postno as postNo, title, postimg from post p
         inner join USERLIKE u
-        on p.postno = u.postno WHERE userno = #{userNo} AND p.DELETEDDATE is NULL ORDER BY LIKEKEY DESC)
+        on p.postno = u.postno WHERE userno = #{userNo} AND p.DELETEDDATE is NULL ORDER BY LIKEKEY DESC) a)
         where rnum <![CDATA[>=]]> #{idx} AND rnum <![CDATA[<]]> #{idx}+8
     </select>
     <select id="memberInfo" resultType="MemberDto" parameterType="int">
@@ -78,4 +79,19 @@
     <select id="totalEntPosts" parameterType="int" resultType="int">
         SELECT count(*) FROM post WHERE ENTERPRISENO = #{no} AND DELETEDDATE IS null
     </select>
+
+<!--    관심 상품 여부-->
+    <select id="isLike" parameterType="UserLikeDto" resultType="int">
+        SELECT count(*) FROM userlike where USERno = #{userNo} AND postno = #{postNo}
+    </select>
+
+<!--    관심 상품 등록  -->
+    <insert id="addUserLike" parameterType="UserLikeDto">
+        insert into userlike values(seq_userlike.nextval, #{userNo}, #{postNo})
+    </insert>
+
+<!--    관심 상품 취소-->
+    <delete id="deleteUserLike" parameterType="UserLikeDto">
+        delete from userlike where userNo = #{userNo} and postNo = #{postNo}
+    </delete>
 </mapper>

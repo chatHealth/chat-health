@@ -4,16 +4,25 @@ public class HelpfulDto {
 
 	private int helpKey;
 	private int reviewNo;
+	private int userNo;
 
-	
 	public HelpfulDto() {
-		
 	}
-	public HelpfulDto(int helpKey, int reviewNo) {
-		super();
+
+	public HelpfulDto(int helpKey, int reviewNo, int userNo) {
 		this.helpKey = helpKey;
 		this.reviewNo = reviewNo;
+		this.userNo = userNo;
 	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
 	public int getHelpKey() {
 		return helpKey;
 	}
