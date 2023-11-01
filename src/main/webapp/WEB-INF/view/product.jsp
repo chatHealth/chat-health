@@ -80,9 +80,8 @@ $("#modalAccept").on("click", function() {
 });
 
 
-</script>
-
 
 </script>
+
 
 
