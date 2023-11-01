@@ -33,7 +33,7 @@
 			<th scope="row">${review.RNUM }</th>
 			<c:choose>
 				<c:when test="${review.POSTDELEDDATE eq null}">
-					<td class="entP"><a href="../view/product?no=${review.POSTNO}"><img src="/upload/${review.POSTIMG}" style="height:100px"  alt="postImg"/></a></td>
+					<td class="entP"><a href="../view/product?no=${review.POSTNO}"><img src="/upload/${review.POSTIMG}" class="img100"  alt="postImg"/></a></td>
 					<td class="entP"><a href="../view/product?no=${review.POSTNO}">${review.POSTTITLE}</a></td>
 				</c:when>
 				<c:otherwise>

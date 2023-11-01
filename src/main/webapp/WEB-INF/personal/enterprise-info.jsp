@@ -17,6 +17,8 @@
 			<!-- Profile Picture -->
 			<div class="profile-picture">
 				<%--                        <img src="https://via.placeholder.com/150" alt="Profile Picture">--%>
+				<div class="edit-button">
+					<a id="editBtn" class="btn edit-profile">
 					<c:choose>
 						<c:when test="${loggedEnterprise.profile eq 'null'}">
 							<img src="../img/basic_profile.svg" alt="없음">
@@ -25,10 +27,11 @@
 							<img src="/upload/${loggedEnterprise.profile }" alt="+++++++">
 						</c:otherwise>
 					</c:choose>
-				<div class="edit-button">
+						<p id="explain">Edit</p>
+					</a>
 					<%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
 					<%--                        </div>--%>
-					<button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>
+<%--					<button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>--%>
 					<!-- 프로필 사진 업로드 Modal-->
 					<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
 						 aria-labelledby="exampleModalLabel" aria-hidden="true">
