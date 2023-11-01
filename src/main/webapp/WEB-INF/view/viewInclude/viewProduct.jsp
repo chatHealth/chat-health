@@ -8,6 +8,7 @@
 				</div>
 			</div>
 			<div class="box2">
+
 				<h2>${postInfo.TITLE }</h2>
 				<div id="Name">${postInfo.NAME }</div>
 				<div id="RegDate">${postInfo.REGDATE }</div>

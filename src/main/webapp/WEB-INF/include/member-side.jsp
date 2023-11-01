@@ -10,7 +10,7 @@
 <%@ include file="../include/header-main.jsp" %>
 <link href="../css/mypage.css" rel="stylesheet" />
 
-<div class="container-fluid">
+<div class="container-fluid centered-page">
   <div class="row">
     <%--        <button class="btn btn-primary mt-2 ml-2" id="sidebar-toggle">Toggle Sidebar</button>--%>
 
@@ -22,7 +22,7 @@
           <ul>
             <li><a class="nav-link " href="../personal/member-info">내 정보</a></li>
             <li><a class="nav-link " href="../personal/member-password">비밀번호 변경</a></li>
-            <li><a class="nav-link " href="../personal/member-wish">관심 제품</a></li>
+            <li><a class="nav-link " href="../personal/member-wish?idx=1">관심 제품</a></li>
             <li><a class="nav-link " href="../personal/member-review?idx=1">내 리뷰</a></li>
 <%--            <li><a class="nav-link " href="../personal/member-comments">내 댓글</a></li>--%>
             <li><a class="nav-link " href="../personal/member-withdraw">회원 탈퇴</a></li>
@@ -33,7 +33,7 @@
           <ul>
             <li><a class="nav-link " href="../personal/member-info">기업 정보</a></li>
             <li><a class="nav-link " href="../personal/member-password">비밀번호 변경</a></li>
-            <li><a class="nav-link " href="../personal/enterprise-post">내 상품 관리</a></li>
+            <li><a class="nav-link " href="../personal/enterprise-post?idx=1">내 상품 관리</a></li>
             <li><a class="nav-link " href="../personal/member-withdraw">회원 탈퇴</a></li>
           </ul>
         </c:when>
@@ -46,4 +46,4 @@
       </c:choose>
     </div>
   </div>
-<div class="col-9 content">
+<div class="col-9 content min-h300">
