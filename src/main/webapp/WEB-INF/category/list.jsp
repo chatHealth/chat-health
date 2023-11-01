@@ -133,7 +133,7 @@
 						<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
 						</li>
 						
-						<c:forEach var="page" begin="1" end="${pages}">
+						<c:forEach var="page" begin="1" end="${pageTotal}">
 							<li class="page-item">
 								<a class="page-link convey-btn" data-page="${page}"> ${page} </a>
 							</li>

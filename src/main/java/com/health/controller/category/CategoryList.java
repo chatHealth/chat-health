@@ -82,9 +82,8 @@ public class CategoryList extends HttpServlet {
 		}else {  											
 			map.put("cntStandard", "all");
 		}
-		int count = postDao.countPost(map);
+		int postTotal = postDao.countPost(map);  // 총 post 갯수
 		
-
 
 		// 3) 8개만 띄우기 or pagination
 		String pageStandard = request.getParameter("ps");
@@ -93,16 +92,27 @@ public class CategoryList extends HttpServlet {
 			map.put("start", "1");
 			map.put("end", "8");
 			// request.setAttribute("ps","eight");
+			
 		} else if (pageStandard.equals("all")) {
-			map.put("start", "1");
-			map.put("end", "20");
-			request.setAttribute("pages", 3);
+			
+			// 넘어오는 index
+			int idx = 1;
+			String idxTmp = request.getParameter("idx"); 
+			if(idxTmp!= null &&!idxTmp.isEmpty()) idx = Integer.parseInt(idxTmp);
+			
+			int postPerPage = 20;  // 한페이지당 post갯수
+			int pageTotal = (int)Math.ceil((double)postTotal/postPerPage); //총 페이지갯수 
+			
+			String start = postPerPage * (idx-1) + 1 +"";
+			String end = postPerPage * idx +"";
+			
+			map.put("start", start);
+			map.put("end", end);
+			request.setAttribute("pageTotal", pageTotal);
 		}
 		request.setAttribute("ps", pageStandard);
 
-	
-				
-		        
+		
 		        
 		// 4) real get postList, set info, convey sympNo, materialNo
 		if(sympNo > 0 && materialNo==0) { 								// 1) 증상선택 온경우
