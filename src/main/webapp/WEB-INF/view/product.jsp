@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/header-main.jsp"%>
+<%@ include file="../include/nav.jsp"%>
 
-
+<div class="viewBody">
 <div class="container marketing">
 
 	<!-- 제품 정보 헤드 -->
@@ -12,13 +13,12 @@
 
 	<hr class="featurette-divider">
 	<!-- 제품정보 -->
-			<c:forEach items="${postInfo}" var="post">
 	<div class="row featurette">
 		<div class="col-md-7">
-			${post.CONTENT}
+			${postInfo.CONTENT}
 		</div>
 	</div>
-	</c:forEach>
+		</div>
 	<!--                          리뷰                         -->
 	<hr class="featurette-divider">
 	<h1 class="reviewStart">리뷰</h1>
@@ -56,6 +56,30 @@
 <%@ include file="../include/footer.jsp"%>
 
 
+<script>
+// 1. delete modal 처리(rang 건들지 마시오)
 
+$("#modalAccept").on("click", function() {
+
+	$.ajax({
+		type : "POST", 
+		data : {postNo : ${postInfo.POSTNO} },
+		url : "../post/delete-process",
+		
+		success : function(data) {
+			if (data.isAccepted === "ok") {
+
+				location.href="../category/list";
+			}
+		},
+		error : function(error) {
+
+			history.back();
+		}
+	});
+});
+
+
+</script>
 
 

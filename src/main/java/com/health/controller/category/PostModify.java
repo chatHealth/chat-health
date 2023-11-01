@@ -12,8 +12,10 @@ import java.io.IOException;
 import java.util.List;
 
 import com.health.dao.MaterialDao;
+import com.health.dao.MaterialPostDao;
 import com.health.dao.PostDao;
 import com.health.dao.SymptomDao;
+import com.health.dao.SymptomPostDao;
 import com.health.dto.MaterialDto;
 import com.health.dto.PostDto;
 import com.health.dto.SymptomDto;
@@ -28,7 +30,10 @@ public class PostModify extends HttpServlet {
 
 	private final PostDao postDao = PostDao.getInstance();
 	private final SymptomDao symptomDao = SymptomDao.getInstance();
-		private final MaterialDao materialDao = MaterialDao.getInstance();
+	private final SymptomPostDao symptomPostDao = SymptomPostDao.getInstance();
+	private final MaterialDao materialDao = MaterialDao.getInstance();
+	private final MaterialPostDao materialPostDao = MaterialPostDao.getInstance();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 0. nav
 		HttpSession session = request.getSession();
@@ -44,10 +49,14 @@ public class PostModify extends HttpServlet {
 
 		// 2. symptom material
 		List<SymptomDto> symptomList = symptomDao.getAllSymptom();
+		List<Integer> selectedSymptomList = symptomPostDao.getSelectedSymptom(no);
 		List<MaterialDto> materialList = materialDao.getAllMaterial();
+		List<Integer> selectedMaterialList = materialPostDao.getSelectedMaterial(no);
 		
 		request.setAttribute("symptomList", symptomList);
+		request.setAttribute("selectedSymptomList", selectedSymptomList);
 		request.setAttribute("materialList", materialList);
+		request.setAttribute("selectedMaterialList", selectedMaterialList);
 		
 		// 3. send
 		request.setAttribute("post", post);

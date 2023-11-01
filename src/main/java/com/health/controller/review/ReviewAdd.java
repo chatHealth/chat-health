@@ -9,8 +9,9 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-//import org.apache.catalina.Session;
+import org.apache.catalina.Session;
 
+import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
 import com.health.dto.MemberDto;
 import com.health.dto.ReviewDto;
@@ -24,28 +25,31 @@ public class ReviewAdd extends HttpServlet {
 		super();
 	}
 
+	private final ReviewDao reviewDao = ReviewDao.getInstance();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ReviewDto reviewDto = new ReviewDto();
-		ReviewDao reviewDao = new ReviewDao();
 
-//		HttpSession loggedSession = request.getSession();
-//		MemberDto loggedMember = (MemberDto)loggedSession.getAttribute("loggedMember");
+		HttpSession loggedSession = request.getSession();
+		MemberDto loggedMember = (MemberDto)loggedSession.getAttribute("loggedMember");
 
-		// System.out.println(loggedMember.getUserNo());
 
 		String recontent = request.getParameter("recontent");
 		String retitle = request.getParameter("retitle");
+		int no = Integer.parseInt(request.getParameter("no"));
 
-		// reviewDto.setUserNo(loggedMember.getUserNo());
+		
 
-		reviewDto.setUserNo(123);
-		reviewDto.setPostNo(2);
+		reviewDto.setUserNo(loggedMember.getUserNo());
+		reviewDto.setPostNo(no);
 		reviewDto.setTitle(retitle);
 		reviewDto.setContent(recontent);
 		reviewDto.setHelpful(0);
 
 		int result = reviewDao.insertRivew(reviewDto);
+		if(result>0) {
+			response.sendRedirect("../view/product?no="+no);
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
