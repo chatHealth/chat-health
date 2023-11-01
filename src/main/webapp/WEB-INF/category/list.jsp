@@ -20,7 +20,7 @@
 								<c:forEach items="${ materialList }" var="material" varStatus="status">
 
 									<div class="col-md-3 ">
-										<a href="#material=${ material.materialNo }" class="nav-link link-body-emphasis">
+										<a href="../category/list?sort=${sort }&symp=${sympNo }&material=${ material.materialNo }" class="nav-link link-body-emphasis">
 											${material.materialName } 
 										</a>
 									</div>
@@ -47,22 +47,25 @@
 				<c:otherwise>
 
 
-					<!-- 3. show postList -->
-					<div class="sort-select d-flex justify-content-start">
-						<form action="../category/list" method="get" name="sort-select" id="sort-select">
-							<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
-								<option value="recent" ${param.sort=='recent'?'selected':null }>최신순</option>
-								<option value="old" ${param.sort=='old'?'selected':null }>오래된순</option>
-							</select>
-						</form>
-					</div>
 
+			<!-- 3. show postList -->
+			<div class="sort-select d-flex justify-content-start">
+				<form action="../category/list?" method="get" name="sort-select"
+					id="sort-select">
+					<input type="hidden" name="symp" value="${sympNo}">
+      				<input type="hidden" name="material" value="${materialNo}">
+					<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
+						<option value="recent" ${sort=='recent'?'selected':null }>최신순</option>
+						<option value="old" ${sort=='old'?'selected':null }>오래된순</option>
+					</select>
+				</form>
+			</div>
 			<script>
 				$("#sort").on('change', function() {
-					console.log($(this).val());
 					$("#sort-select").submit();
 				});
 			</script>
+
 
 			<div class="container album py-5 bg-light">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
@@ -93,7 +96,7 @@
 													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-delete">삭제</a>
 												</div>
 												
-												<small class="text-muted"> 회사명 </small>
+												<small class="text-muted">${post.name }</small>
 											</div>
 										</div>
 									</div>

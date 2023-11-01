@@ -55,23 +55,39 @@ public class CategoryList extends HttpServlet {
 		String sort = request.getParameter("sort");
 		if(sort==null || sort.equals("recent")) {
 			map.put("sort", "recent");
+			request.setAttribute("sort", "recent");
 		} else if (sort.equals("old")){
 			map.put("sort", "old");
+			request.setAttribute("sort","old");
 		}
 		
-		// 3) 증상, 키워드 얻어오기
-		String keyword = request.getParameter("keyword");
+		// 3) 증상/재료/키워드 로 post 얻어오기
 		String symp = request.getParameter("symp");
 		int sympNo = 0;
-		if(symp != null) sympNo=Integer.parseInt(symp);
-		
+		if(symp != null && !symp.isEmpty()) sympNo=Integer.parseInt(symp);
+		String material = request.getParameter("material");
+		int materialNo = 0;
+		if(material != null && !material.isEmpty()) materialNo=Integer.parseInt(material);
+		String keyword = request.getParameter("keyword");
+
 		// 3) real get part, set info
-		if(sympNo > 0) { 								// 1) 증상선택 온경우
+		if(sympNo > 0 && materialNo==0) { 								// 1) 증상선택 온경우
 			map.put("sympNo", symp);
 			postList = postDao.getPostForSympno(map);
 			
+			request.setAttribute("sympNo", sympNo);
 			request.setAttribute("info", symptomDao.getsymptName(sympNo));
-		}else if(keyword != null) { 					 // 2) 검색창으로 온경우
+		}else if(materialNo>0){ 								// 1) 증상+재료 선택 온경우
+			map.put("sympNo", symp);
+			map.put("materialNo", material);
+			postList = postDao.getPostForSympnoAndMaterial(map);
+			
+			request.setAttribute("sympNo", sympNo);
+			request.setAttribute("materialNo", materialNo);
+			request.setAttribute("info", symptomDao.getsymptName(sympNo)+">"+materialDao.getMaterialName(materialNo));
+			
+			
+		} else if(keyword != null) { 					 // 2) 검색창으로 온경우
 			map.put("keyword", keyword);
 			postList = postDao.getPostForKeyword(map);
 			
