@@ -64,6 +64,11 @@
 	height: 400px;
 }
 
+.viewHt{
+	width: 15px;
+	height: 15px;
+}
+
 /*sun review*/
 .reviewStart {
 	text-align: center;
@@ -89,11 +94,15 @@
 }
 
 .btnGood {
-	margin-left: 500%;
+	margin-left: 800%;
+	margin-bottom: 20px;
 }
+
 
 .btnGdfdsf {
 	width: 100px;
+	background-color: rgb(255, 253, 181);
+	border-radius: 10%;
 }
 
 .reviewContentbox {
