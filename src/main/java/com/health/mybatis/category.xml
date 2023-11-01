@@ -20,6 +20,9 @@
 	<select id="getsymptName" resultType="string" parameterType = "int">
 		select symptomname from symptom WHERE sympno = ${sympNo}
 	</select>
+	<select id="getMaterialName" resultType="string" parameterType = "int">
+		select materialname from Material WHERE materialNo = ${materialNo}
+	</select>
 
 	<insert id="insertPost" parameterType="PostDto">
 		insert into post
@@ -49,42 +52,91 @@
 		set deletedDate=sysdate
 		where postNo=#{no}
 	</update>
-
 	
-	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">
-		SELECT * FROM post 
-		WHERE postno in ( SELECT postno FROM symptompost 
-		WHERE sympno = CAST(#{sympNo} as number))
-	</select>
 	
-	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
-		SELECT * FROM post WHERE title LIKE '%'||#{keyword}||'%'
-	</select>
 
 	<select id="getPostForAll" resultType="PostDto" parameterType = "HashMap">
-		select * from post
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		where p.deletedDate is NULL
 			<choose>
 			<when test="sort=='recent'">
 				order by regdate desc
 			</when>
-			<when test="sort=='recommended'">
+			<when test="sort=='old'">
+				order by regdate
+
+			</when>
+		</choose>
+	</select>
+
+	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		where p.deletedDate is NULL
+		
+		and  title LIKE '%'||#{keyword}||'%'
+		<choose>
+			<when test="sort=='recent'">
 				order by regdate desc
 			</when>
-			<when test="sort=='reviewed'">
+			<when test="sort=='old'">
+				order by regdate
+			</when>
+		</choose>
+	</select>
+	
+	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		where p.deletedDate is NULL
+		
+		and postno in ( SELECT postno FROM symptompost 
+		WHERE sympno = CAST(#{sympNo} as number))
+		<choose>
+			<when test="sort=='recent'">
 				order by regdate desc
+			</when>
+			<when test="sort=='old'">
+				order by regdate
+			</when>
+		</choose>
+	</select>
+
+	<select id="getPostForSympnoAndMaterial" resultType="PostDto"
+		parameterType="HashMap">
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
+		LEFT JOIN MaterialPost ON p.postNo = MaterialPost.postNo
+		
+		where p.deletedDate is NULL
+		AND sympno=CAST(#{sympNo} as number)
+		AND materialno=CAST(#{materialNo} as number)
+		
+		<choose>
+			<when test="sort=='recent'">
+				order by regdate desc
+
+			</when>
+			<when test="sort=='old'">
+				order by regdate
 			</when>
 		</choose>
 	</select>
 
 
 
-	<select id="getMaerialBySymptom" resultType="MaterialDto" parameterType="int">
-		SELECT * FROM material 
-			WHERE materialno in (
-			SELECT materialno
-				FROM SymptomPost INNER JOIN MaterialPost 
-				ON SymptomPost.postNo = MaterialPost.postNo
-				WHERE sympno=#{sympNo})
+
+	<select id="getMaerialBySymptom" resultType="MaterialDto"
+		parameterType="int">
+		SELECT Material.*
+		FROM Post p
+		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
+		LEFT JOIN MaterialPost ON p.postNo = MaterialPost.postNo
+		LEFT JOIN Material ON MaterialPost.materialno = Material.materialno
+		WHERE deletedDate is NULL
+		AND sympno=#{sympNo}
 	</select>
 	
 	<select id="getOnePost" resultType="PostDto" parameterType = "int">

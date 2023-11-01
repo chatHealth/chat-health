@@ -44,6 +44,16 @@ public class MaterialDao {
 		
 		return resList;
 	}
+
+	
+	// 3. materialNo로 이름 출력
+	public String getMaterialName(int materialNo) {
+		String result = "";
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.selectOne("getMaterialName", materialNo);
+		sqlSession.close();
+		return result;
+	}
 	
 
 }

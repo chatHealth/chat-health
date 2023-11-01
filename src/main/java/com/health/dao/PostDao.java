@@ -38,27 +38,6 @@ public class PostDao {
 	
 	
 	// 3. 
-	// 증상으로 post list 가져오기
-	public List<PostDto> getPostForSympno(HashMap<String,String> map) {
-		List<PostDto> resList = null;
-		
-		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-		resList = sqlSession.selectList("getPostForSympno", map);
-		sqlSession.close();
-		
-		return resList;
-	}
-	
-	// 키워드로  post list 가져오기
-	public List<PostDto> getPostForKeyword(HashMap<String,String> map) {
-		List<PostDto> resList = null;
-		
-		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-		resList = sqlSession.selectList("getPostForKeyword", map);
-		sqlSession.close();
-		
-		return resList;
-	}
 	
 	// 모든 post list 가져오기
 	public List<PostDto> getPostForAll(HashMap<String,String> map) {
@@ -70,6 +49,44 @@ public class PostDao {
 		
 		return resList;
 	}
+	
+	
+	// 증상으로 post list 가져오기
+	public List<PostDto> getPostForSympno(HashMap<String,String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForSympno", map);
+		sqlSession.close();
+		
+		return resList;
+	}
+	
+	// 증상과 재료로 post list 가져오기
+	public List<PostDto> getPostForSympnoAndMaterial(HashMap<String, String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForSympnoAndMaterial", map);
+		sqlSession.close();
+		
+		return resList;
+	}
+		
+	// 키워드로  post list 가져오기
+	public List<PostDto> getPostForKeyword(HashMap<String,String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForKeyword", map);
+		sqlSession.close();
+		
+		return resList;
+	}
+	
+
+	
+
 	
 	
 	// 4. postNo로 게시글 하나 가져오기
@@ -104,5 +121,6 @@ public class PostDao {
 		
 		return result;
 	}
+	
 	
 }
