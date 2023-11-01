@@ -93,7 +93,7 @@
 													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-delete">삭제</a>
 												</div>
 												
-												<small class="text-muted"> 회사명 </small>
+												<small class="text-muted">${post.name }</small>
 											</div>
 										</div>
 									</div>

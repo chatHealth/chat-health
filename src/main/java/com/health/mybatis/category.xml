@@ -56,8 +56,9 @@
 	
 
 	<select id="getPostForAll" resultType="PostDto" parameterType = "HashMap">
-		select * from post
-		where deletedDate is null
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		where p.deletedDate is NULL
 			<choose>
 			<when test="sort=='recent'">
 				order by regdate desc
@@ -69,7 +70,10 @@
 	</select>
 
 	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
-		SELECT * FROM post WHERE deletedDate is NULL 
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		where p.deletedDate is NULL
+		
 		and  title LIKE '%'||#{keyword}||'%'
 		<choose>
 			<when test="sort=='recent'">
@@ -82,8 +86,10 @@
 	</select>
 	
 	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">
-		SELECT * FROM post 
-		WHERE deletedDate is NULL 
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		where p.deletedDate is NULL
+		
 		and postno in ( SELECT postno FROM symptompost 
 		WHERE sympno = CAST(#{sympNo} as number))
 		<choose>
@@ -98,11 +104,12 @@
 
 	<select id="getPostForSympnoAndMaterial" resultType="PostDto"
 		parameterType="HashMap">
-		SELECT p.*
-		FROM Post p
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
 		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
 		LEFT JOIN MaterialPost ON p.postNo = MaterialPost.postNo
-		WHERE deletedDate is NULL
+		
+		where p.deletedDate is NULL
 		AND sympno=CAST(#{sympNo} as number)
 		AND materialno=CAST(#{materialNo} as number)
 		
@@ -121,7 +128,7 @@
 
 	<select id="getMaerialBySymptom" resultType="MaterialDto"
 		parameterType="int">
-		SELECT materialname
+		SELECT Material.*
 		FROM Post p
 		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
 		LEFT JOIN MaterialPost ON p.postNo = MaterialPost.postNo
