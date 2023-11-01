@@ -64,6 +64,11 @@
 	height: 400px;
 }
 
+.viewHt{
+	width: 15px;
+	height: 15px;
+}
+
 /*sun review*/
 .reviewStart {
 	text-align: center;

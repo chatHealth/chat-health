@@ -18,7 +18,7 @@
 													<input type="hidden" name="reviewNo" value="${review.REVIEWNO}" />
 													<div class="btnGood">	
 														<button class="btnGdfdsf" type="submit">
-														  도움이돼요 ${review.HELPFULCNT }
+														  <img src="../img/좋아요.png" alt=""> ${review.HELPFULCNT }
 														</button>
 												</div>
 												</form>

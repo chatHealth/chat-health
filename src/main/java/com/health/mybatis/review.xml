@@ -13,7 +13,9 @@
 	 					where postNo=#{no} ORDER BY helpfulcnt desc,REGDATE DESC
  </select>
  <select id="postInfo" parameterType="int" resultType="Map">
- 	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME ,(select count(1) from USERLIKE where POSTNO  = r.POSTNO) as UserLikeCnt
+ 	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME ,
+ 			(select count(1) from USERLIKE where POSTNO  = r.POSTNO) as UserLikeCnt,
+ 			(select count(1) from USERLIKE where POSTNO  = r.POSTNO and userNo =#{userNo} ) as UserCheck
 					FROM post r LEFT JOIN enterprise m
 					ON r.ENTERPRISENO =m.ENTERPRISENO 
 					WHERE postNo=#{no}
@@ -31,8 +33,9 @@
  </select>
  
  <select id="sameViewLike" parameterType="UserLikeDto" resultType="int">
- 		SELECT count(*) FROM UserLike WHERE userNo=#{userNo} AND postNo=#{postNo}
+ 		SELECT count(*)as UserCheck FROM UserLike WHERE userNo=#{userNo} AND postNo=#{postNo}
  </select>
+
  
  
  

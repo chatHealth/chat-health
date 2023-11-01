@@ -10,24 +10,4 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>ViewLike</display-name>
-    <servlet-name>ViewLike</servlet-name>
-    <servlet-class>com.health.controller.view.ViewLike</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewLike</servlet-name>
-    <url-pattern>/ViewLike</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ViewLikeController</display-name>
-    <servlet-name>ViewLikeController</servlet-name>
-    <servlet-class>com.health.controller.view.ViewLikeController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewLikeController</servlet-name>
-    <url-pattern>/ViewLikeController</url-pattern>
-  </servlet-mapping>
 </web-app>
