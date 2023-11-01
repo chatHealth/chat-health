@@ -18,10 +18,7 @@
 			${postInfo.CONTENT}
 		</div>
 	</div>
-<<<<<<< HEAD
 		</div>
-=======
->>>>>>> 53f7e5693cef0df6bfaacd4fd0f00f45682b2494
 	<!--                          리뷰                         -->
 	<hr class="featurette-divider">
 	<h1 class="reviewStart">리뷰</h1>
@@ -30,16 +27,13 @@
 	<!--                    리뷰끝                    -->
 	<hr class="featurette-divider">
 
+
 	<c:choose >
 	<c:when test="${loggedMember ne null }">
 	<form action="../review/ReviewAdd" method="post">
 		<div>
 			<input type="hidden" name="no" value="${param.no}" />
-<<<<<<< HEAD
 			<input class="reviewtitle" type="text" id="retitle" name="retitle"	placeholder="리뷰 제목" />
-=======
-			<input class="reviewtitle" type="text" id="retitle" name="retitle"				placeholder="리뷰 제목" />
->>>>>>> 53f7e5693cef0df6bfaacd4fd0f00f45682b2494
 			<div class="commetbox">
 				<input class="reviewtext" type="text" id="recontent"	name="recontent" placeholder="리뷰글 작성" />
 				<button value="submit">리뷰등록</button>
