@@ -127,7 +127,7 @@ public class CategoryList extends HttpServlet {
 			request.setAttribute("materialNo", materialNo);
 			request.setAttribute("info", symptomDao.getsymptName(sympNo)+">"+materialDao.getMaterialName(materialNo));
 			
-			
+		
 		} else if(keyword != null) { 					 // 2) 검색창으로 온경우
 			postList = postDao.getPostForKeyword(map);
 			
