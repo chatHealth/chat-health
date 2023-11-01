@@ -49,20 +49,12 @@
 		set deletedDate=sysdate
 		where postNo=#{no}
 	</update>
-
 	
-	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">
-		SELECT * FROM post 
-		WHERE postno in ( SELECT postno FROM symptompost 
-		WHERE sympno = CAST(#{sympNo} as number))
-	</select>
 	
-	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
-		SELECT * FROM post WHERE title LIKE '%'||#{keyword}||'%'
-	</select>
 
 	<select id="getPostForAll" resultType="PostDto" parameterType = "HashMap">
 		select * from post
+		where deletedDate is null
 			<choose>
 			<when test="sort=='recent'">
 				order by regdate desc
@@ -73,6 +65,46 @@
 		</choose>
 	</select>
 
+	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
+		SELECT * FROM post WHERE deletedDate is NULL 
+		and  title LIKE '%'||#{keyword}||'%'
+		<choose>
+			<when test="sort=='recent'">
+				order by regdate desc
+			</when>
+			<when test="sort=='old'">
+				order by regdate
+			</when>
+		</choose>
+	</select>
+	
+	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">
+		SELECT * FROM post 
+		WHERE deletedDate is NULL 
+		and postno in ( SELECT postno FROM symptompost 
+		WHERE sympno = CAST(#{sympNo} as number))
+		<choose>
+			<when test="sort=='recent'">
+				order by regdate desc
+			</when>
+			<when test="sort=='old'">
+				order by regdate
+			</when>
+		</choose>
+	</select>
+	
+	<select id="getPostForSympnoAndMaterial" resultType="PostDto" parameterType = "HashMap">
+		<choose>
+			<when test="sort=='recent'">
+				order by regdate desc
+			</when>
+			<when test="sort=='old'">
+				order by regdate
+			</when>
+		</choose>
+	</select>
+	
+	
 
 
 	<select id="getMaerialBySymptom" resultType="MaterialDto" parameterType="int">
