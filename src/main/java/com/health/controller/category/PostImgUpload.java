@@ -67,7 +67,7 @@ public class PostImgUpload extends HttpServlet {
 		// 2. 결과 보내기
 		Gson gson = new Gson();
 		Map<String, Object> map = new HashMap<>();
-		map.put("url", saveDir +"/"+ newFileName);
+		map.put("url", saveDir +File.separator+ newFileName);
 		map.put("uploaded", true);
 		String resultJson =gson.toJson(map);
 		

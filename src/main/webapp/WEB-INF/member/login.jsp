@@ -43,7 +43,7 @@
   </form>
   
  
-  <p class="mt-4" style="text-align: center;">아직 회원이 아니신가요? <a href="../member/join-select">여기</a>를 눌러 회원가입 하세요!</p>
+  <p class="mt-4" style="text-align: center;">아직 회원이 아니신가요? <a href="../member/join-select">여기</a>를 눌러 회원가입 하기</p>
   
 </div>
 <%@ include file="../include/footer.jsp"%>
