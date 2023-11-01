@@ -11,7 +11,7 @@
 			<div class="d-flex justify-content-center">
 				<c:choose>
 					<c:when test="${ loggedMember.profile eq null }">
-						<img src="${pageContext.request.contextPath}/img/basic_post.svg" class="profile-small mt-3 ">
+						<img src="../img/basic_post.svg" class="profile-small mt-3 ">
 					</c:when>
 					<c:otherwise>
 						<img src="${ loggedMember.profile}" class="profile-small mt-3 ">
