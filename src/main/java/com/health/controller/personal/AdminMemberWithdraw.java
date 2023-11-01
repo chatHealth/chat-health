@@ -35,6 +35,7 @@ public class AdminMemberWithdraw extends HttpServlet {
 		Gson gson = new Gson();
 		Map<String, String> map = new HashMap<>();
 		String resultJson = null;
+		
 		if (result > 0) {
 			map.put("isDelete", "ok");
 			resultJson = gson.toJson(map);

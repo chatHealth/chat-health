@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 
 	</main>
-
-
 <c:if test="${myModal.state eq 'show'}">
 		<jsp:include page="/WEB-INF/include/modal.jsp"></jsp:include>
 </c:if>

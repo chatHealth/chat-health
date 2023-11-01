@@ -33,19 +33,18 @@ public class MemberJoinProcess extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 값 넘겨받기
+				//1. 값 넘겨받기
 		
-				
 				String id = request.getParameter("id");
 				String email = request.getParameter("email");
 				String name = request.getParameter("name");
+				String birth = request.getParameter("birth");
 				String nickname = request.getParameter("nickname");
 				String pw = request.getParameter("pw");
 				String gender = request.getParameter("gender");
 				String address = request.getParameter("address");		
 				String addressDetail = request.getParameter("addressDetail");
 				Part profile = request.getPart("profile");
-				
 				
 	
 				
@@ -94,15 +93,15 @@ public class MemberJoinProcess extends HttpServlet {
 						parameterDto.setId(id);
 						parameterDto.setEmail(email);
 						parameterDto.setName(name);
+						parameterDto.setBirthDate(birth);
 						parameterDto.setNickName(nickname);
 						parameterDto.setPw(pw);
 						parameterDto.setGender(gender);
 						parameterDto.setAddress(address);
 						parameterDto.setAddressDetail(addressDetail);
 						parameterDto.setProfile(realUploadPath + File.separator + newFileName);
-						parameterDto.setBirthDate("2023-11-11");
 						
-						System.out.println(parameterDto);
+						
 						
 						//4. 인서트
 						int result = memberDao.insertMember(parameterDto);
