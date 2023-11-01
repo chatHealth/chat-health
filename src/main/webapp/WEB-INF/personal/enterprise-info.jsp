@@ -27,7 +27,9 @@
 							<img src="${loggedEnterprise.profile }" alt="프로필 사진">
 						</c:otherwise>
 					</c:choose>
+						<div class="explain">
 						<p id="explain">Edit</p>
+						</div>
 					</a>
 					<%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
 					<%--                        </div>--%>

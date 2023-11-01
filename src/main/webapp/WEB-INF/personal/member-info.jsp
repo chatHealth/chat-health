@@ -26,6 +26,9 @@
                     <img src="${loggedMember.profile }" alt="멤버프로필">
                 </c:otherwise>
                 </c:choose>
+                        <div class="explain">
+                            <p id="explain">Edit</p>
+                        </div>
                     </a>
 <%--                <div class="edit-button">--%>
 <%--                    <button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>--%>
