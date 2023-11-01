@@ -16,6 +16,8 @@
         <div class="col-4">
             <!-- Profile Picture -->
             <div class="profile-picture">
+                <div class="edit-button">
+                    <a id="editBtn" class="btn edit-profile">
                 <c:choose>
                 <c:when test="${loggedMember.profile eq 'null'}">
                     <img src="../img/basic_profile.svg" alt="없음">
@@ -24,8 +26,9 @@
                     <img src="/upload/${loggedMember.profile }" alt="멤버프로필">
                 </c:otherwise>
                 </c:choose>
-                <div class="edit-button">
-                    <button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>
+                    </a>
+<%--                <div class="edit-button">--%>
+<%--                    <button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>--%>
                     <!-- 프로필 사진 업로드 Modal-->
                     <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">

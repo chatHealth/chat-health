@@ -22,37 +22,40 @@
 	<thead>
 	<tr>
 		<th scope="col">#</th>
-		<th scope="col">제목</th>
+		<th scope="col" colspan="2">상품</th>
 		<th scope="col">등록 일자</th>
+		<th scope="col"><img src="../img/heart.png" class="img20"></th>
 	</tr>
 	</thead>
 	</c:if>
 	<tbody>
 	<c:forEach items="${posts }" var="post" varStatus="loop">
 	<tr>
-		<th scope="row">${post.rowNum }</th>
-		<td class="entP"><a href="../view/product?no=${post.postNo}">${post.title }</a></td>
-		<td>${post.regDate }</td>
+		<th scope="row">${post.RNUM}</th>
+		<td class="entP"><a href="../view/product?no=${post.POSTNO}"><img src="/upload/${post.POSTIMG}" class="img100"></a></td>
+		<td class="entP"><a href="../view/product?no=${post.POSTNO}">${post.TITLE }</a></td>
+		<td>${post.REGDATE }</td>
+		<td class="entP">${post.LIKES}</td>
 	</tr>
 	</c:forEach>
 	</tbody>
 </table>
-<%--<nav aria-label="Page navigation example" >--%>
-<%--	<ul class="pagination">--%>
-<%--		<li class="page-item">--%>
-<%--			<a class="page-link" href="#" aria-label="Previous">--%>
-<%--				<span aria-hidden="true">&laquo;</span>--%>
-<%--			</a>--%>
-<%--		</li>--%>
-<%--		<li class="page-item"><a class="page-link" href="#">1</a></li>--%>
-<%--		<li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-<%--		<li class="page-item"><a class="page-link" href="#">3</a></li>--%>
-<%--		<li class="page-item">--%>
-<%--			<a class="page-link" href="#" aria-label="Next">--%>
-<%--				<span aria-hidden="true">&raquo;</span>--%>
-<%--			</a>--%>
-<%--		</li>--%>
-<%--	</ul>--%>
-<%--</nav>--%>
+<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		<li class="page-item">
+			<a class="page-link" href="#" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<c:forEach var="page" begin="1" end="${pages }">
+			<li class="page-item"><a class="page-link" href="../personal/enterprise-post?idx=${page}">${page}</a></li>
+		</c:forEach>
+		<li class="page-item">
+			<a class="page-link" href="#" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>
 </div>
 <%@ include file="../include/footer.jsp"%>

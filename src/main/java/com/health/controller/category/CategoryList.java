@@ -19,6 +19,7 @@ import com.health.dto.MaterialDto;
 import com.health.dto.MaterialPostDto;
 import com.health.dto.PostDto;
 import com.health.dto.SymptomDto;
+import com.health.util.ModalState;
 
 
 @WebServlet("/category/list")
@@ -54,10 +55,8 @@ public class CategoryList extends HttpServlet {
 		String sort = request.getParameter("sort");
 		if(sort==null || sort.equals("recent")) {
 			map.put("sort", "recent");
-		} else if (sort.equals("recommended")){
-			map.put("sort", "recommended");
-		} else if (sort.equals("reviewed")) {
-			map.put("sort", "reviewed");
+		} else if (sort.equals("old")){
+			map.put("sort", "old");
 		}
 		
 		// 3) 증상, 키워드 얻어오기
@@ -85,11 +84,14 @@ public class CategoryList extends HttpServlet {
 		// 2. 영양소 얻어오기
 		List<MaterialDto> materialList = materialDao.getMaerialBySymptom(sympNo);
 		
-		// 3. send
+		
+		
+		// 4. send
 		//if(postList.size() == 0) { postList = null; }
 		request.setAttribute("postList", postList);
 		request.setAttribute("materialList", materialList);
 		
+	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/category/list.jsp");
 		dispatcher.forward(request, response); 
 	}
