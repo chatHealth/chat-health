@@ -24,7 +24,7 @@ public class EnterprisePost extends HttpServlet {
         EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
         if (loggedEnterprise == null || loggedMember != null) {
-            ScriptWriter.alertAndGo(response, "잘못된 접근입니다.", "../");
+            ScriptWriter.alertAndGo(response, "잘못된 접근입니다.", "../index/index");
         }
 
         int idx = Integer.parseInt(request.getParameter("idx"));
@@ -37,8 +37,9 @@ public class EnterprisePost extends HttpServlet {
         map.put("enterpriseNo", loggedEnterprise.getEnterpriseNo());
         map.put("idx", idx);
 
-        List<Map<String, Object>> posts = personalDao.entPost(map);
+        List<PostPageDto> posts = personalDao.entPost(map);
 
+        request.setAttribute("totalMerchandise", count);
         request.setAttribute("pages", pages);
         request.setAttribute("posts", posts);
 

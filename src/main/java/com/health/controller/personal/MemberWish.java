@@ -4,6 +4,7 @@ import com.health.dao.MemberDao;
 import com.health.dao.PersonalDao;
 import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
+import com.health.dto.personal.MemberWishPageDto;
 import com.health.util.ScriptWriter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -42,8 +43,10 @@ public class MemberWish extends HttpServlet {
         int count = personalDao.totalMemWish(userNo);
         int pages = (int) Math.ceil(count / 8.0);
 
-        List<PostDto> userLikePosts = personalDao.userLikePosts(map);
+        List<MemberWishPageDto> userLikePosts = personalDao.userLikePosts(map);
 
+        request.setAttribute("count", count);
+        request.setAttribute("userNo", userNo);
         request.setAttribute("pages", pages);
         request.setAttribute("userLikes", userLikePosts);
 
