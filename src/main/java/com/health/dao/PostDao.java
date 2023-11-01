@@ -122,5 +122,14 @@ public class PostDao {
 		return result;
 	}
 	
+	// 7. pagination을 위한 글 갯수 세기
+	public int countPost(HashMap<String, String> map) {
+		int result;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.selectOne("countPost", map);
+        sqlSession.close();
+        return result;
+	}
+	
 	
 }

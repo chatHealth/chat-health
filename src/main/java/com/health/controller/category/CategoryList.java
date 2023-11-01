@@ -43,26 +43,12 @@ public class CategoryList extends HttpServlet {
 		}
 				
 		// 1. post list get
-		//1) 초기화
+		//0) 초기화
 		List<PostDto> postList = null;
 		HashMap<String,String> map = new HashMap<>();   // sort, 페이지, 증상번호 저장, 키워드 저장
 		
-		// 1) 8개만 띄우기 or pagination
-		String pageStandard =  request.getParameter("ps");
 		
-		if(pageStandard==null || pageStandard.equals("eight")) {
-			map.put("start", "1");
-			map.put("end", "8");
-			request.setAttribute("ps","eight");
-		} else if (pageStandard.equals("all")){
-			map.put("start", "1");
-			map.put("end", "10");
-		}
-		System.out.println(pageStandard);
-		request.setAttribute("ps",pageStandard);
-		
-		
-		// 2) 정렬
+		// 1) 정렬
 		String sort = request.getParameter("sort");
 		if(sort==null || sort.equals("recent")) {
 			map.put("sort", "recent");
@@ -72,7 +58,7 @@ public class CategoryList extends HttpServlet {
 			request.setAttribute("sort","old");
 		}
 		
-		// 3) 증상/재료/키워드 로 post 얻어오기
+		// 2) 증상/재료/키워드/전체 로 post 개수
 		String symp = request.getParameter("symp");
 		int sympNo = 0;
 		if(symp != null && !symp.isEmpty()) sympNo=Integer.parseInt(symp);
@@ -81,17 +67,50 @@ public class CategoryList extends HttpServlet {
 		if(material != null && !material.isEmpty()) materialNo=Integer.parseInt(material);
 		String keyword = request.getParameter("keyword");
 
-		
-		// 3) real get part, set info
-		if(sympNo > 0 && materialNo==0) { 								// 1) 증상선택 온경우
+		if(sympNo > 0&& materialNo==0) {
+			map.put("cntStandard", "symp");
 			map.put("sympNo", symp);
+
+		}else if(materialNo>0){
+			map.put("cntStandard", "sympAndMaterial");
+			map.put("sympNo", symp);
+			map.put("materialNo", material);
+			
+		} else if(keyword != null) { 
+			map.put("cntStandard", "keyword");
+			map.put("keyword", keyword);
+		}else {  											
+			map.put("cntStandard", "all");
+		}
+		int count = postDao.countPost(map);
+		
+
+
+		// 3) 8개만 띄우기 or pagination
+		String pageStandard = request.getParameter("ps");
+
+		if (pageStandard == null || pageStandard.equals("eight")) {
+			map.put("start", "1");
+			map.put("end", "8");
+			// request.setAttribute("ps","eight");
+		} else if (pageStandard.equals("all")) {
+			map.put("start", "1");
+			map.put("end", "20");
+			request.setAttribute("pages", 3);
+		}
+		request.setAttribute("ps", pageStandard);
+
+	
+				
+		        
+		        
+		// 4) real get postList, set info, convey sympNo, materialNo
+		if(sympNo > 0 && materialNo==0) { 								// 1) 증상선택 온경우
 			postList = postDao.getPostForSympno(map);
 			
 			request.setAttribute("sympNo", sympNo);
 			request.setAttribute("info", symptomDao.getsymptName(sympNo));
 		}else if(materialNo>0){ 								// 1) 증상+재료 선택 온경우
-			map.put("sympNo", symp);
-			map.put("materialNo", material);
 			postList = postDao.getPostForSympnoAndMaterial(map);
 			
 			request.setAttribute("sympNo", sympNo);
@@ -100,7 +119,6 @@ public class CategoryList extends HttpServlet {
 			
 			
 		} else if(keyword != null) { 					 // 2) 검색창으로 온경우
-			map.put("keyword", keyword);
 			postList = postDao.getPostForKeyword(map);
 			
 			request.setAttribute("info", keyword);
@@ -114,7 +132,7 @@ public class CategoryList extends HttpServlet {
 		
 		
 		
-		// 4. send
+		// 3. send
 		if(postList.size() == 0) { postList = null; }
 		request.setAttribute("postList", postList);
 		request.setAttribute("materialList", materialList);

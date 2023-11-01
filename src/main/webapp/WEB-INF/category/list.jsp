@@ -120,16 +120,35 @@
 	<form action="../category/list" method="get" class="convey-form">
 		<input type="hidden" name="symp" value="${sympNo}">
 		<input type="hidden" name="material" value="${materialNo}">
- 
+ 		<input type="hidden" name="idx" value=""> 
     			
 	<c:choose>
-	<c:when test="${ ps=='all' }">
-		<div class="d-flex align-items-center justify-content-center">
-			<h2 class="use-main-color">pagination</h2>
-		</div>
-	</c:when>
-	
-	<c:when test="${ postList ne null }"> 
+		<c:when test="${ ps=='all' }">
+			<div class="d-flex align-items-center justify-content-center">
+			<input type="hidden" name="ps" value="all">
+
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item">
+						<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
+						</li>
+						
+						<c:forEach var="page" begin="1" end="${pages}">
+							<li class="page-item">
+								<a class="page-link convey-btn" data-page="${page}"> ${page} </a>
+							</li>
+						</c:forEach>
+						
+						<li class="page-item">
+						<a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a>
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+		</c:when>
+
+		<c:when test="${ postList ne null }"> 
 		<div class="d-flex align-items-center justify-content-center">
 			<a class="btn btn-outline-secondary mt-3 convey-btn" >
 				모든글보기
@@ -158,6 +177,8 @@ $("#modalAccept").on("click", function() {
 
 //2. symp, material 숨겨서 보내기
 $(".convey-btn").on('click', function() {
+	 const page = $(this).data("page");
+     $("input[name='idx']").val(page); // idx 필드에 페이지 번호 설정
 	 $(".convey-form").submit();
 	 return false;
 });
