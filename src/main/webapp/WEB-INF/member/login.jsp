@@ -11,7 +11,7 @@
     <div class="mb-2">
     <label for="userID" class="mb-3">아이디</label>
       <input type="text" class="form-control" id="userID" placeholder="아이디" name="userID" 
-      value="${cookie.saveIDCookie.value}" required> 
+      value="${cookie.saveIDCookie.value}" autofocus required> 
       
     </div>
     <div class="mb-2">
