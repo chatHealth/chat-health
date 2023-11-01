@@ -52,21 +52,19 @@
 						<form action="../category/list" method="get" name="sort-select" id="sort-select">
 							<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
 								<option value="recent" ${param.sort=='recent'?'selected':null }>최신순</option>
-								<option value="recommended" ${param.sort=='recommended'?'selected':null }>추천순</option>
-								<option value="reviewed" ${param.sort=='reviewed'?'selected':null }>리뷰순</option>
+								<option value="old" ${param.sort=='old'?'selected':null }>오래된순</option>
 							</select>
 						</form>
 					</div>
 
-					<script>
-			$("#sort").on('change', function(){
-				console.log($(this).val());
-			 $("#sort-select").submit();
-			});
-			
+			<script>
+				$("#sort").on('change', function() {
+					console.log($(this).val());
+					$("#sort-select").submit();
+				});
 			</script>
 
-					<div class="container album py-5 bg-light">
+			<div class="container album py-5 bg-light">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 							<c:forEach items="${ postList }" var="post" varStatus="status">
 
@@ -91,7 +89,7 @@
 											</a>
 											<div class="d-flex justify-content-between align-items-center">
 												<div class="btn-group">
-													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3">수정</a>
+													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3" >수정</a>
 													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3">삭제</a>
 												</div>
 												
@@ -123,3 +121,5 @@
 
 
 <%@ include file="../include/footer.jsp"%>
+
+
