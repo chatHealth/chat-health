@@ -26,7 +26,7 @@ public class MemberModifyProcess extends HttpServlet {
         HttpSession session = request.getSession();
         MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
         if (loggedMember == null) {
-            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../index/index");
         }
         int userNo = loggedMember.getUserNo();
 
