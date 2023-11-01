@@ -21,7 +21,7 @@
 				<form action="../view/viewlike" method="post">
 				<input type="hidden" name="viewLikeNo" value="${postInfo.POSTNO}" />
 				<div class="likeProduct">
-					<button class="productLike" type="sumbit">제품좋아요</button>
+					<button class="productLike" type="sumbit">제품좋아요 ${postInfo.USERLIKECNT}</button>
 				</div>
 				</form>
 			</div>
