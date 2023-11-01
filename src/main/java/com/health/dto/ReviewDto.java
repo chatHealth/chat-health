@@ -21,7 +21,7 @@ public class ReviewDto {
 				+ ", content=" + content + ", regDate=" + regDate + ", deletedDate="
 				+ deletedDate + "]";
 	}
-	public ReviewDto(int reviewNo, int userNo, int postNo, String title, String content, String regDate,int helpful,
+	public ReviewDto(int reviewNo, int userNo, int postNo, String title, String content, String regDate,
 			String deletedDate) {
 		super();
 		this.reviewNo = reviewNo;

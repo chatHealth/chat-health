@@ -10,24 +10,14 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-</web-app>
-
-<!--
   <servlet>
     <description></description>
-    <display-name>PostWriteProcess</display-name>
-    <servlet-name>PostWriteProcess</servlet-name>
-    <servlet-class>com.health.controller.category.PostWriteProcess</servlet-class>
-    <multipart-config>
-      <location></location>
-      <max-file-size>20848820</max-file-size>
-      <max-request-size>418018841</max-request-size>
-      <file-size-threshold>1048576</file-size-threshold>
-    </multipart-config>
+    <display-name>ViewLike</display-name>
+    <servlet-name>ViewLike</servlet-name>
+    <servlet-class>com.health.controller.view.ViewLike</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PostWriteProcess</servlet-name>
-    <url-pattern>/post/write-process</url-pattern>
+    <servlet-name>ViewLike</servlet-name>
+    <url-pattern>/ViewLike</url-pattern>
   </servlet-mapping>
-  
-   -->
+</web-app>

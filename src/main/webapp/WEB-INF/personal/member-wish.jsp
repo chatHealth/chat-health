@@ -22,13 +22,17 @@
 			<div class="row min-h300">
 				<c:forEach items="${userLikes }" var="image" varStatus="loop">
 				<div class="col-md-3">
-					<a href="../view/product?no=${image.POSTNO }"><div class="card">
-						<img src="/upload/${image.POSTIMG }" alt="" class="card-img-top">
-						<div class="card-body">
-							<p class="card-text">${image.TITLE }</p>
+					<div class="card">
+						<div class="item"><a href="../view/product?no=${image.postNo }"></a></div>
+						<img src="/upload/${image.postImg }" alt="" class="card-img-top img150">
+						</a>
+						<div class="card-body entP">
+							<a href="../view/product?no=${image.postNo }">
+								<p class="card-text">${image.title }</p></a>
+							<button onclick="btnLike(${image.postNo})" style="border:none; background: none;"><img src="../img/heart.png" class="img20" id="heart${image.postNo}"/></button>
 						</div>
 					</div>
-					</a>
+
 				</div>
 					<%-- 매 4번째 이미지마다 새로운 행 시작 --%>
 				<c:if test="${loop.index % 4 == 3}">
@@ -58,4 +62,28 @@
 		</div>
 	</div>
 </div>
+
+<script>
+function btnLike(s) {
+	$.ajax({
+		type: "GET", // 또는 "GET" 등 요청 메서드 선택
+		url: "../personal/delete-wish", // AJAX 요청을 처리할 서버 측 엔드포인트 URL
+		data: { postNo: s,
+				userNo: ${userNo}}, // 요청 데이터 (요소의 값을 전달)
+		success: function(data) {
+			if(data.count>0){
+			if (data.states === 0) {
+				document.getElementById("heart"+s).src = "../img/empty-heart.png";
+			} else {
+				document.getElementById("heart"+s).src = "../img/heart.png";
+			}}
+		},
+		error: function (xhr, status, error) {
+			// 오류
+			// 처리
+			console.error("Error: " + error);
+		}
+		});
+}
+</script>
 <%@ include file="../include/footer.jsp" %>

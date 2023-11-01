@@ -1,9 +1,8 @@
 package com.health.dao;
 
-import com.health.dto.EnterpriseDto;
-import com.health.dto.MemberDto;
-import com.health.dto.PostDto;
-import com.health.dto.PostPageDto;
+import com.health.dto.*;
+import com.health.dto.personal.MemberReviewPageDto;
+import com.health.dto.personal.MemberWishPageDto;
 import com.health.mybatis.MyBatisConnectionFactory;
 import org.apache.ibatis.session.SqlSession;
 
@@ -21,8 +20,8 @@ public class PersonalDao {
     private PersonalDao() {
     }
 
-    public List<PostDto> userLikePosts(HashMap<String, Integer> map) {
-        List<PostDto> userLikePosts;
+    public List<MemberWishPageDto> userLikePosts(HashMap<String, Integer> map) {
+        List<MemberWishPageDto> userLikePosts;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         userLikePosts = sqlSession.selectList("memberWishPosts", map);
         sqlSession.close();
@@ -93,16 +92,16 @@ public class PersonalDao {
         return result;
     }
 
-    public List<Map<String, Object>> entPost(Map<String, Integer> map) {
-        List<Map<String, Object>> entPosts;
+    public List<PostPageDto> entPost(Map<String, Integer> map) {
+        List<PostPageDto> entPosts;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         entPosts = sqlSession.selectList("entPosts", map);
         sqlSession.close();
         return entPosts;
     }
 
-    public List<HashMap<String, Object>> memReview(Map<String, Integer> map) {
-        List<HashMap<String, Object>> list;
+    public List<MemberReviewPageDto> memReview(Map<String, Integer> map) {
+        List<MemberReviewPageDto> list;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         list = sqlSession.selectList("memReview", map);
         sqlSession.close();
@@ -129,6 +128,30 @@ public class PersonalDao {
         int result;
         SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
         result = sqlSession.selectOne("totalEntPosts", no);
+        sqlSession.close();
+        return result;
+    }
+
+    public int isLike(UserLikeDto userLikeDto) {
+        int result;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.selectOne("isLike", userLikeDto);
+        sqlSession.close();
+        return result;
+    }
+
+    public int addLike(UserLikeDto userLikeDto) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.insert("addUserLike", userLikeDto);
+        sqlSession.close();
+        return result;
+    }
+
+    public int deleteLike(UserLikeDto userLikeDto) {
+        int result = 0;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.delete("deleteUserLike", userLikeDto);
         sqlSession.close();
         return result;
     }

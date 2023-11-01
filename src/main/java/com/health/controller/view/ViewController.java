@@ -43,7 +43,6 @@ public class ViewController extends HttpServlet {
 		request.setAttribute("postInfo", postInfo);
 		
 
-		
 		//성분전달
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
 		request.setAttribute("postMeterial", postMeterial);
