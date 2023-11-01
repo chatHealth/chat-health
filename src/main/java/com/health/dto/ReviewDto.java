@@ -18,7 +18,7 @@ public class ReviewDto {
 	@Override
 	public String toString() {
 		return "ReviewDto [reviewNo=" + reviewNo + ", userNo=" + userNo + ", postNo=" + postNo + ", title=" + title
-				+ ", content=" + content + ", regDate=" + regDate  + ", deletedDate="
+				+ ", content=" + content + ", regDate=" + regDate + ", deletedDate="
 				+ deletedDate + "]";
 	}
 	public ReviewDto(int reviewNo, int userNo, int postNo, String title, String content, String regDate,

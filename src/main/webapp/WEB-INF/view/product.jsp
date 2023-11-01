@@ -32,9 +32,10 @@
 	<c:when test="${loggedMember ne null }">
 	<form action="../review/ReviewAdd" method="post">
 		<div>
-			<input class="reviewtitle" type="text" id="retitle" name="retitle"				placeholder="리뷰 제목" />
+			<input type="hidden" name="no" value="${param.no}" />
+			<input class="reviewtitle" type="text" id="retitle" name="retitle"	placeholder="리뷰 제목" />
 			<div class="commetbox">
-				<input class="reviewtext" type="text" id="recontent"					name="recontent" placeholder="리뷰글 작성" />
+				<input class="reviewtext" type="text" id="recontent"	name="recontent" placeholder="리뷰글 작성" />
 				<button value="submit">리뷰등록</button>
 			</div>
 		</div>
@@ -44,7 +45,11 @@
 	 <div>
 			
 			<div class="commetbox">
-			<h2>댓글을 작성하려면 로그인하세요.</h2>
+			<h2>댓글을 작성하려면 로그인하세요.
+				<form action="../member/login" method="post">
+				<button valuew="submit">로그인</button>
+				</form>
+			</h2>
 			</div>
 		</div>
 	</c:otherwise>
@@ -80,6 +85,9 @@ $("#modalAccept").on("click", function() {
 });
 
 
+
 </script>
+
+
 
 

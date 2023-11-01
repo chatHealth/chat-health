@@ -24,7 +24,7 @@
 							<img src="../img/basic_profile.svg" alt="없음">
 						</c:when>
 						<c:otherwise>
-							<img src="/upload/${loggedEnterprise.profile }" alt="+++++++">
+							<img src="${loggedEnterprise.profile }" alt="프로필 사진">
 						</c:otherwise>
 					</c:choose>
 						<p id="explain">Edit</p>
@@ -50,7 +50,7 @@
 													<img src="../img/basic_profile.svg" alt="없음" id="preview" />
 												</c:when>
 												<c:otherwise>
-													<img src="/upload/${loggedEnterprise.profile }" alt="멤버프로필" id="preview" />
+													<img src="${loggedEnterprise.profile }" alt="멤버프로필" id="preview" />
 												</c:otherwise>
 											</c:choose>
 											<input type="file" class="form-control-file" id="profileImage"

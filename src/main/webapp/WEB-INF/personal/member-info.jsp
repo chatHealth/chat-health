@@ -23,7 +23,7 @@
                     <img src="../img/basic_profile.svg" alt="없음">
                 </c:when>
                 <c:otherwise>
-                    <img src="/upload/${loggedMember.profile }" alt="멤버프로필">
+                    <img src="${loggedMember.profile }" alt="멤버프로필">
                 </c:otherwise>
                 </c:choose>
                     </a>
@@ -47,7 +47,7 @@
                                                         <img src="../img/basic_profile.svg" alt="없음" id="preview" />
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <img src="/upload/${loggedMember.profile }" alt="멤버프로필" id="preview" />
+                                                        <img src="${loggedMember.profile }" alt="멤버프로필" id="preview" />
                                                     </c:otherwise>
                                                 </c:choose>
                                             <input type="file" class="form-control-file" id="profileImage"

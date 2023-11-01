@@ -20,7 +20,7 @@
 								<c:forEach items="${ materialList }" var="material" varStatus="status">
 
 									<div class="col-md-3 ">
-										<a href="#material=${ material.materialNo }" class="nav-link link-body-emphasis">
+										<a href="../category/list?sort=${sort }&symp=${sympNo }&material=${ material.materialNo }" class="nav-link link-body-emphasis">
 											${material.materialName } 
 										</a>
 									</div>
@@ -47,26 +47,27 @@
 				<c:otherwise>
 
 
-					<!-- 3. show postList -->
-					<div class="sort-select d-flex justify-content-start">
-						<form action="../category/list" method="get" name="sort-select" id="sort-select">
-							<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
-								<option value="recent" ${param.sort=='recent'?'selected':null }>최신순</option>
-								<option value="recommended" ${param.sort=='recommended'?'selected':null }>추천순</option>
-								<option value="reviewed" ${param.sort=='reviewed'?'selected':null }>리뷰순</option>
-							</select>
-						</form>
-					</div>
 
-					<script>
-			$("#sort").on('change', function(){
-				console.log($(this).val());
-			 $("#sort-select").submit();
-			});
-			
+			<!-- 3. show postList -->
+			<div class="sort-select d-flex justify-content-start">
+				<form action="../category/list?" method="get" name="sort-select"
+					id="sort-select">
+					<input type="hidden" name="symp" value="${sympNo}">
+      				<input type="hidden" name="material" value="${materialNo}">
+					<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
+						<option value="recent" ${sort=='recent'?'selected':null }>최신순</option>
+						<option value="old" ${sort=='old'?'selected':null }>오래된순</option>
+					</select>
+				</form>
+			</div>
+			<script>
+				$("#sort").on('change', function() {
+					$("#sort-select").submit();
+				});
 			</script>
 
-					<div class="container album py-5 bg-light">
+
+			<div class="container album py-5 bg-light">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 							<c:forEach items="${ postList }" var="post" varStatus="status">
 
@@ -91,11 +92,11 @@
 											</a>
 											<div class="d-flex justify-content-between align-items-center">
 												<div class="btn-group">
-													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3">수정</a>
-													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3">삭제</a>
+													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-modify" >수정</a>
+													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-delete">삭제</a>
 												</div>
 												
-												<small class="text-muted"> 회사명 </small>
+												<small class="text-muted">${post.name }</small>
 											</div>
 										</div>
 									</div>
@@ -123,3 +124,11 @@
 
 
 <%@ include file="../include/footer.jsp"%>
+
+<script>
+
+$("#modalAccept").on("click", function() {
+
+	location.href="../post/modify";
+});
+</script>
