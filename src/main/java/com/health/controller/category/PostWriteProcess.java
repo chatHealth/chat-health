@@ -120,7 +120,7 @@ public class PostWriteProcess extends HttpServlet {
 				MaterialPostDto mpDto= new MaterialPostDto();
 				mpDto.setPostNo(postNo);
 				mpDto.setMaterialNo(Integer.parseInt(material));
-				tmp=mpDao.insertMateriaPost(mpDto);
+				tmp=mpDao.insertMaterialPost(mpDto);
 				materialRes+=tmp;
 			}
 		}

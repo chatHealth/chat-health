@@ -12,6 +12,7 @@
 				<th>아이디</th>
 				<th>상호명</th>
 				<th>가입승인하기</th>
+				<th>가입거절하기</th>
 			</tr>
 		</thead>
 		<tbody class="table-hover">
@@ -25,6 +26,8 @@
 						<td><button type="button" data-userno="${item.enterpriseNo}"
 								class="btn btn-accept btn-outline-primary btn-sm"
 								data-bs-toggle="modal" data-bs-target="#exampleModal">가입승인</button></td>
+						<td><button type="button" data-userno="${item.enterpriseNo}"
+								class="btn btn-reject btn-outline-danger btn-sm">가입거절</button></td>
 					</tr>
 				</c:if>
 			</c:forEach>
@@ -54,14 +57,69 @@
 </div>
 <p>${item.enterpriseNo}</p>
 <script>
+	<!-- 승인 처리 -->
 	let sendenterpriseNo = null;
 	$(".btn-accept").on("click", function() {
-		console.log($(this));
 		sendEnterpriseNo = $(this).data("userno");
 	})
 
 	$("#entAccept").on("click", function() {
-		console.log(sendEnterpriseNo);
+		//console.log(sendEnterpriseNo);
+		// Ajax 요청을 보내고 백엔드 코드 실행
+		$.ajax({
+			type : "POST", // 또는 "GET" 등 HTTP 메소드 설정
+			data : {
+				userNo : sendEnterpriseNo
+			},
+			url : "../personal/admin-entAccept-process",
+			success : function(data) {
+				// 백엔드에서 반환된 데이터를 처리
+				//console.log(data);
+				if (data.isAccepted === "ok") {
+
+					alert("승인 완료")
+					location.reload();
+				}
+			},
+			error : function(error) {
+				// 오류 처리
+
+				alert("알수 없는 오류가 발생. 시스템관리자에게 문의하세요")
+				location.reload();
+			}
+		});
+	});
+	
+	<!-- 거절처리 -->
+	//let sendenterpriseNo = null;
+	$(".btn-reject").on("click", function() {
+		console.log("reject");
+		sendEnterpriseNo = $(this).data("userno");
+		$.ajax({
+			type : "POST", // 또는 "GET" 등 HTTP 메소드 설정
+			data : {
+				userNo : sendEnterpriseNo
+			},
+			url : "../personal/admin-entReject-process",
+			success : function(data) {
+				// 백엔드에서 반환된 데이터를 처리
+				console.log(data);
+				if (data.isRejected === "ok") {
+
+					alert("거절 완료")
+					location.reload();
+				}
+			},
+			error : function(error) {
+				// 오류 처리
+
+				alert("알수 없는 오류가 발생. 시스템관리자에게 문의하세요")
+				location.reload();
+			}
+		});
+	})
+
+	$("#entAccept").on("click", function() {
 		// Ajax 요청을 보내고 백엔드 코드 실행
 		$.ajax({
 			type : "POST", // 또는 "GET" 등 HTTP 메소드 설정

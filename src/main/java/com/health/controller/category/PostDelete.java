@@ -9,8 +9,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.Map;
 
+import com.health.dao.PostDao;
+import com.health.dao.ReviewDao;
 import com.health.dao.SymptomDao;
+import com.health.dto.PostDto;
+import com.health.util.ModalState;
 
 @WebServlet("/post/delete")
 public class PostDelete extends HttpServlet {
@@ -29,8 +34,17 @@ public class PostDelete extends HttpServlet {
 			session.setAttribute("navSymptomList", symptomDao.getAllSymptom());
 		}
 		
+		//1. modal
+		ModalState deleteModal = new ModalState("show","게시물 삭제", "게시물을 삭제하시겠습니까?", "예", "아니요");
+		session.setAttribute("myModal", deleteModal);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/post/delete.jsp");
+		
+		// 2. post
+		int no = Integer.parseInt(request.getParameter("no"));
+		Map<String,Object> postInfo = ReviewDao.getInstance().postInfo(no);
+		request.setAttribute("postInfo", postInfo);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/product.jsp");
 		dispatcher.forward(request, response);
 	}
 
