@@ -55,8 +55,10 @@ public class CategoryList extends HttpServlet {
 		String sort = request.getParameter("sort");
 		if(sort==null || sort.equals("recent")) {
 			map.put("sort", "recent");
+			request.setAttribute("sort", "recent");
 		} else if (sort.equals("old")){
 			map.put("sort", "old");
+			request.setAttribute("sort","old");
 		}
 		
 		// 3) 증상/재료/키워드 로 post 얻어오기
@@ -67,7 +69,7 @@ public class CategoryList extends HttpServlet {
 		int materialNo = 0;
 		if(material != null) materialNo=Integer.parseInt(material);
 		String keyword = request.getParameter("keyword");
-		
+
 		// 3) real get part, set info
 		if(sympNo > 0 && materialNo==0) { 								// 1) 증상선택 온경우
 			map.put("sympNo", symp);
@@ -81,6 +83,7 @@ public class CategoryList extends HttpServlet {
 			postList = postDao.getPostForSympnoAndMaterial(map);
 			
 			request.setAttribute("sympNo", sympNo);
+			request.setAttribute("materialNo", materialNo);
 			request.setAttribute("info", symptomDao.getsymptName(sympNo)+">"+materialDao.getMaterialName(materialNo));
 			
 			
