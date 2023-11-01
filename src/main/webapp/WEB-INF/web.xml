@@ -20,4 +20,14 @@
     <servlet-name>ViewLike</servlet-name>
     <url-pattern>/ViewLike</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewLikeController</display-name>
+    <servlet-name>ViewLikeController</servlet-name>
+    <servlet-class>com.health.controller.view.ViewLikeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewLikeController</servlet-name>
+    <url-pattern>/ViewLikeController</url-pattern>
+  </servlet-mapping>
 </web-app>

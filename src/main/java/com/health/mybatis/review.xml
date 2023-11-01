@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
  <mapper namespace="com.helath.mybatis">
  
  <select id="reviewDate" parameterType="int" resultType="Map">
@@ -26,12 +25,19 @@
 					ON m.MATERIALNO = t.MATERIALNO 
 					WHERE p.POSTNO=#{no}
  </select>
- <select id="helpFulCount" parameterType='int' resultType="int">
- 	SELECT count(reviewNo) as count FROM HELPFUL WHERE reviewNo=#{reviewNo}
- </select>
+ 
  <select id="helpfulSame" parameterType="HelpfulDto" resultType="int">
  		SELECT count(*) FROM helpful WHERE userNo=#{userNo} AND reviewNO=#{reviewNo}
  </select>
+ 
+ <select id="sameViewLike" parameterType="UserLikeDto" resultType="int">
+ 		SELECT count(*) FROM UserLike WHERE userNo=#{userNo} AND postNo=#{postNo}
+ </select>
+ 
+ 
+ 
+ 
+ 
   <select id="getReviewNo" parameterType="int" resultType="int">
   	select reviewNo from review
   </select>
@@ -73,7 +79,15 @@
  	DELETE FROM HELPFUL WHERE userNo=#{userNo} and reviewNo=#{reviewNo}
  </delete>
  
- 
- 
+ <insert id="insertViewLike" parameterType="UserLikeDto">
+ INSERT INTO UserLike values(
+	seq_helpful.nextval,
+	#{userNo},
+	#{postNo}
+	)
+ </insert>
+ <delete id="deletViewLike" parameterType="UserLikeDto">
+ 	DELETE FROM userlike WHERE userNo=#{userNo} and postNo=#{postNo}
+ </delete>
  </mapper>
  
