@@ -91,11 +91,13 @@
 												<p class="card-text category-title">${ post.title }</p> 
 											</a>
 											<div class="d-flex justify-content-between align-items-center">
+											<c:if test="${loggedAdmin ne null or loggedEnterprise.enterpriseNo == post.enterpriseNo}">
 												<div class="btn-group">
 													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-modify" >수정</a>
 													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-delete">삭제</a>
 												</div>
-												
+											</c:if>
+											
 												<small class="text-muted">${post.name }</small>
 											</div>
 										</div>
