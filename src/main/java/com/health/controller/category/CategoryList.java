@@ -64,10 +64,10 @@ public class CategoryList extends HttpServlet {
 		// 3) 증상/재료/키워드 로 post 얻어오기
 		String symp = request.getParameter("symp");
 		int sympNo = 0;
-		if(symp != null) sympNo=Integer.parseInt(symp);
+		if(symp != null && !symp.isEmpty()) sympNo=Integer.parseInt(symp);
 		String material = request.getParameter("material");
 		int materialNo = 0;
-		if(material != null) materialNo=Integer.parseInt(material);
+		if(material != null && !material.isEmpty()) materialNo=Integer.parseInt(material);
 		String keyword = request.getParameter("keyword");
 
 		// 3) real get part, set info
