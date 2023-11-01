@@ -33,7 +33,7 @@
           <ul>
             <li><a class="nav-link " href="../personal/member-info">기업 정보</a></li>
             <li><a class="nav-link " href="../personal/member-password">비밀번호 변경</a></li>
-            <li><a class="nav-link " href="../personal/enterprise-post?idx=1">내 상품 관리</a></li>
+            <li><a class="nav-link " href="../personal/enterprise-post">내 상품 관리</a></li>
             <li><a class="nav-link " href="../personal/member-withdraw">회원 탈퇴</a></li>
           </ul>
         </c:when>
