@@ -15,6 +15,7 @@ import java.util.Map;
 import com.health.dao.HelpfulDao;
 import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
+import com.health.dto.HelpfulDto;
 import com.health.dto.PostDto;
 import com.health.dto.ReviewDto;
 
@@ -40,6 +41,12 @@ public class ViewController extends HttpServlet {
 		//상품정보 전달
 		Map<String,Object> postInfo = reviewDao.postInfo(no);
 		request.setAttribute("postInfo", postInfo);
+		
+////		//helpful전달
+//		HelpfulDto helpfulDto = new HelpfulDto();
+//		int helpful = helpfulDao.helpFulCount(7);
+//		System.out.println(helpful);
+//		request.setAttribute("helpful", helpful);
 		
 		
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
