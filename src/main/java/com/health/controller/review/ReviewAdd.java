@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import com.health.dao.PostDao;
+
 import com.health.dao.ReviewDao;
 import com.health.dto.MemberDto;
 import com.health.dto.ReviewDto;
@@ -34,13 +36,10 @@ public class ReviewAdd extends HttpServlet {
 		String retitle = request.getParameter("retitle");
 		int no = Integer.parseInt(request.getParameter("no"));
 
-		
-
 		reviewDto.setUserNo(loggedMember.getUserNo());
 		reviewDto.setPostNo(no);
 		reviewDto.setTitle(retitle);
 		reviewDto.setContent(recontent);
-		reviewDto.setHelpful(0);
 
 		int result = reviewDao.insertRivew(reviewDto);
 		if(result>0) {

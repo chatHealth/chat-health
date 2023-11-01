@@ -12,6 +12,7 @@
 
 <table class="table">
 	<h2>내 상품 관리</h2>
+	<p>내 상품 ${totalMerchandise}개</p>
 	<c:if test="${empty posts}">
 		<p class="fs-5 col-md-8">아직 등록된 상품이 없습니다</p>
 		<div class="mb-5">
@@ -31,11 +32,11 @@
 	<tbody>
 	<c:forEach items="${posts }" var="post" varStatus="loop">
 	<tr>
-		<th scope="row">${post.RNUM}</th>
-		<td class="entP"><a href="../view/product?no=${post.POSTNO}"><img src="/upload/${post.POSTIMG}" class="img100"></a></td>
-		<td class="entP"><a href="../view/product?no=${post.POSTNO}">${post.TITLE }</a></td>
-		<td>${post.REGDATE }</td>
-		<td class="entP">${post.LIKES}</td>
+		<th scope="col">${post.rNum}</th>
+		<td class="entP"><a href="../view/product?no=${post.postNo}"><img src="/upload/${post.postImg}" class="img100"></a></td>
+		<td class="entP"><a href="../view/product?no=${post.postNo}">${post.title }</a></td>
+		<td>${post.regDate }</td>
+		<td class="entP">${post.likes}</td>
 	</tr>
 	</c:forEach>
 	</tbody>

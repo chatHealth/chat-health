@@ -39,10 +39,10 @@
     /*margin-left: 240px; !* Adjust this margin for the initial sidebar width *!*/
 }
 
-.profile-picture {
+.profile-picture img {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
+    
     overflow: hidden;
     position: relative;
     margin: 0 auto;
@@ -114,4 +114,8 @@ max-width: 120vh;
 
 .edit-profile img:hover #explain{
     opacity: 1;
+}
+
+.img150{
+    height:150px;
 }

@@ -37,8 +37,9 @@ public class EnterprisePost extends HttpServlet {
         map.put("enterpriseNo", loggedEnterprise.getEnterpriseNo());
         map.put("idx", idx);
 
-        List<Map<String, Object>> posts = personalDao.entPost(map);
+        List<PostPageDto> posts = personalDao.entPost(map);
 
+        request.setAttribute("totalMerchandise", count);
         request.setAttribute("pages", pages);
         request.setAttribute("posts", posts);
 

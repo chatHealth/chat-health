@@ -2,64 +2,78 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.helath.mybatis">
-
-	<select id="reviewDate" parameterType="int" resultType="Map">
-		select r.REVIEWNO reviewno, r.USERNO userno,r.POSTNO postno,r.TITLE title,
-		r.CONTENT content, r.REGDATE regdate, r.DELETEDDATE
-		deleteddate,m.NICKNAME nickname
-		from Review r LEFT JOIN MEMBER m
-		ON
-		r.USERNO = m.USERNO
-		where postNo=#{no}
-	</select>
-	<select id="postInfo" parameterType="int" resultType="Map">
-		SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE ,
-		r.DELETEDDATE , m.NAME
-		FROM post r LEFT JOIN enterprise m
-		ON r.ENTERPRISENO =m.ENTERPRISENO
-		WHERE postNo=#{no}
-	</select>
-	<select id="postMeterial" parameterType="int" resultType="Map">
-		SELECT p.POSTNO , t.MATERIALNAME FROM POST p INNER JOIN MATERIALPOST m
-		ON p.POSTNO = m.POSTNO
-		INNER JOIN MATERIAL T
-		ON m.MATERIALNO = t.MATERIALNO
-		WHERE p.POSTNO=#{no}
-	</select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- insert -->
-
-
-
-	<insert id="insertRivew" parameterType="ReviewDto">
-		INSERT INTO Review values(
-		seq_review.nextval,
-		#{userNo},
-		#{postNo},
-		#{title},
-		#{content},
-		DEFAULT,
-		DEFAULT
-		)
-	</insert>
-
-
-
-
-
-</mapper>
+  
+ <mapper namespace="com.helath.mybatis">
+ 
+ <select id="reviewDate" parameterType="int" resultType="Map">
+ 	select r.REVIEWNO reviewno, r.USERNO userno,r.POSTNO postno,r.TITLE title, r.CONTENT content, r.REGDATE regdate,
+ 	  r.DELETEDDATE deleteddate,m.NICKNAME nickname,(select count(1) from helpful where reviewNo = r.reviewNo) as helpfulCnt
+ 					from Review r LEFT JOIN MEMBER m 
+	 					ON
+	 					r.USERNO = m.USERNO 
+	 					where postNo=#{no} ORDER BY REGDATE desc
+ </select>
+ <select id="postInfo" parameterType="int" resultType="Map">
+ 	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME 
+					FROM post r LEFT JOIN enterprise m
+					ON r.ENTERPRISENO =m.ENTERPRISENO 
+					WHERE postNo=#{no}
+ </select>
+ <select id="postMeterial" parameterType="int" resultType="Map">
+ 	SELECT p.POSTNO , t.MATERIALNAME  FROM POST p INNER JOIN MATERIALPOST m 
+					ON p.POSTNO = m.POSTNO 
+					INNER JOIN MATERIAL T
+					ON m.MATERIALNO = t.MATERIALNO 
+					WHERE p.POSTNO=#{no}
+ </select>
+ <select id="helpFulCount" parameterType='int' resultType="int">
+ 	SELECT count(reviewNo) as count FROM HELPFUL WHERE reviewNo=#{reviewNo}
+ </select>
+ <select id="helpfulSame" parameterType="HelpfulDto" resultType="int">
+ 		SELECT count(*) FROM helpful WHERE userNo=#{userNo} AND reviewNO=#{reviewNo}
+ </select>
+  <select id="getReviewNo" parameterType="int" resultType="int">
+  	select reviewNo from review
+  </select>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- insert -->
+ 
+ 
+ 
+ <insert id="insertRivew" parameterType="ReviewDto">
+ INSERT INTO Review values(
+					seq_review.nextval,
+					#{userNo},
+					#{postNo},
+					#{title},
+					#{content},
+					DEFAULT,
+					DEFAULT
+)
+ </insert>
+ <insert id="helpfulAdd" parameterType="HelpfulDto">
+ INSERT INTO HELPFUL values(
+	seq_helpful.nextval,
+	#{reviewNo},
+	#{userNo}
+	)
+ </insert>
+ <delete id="helpfulCancel" parameterType="HelpfulDto">
+ 	DELETE FROM HELPFUL WHERE userNo=#{userNo} and reviewNo=#{reviewNo}
+ </delete>
+ 
+ 
+ 
+ </mapper>
  

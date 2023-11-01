@@ -25,23 +25,25 @@
 		<th scope="col" colspan="2" style="text-align: center">상품</th>
 		<th scope="col">리뷰</th>
 		<th scope="col">등록일</th>
+		<th scope="col"><img src="../img/like.png" class="img20"</th>
 	</tr>
 	</thead>
 	<tbody>
 	<c:forEach items="${reviews }" var="review" varStatus="loop">
 		<tr>
-			<th scope="row">${review.RNUM }</th>
+			<th scope="row">${review.rNum }</th>
 			<c:choose>
-				<c:when test="${review.POSTDELEDDATE eq null}">
-					<td class="entP"><a href="../view/product?no=${review.POSTNO}"><img src="/upload/${review.POSTIMG}" class="img100"  alt="postImg"/></a></td>
-					<td class="entP"><a href="../view/product?no=${review.POSTNO}">${review.POSTTITLE}</a></td>
+				<c:when test="${review.postDeletedDate eq null}">
+					<td class="entP"><a href="../view/product?no=${review.postNo}"><img src="/upload/${review.postImg}" class="img100"  alt="postImg"/></a></td>
+					<td class="entP"><a href="../view/product?no=${review.postNo}">${review.postTitle}</a></td>
 				</c:when>
 				<c:otherwise>
-					<td class="entP">삭제된 상품입니다.</td>
+					<td colspan="2" class="entP">삭제된 상품입니다.</td>
 				</c:otherwise>
 			</c:choose>
-			<td class="entP"><a href="#">${review.TITLE }</a></td>
-			<td class="entP">${review.REGDATE }</td>
+			<td class="entP"><a href="#">${review.title }</a></td>
+			<td class="entP">${review.regDate }</td>
+			<td class="entP">${review.likes }</td>
 		</tr>
 	</tbody>
 	</c:forEach>
