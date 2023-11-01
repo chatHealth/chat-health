@@ -76,12 +76,24 @@
 		<div class="col-8">
 			<!-- Profile Info Table and '정보 수정' text -->
 			<div class="table-container">
-				<h2 class="text-2xl font-weight-bold">Profile Info</h2>
+				<h2 class="text-2xl font-weight-bold">Enterprise Information</h2>
 				<table class="table table-striped">
 					<tbody>
 					<tr>
 						<th scope="row" class="w-25">법인명</th>
-						<td class="w-75">${loggedEnterprise.name }</td>
+						<td class="w-75">${loggedEnterprise.name }
+								<c:choose>
+									<c:when test="${loggedEnterprise.accepted eq 0}">
+										<span style="color: white; border-style: double; font-size: 11px;border-color: #7f3756;background: #7f3756">승인대기중</span>
+									</c:when>
+									<c:when test="${loggedEnterprise.accepted eq 1}">
+										<span style="color: white; border-style: double; font-size: 11px;border-color: green;background: green">승인완료</span>
+									</c:when>
+									<c:otherwise>
+										<span style="color: white; border-style: double; font-size: 11px;border-color: red;background: red">승인거절</span>
+									</c:otherwise>
+								</c:choose>
+							</td>
 					</tr>
 					<tr>
 						<th scope="row" class="w-25">대표자</th>

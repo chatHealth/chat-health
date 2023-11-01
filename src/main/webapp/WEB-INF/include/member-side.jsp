@@ -36,19 +36,6 @@
             <li><a class="nav-link " href="../personal/enterprise-post?idx=1">내 상품 관리</a></li>
             <li><a class="nav-link " href="../personal/member-withdraw">회원 탈퇴</a></li>
           </ul>
-          <div style="margin-top:50px">
-          <c:choose>
-            <c:when test="${loggedEnterprise.accepted eq 0}">
-              <p style="color:black">승인 대기중...</p>
-            </c:when>
-            <c:when test="${loggedEnterprise.accepted eq 1}">
-              <p style="color:blue">ACCEPTED</p>
-            </c:when>
-            <c:otherwise>
-              <p style="color:red">DENINED</p>
-            </c:otherwise>
-          </c:choose>
-          </div>
         </c:when>
         <c:otherwise>
 
