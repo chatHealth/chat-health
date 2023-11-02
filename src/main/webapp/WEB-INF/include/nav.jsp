@@ -60,7 +60,7 @@
 		<c:when test="${ not empty loggedAdmin }">
 
 			<div class="d-flex justify-content-center">
-				<img src=${loggedAdmin.profile}" class="profile-small mt-3 ">
+				<img src="${loggedAdmin.profile}" class="profile-small mt-3 ">
 			</div>
 <<<<<<< HEAD
 			<a href="../personal/member-manage" class="btn btn-outline-primary mt-3">${ loggedAdmin.nickName}</a>

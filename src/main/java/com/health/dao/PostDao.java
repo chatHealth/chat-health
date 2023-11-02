@@ -111,6 +111,16 @@ public class PostDao {
 		return result;
 	}
 	
+	public int updatePostNotImg(PostDto postDto) {
+		int result = 0;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.update("updatePostNotImg",postDto);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 	// 6. delete one
 	public int deletePost(int no) {
 		int result = 0;
@@ -131,5 +141,6 @@ public class PostDao {
         return result;
 	}
 
+	
 	
 }

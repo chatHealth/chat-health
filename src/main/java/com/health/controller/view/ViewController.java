@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ public class ViewController extends HttpServlet {
 	private final PostDao postDao = PostDao.getInstance();
 	private static ReviewDao reviewDao =  ReviewDao.getInstance();
 	private static HelpfulDao helpfulDao =  HelpfulDao.getInstance();
+	private static ViewLikeDao viewLikeDao = ViewLikeDao.getInstance();
 	
     public ViewController() {
         super();
@@ -41,27 +43,31 @@ public class ViewController extends HttpServlet {
 		
 
 		HttpSession session= request.getSession();
-		session.getAttribute("loggedMember");
-
+		MemberDto memberDto = (MemberDto)session.getAttribute("loggedMember");
 		//리뷰전달
 		int no = Integer.parseInt(request.getParameter("no"));
 		List<Map<String,Object>> reviewList = reviewDao.selectReview(no);
 		request.setAttribute("reviewList", reviewList);
 		
 		//상품정보 전달
-				Map<String,Object> postInfo = reviewDao.postInfo(no);
-				request.setAttribute("postInfo", postInfo);
-				
-
-				//성분전달
-				List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
-				request.setAttribute("postMeterial", postMeterial);
+		Map<String,Object> postInfo = reviewDao.postInfo(no);
+		request.setAttribute("postInfo", postInfo);
+		
+		//viewLike유저 정보전달
+		UserLikeDto userLikeDto = new UserLikeDto();
+		userLikeDto.setPostNo(no);
+		int user=0;
+		if(memberDto != null) {
+			user = (Integer)memberDto.getUserNo();			
+		}
+		userLikeDto.setUserNo(user);
+		int viewLike = viewLikeDao.sameViewLike(userLikeDto);
+		request.setAttribute("viewLike", viewLike);
 		
 		
-		
-//		int userCheck = viewLikeDao.sameViewLike(userLikeDto);
-//		request.setAttribute("userCheck", userCheck);
-		
+		//성분전달
+		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
+		request.setAttribute("postMeterial", postMeterial);
 		
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher("/WEB-INF/view/product.jsp");
