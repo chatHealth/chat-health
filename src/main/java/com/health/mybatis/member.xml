@@ -63,6 +63,10 @@
 	SELECT ENTERPRISENO, id, name, accepted, deleteddate FROM Enterprise ORDER BY ENTERPRISENO  ASC
 	</select>
 	
+	<select id="getEnterDeletedDate" resultType ="String" parameterType="EnterpriseDto" >
+	SELECT deleteddate FROM Enterprise where id = #{id}
+	</select>
+	
 
 	
 	<update id="entAccept" parameterType="int">

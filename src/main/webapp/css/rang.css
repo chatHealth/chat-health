@@ -32,7 +32,7 @@
 /* main */
 
 .main-logo-chat-health {
-    color: #D19C97 !important;
+    color: #347F5C !important;
     white-space: nowrap;
 }
 .font-weight-bold {
@@ -65,6 +65,21 @@
 	height: 50px;
 }
 
-/** modal**/
+/** list **/
+.card-body{
+	height: 100px;	
+}
 
+.card-body a {
+	text-decoration: none;
+	font-weight: bold; 
+    text-align: center;
+}
 
+.category-title{
+	color:#347F5C;
+	
+	white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+    overflow: hidden; /* 텍스트 넘침 처리 */
+    text-overflow: ellipsis; /* 넘치는 텍스트를 '...'으로 표시 */
+}
