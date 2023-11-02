@@ -166,7 +166,7 @@
 <!-- 2. post related -->
 	<select id="getMaerialBySymptom" resultType="MaterialDto"
 		parameterType="int">
-		SELECT Material.*
+		SELECT UNIQUE(Material.materialno), Material.*
 		FROM Post p
 		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
 		LEFT JOIN MaterialPost ON p.postNo = MaterialPost.postNo
