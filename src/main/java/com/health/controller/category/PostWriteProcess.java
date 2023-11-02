@@ -138,9 +138,7 @@ public class PostWriteProcess extends HttpServlet {
 			//ModalState modalState = new ModalState("show", "글이 등록되었습니다"); 
 			//session.setAttribute("modalState", modalState);
 			
-			request.setAttribute("no", postNo);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/product.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("../view/product?no="+postNo);
 		}
 		else {
 			System.err.println("글이 작성되지 않았습니다"); 

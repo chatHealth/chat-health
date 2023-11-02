@@ -83,7 +83,7 @@ public class CategoryList extends HttpServlet {
 			map.put("cntStandard", "all");
 		}
 		int postTotal = postDao.countPost(map);  // 총 post 갯수
-		
+		request.setAttribute("postTotal", postTotal);
 
 		// 3) 8개만 띄우기 or pagination
 		String pageStandard = request.getParameter("ps");
@@ -138,16 +138,17 @@ public class CategoryList extends HttpServlet {
 		
 		
 		// 2. 영양소 얻어오기
-		List<MaterialDto> materialList = materialDao.getMaerialBySymptom(sympNo);
+		List<MaterialDto> materialList = null;
+		if(sympNo>0) materialList = materialDao.getMaerialBySymptom(sympNo);
 		
 		
 		
 		// 3. send
 		if(postList.size() == 0) { postList = null; }
 		request.setAttribute("postList", postList);
+		if(materialList.size() == 0 || (materialList.size() == 1 && materialList.get(0) == null)) { materialList = null; }
 		request.setAttribute("materialList", materialList);
 		
-	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/category/list.jsp");
 		dispatcher.forward(request, response); 
 	}
