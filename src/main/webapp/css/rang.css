@@ -23,6 +23,11 @@
 	height: 100%;
 }
 
+.preview img{
+	margin: 20px;
+	width:150px;
+}
+
 
 /* main */
 

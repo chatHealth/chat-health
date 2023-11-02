@@ -12,12 +12,10 @@
 	<form action="../post/modify-process" method="post"
 		enctype="multipart/form-data">
 		<input type="hidden" name="admin" value="${loggedAdmin.userNo }">
-		<input type="hidden" name="enpriseNo"
-			value="${loggedEnterprise.enterpriseNo }"> <input
-			type="hidden" name="postNo" value="${post.postNo }"> <input
-			type="hidden" name="selectedSymptomList"
-			value="${selectedSymptomList }"> <input type="hidden"
-			name="selectedMaterialList" value="${selectedMaterialList }">
+		<input type="hidden" name="enpriseNo" value="${loggedEnterprise.enterpriseNo }"> 
+		<input type="hidden" name="postNo" value="${post.postNo }">
+		<input type="hidden" name="selectedSymptomList" value="${selectedSymptomList }"> 
+		<input type="hidden" name="selectedMaterialList" value="${selectedMaterialList }">
 
 		<div class="form-floating mb-3">
 			<input type="text" class="form-control" id="title"
@@ -34,8 +32,11 @@
 			<div class="col-3 mt-3 ">
 				<input type="file" class="form-control" id="titleImg"
 					placeholder="png,jpg" name="titleImg"
-					accept="image/gif, image/jpeg, image/png" value="${post.postImg }" />
+					accept="image/gif, image/jpeg, image/png"  />
 				<!-- <label for="titleImg" class="form-label"> 제품대표 이미지  </label>  -->
+				<div class="preview"> 
+					<img id="previewImg" src="${post.postImg}" alt="Image Preview" />
+				</div>
 			</div>
 
 			<div class="col-3 mt-3">
@@ -142,6 +143,25 @@ $("#btnSubmit").on("click", function(e){
 	const materialOptions = $("#materialOptions");
 	materialOptions.val(selectedMaterialList).trigger('change');
   
+	
+	// 5. 제품 titleImg 미리보기
+	$('#titleImg').on('change', function(e){
+		const file= e.target.files[0];
+		const ext = file.name.substring(file.name.lastIndexOf("."));
+		const reader = new FileReader();
+
+		if(!(ext==".png"||ext==".jpg"||ext==".gif")){
+			return false;
+		};
+		
+		reader.onload = function(e){
+			$('#previewImg').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(file);
+		
+	});
+	
+	
 </script>
 
 
