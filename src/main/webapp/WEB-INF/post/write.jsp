@@ -11,6 +11,7 @@
 		enctype="multipart/form-data">
 		<c:if test="${loggedEnterise ne null }">
 			<input type="hidden" name="enNo" value="${loggedEnterprise.enterpriseNo }">
+
 		</c:if>
 		<c:if test="${loggedAdmin ne null }">
 			<input type="hidden" name="enNo" value="${loggedAdmin.userNo }">

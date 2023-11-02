@@ -31,53 +31,59 @@ public class MemberPasswordProcess extends HttpServlet {
 
         if (password.equals("") || passwordCheck.equals("") || newPassword.equals("")) {
             ScriptWriter.alertAndBack(response, "빈 칸 있음");
-        }
+        }else {
 
-        HttpSession session = request.getSession();
-        MemberDto member = (MemberDto) session.getAttribute("loggedMember");
-        EnterpriseDto enterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
-        if (member != null) {
-            int userNo = member.getUserNo();
-            String memberPassword = personalDao.memberPassword(userNo);
-
-
-            if (!(password.equals(passwordCheck) || memberPassword.equals(password) || password.isEmpty() || newPassword.isEmpty())) {
-//          비밀번호 확인
-                ScriptWriter.alertAndBack(response, "비밀번호 확인");
+            if (password.equals(newPassword)) {
+                ScriptWriter.alertAndBack(response, "기존과 다른 비밀번호로 설정해주세요");
             } else {
-                MemberDto updatePasswordMember = new MemberDto();
-                updatePasswordMember.setPw(newPassword);
-                updatePasswordMember.setUserNo(userNo);
-                int result = memberDao.updatePassword(updatePasswordMember);
-                if (result > 0) {
-                    session.invalidate();
-                    ScriptWriter.alertAndGo(response, "재로그인 필요", "../member/login");
+
+                HttpSession session = request.getSession();
+                MemberDto member = (MemberDto) session.getAttribute("loggedMember");
+                EnterpriseDto enterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
+                if (member != null) {
+                    int userNo = member.getUserNo();
+                    String memberPassword = personalDao.memberPassword(userNo);
+
+
+                    if (!password.equals(passwordCheck) || !memberPassword.equals(password) || password.isEmpty() || newPassword.isEmpty()) {
+//          비밀번호 확인
+                        ScriptWriter.alertAndBack(response, "비밀번호 확인");
+                    } else {
+                        MemberDto updatePasswordMember = new MemberDto();
+                        updatePasswordMember.setPw(newPassword);
+                        updatePasswordMember.setUserNo(userNo);
+                        int result = memberDao.updatePassword(updatePasswordMember);
+                        if (result > 0) {
+                            session.invalidate();
+                            ScriptWriter.alertAndGo(response, "재로그인 필요", "../member/login");
+                        } else {
+                            ScriptWriter.alertAndBack(response, "오류");
+                        }
+                    }
+                } else if (enterprise != null) {
+                    int enterpriseNo = enterprise.getEnterpriseNo();
+                    String enterprisePassword = personalDao.enterprisePassword(enterpriseNo);
+
+
+                    if (!password.equals(passwordCheck) || !enterprisePassword.equals(password) || password.isEmpty() || newPassword.isEmpty()) {
+//          비밀번호 확인
+                        ScriptWriter.alertAndBack(response, "비밀번호 확인");
+                    } else {
+                        EnterpriseDto updatePasswordEnt = new EnterpriseDto();
+                        updatePasswordEnt.setPw(newPassword);
+                        updatePasswordEnt.setEnterpriseNo(enterpriseNo);
+                        int result = personalDao.updateEntPassword(updatePasswordEnt);
+                        if (result > 0) {
+                            session.invalidate();
+                            ScriptWriter.alertAndGo(response, "재로그인 필요", "../member/login");
+                        } else {
+                            ScriptWriter.alertAndBack(response, "오류");
+                        }
+                    }
                 } else {
-                    ScriptWriter.alertAndBack(response, "오류");
+                    ScriptWriter.alertAndGo(response, "잘못된 접근입니다.", "../index/index");
                 }
             }
-        } else if (enterprise != null) {
-            int enterpriseNo = enterprise.getEnterpriseNo();
-            String enterprisePassword = personalDao.enterprisePassword(enterpriseNo);
-
-
-            if (!(password.equals(passwordCheck) || enterprisePassword.equals(password) || password.isEmpty() || newPassword.isEmpty())) {
-//          비밀번호 확인
-                ScriptWriter.alertAndBack(response, "비밀번호 확인");
-            } else {
-                EnterpriseDto updatePasswordEnt = new EnterpriseDto();
-                updatePasswordEnt.setPw(newPassword);
-                updatePasswordEnt.setEnterpriseNo(enterpriseNo);
-                int result = personalDao.updateEntPassword(updatePasswordEnt);
-                if (result > 0) {
-                    session.invalidate();
-                    ScriptWriter.alertAndGo(response, "재로그인 필요", "../member/login");
-                } else {
-                    ScriptWriter.alertAndBack(response, "오류");
-                }
-            }
-        }else{
-            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../index/index");
         }
     }
 }
