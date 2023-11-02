@@ -171,8 +171,9 @@
 
 //1. 수정 -> 모달 인정버튼 -> modify 페이지로
 $("#modalAccept").on("click", function() {
-
+	if($("#modal-title").text().trim()==="게시물 수정"){
 	location.href="../post/modify";
+	}
 });
 
 //2. symp, material 숨겨서 보내기
