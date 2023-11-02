@@ -41,23 +41,34 @@
 				</c:if>
 				</c:forEach>
 			</div>
-<nav aria-label="Page navigation example">
-	<ul class="pagination">
-		<li class="page-item">
-			<a class="page-link" href="#" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-			</a>
-		</li>
-		<c:forEach var="page" begin="1" end="${pages }">
-			<li class="page-item"><a class="page-link" href="../personal/member-wish?idx=${page}">${page}</a></li>
-		</c:forEach>
-		<li class="page-item">
-			<a class="page-link" href="#" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-			</a>
-		</li>
-	</ul>
-</nav>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<c:if test="${start ne 1}">
+				<li class="page-item">
+					<a class="page-link btn-green" href="../personal/member-wish?idx=${page}&group=${group}" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			</c:if>
+			<c:forEach var="page" begin="${start}" end="${end}">
+				<c:choose>
+					<c:when test="${idx eq page}">
+						<li class="page-item"><a class="page-link btn-ygreen" href=".../personal/member-wish?idx=${page}&group=${group}">${page}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link btn-green" href="../personal/member-wish?idx=${page}&group=${group}">${page}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${group ne totalGroup}">
+				<li class="page-item">
+					<a class="page-link btn-green" href="../personal/member-wish?idx=${page}&group=${group}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</c:if>
+		</ul>
+	</nav>
 </c:if>
 		</div>
 	</div>

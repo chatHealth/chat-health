@@ -49,6 +49,24 @@ public class MemberWish extends HttpServlet {
 
         List<MemberWishPageDto> userLikePosts = personalDao.userLikePosts(map);
 
+        int totalGroup = (int)Math.ceil(pages/5.0);
+        int group=1;
+        System.out.println(request.getParameter("group"));
+        if(request.getParameter("group") != null) {
+            group = Integer.parseInt(request.getParameter("group"));
+        }
+        int start = group * 5 - 4;
+        int end = group * 5;
+        if (end >= pages) {
+            end = pages;
+        }
+
+        request.setAttribute("totalGroup", totalGroup);
+        request.setAttribute("start", start);
+        request.setAttribute("end", end);
+        request.setAttribute("group",group);
+
+
         request.setAttribute("count", count);
         request.setAttribute("userNo", userNo);
         request.setAttribute("pages", pages);

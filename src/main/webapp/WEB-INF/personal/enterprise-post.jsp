@@ -28,26 +28,26 @@
         <th scope="col">#</th>
         <th scope="col">상품</th>
         <th scope="col">
-            <a class="page-link" href="../personal/enterprise-post?sort=2&by=1&idx=1">상품명
+            <a class="page-link" href="../personal/enterprise-post?sort=2&by=1&idx=${idx}&group=${group}">상품명
                 <img src="../img/sorting.png" class="img20"/></a></th>
-        <th scope="col"><a class="page-link" href="../personal/enterprise-post?sort=2&by=2&idx=1">등록일
+        <th scope="col"><a class="page-link" href="../personal/enterprise-post?sort=2&by=2&idx=${idx}&group=${group}">등록일
             <img src="../img/sorting.png" class="img20"/></a></th>
         <th scope="col">
-            <a class="page-link" href="../personal/enterprise-post?sort=2&by=3&idx=1">
+            <a class="page-link" href="../personal/enterprise-post?sort=2&by=3&idx=${idx}&group=${group}">
                 <img src="../img/heart.png" class="img20"/>
                 <img src="../img/sorting.png" class="img20"/></a></th>
         <th scope="col">수정/삭제</th>
     </c:if>
     <c:if test="${sort eq 2}">
         <th scope="col">#</th>
-        <th scope="col">상품 사진</th>
+        <th scope="col">상품</th>
         <th scope="col">
-            <a class="page-link" href="../personal/enterprise-post?sort=1&by=1&idx=1">상품명
+            <a class="page-link" href="../personal/enterprise-post?sort=1&by=1&idx=${idx}&group=${group}">상품명
                 <img src="../img/sorting.png" class="img20"/></a></th>
-        <th scope="col"><a class="page-link" href="../personal/enterprise-post?sort=1&by=2&idx=1">등록일
+        <th scope="col"><a class="page-link" href="../personal/enterprise-post?sort=1&by=2&idx=${idx}&group=${group}">등록일
             <img src="../img/sorting.png" class="img20"/></a></th>
         <th scope="col">
-            <a class="page-link" href="../personal/enterprise-post?sort=1&by=3&idx=1">
+            <a class="page-link" href="../personal/enterprise-post?sort=1&by=3&idx=${idx}&group=${group}">
                 <img src="../img/heart.png" class="img20"/>
                 <img src="../img/sorting.png" class="img20"/></a></th>
         <th scope="col">수정/삭제</th>
@@ -72,22 +72,32 @@
     </tbody>
     </table>
     <nav aria-label="Page navigation example">
-        <ul class="pagination">
+    <ul class="pagination">
+        <c:if test="${start ne 1}">
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
+                <a class="page-link btn-green" href="../personal/enterprise-post?sort=${sort}&by=${by}&idx=${start-5}&group=${group-1}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <c:forEach var="page" begin="1" end="${pages }">
-                <li class="page-item"><a class="page-link" href="../personal/enterprise-post?&sort=${sort}&by=${by}&idx=${page}">${page}</a>
-                </li>
-            </c:forEach>
+        </c:if>
+        <c:forEach var="page" begin="${start}" end="${end}">
+            <c:choose>
+                <c:when test="${idx eq page}">
+                    <li class="page-item"><a class="page-link btn-ygreen" href="../personal/enterprise-post?sort=${sort}&by=${by}&idx=${page}&group=${group}">${page}</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link btn-green" href="../personal/enterprise-post?sort=${sort}&by=${by}&idx=${page}&group=${group}">${page}</a></li>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+        <c:if test="${group ne totalGroup}">
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
+                <a class="page-link btn-green" href="../personal/enterprise-post?sort=${sort}&by=${by}&idx=${start+5}&group=${group + 1}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-        </ul>
+        </c:if>
+    </ul>
     </nav>
 </c:if>
     </c:when>

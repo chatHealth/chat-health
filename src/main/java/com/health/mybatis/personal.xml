@@ -71,7 +71,7 @@
         p.title AS postTitle, r.DELETEDDATE AS reviewdeleteddate, p.DELETEDDATE AS postdeleteddate,
         (SELECT COUNT(*) FROM HELPFUL h WHERE h.REVIEWNO = r.REVIEWNO) AS likes, postimg
         FROM REVIEW r
-        inner JOIN POST p ON r.postno = p.postno
+        left JOIN POST p ON r.postno = p.postno
         WHERE USERno = #{no} AND r.deleteddate IS NULL
         ORDER BY
         <choose>
@@ -83,7 +83,7 @@
             <when test="sort == 1"> DESC </when>
             <when test="sort == 2"> ASC </when>
         </choose>)
-        ) WHERE rnum <![CDATA[<]]> #{idx}+9 and rnum <![CDATA[>=]]> #{idx}
+        ) WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
     </select>
     <select id="merReviewsCount" resultType="int" parameterType="int">
         SELECT count(*) FROM REVIEW WHERE USERNO = ${no} AND DELETEDDATE IS null
