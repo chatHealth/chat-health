@@ -86,16 +86,8 @@ $("#modalAccept").on("click", function() {
 			history.back();
 		}
 	});
-<<<<<<< HEAD
-=======
-	}
->>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 });
 
 
 
 </script>
-
-
-
-
