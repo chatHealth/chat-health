@@ -9,10 +9,10 @@
 			</div>
 			<div class="box2">
 
-				<h2>${postInfo.TITLE }</h2>
-				<div id="Name">${postInfo.NAME }</div>
-				<div id="RegDate">${postInfo.REGDATE }</div>
-				<div id="MaterialNo">
+				<div class="productName">${postInfo.TITLE }</div>
+				<div class="enterpriseName">제조사 : ${postInfo.NAME }
+				<br>${postInfo.REGDATE }</div>
+				<div class="productMaterialNo">
 					 주성분 : 
 				<c:forEach items="${ postMeterial}" var="material">
 					[ ${material.MATERIALNAME } ]
