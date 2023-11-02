@@ -55,3 +55,16 @@
 	
 	</div> </div>
     </header>
+    
+    
+  <script>
+	// 1. 빈칸검색 막기
+		$(".main-header-search-button").on("click", function(e) {
+			if ($("#keyword").val().trim() === "") {
+				alert("검색어를입력하세요");
+				$("#keyword").val("");
+				$("#keyword").focus();
+				return false;
+			}
+		});
+</script>

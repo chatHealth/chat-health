@@ -114,6 +114,7 @@
 
 
 	<script>
+	// 1. 빈칸검색 막기
 		$(".main-search-button").on("click", function(e) {
 			if ($("#keyword").val().trim() === "") {
 				alert("검색어를입력하세요");
