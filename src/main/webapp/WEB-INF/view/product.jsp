@@ -10,7 +10,6 @@
 
 	<%@ include file="viewInclude/viewProduct.jsp"%>
 
-
 	<hr class="featurette-divider">
 	<!-- 제품정보 -->
 	<div class="row featurette">
@@ -45,7 +44,7 @@
 	 <div>
 			
 			<div class="commetbox">
-			<h2>댓글을 작성하려면 로그인하세요.
+			<h2>댓글을 작성하려면 일반유저로 로그인하세요.
 				<form action="../member/login" method="post">
 				<button valuew="submit">로그인</button>
 				</form>
