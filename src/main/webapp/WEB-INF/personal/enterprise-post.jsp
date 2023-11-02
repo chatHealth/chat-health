@@ -35,7 +35,7 @@
     <c:forEach items="${posts }" var="post" varStatus="loop">
         <tr>
             <th scope="col">${post.rNum}</th>
-            <td class="entP"><a href="../view/product?no=${post.postNo}"><img src="/upload/${post.postImg}"
+            <td class="entP"><a href="../view/product?no=${post.postNo}"><img src="${post.postImg}"
                                                                               class="img100"></a></td>
             <td class="entP"><a href="../view/product?no=${post.postNo}">${post.title }</a></td>
             <td>${post.regDate }</td>
