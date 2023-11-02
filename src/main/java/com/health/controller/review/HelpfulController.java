@@ -50,7 +50,7 @@ public class HelpfulController extends HttpServlet {
 				response.sendRedirect("../view/product?no=" + no);
 			}
 		} else {
-			ScriptWriter.alertAndBack(response, "로그인한 사용자만 가능합니다");
+			ScriptWriter.alertAndBack(response, "일반유저로 로그인한 사용자만 가능합니다");
 		}
 
 	}
