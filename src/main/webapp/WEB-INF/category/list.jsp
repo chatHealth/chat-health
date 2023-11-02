@@ -54,6 +54,8 @@
 				<form action="../category/list" method="get" name="sort-select" id="sort-select">
 					<input type="hidden" name="symp" value="${sympNo}">
       				<input type="hidden" name="material" value="${materialNo}">
+      				<input type="hidden" name="keyword" value="${keyword}">
+      				
 					<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
 						<option value="recent" ${sort=='recent'?'selected':null }>최신순</option>
 						<option value="old" ${sort=='old'?'selected':null }>오래된순</option>
@@ -120,6 +122,7 @@
 	<form action="../category/list" method="get" class="convey-form">
 		<input type="hidden" name="symp" value="${sympNo}">
 		<input type="hidden" name="material" value="${materialNo}">
+		<input type="hidden" name="keyword" value="${keyword}">
  		<input type="hidden" name="idx" value=""> 
     			
 	<c:choose>
