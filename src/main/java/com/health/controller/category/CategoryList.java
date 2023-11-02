@@ -141,12 +141,14 @@ public class CategoryList extends HttpServlet {
 		List<MaterialDto> materialList = null;
 		if(sympNo>0) materialList = materialDao.getMaerialBySymptom(sympNo);
 		
+		int ms = 0;
+		if(materialList!=null) ms =materialList.size();
+		if(ms == 0 || (ms == 1 && materialList.get(0) == null)) { materialList = null; }
 		
 		
 		// 3. send
-		if(postList.size() == 0) { postList = null; }
+		//if(postList.size() == 0) { postList = null; }
 		request.setAttribute("postList", postList);
-		if(materialList.size() == 0 || (materialList.size() == 1 && materialList.get(0) == null)) { materialList = null; }
 		request.setAttribute("materialList", materialList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/category/list.jsp");
