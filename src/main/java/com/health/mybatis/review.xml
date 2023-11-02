@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
  <mapper namespace="com.helath.mybatis">
  
  <select id="reviewDate" parameterType="int" resultType="Map">
@@ -11,10 +10,12 @@
  					from Review r LEFT JOIN MEMBER m 
 	 					ON
 	 					r.USERNO = m.USERNO 
-	 					where postNo=#{no} ORDER BY REGDATE desc
+	 					where postNo=#{no} ORDER BY helpfulcnt desc,REGDATE DESC
  </select>
  <select id="postInfo" parameterType="int" resultType="Map">
- 	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME 
+ 	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME ,
+ 			(select count(1) from USERLIKE where POSTNO  = r.POSTNO) as UserLikeCnt,
+ 			(select count(1) from USERLIKE where POSTNO  = r.POSTNO and userNo =#{userNo} ) as UserCheck
 					FROM post r LEFT JOIN enterprise m
 					ON r.ENTERPRISENO =m.ENTERPRISENO 
 					WHERE postNo=#{no}
@@ -26,12 +27,20 @@
 					ON m.MATERIALNO = t.MATERIALNO 
 					WHERE p.POSTNO=#{no}
  </select>
- <select id="helpFulCount" parameterType='int' resultType="int">
- 	SELECT count(reviewNo) as count FROM HELPFUL WHERE reviewNo=#{reviewNo}
- </select>
+ 
  <select id="helpfulSame" parameterType="HelpfulDto" resultType="int">
  		SELECT count(*) FROM helpful WHERE userNo=#{userNo} AND reviewNO=#{reviewNo}
  </select>
+ 
+ <select id="sameViewLike" parameterType="UserLikeDto" resultType="int">
+ 		SELECT count(*)as UserCheck FROM UserLike WHERE userNo=#{userNo} AND postNo=#{postNo}
+ </select>
+
+ 
+ 
+ 
+ 
+ 
   <select id="getReviewNo" parameterType="int" resultType="int">
   	select reviewNo from review
   </select>
@@ -73,7 +82,15 @@
  	DELETE FROM HELPFUL WHERE userNo=#{userNo} and reviewNo=#{reviewNo}
  </delete>
  
- 
- 
+ <insert id="insertViewLike" parameterType="UserLikeDto">
+ INSERT INTO UserLike values(
+	seq_helpful.nextval,
+	#{userNo},
+	#{postNo}
+	)
+ </insert>
+ <delete id="deletViewLike" parameterType="UserLikeDto">
+ 	DELETE FROM userlike WHERE userNo=#{userNo} and postNo=#{postNo}
+ </delete>
  </mapper>
  

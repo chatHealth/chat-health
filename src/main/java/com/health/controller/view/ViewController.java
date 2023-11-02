@@ -15,9 +15,12 @@ import java.util.Map;
 import com.health.dao.HelpfulDao;
 import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
+import com.health.dao.ViewLikeDao;
 import com.health.dto.HelpfulDto;
+import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
 import com.health.dto.ReviewDto;
+import com.health.dto.UserLikeDto;
 
 
 @WebServlet("/view/product")
@@ -33,6 +36,8 @@ public class ViewController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session= request.getSession();
+		session.getAttribute("loggedMember");
 		//리뷰전달
 		int no = Integer.parseInt(request.getParameter("no"));
 		List<Map<String,Object>> reviewList = reviewDao.selectReview(no);
@@ -43,14 +48,15 @@ public class ViewController extends HttpServlet {
 		request.setAttribute("postInfo", postInfo);
 		
 
-		
-		
+		//성분전달
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
 		request.setAttribute("postMeterial", postMeterial);
-	
 		
-		HttpSession session= request.getSession();
-		session.getAttribute("loggedMember");
+		
+		
+//		int userCheck = viewLikeDao.sameViewLike(userLikeDto);
+//		request.setAttribute("userCheck", userCheck);
+		
 		
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher("/WEB-INF/view/product.jsp");
@@ -59,8 +65,7 @@ public class ViewController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
+		
 	}
 
 }
