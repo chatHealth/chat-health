@@ -162,4 +162,31 @@
 	text-decoration: underline;
 }
 
+.btn-green{
+	color:#347F5C;
+	border-color:#347F5C;
+}
+.btn-green:hover{
+	color: white;
+	background-color: #347F5C;
+	border-color: #347F5C;
+}
+.width80{
+	width:80%;
+}
+
+.width100 {
+	width: 100%;
+}
+
+.btn-ygreen{
+	background-color: #92ca7f;
+	border-color:#92ca7f;
+	color:#347F5C;
+}
+.btn-ygreen:hover{
+	color:white;
+	background-color:#347F5C;
+	border-color:#347F5C;
+}
 /*wonu end*/

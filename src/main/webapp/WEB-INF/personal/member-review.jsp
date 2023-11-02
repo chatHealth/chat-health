@@ -57,14 +57,14 @@
 			<th scope="row">${review.rNum }</th>
 			<c:choose>
 				<c:when test="${review.postDeletedDate eq null}">
-					<td class="entP " style="width:150px;"><a href="../view/product?no=${review.postNo}"><img src="/upload/${review.postImg}" class="img100"  alt="postImg" "/></a></td>
+					<td class="entP " style="width:150px;"><a href="../view/product?no=${review.postNo}"><img src="${review.postImg}" class="img100"  alt="postImg" "/></a></td>
 					<td class="entP"><a href="../view/product?no=${review.postNo}">${review.postTitle}</a></td>
 				</c:when>
 				<c:otherwise>
 					<td colspan="2" class="entP">삭제된 상품입니다.</td>
 				</c:otherwise>
 			</c:choose>
-			<td class="entP"><a href="#">${review.title }</a></td>
+			<td class="entP">${review.title }</td>
 			<td class="entP">${review.regDate }</td>
 			<td class="entP">${review.likes }</td>
 		</tr>
