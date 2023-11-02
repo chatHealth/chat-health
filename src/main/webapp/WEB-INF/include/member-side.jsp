@@ -7,7 +7,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ include file="../include/header-main.jsp" %>
+<%@ include file="../include/header-index.jsp" %>
 <link href="../css/mypage.css" rel="stylesheet" />
 
 <div class="container-fluid centered-page">

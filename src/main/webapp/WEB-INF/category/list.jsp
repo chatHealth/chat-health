@@ -44,13 +44,14 @@
 						<h2 class="use-main-color">게시글이 없습니다</h2>
 					</div>
 				</c:when>
-				
 				<c:otherwise>
 
 
 
 			<!-- 3. show postList -->
 			<div class="sort-select d-flex justify-content-start">
+				<form action="../category/list?" method="get" name="sort-select"
+					id="sort-select">
 				<form action="../category/list" method="get" name="sort-select" id="sort-select">
 					<input type="hidden" name="symp" value="${sympNo}">
       				<input type="hidden" name="material" value="${materialNo}">
@@ -62,7 +63,6 @@
 					</select>
 				</form>
 			</div>
-			
 			<script>
 			// select 변하면, symp,material hidden으로 값보내기 (쿼리스트링X)
 				$("#sort").on('change', function() {
@@ -106,6 +106,7 @@
 											</c:if>
 											
 												<small class="text-muted ">${post.name }</small>
+
 											</div>
 									
 										</div>

@@ -54,6 +54,29 @@
 	align-items: center;
 }
 
+
+.box2{
+	width: 60%;
+	margin-left: 20px;
+}
+
+.productName{
+	font-size: 50px;
+	font-weight: 30;
+	height: 170px;
+	padding-top: 50px;
+	background-color: lightgray;
+}
+.enterpriseName{
+	padding-top:10%
+	height: 80px;
+}
+.productMaterialNo{
+	height: 90px;
+	background-color: lightgray;
+}
+
+
 .imgbox {
 	margin-left: 100px;
 	width: 430px;
@@ -162,4 +185,31 @@
 	text-decoration: underline;
 }
 
+.btn-green{
+	color:#347F5C;
+	border-color:#347F5C;
+}
+.btn-green:hover{
+	color: white;
+	background-color: #347F5C;
+	border-color: #347F5C;
+}
+.width80{
+	width:80%;
+}
+
+.width100 {
+	width: 100%;
+}
+
+.btn-ygreen{
+	background-color: #92ca7f;
+	border-color:#92ca7f;
+	color:#347F5C;
+}
+.btn-ygreen:hover{
+	color:white;
+	background-color:#347F5C;
+	border-color:#347F5C;
+}
 /*wonu end*/

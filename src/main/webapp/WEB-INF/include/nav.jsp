@@ -32,7 +32,6 @@
 			<div class="d-flex justify-content-center">
 				<img src="${ loggedEnterprise.profile}" class="profile-small mt-3 ">
 			</div>
-			
 			<div class="d-flex justify-content-evenly">
 				<a href="../personal/member-info" class="btn btn-outline-primary mt-3 ">${loggedEnterprise.name }</a>
 				<a href="../member/logout" class="btn btn-outline-primary mt-3"> 로그아웃 </a>
