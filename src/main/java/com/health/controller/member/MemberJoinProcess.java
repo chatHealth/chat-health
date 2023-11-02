@@ -50,7 +50,8 @@ public class MemberJoinProcess extends HttpServlet {
 				
 				//2. < 이미지 처리 >
 						// 파일 업로드 경로 바깥에
-						String uploadDir = "C:\\upload";
+						//String uploadDir = "C:\\upload";
+						String uploadDir = System.getenv("upload");
 						String realUploadPath = uploadDir;
 						String saveDir = "";
 
@@ -85,7 +86,7 @@ public class MemberJoinProcess extends HttpServlet {
 
 						}else {
 							//대표 이미지 선택안했을경우, img파일의 기본이미지로 대체
-							saveDir = "..img/";
+							saveDir = "../img";
 							newFileName = "basic_profile.svg";
 						}
 						

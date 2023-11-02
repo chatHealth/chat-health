@@ -68,7 +68,7 @@
         ORDER BY
         <choose>
             <when test="by == 2"> regdate </when>
-            <when test="by == 1"> TITLE </when>
+            <when test="by == 1"> POSTTITLE </when>
             <when test="by == 3"> LIKES </when>
         </choose>
         <choose>

@@ -186,6 +186,12 @@
 		where postno=#{postNo}	
 	</update>
 	
+	<update id="updatePostNotImg" parameterType="PostDto">
+		update post
+		set enterpriseno=#{enterpriseNo}, title=#{title}, content=#{content}
+		where postno=#{postNo}	
+	</update>
+	
 	<!-- 3. modify related -->
 	<select id="getSelectedSymptom" resultType="int" parameterType = "int">
 		select sympno from SymptomPost where postno = #{no}	
