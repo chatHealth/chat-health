@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <div class="main-category">
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary nav-jsp" >
 
  <!-- 1. profile part -->
 	<c:choose>

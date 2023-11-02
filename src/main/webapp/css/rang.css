@@ -77,7 +77,12 @@
 /* header-main */
 
 .header-main-jsp{
-	display: fixed;
+	/* position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff; 
+    z-index: 1000;
+    margin-bottom: 100px !important;*/
 }
 
 
@@ -107,7 +112,7 @@
     border: none;
 }
 .search_input:focus {
-    outline: 1px solid grey; /* 테두리 효과 제거 */
+    outline: none;
 }
 
 .button-box{
@@ -124,6 +129,22 @@
 	font-weight: bold; 
     text-align: center;
 }
+.card-body .mh-50{
+	min-height: 50px;
+	
+}
+
+.card-body small{
+	position: absolute;
+    right: 0;
+    padding-right: 40px;
+    margin-top:20px;
+}
+
+.card-body .btn-group{
+	margin-top:10px;
+	height: 40px !important;	
+}
 
 .category-title{
 	color:#347F5C;
@@ -131,4 +152,13 @@
 	white-space: nowrap; /* 텍스트를 한 줄로 표시 */
     overflow: hidden; /* 텍스트 넘침 처리 */
     text-overflow: ellipsis; /* 넘치는 텍스트를 '...'으로 표시 */
+}
+
+
+/* nav */
+
+.nav-jsp{
+	margin-left: 100px;
+	width: 300px;
+	
 }
