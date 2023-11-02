@@ -67,6 +67,7 @@ public class MemberReview extends HttpServlet {
             request.setAttribute("by", by);
             request.setAttribute("sort", sort);
             request.setAttribute("pages", pages);
+            request.setAttribute("idx", idx);
             List<MemberReviewPageDto> memReviews = personalDao.memReview(map);
             request.setAttribute("reviews", memReviews);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-review.jsp");
