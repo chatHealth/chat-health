@@ -5,7 +5,6 @@ public class HelpfulDto {
 	private int helpKey;
 	private int reviewNo;
 	private int userNo;
-
 	public HelpfulDto() {
 	}
 	public HelpfulDto(int helpKey, int reviewNo, int userNo) {
