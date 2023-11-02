@@ -5,6 +5,7 @@
 
 <mapper namespace="com.health.mybatis">
 
+	<!-- 3. write/delete post  -->
 	<select id="getAllSymptom" resultType="SymptomDto">
 		select * from symptom
 	</select>
@@ -54,11 +55,16 @@
 	</update>
 	
 	
+<!-- 1. get post by ver  -->
 
 	<select id="getPostForAll" resultType="PostDto" parameterType = "HashMap">
-		select p.*, e.name from post p
-		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
-		where p.deletedDate is NULL
+	SELECT * from
+	(SELECT rownum AS num, b.* FROM
+	(
+	
+	select p.*, e.name from post p
+	LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+	where p.deletedDate is NULL
 			<choose>
 			<when test="sort=='recent'">
 				order by regdate desc
@@ -68,6 +74,9 @@
 
 			</when>
 		</choose>
+
+	) b
+	<![CDATA[) WHERE num >=CAST(#{start} as number) AND num<=CAST(#{end} as number)]]>
 	</select>
 
 	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
@@ -103,8 +112,7 @@
 		</choose>
 	</select>
 
-	<select id="getPostForSympnoAndMaterial" resultType="PostDto"
-		parameterType="HashMap">
+	<select id="getPostForSympnoAndMaterial" resultType="PostDto" parameterType="HashMap">
 		select p.*, e.name from post p
 		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
 		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
@@ -127,7 +135,35 @@
 
 
 
+<!-- 1. post 갯수세기 -pagination -->
 
+   <select id="countPost" resultType="int" parameterType="HashMap">
+	SELECT count(*) FROM post
+	where deletedDate is NULL
+
+	<choose>
+		<when test="cntStandard=='all'">
+
+		</when>
+		<when test="cntStandard=='keyword'">
+			and  title LIKE '%'||#{keyword}||'%'
+		</when>
+		<when test="cntStandard=='symp'">
+			and postno in ( SELECT postno FROM symptompost 
+				WHERE sympno = CAST(#{sympNo} as number))
+		</when>
+		<when test="cntStandard=='sympAndMaterial'">
+			and postno in (
+			SELECT symptompost.postno FROM symptompost
+			LEFT JOIN MaterialPost ON symptompost.postno = MaterialPost.postNo
+			WHERE sympno =  CAST(#{sympNo} as number)
+			AND materialno =  CAST(#{materialNo} as number))
+		</when>
+	</choose>
+    </select>
+    
+    
+<!-- 2. post related -->
 	<select id="getMaerialBySymptom" resultType="MaterialDto"
 		parameterType="int">
 		SELECT Material.*
@@ -150,6 +186,13 @@
 		where postno=#{postNo}	
 	</update>
 	
+	<update id="updatePostNotImg" parameterType="PostDto">
+		update post
+		set enterpriseno=#{enterpriseNo}, title=#{title}, content=#{content}
+		where postno=#{postNo}	
+	</update>
+	
+	<!-- 3. modify related -->
 	<select id="getSelectedSymptom" resultType="int" parameterType = "int">
 		select sympno from SymptomPost where postno = #{no}	
 	</select>
@@ -158,4 +201,5 @@
 		select materialno from materialpost where postno = #{no}	
 	</select>
 	
+<!-- 4. modify related -->
 </mapper>

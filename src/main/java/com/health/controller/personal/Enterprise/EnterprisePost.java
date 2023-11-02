@@ -24,11 +24,17 @@ public class EnterprisePost extends HttpServlet {
         EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
         if (loggedEnterprise == null || loggedMember != null) {
-            ScriptWriter.alertAndGo(response, "잘못된 접근입니다.", "../");
+            ScriptWriter.alertAndGo(response, "잘못된 접근입니다.", "../index/index");
         }
 
-        int idx = Integer.parseInt(request.getParameter("idx"));
-        idx = idx * 10 - 9;
+        int accepted = loggedEnterprise.getAccepted();
+
+        int idx;
+        if (request.getParameter("idx") == null) {
+            idx = 1;
+        }else{
+            idx = Integer.parseInt(request.getParameter("idx"));
+            idx = idx * 10 - 9;}
 
         int count = personalDao.totalEntPosts(loggedEnterprise.getEnterpriseNo());
         int pages = (int) Math.ceil(count / 10.0);
@@ -39,6 +45,7 @@ public class EnterprisePost extends HttpServlet {
 
         List<PostPageDto> posts = personalDao.entPost(map);
 
+        request.setAttribute("accepted", accepted);
         request.setAttribute("totalMerchandise", count);
         request.setAttribute("pages", pages);
         request.setAttribute("posts", posts);

@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 
@@ -18,9 +20,16 @@ public class MemberLogin extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher("/WEB-INF/member/login.jsp");
-		dispatcher.forward(request, response);
+		HttpSession session = request.getSession();
+		Object loggedMember = session.getAttribute("loggedMember");
+		Object loggedEnterprise = session.getAttribute("loggedEnterprise");
+		if (loggedEnterprise == null && loggedMember == null) {
+			RequestDispatcher dispatcher =
+					request.getRequestDispatcher("/WEB-INF/member/login.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			response.sendRedirect("../index/index");
+		}
 	}
 
 	

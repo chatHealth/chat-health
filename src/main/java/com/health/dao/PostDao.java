@@ -111,6 +111,16 @@ public class PostDao {
 		return result;
 	}
 	
+	public int updatePostNotImg(PostDto postDto) {
+		int result = 0;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.update("updatePostNotImg",postDto);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 	// 6. delete one
 	public int deletePost(int no) {
 		int result = 0;
@@ -121,6 +131,16 @@ public class PostDao {
 		
 		return result;
 	}
+	
+	// 7. pagination을 위한 글 갯수 세기
+	public int countPost(HashMap<String, String> map) {
+		int result;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.selectOne("countPost", map);
+        sqlSession.close();
+        return result;
+	}
+
 	
 	
 }

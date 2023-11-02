@@ -5,7 +5,11 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
+<<<<<<< HEAD
 				<h1 class="modal-title fs-5" id="exampleModalLabel"> ${myModal.title }</h1>
+=======
+				<h1 class="modal-title fs-5" id="modal-title"> ${myModal.title }</h1>
+>>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
 			</div>
 			
