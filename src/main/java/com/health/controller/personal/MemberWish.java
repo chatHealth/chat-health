@@ -51,7 +51,6 @@ public class MemberWish extends HttpServlet {
 
         int totalGroup = (int)Math.ceil(pages/5.0);
         int group=1;
-        System.out.println(request.getParameter("group"));
         if(request.getParameter("group") != null) {
             group = Integer.parseInt(request.getParameter("group"));
         }
