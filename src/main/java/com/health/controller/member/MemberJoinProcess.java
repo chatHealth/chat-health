@@ -110,7 +110,7 @@ public class MemberJoinProcess extends HttpServlet {
 								
 						
 						if(result>0) {
-							response.sendRedirect("../member/login");
+							ScriptWriter.alertAndGo(response, "회원가입 완료","../member/login");
 						} else {
 							HttpSession session = request.getSession();
 							response.sendRedirect("../member/member-join-process");
