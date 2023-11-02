@@ -24,7 +24,7 @@
 				<div class="likeProduct">
 					<button class="productLike" type="sumbit">
 						<c:choose>
-							<c:when test="${postInfo.USERCHECK}>0">
+							<c:when test="${postInfo.USERCHECK ne 0}">
 								<img src="../img/빨간하트png.png" alt="" class="viewHt">
 							</c:when>
 							<c:otherwise>

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,17 +38,26 @@ public class ViewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session= request.getSession();
-		session.getAttribute("loggedMember");
+		MemberDto loggedMember =(MemberDto) session.getAttribute("loggedMember");
 		//리뷰전달
 		int no = Integer.parseInt(request.getParameter("no"));
 		List<Map<String,Object>> reviewList = reviewDao.selectReview(no);
 		request.setAttribute("reviewList", reviewList);
 		
 		//상품정보 전달
-		Map<String,Object> postInfo = reviewDao.postInfo(no);
+		Map<String,Integer> map = new HashMap<>();
+		map.put("no",no);
+		
+		int userNo = 0;
+		if(loggedMember != null) {
+			userNo  = loggedMember.getUserNo();
+		}
+		map.put("userNo",userNo);
+		
+		Map<String,Object> postInfo = reviewDao.postInfo(map);
 		request.setAttribute("postInfo", postInfo);
 		
-
+		
 		//성분전달
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
 		request.setAttribute("postMeterial", postMeterial);
