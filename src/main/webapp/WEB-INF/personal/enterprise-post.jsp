@@ -29,17 +29,22 @@
         <th scope="col">상품명</th>
         <th scope="col">등록 일자</th>
         <th scope="col"><img src="../img/heart.png" class="img20"></th>
+        <th scope="col">수정/삭제</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${posts }" var="post" varStatus="loop">
         <tr>
             <th scope="col">${post.rNum}</th>
-            <td class="entP"><a href="../view/product?no=${post.postNo}"><img src="${post.postImg}"
+            <td class="entP" style="width:150px"><a href="../view/product?no=${post.postNo}"><img src="${post.postImg}"
                                                                               class="img100"></a></td>
             <td class="entP"><a href="../view/product?no=${post.postNo}">${post.title }</a></td>
             <td>${post.regDate }</td>
             <td class="entP">${post.likes}</td>
+            <td style="margin-bottom:0">
+                <a href="../personal/modify-ent?no=${post.postNo }" class="btn btn-sm btn-green">수정</a>
+                <a href="../post/delete-ent?no=${post.postNo }" class="btn btn-sm btn-green" onclick="return confirm('${post.title}을(를) 삭제하시겠습니까?');"  >삭제</a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
