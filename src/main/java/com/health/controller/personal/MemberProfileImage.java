@@ -38,15 +38,15 @@ public class MemberProfileImage extends HttpServlet {
             ScriptWriter.alertAndBack(response, "이미지 파일만 등록 가능");
         } else {
             //directory 환경변수 설정
-            String uploadDir = "C:\\upload";
-            String saveDir = "";
+        	String uploadDir = System.getenv("upload");
 
             HttpSession session = request.getSession();
             MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
             EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
             if (loggedMember != null) { //개인
-
+            	
+            	//파일명 바꾸기
                 String filename = "member" + loggedMember.getUserNo() + "_profileImage." + ext;
                 part.write(uploadDir + File.separator + filename);
                 MemberDto updateProfileMember = new MemberDto();
