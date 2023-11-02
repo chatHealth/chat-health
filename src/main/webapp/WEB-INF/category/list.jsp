@@ -44,23 +44,25 @@
 						<h2 class="use-main-color">게시글이 없습니다</h2>
 					</div>
 				</c:when>
-				
 				<c:otherwise>
 
 
 
 			<!-- 3. show postList -->
 			<div class="sort-select d-flex justify-content-start">
+				<form action="../category/list?" method="get" name="sort-select"
+					id="sort-select">
 				<form action="../category/list" method="get" name="sort-select" id="sort-select">
 					<input type="hidden" name="symp" value="${sympNo}">
       				<input type="hidden" name="material" value="${materialNo}">
+      				<input type="hidden" name="keyword" value="${keyword}">
+      				
 					<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
 						<option value="recent" ${sort=='recent'?'selected':null }>최신순</option>
 						<option value="old" ${sort=='old'?'selected':null }>오래된순</option>
 					</select>
 				</form>
 			</div>
-			
 			<script>
 			// select 변하면, symp,material hidden으로 값보내기 (쿼리스트링X)
 				$("#sort").on('change', function() {
@@ -89,19 +91,24 @@
 										</a>
 
 										<div class="card-body">
+											<div class="card-body-title">
 											<a href="../view/product?no=${post.postNo }">
 												<p class="card-text category-title">${ post.title }</p> 
 											</a>
-											<div class="d-flex justify-content-between align-items-center">
+											</div>
+										
+											<div class="d-flex  salign-items-center  mh-50">
 											<c:if test="${loggedAdmin ne null || loggedEnterprise.enterpriseNo == post.enterpriseNo}">
 												<div class="btn-group">
-													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-modify" >수정</a>
-													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-delete">삭제</a>
+													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary " id="btn-modify" >수정</a>
+													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary " id="btn-delete">삭제</a>
 												</div>
 											</c:if>
 											
-												<small class="text-muted">${post.name }</small>
+												<small class="text-muted ">${post.name }</small>
+
 											</div>
+									
 										</div>
 									</div>
 								</div>
@@ -120,7 +127,11 @@
 	<form action="../category/list" method="get" class="convey-form">
 		<input type="hidden" name="symp" value="${sympNo}">
 		<input type="hidden" name="material" value="${materialNo}">
+		<input type="hidden" name="keyword" value="${keyword}">
  		<input type="hidden" name="idx" value=""> 
+ 		
+ 		<div id="pageTotal" data-total="${pageTotal}"></div>
+ 		<div id="idx" data-total="${idx}"></div>
     			
 	<c:choose>
 		<c:when test="${ ps=='all' }">
@@ -130,7 +141,7 @@
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
 						<li class="page-item">
-						<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
+						<a class="page-link convey-btn page-previous-btn" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
 						</li>
 						
 						<c:forEach var="page" begin="1" end="${pageTotal}">
@@ -140,7 +151,7 @@
 						</c:forEach>
 						
 						<li class="page-item">
-						<a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a>
+						<a class="page-link convey-btn page-next-btn" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a>
 						</li>
 					</ul>
 				</nav>
@@ -175,12 +186,36 @@ $("#modalAccept").on("click", function() {
 	}
 });
 
-//2. symp, material 숨겨서 보내기
-$(".convey-btn").on('click', function() {
-	 const page = $(this).data("page");
-     $("input[name='idx']").val(page); // idx 필드에 페이지 번호 설정
-	 $(".convey-form").submit();
-	 return false;
-});
 
+
+// 2. symp, material 숨겨서 보내기
+// 3. pagination 다음버튼 보내기
+$(".convey-btn").on('click', function() {
+    const this_btn = $(this);
+    const pageTotal = $("#pageTotal").data("total");
+    const currentPage = $("#idx").data("total");
+   
+    if (this_btn.hasClass('page-previous-btn')) {   // 이전 버튼을 클릭한 경우
+    	if (currentPage > 1) {
+            $("input[name='idx']").val(currentPage - 1);
+            $(".convey-form").submit();
+        }
+    } else if (this_btn.hasClass('page-next-btn')) {  // 다음 버튼을 클릭한 경우
+        if (currentPage < pageTotal) {
+            $("input[name='idx']").val(currentPage + 1);
+            $(".convey-form").submit();
+        }
+
+	} else if (this_btn.hasClass('page-link')) { // 일반 페이지 버튼을 클릭한 경우
+			const page = $(this).data("page");
+			if (page != currentPage) {
+				$("input[name='idx']").val(page);
+				$(".convey-form").submit();
+			}
+		} else {
+			$(".convey-form").submit();
+		}
+
+		return false;
+	});
 </script>

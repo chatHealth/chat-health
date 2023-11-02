@@ -5,11 +5,10 @@
 
 <div class="container ">
 
-	<h2>Write</h2>
+	<h2 style="margin:20px 0;">Write</h2>
 
-	<form action="../post/write-process" method="post"
-		enctype="multipart/form-data">
-		<c:if test="${loggedEnterise ne null }">
+	<form action="../post/write-process" method="post" enctype="multipart/form-data">
+		<c:if test="${loggedEnterprise ne null }">
 			<input type="hidden" name="enNo" value="${loggedEnterprise.enterpriseNo }">
 
 		</c:if>

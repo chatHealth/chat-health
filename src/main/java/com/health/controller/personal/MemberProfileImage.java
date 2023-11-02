@@ -45,7 +45,8 @@ public class MemberProfileImage extends HttpServlet {
             EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
             if (loggedMember != null) { //개인
-
+            	
+            	//파일명 바꾸기
                 String filename = "member" + loggedMember.getUserNo() + "_profileImage." + ext;
                 part.write(uploadDir + File.separator + filename);
                 MemberDto updateProfileMember = new MemberDto();

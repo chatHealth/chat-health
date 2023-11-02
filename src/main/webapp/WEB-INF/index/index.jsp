@@ -8,36 +8,36 @@
 		<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" style="position:sticky; top:-10px; background:white; opacity:0.9">
 			<div class="col-md-3 mb-2 mb-md-0">
 				<a href="../index/index" class="d-inline-flex link-body-emphasis text-decoration-none">
-					<img src="../img/logo.png" style="height:80px;"/>
+					<img src="../img/logo.png" style="height:100px;"/>
 				</a>
 			</div>
 
 				<c:choose>
 				<c:when test="${ not empty loggedMember }">
-				<div class="col-md-3 text-end">
-					<a href="../personal/member-info" class="btn btn-outline-primary mt-3 btn-green"> ${loggedMember.nickName } </a>
-					<a href="../member/logout" class="btn btn-outline-primary mt-3 btn-green"> 로그아웃 </a>
+				<div class="col-md-3 text-end double-btn">
+					<a href="../personal/member-info" class="btn  mt-3 btn-green"> ${loggedMember.nickName } </a>
+					<a href="../member/logout" class="btn  mt-3 btn-green"> 로그아웃 </a>
 				</div>
 				</c:when>
 
 				<c:when test="${ not empty loggedEnterprise }">
-				<div class="col-md-3 text-end">
-					<a href="../personal/member-info" class="btn btn-outline-primary mt-3 btn-green"> ${loggedEnterprise.name } </a>
-					<a href="../member/logout" class="btn btn-outline-primary mt-3 btn-green"> 로그아웃 </a>
+				<div class="col-md-3 text-end double-btn">
+					<a href="../personal/member-info" class="btn  mt-3 btn-green"> ${loggedEnterprise.name } </a>
+					<a href="../member/logout" class="btn  mt-3 btn-green"> 로그아웃 </a>
 				</div>
 				</c:when>
 
 				<c:when test="${ not empty loggedAdmin }">
-				<div class="col-md-3 text-end">
-					<a href="../personal/member-manage" class="btn btn-outline-primary mt-3 btn-green"> ${loggedAdmin.nickName } </a>
-					<a href="../member/logout" class="btn btn-outline-primary mt-3 btn-green"> 로그아웃 </a>
+				<div class="col-md-3 text-end double-btn">
+					<a href="../personal/member-manage" class="btn  mt-3 btn-green"> ${loggedAdmin.nickName } </a>
+					<a href="../member/logout" class="btn  mt-3 btn-green"> 로그아웃 </a>
 				</div>
 				</c:when>
 
 				<c:otherwise>
-				<div class="col-md-3 text-end">
-					<a href="../member/join-select" class="btn btn-outline-primary mt-3 btn-green"> 회원가입 </a>
-					<a href="../member/login" class="btn btn-outline-primary mt-3 btn-green"> 로그인 </a>
+				<div class="col-md-3 text-end double-btn">
+					<a href="../member/join-select" class="btn  mt-3 btn-green"> 회원가입 </a>
+					<a href="../member/login" class="btn  mt-3 btn-green"> 로그인 </a>
 				</div>
 				</c:otherwise>
 				</c:choose>
@@ -50,8 +50,8 @@
       <div class="container-fluid py-5">
 
       	<div class="Phrases-part mx-auto text-center">
-       	 	<h1 class="display-5 fw-bold"> CHAT HEALTH </h1>
-        	<p class="fs-4">대한민국 건강을 말하다</p>
+       	 	<h1 class="display-5 fw-bold use-main-color"> CHAT HEALTH </h1>
+        	<p class="fs-4 use-main-color">대한민국 건강을 말하다</p>
         </div>
 
 		<div class="container col-lg-6 col-6  text-left mt-5 d-flex justify-content-center width80">
@@ -60,7 +60,7 @@
 					<input type="text" class="form-control " placeholder="Search for products" name="keyword" id="keyword">
 
 					<div class="input-group-append ">
-						<button class="btn btn-primary main-search-button btn-ygreen">
+						<button class="btn  main-search-button btn-ygreen">
             		    	search
 							<svg  width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
   								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -91,7 +91,7 @@
 						<div class="col-md-3 ">
 							<a href="../category/list?symp=${ symptom.sympNo }"
 								class="nav-link link-body-emphasis">
-								<button type="button" class="btn btn-outline-primary main-category-buttons-element btn-green">
+								<button type="button" class="btn  main-category-buttons-element btn-green">
 									${symptom.symptomName }</button>
 							</a>
 						</div>
@@ -115,6 +115,7 @@
 
 
 	<script>
+	// 1. 빈칸검색 막기
 		$(".main-search-button").on("click", function(e) {
 			if ($("#keyword").val().trim() === "") {
 				alert("검색어를입력하세요");
