@@ -30,7 +30,6 @@ public class ReviewDto {
 		this.title = title;
 		this.content = content;
 		this.regDate = regDate;
-		
 		this.deletedDate = deletedDate;
 	}
 	public int getReviewNo() {

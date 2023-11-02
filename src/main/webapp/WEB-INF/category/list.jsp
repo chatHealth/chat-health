@@ -44,14 +44,14 @@
 						<h2 class="use-main-color">게시글이 없습니다</h2>
 					</div>
 				</c:when>
+				
 				<c:otherwise>
 
 
 
 			<!-- 3. show postList -->
 			<div class="sort-select d-flex justify-content-start">
-				<form action="../category/list?" method="get" name="sort-select"
-					id="sort-select">
+				<form action="../category/list" method="get" name="sort-select" id="sort-select">
 					<input type="hidden" name="symp" value="${sympNo}">
       				<input type="hidden" name="material" value="${materialNo}">
 					<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
@@ -60,7 +60,9 @@
 					</select>
 				</form>
 			</div>
+			
 			<script>
+			// select 변하면, symp,material hidden으로 값보내기 (쿼리스트링X)
 				$("#sort").on('change', function() {
 					$("#sort-select").submit();
 				});
@@ -91,11 +93,13 @@
 												<p class="card-text category-title">${ post.title }</p> 
 											</a>
 											<div class="d-flex justify-content-between align-items-center">
+											<c:if test="${loggedAdmin ne null or loggedEnterprise.enterpriseNo == post.enterpriseNo}">
 												<div class="btn-group">
 													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-modify" >수정</a>
 													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-delete">삭제</a>
 												</div>
-												
+											</c:if>
+											
 												<small class="text-muted">${post.name }</small>
 											</div>
 										</div>
@@ -112,23 +116,72 @@
 	
 	
 	
-	<!-- 4. review -->
+	<!-- 4. pagenation -->
+	<form action="../category/list" method="get" class="convey-form">
+		<input type="hidden" name="symp" value="${sympNo}">
+		<input type="hidden" name="material" value="${materialNo}">
+ 		<input type="hidden" name="idx" value=""> 
+    			
+	<c:choose>
+		<c:when test="${ ps=='all' }">
+			<div class="d-flex align-items-center justify-content-center">
+			<input type="hidden" name="ps" value="all">
 
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item">
+						<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
+						</li>
+						
+						<c:forEach var="page" begin="1" end="${pageTotal}">
+							<li class="page-item">
+								<a class="page-link convey-btn" data-page="${page}"> ${page} </a>
+							</li>
+						</c:forEach>
+						
+						<li class="page-item">
+						<a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a>
+						</li>
+					</ul>
+				</nav>
 
+			</div>
+		</c:when>
 
+		<c:when test="${ postList ne null }"> 
+		<div class="d-flex align-items-center justify-content-center">
+			<a class="btn btn-outline-secondary mt-3 convey-btn" >
+				모든글보기
+				<input type="hidden" name="ps" value="all">
+			</a>
+		</div> 	
+	</c:when>
+	</c:choose>
 
+	</form>
 
+	</div>
 
-
-</div>
 
 
 <%@ include file="../include/footer.jsp"%>
 
+
 <script>
 
+//1. 수정 -> 모달 인정버튼 -> modify 페이지로
 $("#modalAccept").on("click", function() {
-
+	if($("#modal-title").text().trim()==="게시물 수정"){
 	location.href="../post/modify";
+	}
 });
+
+//2. symp, material 숨겨서 보내기
+$(".convey-btn").on('click', function() {
+	 const page = $(this).data("page");
+     $("input[name='idx']").val(page); // idx 필드에 페이지 번호 설정
+	 $(".convey-form").submit();
+	 return false;
+});
+
 </script>

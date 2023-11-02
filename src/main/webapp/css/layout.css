@@ -80,6 +80,11 @@
 	z-index: 20;
 }
 
+.viewHt{
+	width: 15px;
+	height: 15px;
+}
+
 /*sun review*/
 .reviewStart {
 	text-align: center;

@@ -28,7 +28,7 @@ public class MemberInfo extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/enterprise-info.jsp");
             requestDispatcher.forward(request, response);
         } else {
-            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../index/index");
         }
     }
 

@@ -34,9 +34,10 @@ public class ModalControl extends HttpServlet {
 		if(modal!=null && action.equals("delete")) {
 			String button = request.getParameter("button");
 			
-			if(button.equals("accept") && modal.getTitle().equals("안내")) {
+			if(button.equals("accept") ) {
+				if(modal.getTitle().equals("안내")) //안내면 삭제
 				session.removeAttribute("myModal");
-			}else if(button.equals("reject")) {
+			}else if(button.equals("reject")) {  //취소면 다 삭제
 				session.removeAttribute("myModal");
 			}
 		}
@@ -47,7 +48,7 @@ public class ModalControl extends HttpServlet {
 			
 			if(title.equals("게시물 수정") ) {
 				
-				response.sendRedirect("../category/list");
+				//response.sendRedirect("../category/list");
 			}
 		}
 
