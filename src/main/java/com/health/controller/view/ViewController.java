@@ -29,6 +29,7 @@ public class ViewController extends HttpServlet {
 	private final PostDao postDao = PostDao.getInstance();
 	private static ReviewDao reviewDao =  ReviewDao.getInstance();
 	private static HelpfulDao helpfulDao =  HelpfulDao.getInstance();
+	private static ViewLikeDao viewLikeDao = ViewLikeDao.getInstance();
 	
     public ViewController() {
         super();
@@ -37,7 +38,7 @@ public class ViewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session= request.getSession();
-		session.getAttribute("loggedMember");
+		MemberDto logg =(MemberDto) session.getAttribute("loggedMember");
 		//리뷰전달
 		int no = Integer.parseInt(request.getParameter("no"));
 		List<Map<String,Object>> reviewList = reviewDao.selectReview(no);
@@ -52,6 +53,16 @@ public class ViewController extends HttpServlet {
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
 		request.setAttribute("postMeterial", postMeterial);
 		
+		//
+		UserLikeDto userLikeDto = new UserLikeDto();
+		int userLike =0;
+		if(logg != null) {
+			userLike = logg.getUserNo();
+		}
+		userLikeDto.setPostNo(no);
+		userLikeDto.setUserNo(userLike);
+		int viewLike = viewLikeDao.sameViewLike(userLikeDto);
+		request.setAttribute("viewLike", viewLike);
 		
 		
 //		int userCheck = viewLikeDao.sameViewLike(userLikeDto);
