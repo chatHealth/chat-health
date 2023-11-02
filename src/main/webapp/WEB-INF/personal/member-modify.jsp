@@ -16,12 +16,12 @@
 				<div class="mb-3">
 					<label for="user-email" class=form-label">Email</label>
 <%--					<span class="input-group-text">@</span>--%>
-					<input type="email" class="form-control" id="user-email" name="email" value=${loggedMember.email }>
+					<input type="email" class="form-control" id="user-email" name="email" value=${loggedMember.email } required>
 
 				</div>
 				<div class="mb-3">
 					<label for="nickname" class="form-label">Nickname</label>
-					<input type="text" class="form-control" id="nickname" name="nickName" value=${loggedMember.nickName }>
+					<input type="text" class="form-control" id="nickname" name="nickName" value=${loggedMember.nickName } required>
 				</div>
 				<div class="mb-3">
 					<label for="user-address" class="form-label">Address</label>
@@ -29,7 +29,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="addressDetail" class="form-label">Address Detail</label>
-					<input type="text" class="form-control" id="addressDetail" name="addressDetail" value=${loggedMember.addressDetail }>
+					<input type="text" class="form-control" id="addressDetail" name="addressDetail" value=${loggedMember.addressDetail } required>
 				</div>
 				<button type="submit" class="btn btn-primary">Update Profile</button>
 			</form>

@@ -25,7 +25,8 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col" colspan="2">상품</th>
+        <th scope="col">상품</th>
+        <th scope="col">상품명</th>
         <th scope="col">등록 일자</th>
         <th scope="col"><img src="../img/heart.png" class="img20"></th>
     </tr>
