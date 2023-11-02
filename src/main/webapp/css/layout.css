@@ -64,6 +64,14 @@
 	height: 400px;
 }
 
+<<<<<<< HEAD
+=======
+.viewHt{
+	width: 15px;
+	height: 15px;
+}
+
+>>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 /*sun review*/
 .reviewStart {
 	text-align: center;
@@ -89,11 +97,23 @@
 }
 
 .btnGood {
+<<<<<<< HEAD
 	margin-left: 500%;
 }
 
 .btnGdfdsf {
 	width: 100px;
+=======
+	margin-left: 800%;
+	margin-bottom: 20px;
+}
+
+
+.btnGdfdsf {
+	width: 100px;
+	background-color: rgb(255, 253, 181);
+	border-radius: 10%;
+>>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 }
 
 .reviewContentbox {

@@ -9,7 +9,11 @@
 
 												<div class="reviewdata">
 													<div class="reviewUserInfo">
+<<<<<<< HEAD
 														<div class="reviewUser" id="nickName">닉네임 : ${review.NICKNAME } ${review.REVIEWNO }</div>
+=======
+														<div class="reviewUser" id="nickName">닉네임 : ${review.NICKNAME }</div>
+>>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 														<div class="reviewUser" id="RegDate">${review.REGDATE }</div>
 													</div>
 													
@@ -18,7 +22,11 @@
 													<input type="hidden" name="reviewNo" value="${review.REVIEWNO}" />
 													<div class="btnGood">	
 														<button class="btnGdfdsf" type="submit">
+<<<<<<< HEAD
 														  도움이돼요 ${review.HELPFULCNT }
+=======
+														  <img src="../img/좋아요.png" alt=""> ${review.HELPFULCNT }
+>>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 														</button>
 												</div>
 												</form>

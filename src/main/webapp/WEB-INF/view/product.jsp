@@ -65,7 +65,11 @@
 // 1. delete modal 처리(rang 건들지 마시오)
 
 $("#modalAccept").on("click", function() {
+<<<<<<< HEAD
 
+=======
+	if($("#modal-title").text().trim()==="게시물 삭제"){
+>>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 	$.ajax({
 		type : "POST", 
 		data : {postNo : ${postInfo.POSTNO} },
@@ -82,6 +86,10 @@ $("#modalAccept").on("click", function() {
 			history.back();
 		}
 	});
+<<<<<<< HEAD
+=======
+	}
+>>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 });
 
 
