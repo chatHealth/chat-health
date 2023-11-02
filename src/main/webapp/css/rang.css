@@ -66,6 +66,7 @@
 .main-search-button{
 	width: 200px;
 	height: 80px;
+
 }
 .main-category-buttons-element{
 	width: 100%;
@@ -121,7 +122,7 @@
 
 /** list **/
 .card-body{
-	height: 100px;	
+	height: 110px;	
 }
 
 .card-body a {
@@ -148,12 +149,20 @@
 
 .category-title{
 	color:#347F5C;
-	
+	font-size: 18px;
+
 	white-space: nowrap; /* 텍스트를 한 줄로 표시 */
     overflow: hidden; /* 텍스트 넘침 처리 */
     text-overflow: ellipsis; /* 넘치는 텍스트를 '...'으로 표시 */
 }
 
+.convey-form .pagination li a{
+    text-align: center;
+    color:#347F5C !important;
+	font-weight: bold; 
+    font-size: 20px;
+
+}
 
 /* nav */
 
@@ -161,4 +170,21 @@
 	margin-left: 100px;
 	width: 300px;
 	
+}
+
+.double-btn .btn{
+	width: 100px;
+}
+
+.nav-jsp .nav-pills li a{
+    text-align: center;
+    color:#347F5C !important;
+	font-weight: bold; 
+    font-size: 18px;
+
+}
+
+
+.nav-hr{
+	margin:30px 0;
 }

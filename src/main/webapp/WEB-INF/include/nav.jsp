@@ -20,9 +20,9 @@
 				</c:choose>
 			</div>
 			
-			<div class="d-flex justify-content-evenly">
-				<a href="../personal/member-info" class="btn btn-outline-primary mt-3">${loggedMember.nickName }</a>
-				<a href="../member/logout" class="btn btn-outline-primary mt-3"> 로그아웃 </a>
+			<div class="d-flex justify-content-evenly double-btn">
+				<a href="../personal/member-info" class="btn btn-green mt-3">${loggedMember.nickName }</a>
+				<a href="../member/logout" class="btn btn-green mt-3"> 로그아웃 </a>
 			</div>
 
 		</c:when>
@@ -32,16 +32,16 @@
 			<div class="d-flex justify-content-center">
 				<img src="${ loggedEnterprise.profile}" class="profile-small mt-3 ">
 			</div>
-			<div class="d-flex justify-content-evenly">
-				<a href="../personal/member-info" class="btn btn-outline-primary mt-3 ">${loggedEnterprise.name }</a>
-				<a href="../member/logout" class="btn btn-outline-primary mt-3"> 로그아웃 </a>
+			<div class="d-flex justify-content-evenly double-btn">
+				<a href="../personal/member-info" class="btn btn-green mt-3 ">${loggedEnterprise.name }</a>
+				<a href="../member/logout" class="btn btn-green mt-3"> 로그아웃 </a>
 			</div>
 
 			<c:if test="${loggedEnterprise.accepted eq 0 }">
-				<a href="../member/no-accept" class="btn btn-outline-primary mt-3">글쓰기</a>
+				<a href="../member/no-accept" class="btn btn-green mt-3">글쓰기</a>
 			</c:if>
 			<c:if test="${loggedEnterprise.accepted eq 1 }">
-				<a href="../post/write" class="btn btn-outline-primary mt-3">글쓰기</a>
+				<a href="../post/write" class="btn btn-green mt-3">글쓰기</a>
 			</c:if>
 
 		</c:when>
@@ -51,11 +51,11 @@
 			<div class="d-flex justify-content-center">
 				<img src="${loggedAdmin.profile}" class="profile-small mt-3 ">
 			</div>
-			<div class="d-flex justify-content-evenly">
-				<a href="../personal/member-manage" class="btn btn-outline-primary mt-3">${ loggedAdmin.nickName}</a>
-				<a href="../member/logout" class="btn btn-outline-primary mt-3"> 로그아웃 </a>
+			<div class="d-flex justify-content-evenly double-btn">
+				<a href="../personal/member-manage" class="btn btn-green mt-3">${ loggedAdmin.nickName}</a>
+				<a href="../member/logout" class="btn btn-green mt-3"> 로그아웃 </a>
 			</div>
-			<a href="../post/write" class="btn btn-outline-primary mt-3">글쓰기</a>
+			<a href="../post/write" class="btn btn-green mt-3">글쓰기</a>
 		</c:when>
 		
 
@@ -64,12 +64,12 @@
 			<div class="d-flex justify-content-center">
 				<img src="../img/basic_profile.svg" class="profile-small mt-3 ">
 			</div>
-			<a href="../member/login" class="btn btn-outline-primary mt-3">login</a>
+			<a href="../member/login" class="btn btn-green mt-3">login</a>
 
 		</c:otherwise>
 	</c:choose>
 
-	<hr>
+	<hr class="nav-hr">
     
     <!-- 2. symptom list part -->
     <ul class="nav nav-pills flex-column mb-auto">
