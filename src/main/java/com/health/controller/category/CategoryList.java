@@ -108,6 +108,8 @@ public class CategoryList extends HttpServlet {
 			
 			map.put("start", start);
 			map.put("end", end);
+			
+			request.setAttribute("idx", idx);
 			request.setAttribute("pageTotal", pageTotal);
 		}
 		request.setAttribute("ps", pageStandard);

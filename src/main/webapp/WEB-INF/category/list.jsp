@@ -124,6 +124,9 @@
 		<input type="hidden" name="material" value="${materialNo}">
 		<input type="hidden" name="keyword" value="${keyword}">
  		<input type="hidden" name="idx" value=""> 
+ 		
+ 		<div id="pageTotal" data-total="${pageTotal}"></div>
+ 		<div id="idx" data-total="${idx}"></div>
     			
 	<c:choose>
 		<c:when test="${ ps=='all' }">
@@ -133,7 +136,7 @@
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
 						<li class="page-item">
-						<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
+						<a class="page-link convey-btn page-previous-btn" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
 						</li>
 						
 						<c:forEach var="page" begin="1" end="${pageTotal}">
@@ -143,7 +146,7 @@
 						</c:forEach>
 						
 						<li class="page-item">
-						<a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a>
+						<a class="page-link convey-btn page-next-btn" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a>
 						</li>
 					</ul>
 				</nav>
@@ -178,12 +181,36 @@ $("#modalAccept").on("click", function() {
 	}
 });
 
-//2. symp, material 숨겨서 보내기
-$(".convey-btn").on('click', function() {
-	 const page = $(this).data("page");
-     $("input[name='idx']").val(page); // idx 필드에 페이지 번호 설정
-	 $(".convey-form").submit();
-	 return false;
-});
 
+
+// 2. symp, material 숨겨서 보내기
+// 3. pagination 다음버튼 보내기
+$(".convey-btn").on('click', function() {
+    const this_btn = $(this);
+    const pageTotal = $("#pageTotal").data("total");
+    const currentPage = $("#idx").data("total");
+   
+    if (this_btn.hasClass('page-previous-btn')) {   // 이전 버튼을 클릭한 경우
+    	if (currentPage > 1) {
+            $("input[name='idx']").val(currentPage - 1);
+            $(".convey-form").submit();
+        }
+    } else if (this_btn.hasClass('page-next-btn')) {  // 다음 버튼을 클릭한 경우
+        if (currentPage < pageTotal) {
+            $("input[name='idx']").val(currentPage + 1);
+            $(".convey-form").submit();
+        }
+
+	} else if (this_btn.hasClass('page-link')) { // 일반 페이지 버튼을 클릭한 경우
+			const page = $(this).data("page");
+			if (page != currentPage) {
+				$("input[name='idx']").val(page);
+				$(".convey-form").submit();
+			}
+		} else {
+			$(".convey-form").submit();
+		}
+
+		return false;
+	});
 </script>
