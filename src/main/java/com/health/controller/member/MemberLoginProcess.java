@@ -75,7 +75,7 @@ public class MemberLoginProcess extends HttpServlet {
                 if (loggedMember.getGrade() == 1) { // 로그인 성공 관리자
                     loginSession.setAttribute("loggedAdmin", loggedMember);
                     response.sendRedirect("../personal/member-manage"); // 관리자페이지로 이동
-                } else { // 로그인 성공 일반회원
+                } else if (loggedMember.getGrade() > 1){ // 로그인 성공 일반회원
                     loginSession.setAttribute("loggedMember", loggedMember);
 
                     if (saveID != null) { // 로그인 성공은 했는데 아이디 기억하기 체크했으면

@@ -20,14 +20,10 @@
 				</c:choose>
 			</div>
 			
-<<<<<<< HEAD
-			<a href="../personal/member-info" class="btn btn-outline-primary mt-3"> ${ loggedMember.nickName} </a>
-=======
 			<div class="d-flex justify-content-evenly">
 				<a href="../personal/member-info" class="btn btn-outline-primary mt-3">${loggedMember.nickName }</a>
 				<a href="../member/logout" class="btn btn-outline-primary mt-3"> 로그아웃 </a>
 			</div>
->>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 
 		</c:when>
 
@@ -36,18 +32,12 @@
 			<div class="d-flex justify-content-center">
 				<img src="${ loggedEnterprise.profile}" class="profile-small mt-3 ">
 			</div>
-<<<<<<< HEAD
-			<a href="../personal/member-info" class="btn btn-outline-primary mt-3">${loggedEnterprise.name }</a>
-		
-		
-=======
 			
 			<div class="d-flex justify-content-evenly">
 				<a href="../personal/member-info" class="btn btn-outline-primary mt-3 ">${loggedEnterprise.name }</a>
 				<a href="../member/logout" class="btn btn-outline-primary mt-3"> 로그아웃 </a>
 			</div>
 
->>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 			<c:if test="${loggedEnterprise.accepted eq 0 }">
 				<a href="../member/no-accept" class="btn btn-outline-primary mt-3">글쓰기</a>
 			</c:if>
@@ -62,14 +52,10 @@
 			<div class="d-flex justify-content-center">
 				<img src="${loggedAdmin.profile}" class="profile-small mt-3 ">
 			</div>
-<<<<<<< HEAD
-			<a href="../personal/member-manage" class="btn btn-outline-primary mt-3">${ loggedAdmin.nickName}</a>
-=======
 			<div class="d-flex justify-content-evenly">
 				<a href="../personal/member-manage" class="btn btn-outline-primary mt-3">${ loggedAdmin.nickName}</a>
 				<a href="../member/logout" class="btn btn-outline-primary mt-3"> 로그아웃 </a>
 			</div>
->>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a
 			<a href="../post/write" class="btn btn-outline-primary mt-3">글쓰기</a>
 		</c:when>
 		
