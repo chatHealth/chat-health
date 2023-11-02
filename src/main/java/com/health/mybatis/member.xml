@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.helath.mybatis">
+	<select id="loginMember" resultType="MemberDto" parameterType="MemberDto">
+		SELECT * FROM MEMBER 
+		WHERE id = #{id} AND pw = #{pw}
+	</select>
+	<select id="loginEnterprise" resultType="EnterpriseDto" parameterType="EnterpriseDto">
+		SELECT * FROM enterprise
+		WHERE ID = #{id} AND PW = #{pw}
+	</select>
+	
+	
+	<insert id="insertMember" parameterType="MemberDto">
+		insert into member values(
+									seq_member.nextval,
+									#{nickName},
+									#{id},
+									#{pw},
+									#{name},
+									#{birthDate},
+									#{gender},								
+									#{email},
+									#{address},
+									#{addressDetail},
+									sysdate,
+									#{profile},
+									null,
+									10							
+									
+								  )
+	</insert>
+	<insert id="insertEnterprise" parameterType="EnterpriseDto">
+		insert into enterprise values (
+														seq_enterprise.nextval,
+														#{code},
+														#{code},
+														#{pw},
+														#{name},
+														#{profile},
+														#{ceo},
+														#{address},
+														#{addressDetail},
+														#{tel},
+														#{accepted},
+													 	null					
+													)
+	</insert>
+	<select id="idCheck" resultType="int" parameterType="IdCheckDto">
+		SELECT COUNT(*) as count FROM (SELECT ID FROM Member WHERE ID =#{memberId}
+    		UNION ALL
+    	SELECT ID FROM Enterprise WHERE ID = #{enterId}
+	) combined
+	</select>
+	
+	<select id="getUser" resultType ="MemberDto">
+	SELECT userno, id, nickname,name,gender, joindate , deleteddate FROM MEMBER ORDER BY USERNO  ASC
+	</select>
+
+	<select id="getEnterprise" resultType ="EnterpriseDto">
+	SELECT ENTERPRISENO, id, name, accepted, deleteddate FROM Enterprise ORDER BY ENTERPRISENO  ASC
+	</select>
+	
+
+	
+	<update id="entAccept" parameterType="int">
+		UPDATE enterprise  SET accepted = 1  WHERE ENTERPRISENO = #{enterpriseNo}
+	</update>
+	
+	<update id="entReject" parameterType="int">
+		UPDATE enterprise  SET accepted = 2  WHERE ENTERPRISENO = #{enterpriseNo}
+	</update>
+
+	<update id="updateMember" parameterType="MemberDto">
+		update member set nickname = #{nickName}, address = #{address}, addressDetail=#{addressDetail}, email = #{email} where userno = #{userNo}
+	</update>
+	<update id="updateMemberPassword" parameterType="MemberDto">
+		update member set pw = #{pw} where userno = #{userNo}
+	</update>
+	<update id="updateMemberProfileImage" parameterType="MemberDto">
+		update member set profile = #{profile} where userno = #{userNo}
+	</update>
+</mapper>

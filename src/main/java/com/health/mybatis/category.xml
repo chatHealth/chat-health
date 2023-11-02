@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.health.mybatis">
+
+	<select id="getAllSymptom" resultType="SymptomDto">
+		select * from symptom
+	</select>
+
+	<select id="getAllMaterial" resultType="MaterialDto">
+		select * from material
+	</select>
+	
+	<select id="seqPostNextVal" resultType="int">
+		select seq_post.nextval from dual
+	</select>
+	
+	<select id="getsymptName" resultType="string" parameterType = "int">
+		select symptomname from symptom WHERE sympno = ${sympNo}
+	</select>
+	<select id="getMaterialName" resultType="string" parameterType = "int">
+		select materialname from Material WHERE materialNo = ${materialNo}
+	</select>
+
+	<insert id="insertPost" parameterType="PostDto">
+		insert into post
+		values(#{postNo}, #{enterpriseNo}, #{title}, #{content}, #{postImg}, sysdate, null)
+	</insert>
+
+	<insert id="insertSymptomPost" parameterType="SymptomPostDto">
+		insert into symptompost
+		values(seq_symptomPost.nextval, #{postNo}, #{sympNo})
+	</insert>
+
+	<insert id="insertMaterialPost" parameterType="MaterialPostDto">
+		insert into materialpost
+		values(seq_materialPost.nextval, #{materialNo}, #{postNo})
+	</insert>
+
+	<delete id="deleteSymptomPost" parameterType="SymptomPostDto">
+		delete from symptompost where postno = #{postNo} and sympno= #{sympNo}
+	</delete>
+	
+	<delete id="deleteMaterialPost" parameterType="MaterialPostDto">
+		delete from materialpost where postno = #{postNo} and materialno= #{materialNo}
+	</delete>
+
+	<update id="deletePost" parameterType="int">
+		update post
+		set deletedDate=sysdate
+		where postNo=#{no}
+	</update>
+	
+	
+
+	<select id="getPostForAll" resultType="PostDto" parameterType = "HashMap">
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		where p.deletedDate is NULL
+			<choose>
+			<when test="sort=='recent'">
+				order by regdate desc
+			</when>
+			<when test="sort=='old'">
+				order by regdate
+
+			</when>
+		</choose>
+	</select>
+
+	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		where p.deletedDate is NULL
+		
+		and  title LIKE '%'||#{keyword}||'%'
+		<choose>
+			<when test="sort=='recent'">
+				order by regdate desc
+			</when>
+			<when test="sort=='old'">
+				order by regdate
+			</when>
+		</choose>
+	</select>
+	
+	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		where p.deletedDate is NULL
+		
+		and postno in ( SELECT postno FROM symptompost 
+		WHERE sympno = CAST(#{sympNo} as number))
+		<choose>
+			<when test="sort=='recent'">
+				order by regdate desc
+			</when>
+			<when test="sort=='old'">
+				order by regdate
+			</when>
+		</choose>
+	</select>
+
+	<select id="getPostForSympnoAndMaterial" resultType="PostDto"
+		parameterType="HashMap">
+		select p.*, e.name from post p
+		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
+		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
+		LEFT JOIN MaterialPost ON p.postNo = MaterialPost.postNo
+		
+		where p.deletedDate is NULL
+		AND sympno=CAST(#{sympNo} as number)
+		AND materialno=CAST(#{materialNo} as number)
+		
+		<choose>
+			<when test="sort=='recent'">
+				order by regdate desc
+
+			</when>
+			<when test="sort=='old'">
+				order by regdate
+			</when>
+		</choose>
+	</select>
+
+
+
+
+	<select id="getMaerialBySymptom" resultType="MaterialDto"
+		parameterType="int">
+		SELECT Material.*
+		FROM Post p
+		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
+		LEFT JOIN MaterialPost ON p.postNo = MaterialPost.postNo
+		LEFT JOIN Material ON MaterialPost.materialno = Material.materialno
+		WHERE deletedDate is NULL
+		AND sympno=#{sympNo}
+	</select>
+	
+	<select id="getOnePost" resultType="PostDto" parameterType = "int">
+		select * from post where postno = #{no}
+	</select>
+	
+	
+	<update id="updatePost" parameterType="PostDto">
+		update post
+		set enterpriseno=#{enterpriseNo}, title=#{title}, content=#{content}, postimg=#{postImg}
+		where postno=#{postNo}	
+	</update>
+	
+	<select id="getSelectedSymptom" resultType="int" parameterType = "int">
+		select sympno from SymptomPost where postno = #{no}	
+	</select>
+	
+	<select id="getSelectedMaterial" resultType="int" parameterType = "int">
+		select materialno from materialpost where postno = #{no}	
+	</select>
+	
+</mapper>

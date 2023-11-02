@@ -1,0 +1,132 @@
+.sidebar {
+    background-color: #f8f9fa; /* Lighter color */
+    width: 240px;
+    height: 50vh;
+    overflow-y: auto;
+    left: 0;
+}
+
+.sidebar h1 {
+    color: #000000;
+    font-size: 1.5rem;
+    margin: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #000000;
+    transition: color 0.3s, background-color 0.3s; /* Transition properties */
+    padding: 10px; /* Add padding to create background space */
+}
+
+.sidebar a:hover {
+    color: #6c757d; /* Text color on hover */
+    background-color: #f8f9fa; /* Background color on hover */
+}
+
+.content {
+    background-color: #ffffff;
+    padding: 20px;
+    /*margin-left: 240px; !* Adjust this margin for the initial sidebar width *!*/
+}
+
+.profile-picture img {
+    width: 200px;
+    height: 200px;
+
+    border-radius:50%;
+
+
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+
+    transform: scale(1.1);
+    transition: transform 300ms ease;
+    z-index:1000;
+}
+
+/*.profile-picture img {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    */
+/*}*/
+
+.edit-button {
+    /*position: absolute;*/
+    border-radius:50%;
+    bottom: 10px;
+    right: 10px;
+}
+
+.table-container {
+    position: relative;
+}
+
+.info-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+@media (max-width: 800px) {
+    .sidebar {
+        width: 0vh;
+    }
+    .content {
+        margin-left: 0;
+    }
+    .row{
+        width:0;
+    }
+    .min-h300{
+        min-width: 300px;
+        align-items: center;
+    }
+}
+.min-h300{
+    min-width:700px;
+}
+
+.centered-page{display: flex;
+justify-content: center;
+/*align-items: center;*/
+min-height: 50vh;
+max-width: 120vh;
+}
+
+.img20{
+    height:20px;
+}
+
+.img100{
+    height:100px;
+}
+
+.edit-profile img:hover{
+    transform: scale(1.3);
+    filter:brightness(0.8);
+}
+
+#explain{
+    position: absolute; opacity: 0;
+}
+
+.edit-profile img:hover #explain{
+    opacity: 1;
+}
+
+.img150{
+    height:150px;
+}

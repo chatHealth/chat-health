@@ -1,0 +1,65 @@
+@charset "EUC-KR";
+
+
+/** post-write **/
+.ck-editor__editable_inline {
+	min-height: 400px !important;
+}
+.ck-editor__editable p {margin: 0}
+
+.main-category{
+	display: flex;
+}
+
+.profile-small {
+		width:100px;
+		height: 100px;
+		object-fit:contain;
+		border-radius: 100px ;
+	}
+
+.no-category-content{
+	width:100%;	
+	height: 100%;
+}
+
+
+/* main */
+
+.main-logo-chat-health {
+    color: #D19C97 !important;
+    white-space: nowrap;
+}
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+
+.main-search-part{
+	width: 700px;
+	height: 80px;
+}
+.main-search-button{
+	width: 200px;
+	height: 80px;
+}
+.main-category-buttons-element{
+	width: 100%;
+	height: 60px;
+	margin : 10px;
+}
+
+
+/* main-header */
+
+.main-header-search-part{
+	width: 500px;
+	height: 50px;
+}
+.main-header-search-button{
+	width: 100px;
+	height: 50px;
+}
+
+/** modal**/
+
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.health.mybatis">
+
+    <select id="memberWishPosts" resultType="com.health.dto.personal.MemberReviewPageDto" parameterType="Map">
+        select * from (
+        SELECT rownum rnum, a.* From(
+        select p.postno as postNo, title, postimg from post p
+        inner join USERLIKE u
+        on p.postno = u.postno WHERE userno = #{userNo} AND p.DELETEDDATE is NULL ORDER BY LIKEKEY DESC) a)
+        where rnum <![CDATA[>=]]> #{idx} AND rnum <![CDATA[<]]> #{idx}+8
+    </select>
+    <select id="memberInfo" resultType="MemberDto" parameterType="int">
+        select * from member where userno = #{userNo}
+    </select>
+    <select id="memberPassword" resultType="String" parameterType="int">
+        select pw from member where userno = #{userNo}
+    </select>
+    <update id="memWithdraw" parameterType="int">
+        update member set deleteddate = sysdate where userno = #{userNo}
+    </update>
+    <update id="updateEnterprise" parameterType="EnterpriseDto">
+        update enterprise set tel=#{tel}, ceo=#{ceo}, address=#{address}, addressDetail=#{addressDetail} where enterpriseNo = #{enterpriseNo}
+    </update>
+    <select id="enterpriseInfo" resultType="EnterpriseDto" parameterType="int">
+        select * from enterprise where enterpriseNo = #{enterpriseNo}
+    </select>
+    <select id="enterprisePassword" resultType="String" parameterType="int">
+        select pw from enterprise where enterpriseNo = #{enterpriseNo}
+    </select>
+    <update id="updateEntPassword" parameterType="EnterpriseDto">
+        update enterprise set pw = #{pw} where enterpriseNo=#{enterpriseNo}
+    </update>
+    <update id="entWithdraw" parameterType="int">
+        update enterprise set deleteddate = sysdate where enterpriseNo = #{enterpriseNo}
+    </update>
+    <update id="entProfileImg" parameterType="EnterpriseDto">
+        update enterprise set profile = #{profile} where enterpriseNo = #{enterpriseNo}
+    </update>
+    <select id="entPosts" resultType="PostPageDto" parameterType="Map">
+        SELECT * FROM(
+        SELECT ROWNUM rnum, postNo, title, postImg, regDate, likes
+        FROM (
+        SELECT p.postNo, p.title, p.postImg, TO_CHAR(p.regDate, 'yyyy.mm.dd') AS regDate, COUNT(ul.likeKey) AS likes
+        FROM Post p
+        LEFT JOIN UserLike ul ON p.postNo = ul.postNo
+        WHERE p.enterpriseNo = #{enterpriseNo} AND p.DELETEDDATE IS null
+        GROUP BY p.postNo, p.title, p.postImg, p.regDate
+        ORDER BY p.regDate DESC
+        ))
+        WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
+
+    </select>
+<!--    member review 조회-->
+    <select id="memReview" resultType="com.health.dto.personal.MemberReviewPageDto" parameterType="Map">
+        SELECT rnum, postimg, REVIEWNO, postno, title, likes, regdate, postTitle, postdeleteddate
+        FROM (
+        SELECT ROWNUM AS rnum, postimg, REVIEWNO, postno, title, likes, regdate, postTitle, reviewdeleteddate, postdeleteddate
+        FROM (
+        SELECT r.postno, r.REVIEWNO, r.title, TO_CHAR(r.regdate, 'yyyy.mm.dd') AS regdate,
+        p.title AS postTitle, r.DELETEDDATE AS reviewdeleteddate, p.DELETEDDATE AS postdeleteddate,
+        (SELECT COUNT(*) FROM HELPFUL h WHERE h.REVIEWNO = r.REVIEWNO) AS likes, postimg
+        FROM REVIEW r
+        inner JOIN POST p ON r.postno = p.postno
+        WHERE USERno = #{no} AND r.deleteddate IS NULL
+        ORDER BY regdate DESC )
+        ) WHERE rnum <![CDATA[<]]> #{idx}+9 and rnum <![CDATA[>=]]> #{idx}
+    </select>
+    <select id="merReviewsCount" resultType="int" parameterType="int">
+        SELECT count(*) FROM REVIEW WHERE USERNO = ${no} AND DELETEDDATE IS null
+    </select>
+    <select id="totalMemWish" resultType="int" parameterType="int">
+        SELECT count(*) FROM USERLIKE
+        inner JOIN post ON
+        post.postno = userlike.POSTNO WHERE userno = #{no} AND deleteddate IS null
+    </select>
+    <select id="totalEntPosts" parameterType="int" resultType="int">
+        SELECT count(*) FROM post WHERE ENTERPRISENO = #{no} AND DELETEDDATE IS null
+    </select>
+
+<!--    관심 상품 여부-->
+    <select id="isLike" parameterType="UserLikeDto" resultType="int">
+        SELECT count(*) FROM userlike where USERno = #{userNo} AND postno = #{postNo}
+    </select>
+
+<!--    관심 상품 등록  -->
+    <insert id="addUserLike" parameterType="UserLikeDto">
+        insert into userlike values(seq_userlike.nextval, #{userNo}, #{postNo})
+    </insert>
+
+<!--    관심 상품 취소-->
+    <delete id="deleteUserLike" parameterType="UserLikeDto">
+        delete from userlike where userNo = #{userNo} and postNo = #{postNo}
+    </delete>
+</mapper>
