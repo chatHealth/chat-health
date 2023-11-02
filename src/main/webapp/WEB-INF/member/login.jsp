@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/header-member.jsp"%>
 
 <div class="form-signin translate-middle w-25 position-absolute top-50 start-50">
 <h1 class="h3 mb-5 fw-normal">로그인</h1>
@@ -11,12 +11,12 @@
     <div class="mb-2">
     <label for="userID" class="mb-3">아이디</label>
       <input type="text" class="form-control" id="userID" placeholder="아이디" name="userID" 
-      value="${cookie.saveIDCookie.value}"> 
+      value="${cookie.saveIDCookie.value}" autofocus required> 
       
     </div>
     <div class="mb-2">
     <label for="userPW" class="mb-3">비밀번호</label>
-      <input type="password" class="form-control" id="userPW" placeholder="비밀번호" name="userPW">      
+      <input type="password" class="form-control" id="userPW" placeholder="비밀번호" name="userPW" required>      
     </div>
 
     <div class="checks mb-4">    	
@@ -42,8 +42,8 @@
     <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
   </form>
   
-  <div> 
-  <a href="../member/join-select" class="nav-link"><button class="btn btn-primary w-100 py-2 mt-3" type="submit">회원가입</button></a>
-  </div>
+ 
+  <p class="mt-4" style="text-align: center;">아직 회원이 아니신가요? <a href="../member/join-select">여기</a>를 눌러 회원가입 하기</p>
+  
 </div>
 <%@ include file="../include/footer.jsp"%>

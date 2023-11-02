@@ -17,18 +17,23 @@
 			<!-- Profile Picture -->
 			<div class="profile-picture">
 				<%--                        <img src="https://via.placeholder.com/150" alt="Profile Picture">--%>
+				<div class="edit-button">
+					<a id="editBtn" class="btn edit-profile">
 					<c:choose>
 						<c:when test="${loggedEnterprise.profile eq 'null'}">
 							<img src="../img/basic_profile.svg" alt="없음">
 						</c:when>
 						<c:otherwise>
-							<img src="/upload/${loggedEnterprise.profile }" alt="+++++++">
+							<img src="${loggedEnterprise.profile }" alt="프로필 사진">
 						</c:otherwise>
 					</c:choose>
-				<div class="edit-button">
+						<div class="explain">
+						<p id="explain">Edit</p>
+						</div>
+					</a>
 					<%--                            <button class="btn btn-primary" style="background: none; border: none; color: white;">Edit</button>--%>
 					<%--                        </div>--%>
-					<button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>
+<%--					<button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>--%>
 					<!-- 프로필 사진 업로드 Modal-->
 					<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
 						 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,7 +52,7 @@
 													<img src="../img/basic_profile.svg" alt="없음" id="preview" />
 												</c:when>
 												<c:otherwise>
-													<img src="/upload/${loggedEnterprise.profile }" alt="멤버프로필" id="preview" />
+													<img src="${loggedEnterprise.profile }" alt="멤버프로필" id="preview" />
 												</c:otherwise>
 											</c:choose>
 											<input type="file" class="form-control-file" id="profileImage"
@@ -71,12 +76,24 @@
 		<div class="col-8">
 			<!-- Profile Info Table and '정보 수정' text -->
 			<div class="table-container">
-				<h2 class="text-2xl font-weight-bold">Profile Info</h2>
+				<h2 class="text-2xl font-weight-bold">Enterprise Information</h2>
 				<table class="table table-striped">
 					<tbody>
 					<tr>
 						<th scope="row" class="w-25">법인명</th>
-						<td class="w-75">${loggedEnterprise.name }</td>
+						<td class="w-75">${loggedEnterprise.name }
+								<c:choose>
+									<c:when test="${loggedEnterprise.accepted eq 0}">
+										<span style="color: white; border-style: double; font-size: 11px;border-color: #7f3756;background: #7f3756">승인대기중</span>
+									</c:when>
+									<c:when test="${loggedEnterprise.accepted eq 1}">
+										<span style="color: white; border-style: double; font-size: 11px;border-color: green;background: green">승인완료</span>
+									</c:when>
+									<c:otherwise>
+										<span style="color: white; border-style: double; font-size: 11px;border-color: red;background: red">승인거절</span>
+									</c:otherwise>
+								</c:choose>
+							</td>
 					</tr>
 					<tr>
 						<th scope="row" class="w-25">대표자</th>

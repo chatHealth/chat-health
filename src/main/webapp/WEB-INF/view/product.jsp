@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ include file="../include/header-main.jsp"%>
 <%@ include file="../include/nav.jsp"%>
 
 <div class="viewBody">
-<div class="container marketing">
+	<div class="container marketing">
 
-	<!-- 제품 정보 헤드 -->
+		<!-- 제품 정보 헤드 -->
 
-	<%@ include file="viewInclude/viewProduct.jsp"%>
-
+		<%@ include file="viewInclude/viewProduct.jsp"%>
 
 	<hr class="featurette-divider">
 	<!-- 제품정보 -->
@@ -18,7 +17,6 @@
 			${postInfo.CONTENT}
 		</div>
 	</div>
-		</div>
 	<!--                          리뷰                         -->
 	<hr class="featurette-divider">
 	<h1 class="reviewStart">리뷰</h1>
@@ -32,9 +30,10 @@
 	<c:when test="${loggedMember ne null }">
 	<form action="../review/ReviewAdd" method="post">
 		<div>
-			<input class="reviewtitle" type="text" id="retitle" name="retitle"				placeholder="리뷰 제목" />
+			<input type="hidden" name="no" value="${param.no}" />
+			<input class="reviewtitle" type="text" id="retitle" name="retitle"	placeholder="리뷰 제목" />
 			<div class="commetbox">
-				<input class="reviewtext" type="text" id="recontent"					name="recontent" placeholder="리뷰글 작성" />
+				<input class="reviewtext" type="text" id="recontent"	name="recontent" placeholder="리뷰글 작성" />
 				<button value="submit">리뷰등록</button>
 			</div>
 		</div>
@@ -44,10 +43,13 @@
 	 <div>
 			
 			<div class="commetbox">
-			<h2>댓글을 작성하려면 로그인하세요.</h2>
+			<h2>댓글을 작성하려면 일반유저로 로그인하세요.
+				<form action="../member/login" method="post">
+				<button valuew="submit">로그인</button>
+				</form>
+			</h2>
 			</div>
-		</div>
-	</c:otherwise>
+		</c:otherwise>
 	</c:choose>
 </div>
 
@@ -60,7 +62,7 @@
 // 1. delete modal 처리(rang 건들지 마시오)
 
 $("#modalAccept").on("click", function() {
-
+	if($("#modal-title").text().trim()==="게시물 삭제"){
 	$.ajax({
 		type : "POST", 
 		data : {postNo : ${postInfo.POSTNO} },
@@ -77,9 +79,14 @@ $("#modalAccept").on("click", function() {
 			history.back();
 		}
 	});
+	}
 });
+
 
 
 </script>
 
 
+
+
+</script>

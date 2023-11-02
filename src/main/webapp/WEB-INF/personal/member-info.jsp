@@ -16,16 +16,22 @@
         <div class="col-4">
             <!-- Profile Picture -->
             <div class="profile-picture">
+                <div class="edit-button">
+                    <a id="editBtn" class="btn edit-profile">
                 <c:choose>
                 <c:when test="${loggedMember.profile eq 'null'}">
                     <img src="../img/basic_profile.svg" alt="없음">
                 </c:when>
                 <c:otherwise>
-                    <img src="/upload/${loggedMember.profile }" alt="멤버프로필">
+                    <img src="${loggedMember.profile }" alt="멤버프로필">
                 </c:otherwise>
                 </c:choose>
-                <div class="edit-button">
-                    <button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>
+                        <div class="explain">
+                            <p id="explain">Edit</p>
+                        </div>
+                    </a>
+<%--                <div class="edit-button">--%>
+<%--                    <button id="editBtn" class="btn" style="background: gray; border: none;">Edit</button>--%>
                     <!-- 프로필 사진 업로드 Modal-->
                     <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,7 +50,7 @@
                                                         <img src="../img/basic_profile.svg" alt="없음" id="preview" />
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <img src="/upload/${loggedMember.profile }" alt="멤버프로필" id="preview" />
+                                                        <img src="${loggedMember.profile }" alt="멤버프로필" id="preview" />
                                                     </c:otherwise>
                                                 </c:choose>
                                             <input type="file" class="form-control-file" id="profileImage"

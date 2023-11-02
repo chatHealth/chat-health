@@ -4,12 +4,13 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.health.mybatis">
 
-    <select id="memberWishPosts" resultType="PostDto" parameterType="int">
-        <!--        select p.postno as postNo, enterpriseNo,title,content, postimg as postImg,p.regDate as regDate,p.deletedDate as deletedDate from post p-->
+    <select id="memberWishPosts" resultType="com.health.dto.personal.MemberReviewPageDto" parameterType="Map">
+        select * from (
+        SELECT rownum rnum, a.* From(
         select p.postno as postNo, title, postimg from post p
-        inner join (select * from member m
-        inner join userlike u on m.userno = u.userno where m.userno = #{userNo}) mu
-        on p.postno = mu.postno WHERE p.DELETEDDATE is null
+        inner join USERLIKE u
+        on p.postno = u.postno WHERE userno = #{userNo} AND p.DELETEDDATE is NULL ORDER BY LIKEKEY DESC) a)
+        where rnum <![CDATA[>=]]> #{idx} AND rnum <![CDATA[<]]> #{idx}+8
     </select>
     <select id="memberInfo" resultType="MemberDto" parameterType="int">
         select * from member where userno = #{userNo}
@@ -38,26 +39,68 @@
     <update id="entProfileImg" parameterType="EnterpriseDto">
         update enterprise set profile = #{profile} where enterpriseNo = #{enterpriseNo}
     </update>
-    <select id="entPosts" resultType="PostPageDto" parameterType="int">
-        select rowNum, postNo, title, to_char(regDate,'yyyy.mm.dd') as regDate from post where enterpriseNo = #{no} and deletedDate is null
+    <select id="entPosts" resultType="PostPageDto" parameterType="Map">
+        SELECT * FROM(
+        SELECT ROWNUM rnum, postNo, title, postImg, regDate, likes
+        FROM (
+        SELECT p.postNo, p.title, p.postImg, TO_CHAR(p.regDate, 'yyyy.mm.dd') AS regDate, COUNT(ul.likeKey) AS likes
+        FROM Post p
+        LEFT JOIN UserLike ul ON p.postNo = ul.postNo
+        WHERE p.enterpriseNo = #{enterpriseNo} AND p.DELETEDDATE IS null
+        GROUP BY p.postNo, p.title, p.postImg, p.regDate
+        ORDER BY p.regDate DESC
+        ))
+        WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
+
     </select>
 <!--    member review 조회-->
-    <select id="memReview" resultType="Map" parameterType="Map">
-<!--        SELECT rownum, postimg, REVIEWNO, r.postno AS postno, r.title AS title,-->
-<!--        to_char(r.regdate, 'yyyy.mm.dd') AS regdate, p.title AS postTitle,-->
-<!--        p.DELETEDDATE AS postdeleteddate-->
-<!--        FROM REVIEW r INNER JOIN post p-->
-<!--        ON r.postno = p.postno WHERE r.DELETEDDATE IS NULL AND userno = #{no}-->
-
-        SELECT a.* from
-        (SELECT rownum rnum, postimg, REVIEWNO, r.postno AS postno, r.title AS title,
-        to_char(r.regdate, 'yyyy.mm.dd') AS regdate, p.title AS postTitle, r.DELETEDDATE rivewdeleteddate,
-        p.DELETEDDATE AS postdeleteddate
-        FROM REVIEW r right JOIN post p
-        ON r.postno = p.postno WHERE USERno = #{no} and r.deleteddate is null) a
-        WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
+    <select id="memReview" resultType="com.health.dto.personal.MemberReviewPageDto" parameterType="Map">
+        SELECT rnum, postimg, REVIEWNO, postno, title, likes, regdate, postTitle, postdeleteddate
+        FROM (
+        SELECT ROWNUM AS rnum, postimg, REVIEWNO, postno, title, likes, regdate, postTitle, reviewdeleteddate, postdeleteddate
+        FROM (
+        SELECT r.postno, r.REVIEWNO, r.title, TO_CHAR(r.regdate, 'yyyy.mm.dd') AS regdate,
+        p.title AS postTitle, r.DELETEDDATE AS reviewdeleteddate, p.DELETEDDATE AS postdeleteddate,
+        (SELECT COUNT(*) FROM HELPFUL h WHERE h.REVIEWNO = r.REVIEWNO) AS likes, postimg
+        FROM REVIEW r
+        inner JOIN POST p ON r.postno = p.postno
+        WHERE USERno = #{no} AND r.deleteddate IS NULL
+        ORDER BY
+        <choose>
+            <when test="by == 2"> regdate </when>
+            <when test="by == 1"> POSTTITLE </when>
+            <when test="by == 3"> LIKES </when>
+        </choose>
+        <choose>
+            <when test="sort == 1"> DESC </when>
+            <when test="sort == 2"> ASC </when>
+        </choose>)
+        ) WHERE rnum <![CDATA[<]]> #{idx}+9 and rnum <![CDATA[>=]]> #{idx}
     </select>
     <select id="merReviewsCount" resultType="int" parameterType="int">
         SELECT count(*) FROM REVIEW WHERE USERNO = ${no} AND DELETEDDATE IS null
     </select>
+    <select id="totalMemWish" resultType="int" parameterType="int">
+        SELECT count(*) FROM USERLIKE
+        inner JOIN post ON
+        post.postno = userlike.POSTNO WHERE userno = #{no} AND deleteddate IS null
+    </select>
+    <select id="totalEntPosts" parameterType="int" resultType="int">
+        SELECT count(*) FROM post WHERE ENTERPRISENO = #{no} AND DELETEDDATE IS null
+    </select>
+
+<!--    관심 상품 여부-->
+    <select id="isLike" parameterType="UserLikeDto" resultType="int">
+        SELECT count(*) FROM userlike where USERno = #{userNo} AND postno = #{postNo}
+    </select>
+
+<!--    관심 상품 등록  -->
+    <insert id="addUserLike" parameterType="UserLikeDto">
+        insert into userlike values(seq_userlike.nextval, #{userNo}, #{postNo})
+    </insert>
+
+<!--    관심 상품 취소-->
+    <delete id="deleteUserLike" parameterType="UserLikeDto">
+        delete from userlike where userNo = #{userNo} and postNo = #{postNo}
+    </delete>
 </mapper>

@@ -38,22 +38,20 @@ public class MemberProfileImage extends HttpServlet {
             ScriptWriter.alertAndBack(response, "이미지 파일만 등록 가능");
         } else {
             //directory 환경변수 설정
-            String uploadDir = System.getenv("upload");
-            
-            System.out.println(uploadDir);
+            String uploadDir = "C:\\upload";
+            String saveDir = "";
 
             HttpSession session = request.getSession();
             MemberDto loggedMember = (MemberDto) session.getAttribute("loggedMember");
             EnterpriseDto loggedEnterprise = (EnterpriseDto) session.getAttribute("loggedEnterprise");
 
-            if (loggedMember != null) {
+            if (loggedMember != null) { //개인
 
                 String filename = "member" + loggedMember.getUserNo() + "_profileImage." + ext;
                 part.write(uploadDir + File.separator + filename);
-
                 MemberDto updateProfileMember = new MemberDto();
 
-                updateProfileMember.setProfile(filename);
+                updateProfileMember.setProfile(File.separator+"upload"+File.separator+filename);
                 updateProfileMember.setUserNo(loggedMember.getUserNo());
 
                 int result = memberDao.updateProfileImage(updateProfileMember);
@@ -67,14 +65,14 @@ public class MemberProfileImage extends HttpServlet {
                 } else {
                     ScriptWriter.alertAndBack(response, "잘못된 접근입니다.");
                 }
-            } else if (loggedEnterprise != null) {
+            } else if (loggedEnterprise != null) { //사업자
 
                 String filename = "ent" + loggedEnterprise.getEnterpriseNo() + "_profileImage." + ext;
                 part.write(uploadDir + File.separator + filename);
 
                 EnterpriseDto updateProfileEnt = new EnterpriseDto();
 
-                updateProfileEnt.setProfile(filename);
+                updateProfileEnt.setProfile(File.separator+"upload"+File.separator+filename);
                 updateProfileEnt.setEnterpriseNo(loggedEnterprise.getEnterpriseNo());
 
                 int result = personalDao.updateProfileImage(updateProfileEnt);

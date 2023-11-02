@@ -9,13 +9,10 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import org.apache.catalina.Session;
-
 import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
 import com.health.dto.MemberDto;
 import com.health.dto.ReviewDto;
-import com.health.util.ModalState;
 
 @WebServlet("/review/ReviewAdd")
 public class ReviewAdd extends HttpServlet {
@@ -37,8 +34,6 @@ public class ReviewAdd extends HttpServlet {
 		String recontent = request.getParameter("recontent");
 		String retitle = request.getParameter("retitle");
 		int no = Integer.parseInt(request.getParameter("no"));
-
-		
 
 		reviewDto.setUserNo(loggedMember.getUserNo());
 		reviewDto.setPostNo(no);

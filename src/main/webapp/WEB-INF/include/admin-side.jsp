@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/header-member.jsp" %>
 
 <style>
   
@@ -16,6 +16,8 @@
 ul {
 text-align: center;
 }
+
+
 a {
   text-decoration-line: none;
   color: #111;
@@ -32,7 +34,7 @@ a {
 
     <!-- Sidebar -->
     <div class="col sidebar admin-sidebar">
-      <h3>관리자 페이지</h3></br>
+      <h3 style="color: #347F5C;">관리자 페이지</h3></br>
       <p>어서오세요, admin님</p></br>
       <a href="../member/logout"><button type="button" class="btn btn-outline-secondary">로그아웃</button></a>
       <span style="border-top: 2px solid #ccc; display: block; margin: 10px 0;"></span></div>

@@ -8,7 +8,7 @@
 
 	<!-- 1. show material -->
 
-	<c:if test="${ not empty materialList }">
+	<c:if test="${ materialList ne null}">
 			<div class="show-material">
 				<div class="row align-items-md-stretch">
 					<div class="h-100 p-5 bg-body-tertiary border rounded-3">
@@ -20,7 +20,7 @@
 								<c:forEach items="${ materialList }" var="material" varStatus="status">
 
 									<div class="col-md-3 ">
-										<a href="#material=${ material.materialNo }" class="nav-link link-body-emphasis">
+										<a href="../category/list?sort=${sort }&symp=${sympNo }&material=${ material.materialNo }" class="nav-link link-body-emphasis">
 											${material.materialName } 
 										</a>
 									</div>
@@ -44,29 +44,34 @@
 						<h2 class="use-main-color">게시글이 없습니다</h2>
 					</div>
 				</c:when>
+				
 				<c:otherwise>
 
 
-					<!-- 3. show postList -->
-					<div class="sort-select d-flex justify-content-start">
-						<form action="../category/list" method="get" name="sort-select" id="sort-select">
-							<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
-								<option value="recent" ${param.sort=='recent'?'selected':null }>최신순</option>
-								<option value="recommended" ${param.sort=='recommended'?'selected':null }>추천순</option>
-								<option value="reviewed" ${param.sort=='reviewed'?'selected':null }>리뷰순</option>
-							</select>
-						</form>
-					</div>
 
-					<script>
-			$("#sort").on('change', function(){
-				console.log($(this).val());
-			 $("#sort-select").submit();
-			});
+			<!-- 3. show postList -->
+			<div class="sort-select d-flex justify-content-start">
+				<form action="../category/list" method="get" name="sort-select" id="sort-select">
+					<input type="hidden" name="symp" value="${sympNo}">
+      				<input type="hidden" name="material" value="${materialNo}">
+      				<input type="hidden" name="keyword" value="${keyword}">
+      				
+					<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
+						<option value="recent" ${sort=='recent'?'selected':null }>최신순</option>
+						<option value="old" ${sort=='old'?'selected':null }>오래된순</option>
+					</select>
+				</form>
+			</div>
 			
+			<script>
+			// select 변하면, symp,material hidden으로 값보내기 (쿼리스트링X)
+				$("#sort").on('change', function() {
+					$("#sort-select").submit();
+				});
 			</script>
 
-					<div class="container album py-5 bg-light">
+
+			<div class="container album py-5 bg-light">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 							<c:forEach items="${ postList }" var="post" varStatus="status">
 
@@ -90,12 +95,14 @@
 												<p class="card-text category-title">${ post.title }</p> 
 											</a>
 											<div class="d-flex justify-content-between align-items-center">
+											<c:if test="${loggedAdmin ne null || loggedEnterprise.enterpriseNo == post.enterpriseNo}">
 												<div class="btn-group">
-													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3">수정</a>
-													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3">삭제</a>
+													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-modify" >수정</a>
+													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-delete">삭제</a>
 												</div>
-												
-												<small class="text-muted"> 회사명 </small>
+											</c:if>
+											
+												<small class="text-muted">${post.name }</small>
 											</div>
 										</div>
 									</div>
@@ -111,15 +118,99 @@
 	
 	
 	
-	<!-- 4. review -->
+	<!-- 4. pagenation -->
+	<form action="../category/list" method="get" class="convey-form">
+		<input type="hidden" name="symp" value="${sympNo}">
+		<input type="hidden" name="material" value="${materialNo}">
+		<input type="hidden" name="keyword" value="${keyword}">
+ 		<input type="hidden" name="idx" value=""> 
+ 		
+ 		<div id="pageTotal" data-total="${pageTotal}"></div>
+ 		<div id="idx" data-total="${idx}"></div>
+    			
+	<c:choose>
+		<c:when test="${ ps=='all' }">
+			<div class="d-flex align-items-center justify-content-center">
+			<input type="hidden" name="ps" value="all">
 
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item">
+						<a class="page-link convey-btn page-previous-btn" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a>
+						</li>
+						
+						<c:forEach var="page" begin="1" end="${pageTotal}">
+							<li class="page-item">
+								<a class="page-link convey-btn" data-page="${page}"> ${page} </a>
+							</li>
+						</c:forEach>
+						
+						<li class="page-item">
+						<a class="page-link convey-btn page-next-btn" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a>
+						</li>
+					</ul>
+				</nav>
 
+			</div>
+		</c:when>
 
+		<c:when test="${ postTotal > 8 }"> 
+		<div class="d-flex align-items-center justify-content-center">
+			<a class="btn btn-outline-secondary mt-3 convey-btn" >
+				모든글보기
+				<input type="hidden" name="ps" value="all">
+			</a>
+		</div> 	
+	</c:when>
+	</c:choose>
 
+	</form>
 
-
-
-</div>
+	</div>
 
 
 <%@ include file="../include/footer.jsp"%>
+
+
+<script>
+
+//1. 수정 -> 모달 인정버튼 -> modify 페이지로
+$("#modalAccept").on("click", function() {
+	if($("#modal-title").text().trim()==="게시물 수정"){
+	location.href="../post/modify";
+	}
+});
+
+
+
+// 2. symp, material 숨겨서 보내기
+// 3. pagination 다음버튼 보내기
+$(".convey-btn").on('click', function() {
+    const this_btn = $(this);
+    const pageTotal = $("#pageTotal").data("total");
+    const currentPage = $("#idx").data("total");
+   
+    if (this_btn.hasClass('page-previous-btn')) {   // 이전 버튼을 클릭한 경우
+    	if (currentPage > 1) {
+            $("input[name='idx']").val(currentPage - 1);
+            $(".convey-form").submit();
+        }
+    } else if (this_btn.hasClass('page-next-btn')) {  // 다음 버튼을 클릭한 경우
+        if (currentPage < pageTotal) {
+            $("input[name='idx']").val(currentPage + 1);
+            $(".convey-form").submit();
+        }
+
+	} else if (this_btn.hasClass('page-link')) { // 일반 페이지 버튼을 클릭한 경우
+			const page = $(this).data("page");
+			if (page != currentPage) {
+				$("input[name='idx']").val(page);
+				$(".convey-form").submit();
+			}
+		} else {
+			$(".convey-form").submit();
+		}
+
+		return false;
+	});
+</script>

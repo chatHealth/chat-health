@@ -1,43 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/header-member.jsp"%>
 
-<h1 class="h3 mb-3 fw-normal">개인 회원가입</h1>
+
 
 <form action="../member/member-join-process" method="post" enctype="multipart/form-data">
       <div class="form-join m-auto">        
-			
+			<h1 class="h3 mb-5 fw-normal">개인 회원가입</h1>
+			<span class="border-bottom border-dark-subtle"></span>
 			<div class="mb-3"><!--닉네임-->
           
           <label for="nickname" class="form-label">닉네임</label>
-          <input type="text" class="form-control" id="nickname" name="nickname"/>
+          <input type="text" class="form-control" id="nickname" name="nickname" required/>
         </div>
         
         <div class="mb-3"><!--이메일-->          
           <label for="email" class="form-label">이메일</label>
-          <input type="text" class="form-control" id="email" name="email"/>
+          <input type="email" class="form-control" id="email" name="email" required/>
         </div>
         
         <div class="mb-3"><!--이름-->
           
           <label for="name" class="form-label">이름</label>
-          <input type="text" class="form-control" id="name" name="name"/>
+          <input type="text" class="form-control" id="name" name="name" required/>
         </div>
         
-        <div class="form-check"><!--성별-->
-          
-          <label for="gender-f" class="form-label"><input type="radio" class="form-check-input" id="gender-f" name="gender" value="f">여성</label>
-          
-          <label for="gender-m" class="form-label"><input type="radio" class="form-check-input" id="gender-m" name="gender" value="m">남성</label>
-          
+        
+        <div class="form-check form-check-inline"><!--성별-->
+          <input type="radio" class="form-check-input" id="gender-f" name="gender" value="f" required>
+          <label for="gender-f" class="form-label">여성</label>
+          </div>
+          <div class="form-check form-check-inline mb-4">
+          <input type="radio" class="form-check-input" id="gender-m" name="gender" value="m">
+          <label for="gender-m" class="form-label">남성</label>          
         </div>
         
-        <!-- <div class="mb-3">생년월일
-          
-          <label for="birth" class="form-label">이름</label>
-          <input type="date" class="form-control" id=""" name="birth"/>
+         <div class="mb-3"> <!-- 생년월일 -->          
+          <label for="birth" class="form-label">생년월일</label>
+          <input type="date" class="form-control" id="birth" name="birth" required/>
         </div>
-        -->
+        
         
          <div class="row d-flex mt-5 w-100"> <!-- 아이디 -->
 				<div>
@@ -46,7 +48,7 @@
 							<div class="col-6">
 								<label for="id" class="form-label">아이디</label> 
 								<input type="text" class="form-control" id="id"
-								placeholder="user id" name="id" />
+								placeholder="user id" name="id" required/>
 							</div>
 							<div class="col-6  mt-3 d-flex align-items-baseline px-0">
 								<button class="btn btn-primary mt-3" id="btnIDCheck" >아이디 중복 확인</button>
@@ -59,20 +61,21 @@
         <div class="mb-3"><!--비번-->
           
           <label for="password" class="form-label">비밀번호</label>
-          <input type="password" class="form-control" id="password" name="pw"/>
+          <input type="password" class="form-control" id="password" name="pw" oninput="check()" required/>
         </div>
         <div class="mb-3"><!--비번확인-->
           
           <label for="password2" class="form-label">비밀번호 확인</label>
-          <input type="password" class="form-control" id="password2" name="pw2"/>
-        </div>  
+          <input type="password" class="form-control mb-2" id="password2" name="pw2" oninput="check()" required/>
+          <span id="pwConfirm"></span>
+        </div> 
           
         <div class="mb-3"><!--사업장소재지,우편번호찾기 API 연동-->
           
           <label for="address" class="form-label">주소</label>
-          <input type="hidden" id="sample4_postcode" placeholder="우편번호">
+          <input type="hidden" id="sample4_postcode" placeholder="우편번호" >
 		  <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		  <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address">
+		  <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address" required>
 		  <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
 		  <span id="guide" style="color:#999;display:none"></span>
 		  <input type="text" id="sample4_detailAddress" placeholder="상세주소"name="addressDetail">
@@ -157,9 +160,17 @@
             }
         }).open();
     }
-    
+</script>
+
+<script>    
     	//2. 아이디 중복체크
 	   $('#btnIDCheck').on('click', function(){
+		   if($("#id").val().trim()=== ""){
+				alert("아이디는 반드시 입력해야합니다.");
+				$("#id").val("");
+				$("#id").focus();
+				return false;
+			}
 	       $.ajax({
 	          url:"../member/id-check",
 	          data: {
@@ -188,6 +199,18 @@
 	       return false;
 	    });
 </script>
+<script> <!-- 비밀번호 일치 여부 확인 -->
 
+  function check(){
+	  
+    if ($("#password").val() == $("#password2").val()) {
+      // 비밀번호 일치
+    	$("#pwConfirm").text("비밀번호가 일치합니다.").css('color','green');
+    } else {
+      // 비밀번호 불일치 시 사용자 정의 유효성 메시지 설정
+    	 $("#pwConfirm").text("비밀번호가 일치하지 않습니다.").css('color','red');
+    }
+  };
+</script>
 
 <%@ include file="../include/footer.jsp"%>

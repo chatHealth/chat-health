@@ -33,12 +33,12 @@ public class MemberJoinProcess extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 값 넘겨받기
+				//1. 값 넘겨받기
 		
-				
 				String id = request.getParameter("id");
 				String email = request.getParameter("email");
 				String name = request.getParameter("name");
+				String birth = request.getParameter("birth");
 				String nickname = request.getParameter("nickname");
 				String pw = request.getParameter("pw");
 				String gender = request.getParameter("gender");
@@ -46,13 +46,14 @@ public class MemberJoinProcess extends HttpServlet {
 				String addressDetail = request.getParameter("addressDetail");
 				Part profile = request.getPart("profile");
 				
-				
 	
 				
 				//2. < 이미지 처리 >
 						// 파일 업로드 경로 바깥에
-						String uploadDir = "C:\\upload";
+						//String uploadDir = "C:\\upload";
+						String uploadDir = System.getenv("upload");
 						String realUploadPath = uploadDir;
+						String saveDir = "";
 
 						// 파일이름찾기
 						String partHeader = profile.getHeader("Content-disposition"); // 넘어오는 data -> form-data; name="profile";
@@ -61,7 +62,6 @@ public class MemberJoinProcess extends HttpServlet {
 						String originFileName = partHeaderArray[1].trim().replace("\"", ""); // 맨뒤 따옴표 제거
 
 						String newFileName = "";
-						String saveDir = "";
 						
 						if (!originFileName.isEmpty()) {
 							// 실질적인(물리적인)경로에 파일생기도록
@@ -82,10 +82,11 @@ public class MemberJoinProcess extends HttpServlet {
 							File oldFile = new File(realUploadPath + File.separator + originFileName);
 							File newFile = new File(realUploadPath + File.separator + newFileName);
 							oldFile.renameTo(newFile);
+							saveDir = "/upload";
 
 						}else {
 							//대표 이미지 선택안했을경우, img파일의 기본이미지로 대체
-							saveDir = request.getContextPath()+ File.separator + "img";
+							saveDir = "../img";
 							newFileName = "basic_profile.svg";
 						}
 						
@@ -94,15 +95,15 @@ public class MemberJoinProcess extends HttpServlet {
 						parameterDto.setId(id);
 						parameterDto.setEmail(email);
 						parameterDto.setName(name);
+						parameterDto.setBirthDate(birth);
 						parameterDto.setNickName(nickname);
 						parameterDto.setPw(pw);
 						parameterDto.setGender(gender);
 						parameterDto.setAddress(address);
 						parameterDto.setAddressDetail(addressDetail);
-						parameterDto.setProfile(realUploadPath + File.separator + newFileName);
-						parameterDto.setBirthDate("2023-11-11");
+						parameterDto.setProfile(saveDir + File.separator + newFileName);
 						
-						System.out.println(parameterDto);
+						
 						
 						//4. 인서트
 						int result = memberDao.insertMember(parameterDto);

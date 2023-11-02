@@ -9,12 +9,12 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/post/modal-delete")
-public class ModalDelete extends HttpServlet {
+@WebServlet("/post/modal-control")
+public class ModalControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
-    public ModalDelete() {
+    public ModalControl() {
         super();
     }
 
@@ -25,13 +25,32 @@ public class ModalDelete extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 1. modal 삭제
 		HttpSession session = request.getSession();
 		ModalState modal = (ModalState)session.getAttribute("myModal");
-		if(modal!=null && modal.getTitle().equals("안내")) session.removeAttribute("myModal");
 		
-		String accept = request.getParameter("accept");
-		if(accept.equals("no")) session.removeAttribute("myModal");
+		String action = request.getParameter("action");
+		
+		// 1. modal 삭제
+		if(modal!=null && action.equals("delete")) {
+			String button = request.getParameter("button");
+			
+			if(button.equals("accept") ) {
+				if(modal.getTitle().equals("안내")) //안내면 삭제
+				session.removeAttribute("myModal");
+			}else if(button.equals("reject")) {  //취소면 다 삭제
+				session.removeAttribute("myModal");
+			}
+		}
+		
+		// 2. 생성
+		if(action.equals("create")) {
+			String title = request.getParameter("title");
+			
+			if(title.equals("게시물 수정") ) {
+				
+				//response.sendRedirect("../category/list");
+			}
+		}
 
 	}
 

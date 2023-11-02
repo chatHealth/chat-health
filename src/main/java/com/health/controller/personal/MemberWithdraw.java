@@ -16,7 +16,7 @@ public class MemberWithdraw extends HttpServlet {
         Object loggedEnterprise = request.getAttribute("loggedEnterprise");
 
         if (loggedMember == null && loggedEnterprise == null) {
-            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../");
+            ScriptWriter.alertAndGo(response,"잘못된 접근입니다.", "../index/index");
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/personal/member-withdraw.jsp");

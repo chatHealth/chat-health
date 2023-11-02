@@ -6,14 +6,15 @@
  
  <select id="reviewDate" parameterType="int" resultType="Map">
  	select r.REVIEWNO reviewno, r.USERNO userno,r.POSTNO postno,r.TITLE title, r.CONTENT content, r.REGDATE regdate,
- 	  r.DELETEDDATE deleteddate,m.NICKNAME nickname 
+ 	  r.DELETEDDATE deleteddate,m.NICKNAME nickname,(select count(1) from helpful where reviewNo = r.reviewNo) as helpfulCnt
  					from Review r LEFT JOIN MEMBER m 
 	 					ON
 	 					r.USERNO = m.USERNO 
-	 					where postNo=#{no} ORDER BY REGDATE desc
+	 					where postNo=#{no} ORDER BY helpfulcnt desc,REGDATE DESC
  </select>
- <select id="postInfo" parameterType="int" resultType="Map">
- 	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME 
+ <select id="postInfo" parameterType="Map" resultType="Map">
+ 	SELECT r.POSTNO , r.TITLE , r.CONTENT , r.POSTIMG , r.REGDATE , r.DELETEDDATE , m.NAME ,
+ 			(select count(1) from USERLIKE where POSTNO  = r.POSTNO) as UserLikeCnt
 					FROM post r LEFT JOIN enterprise m
 					ON r.ENTERPRISENO =m.ENTERPRISENO 
 					WHERE postNo=#{no}
@@ -25,10 +26,22 @@
 					ON m.MATERIALNO = t.MATERIALNO 
 					WHERE p.POSTNO=#{no}
  </select>
- <select id="helpFulCount" parameterType='int' resultType="int">
- 	SELECT count(reviewNo) FROM HELPFUL WHERE reviewNo=#{reviewNo}
+ <select id="helpfulSame" parameterType="HelpfulDto" resultType="int">
+ 		SELECT count(*) FROM helpful WHERE userNo=#{userNo} AND reviewNO=#{reviewNo}
  </select>
-  
+ 
+ <select id="sameViewLike" parameterType="UserLikeDto" resultType="int">
+ 		SELECT count(*) as UserCheck FROM UserLike WHERE userNo=#{userNo} AND postNo=#{postNo}
+ </select>
+
+ 
+ 
+ 
+ 
+ 
+  <select id="getReviewNo" parameterType="int" resultType="int">
+  	select reviewNo from review
+  </select>
  
  
  
@@ -53,7 +66,6 @@
 					#{title},
 					#{content},
 					DEFAULT,
-					#{helpful},
 					DEFAULT
 )
  </insert>
@@ -65,10 +77,18 @@
 	)
  </insert>
  <delete id="helpfulCancel" parameterType="HelpfulDto">
- 	DELETE FROM HELPFUL WHERE userNo=#{userNO}
+ 	DELETE FROM HELPFUL WHERE userNo=#{userNo} and reviewNo=#{reviewNo}
  </delete>
  
- 
- 
+ <insert id="insertViewLike" parameterType="UserLikeDto">
+ INSERT INTO UserLike values(
+	seq_helpful.nextval,
+	#{userNo},
+	#{postNo}
+	)
+ </insert>
+ <delete id="deletViewLike" parameterType="UserLikeDto">
+ 	DELETE FROM userlike WHERE userNo=#{userNo} and postNo=#{postNo}
+ </delete>
  </mapper>
  

@@ -50,15 +50,16 @@ public class EnterpriseJoinProcess extends HttpServlet {
 		
 		//2. < 이미지 처리 >
 				// 파일 업로드 경로 바깥에
-				String uploadDir = "C:\\upload";
+				//String uploadDir = "C:\\upload";
+				String uploadDir = System.getenv("upload");
 				String realUploadPath = uploadDir;
 				String saveDir = "";
+				
 				// 파일이름찾기
 				String partHeader = profile.getHeader("Content-disposition"); // 넘어오는 data -> form-data; name="profile";
 																				// filename="a.png"
 				String partHeaderArray[] = partHeader.split("filename=");
 				String originFileName = partHeaderArray[1].trim().replace("\"", ""); // 맨뒤 따옴표 제거
-
 				String newFileName = "";
 		
 				if (!originFileName.isEmpty()) {
@@ -83,7 +84,7 @@ public class EnterpriseJoinProcess extends HttpServlet {
 					saveDir = "/upload";
 				}else {
 					//대표 이미지 선택안했을경우, img파일의 기본이미지로 대체
-					saveDir = request.getContextPath()+ File.separator + "img";
+					saveDir = "../img";
 					newFileName = "basic_profile.svg";
 				}
 				

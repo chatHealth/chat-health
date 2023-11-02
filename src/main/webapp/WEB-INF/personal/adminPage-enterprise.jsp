@@ -3,7 +3,8 @@
 <%@ include file="../include/admin-side.jsp"%>
 
 <div class="admin-contents text-center">
-	<!-- 사업자 강제탈퇴 테이블 -->
+<h3 class="text-start fw-semibold" style="color: #347F5C;">사업자회원 관리</h3> </br>
+	<!-- 사업자 강제탈퇴 -->
 	<table class="table table-striped certain-width">
 		<thead>
 			<tr>
@@ -15,7 +16,7 @@
 		</thead>
 		<tbody class="table-hover">
 			<c:forEach items="${userList}" var="item">
-				<c:if test="${empty item.deletedDate}">
+				<c:if test="${empty item.deletedDate && item.accepted == 1}">
 					<tr data-no="${item.enterpriseNo}">
 						<td>${item.enterpriseNo}</td>
 						<td>${item.id}</td>
@@ -57,7 +58,6 @@
 	console.log($("#memWithdraw"));
 	let sendenterpriseNo = null;
 	$(".btn-delete").on("click", function() {
-		console.log($(this));
 		sendEnterpriseNo = $(this).data("userno");
 	})
 

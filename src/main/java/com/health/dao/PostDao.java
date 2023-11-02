@@ -38,27 +38,6 @@ public class PostDao {
 	
 	
 	// 3. 
-	// 증상으로 post list 가져오기
-	public List<PostDto> getPostForSympno(HashMap<String,String> map) {
-		List<PostDto> resList = null;
-		
-		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-		resList = sqlSession.selectList("getPostForSympno", map);
-		sqlSession.close();
-		
-		return resList;
-	}
-	
-	// 키워드로  post list 가져오기
-	public List<PostDto> getPostForKeyword(HashMap<String,String> map) {
-		List<PostDto> resList = null;
-		
-		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-		resList = sqlSession.selectList("getPostForKeyword", map);
-		sqlSession.close();
-		
-		return resList;
-	}
 	
 	// 모든 post list 가져오기
 	public List<PostDto> getPostForAll(HashMap<String,String> map) {
@@ -70,6 +49,44 @@ public class PostDao {
 		
 		return resList;
 	}
+	
+	
+	// 증상으로 post list 가져오기
+	public List<PostDto> getPostForSympno(HashMap<String,String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForSympno", map);
+		sqlSession.close();
+		
+		return resList;
+	}
+	
+	// 증상과 재료로 post list 가져오기
+	public List<PostDto> getPostForSympnoAndMaterial(HashMap<String, String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForSympnoAndMaterial", map);
+		sqlSession.close();
+		
+		return resList;
+	}
+		
+	// 키워드로  post list 가져오기
+	public List<PostDto> getPostForKeyword(HashMap<String,String> map) {
+		List<PostDto> resList = null;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		resList = sqlSession.selectList("getPostForKeyword", map);
+		sqlSession.close();
+		
+		return resList;
+	}
+	
+
+	
+
 	
 	
 	// 4. postNo로 게시글 하나 가져오기
@@ -94,6 +111,16 @@ public class PostDao {
 		return result;
 	}
 	
+	public int updatePostNotImg(PostDto postDto) {
+		int result = 0;
+		
+		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+		result = sqlSession.update("updatePostNotImg",postDto);
+		sqlSession.close();
+		
+		return result;
+	}
+	
 	// 6. delete one
 	public int deletePost(int no) {
 		int result = 0;
@@ -105,4 +132,13 @@ public class PostDao {
 		return result;
 	}
 	
+	// 7. pagination을 위한 글 갯수 세기
+	public int countPost(HashMap<String, String> map) {
+		int result;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.selectOne("countPost", map);
+        sqlSession.close();
+        return result;
+	}
+
 }

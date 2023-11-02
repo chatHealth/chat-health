@@ -46,6 +46,7 @@
 /* sun */
 .viewBody{
 	width: 70%;
+	margin-left: 70px;
 }
 
 .productbox {
@@ -62,6 +63,22 @@
 .imgtest {
 	width: 400px;
 	height: 400px;
+}
+.productLike{
+	position: relative;
+	border: hidden;
+	background-color: white;
+}
+.viewHt{
+	width: 40px;
+	height: 40px;
+	z-index: 10;
+}
+.viewLikeNun{
+	position: absolute;
+	top:8px;
+	left: 21px;
+	z-index: 20;
 }
 
 /*sun review*/
@@ -89,12 +106,19 @@
 }
 
 .btnGood {
-	margin-left: 58%;
+	margin-left: 530%;
+	margin-bottom: 20px;
 }
+
 
 .btnGdfdsf {
 	width: 100px;
+	background-color: rgb(255, 253, 181);
+	border-radius: 10%;
+	margin-bottom: 20px;
 }
+
+
 
 .reviewContentbox {
 	border: solid;
