@@ -3,7 +3,7 @@
 <%@ include file="../include/admin-side.jsp"%>
 
 <div class="admin-contents text-center">
-<h3 class="text-start fw-semibold" style="color: #D19C97;">사업자 승인 관리</h3> </br>
+<h3 class="text-start fw-semibold" style="color: #347F5C;">사업자 승인 관리</h3> </br>
 	<!-- 사업자 가입승인 테이블 -->
 	<table class="table table-striped certain-width">
 
