@@ -8,12 +8,6 @@
 
 </body>
 
-<footer class="pt-2 mb-1 border-top">
- <div>
- 	
- </div>
-</footer>
-
 </html>
 
 <script>
