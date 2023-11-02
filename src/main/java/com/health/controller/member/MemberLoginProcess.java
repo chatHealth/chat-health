@@ -7,13 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import java.io.Console;
 import java.io.IOException;
 
 import com.health.dao.MemberDao;
 import com.health.dto.EnterpriseDto;
 import com.health.dto.MemberDto;
-import com.health.util.ModalState;
 import com.health.util.ScriptWriter;
 import com.health.util.CookieManager;
 

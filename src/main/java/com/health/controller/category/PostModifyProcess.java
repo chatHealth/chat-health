@@ -62,13 +62,17 @@ public class PostModifyProcess extends HttpServlet {
 			 enNo = Integer.parseInt(enpriseNo);
 			 
 		}
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		
 		Part titleImg = request.getPart("titleImg");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		
 		String symptomOptions[] = request.getParameterValues("symptomOptions");  //new 
 		String materialOptions[] = request.getParameterValues("materialOptions");
 		String selectedSymptomList = request.getParameter("selectedSymptomList");  //origin
 		String selectedMaterialList = request.getParameter("selectedMaterialList");
+				
 		
 		
 		//2. < 이미지 처리 >
@@ -84,7 +88,9 @@ public class PostModifyProcess extends HttpServlet {
 
 		String newFileName = "";
 		String saveDir = "";
-		if (!originFileName.isEmpty()) {
+		int postRes;
+		
+		if (!originFileName.isEmpty()) {		//1)대표이미지 바뀌었을 경우
 			// 실질적인(물리적인)경로에 파일생기도록
 			titleImg.write(realUploadPath + File.separator + originFileName);
 
@@ -102,27 +108,28 @@ public class PostModifyProcess extends HttpServlet {
 			oldFile.renameTo(newFile);
 			
 			saveDir="/upload";
+			
+			//3. post insert 
+			PostDto postDto = new PostDto();
+			postDto.setPostNo(postNo);
+			postDto.setEnterpriseNo(enNo);
+			postDto.setTitle(title);
+			postDto.setContent(content);
+			postDto.setPostImg(saveDir + File.separator + newFileName);
+			postRes = postDao.updatePost(postDto);
+			
 
-		}else {
-			//대표 이미지 선택안했을경우, img파일의 기본이미지로 대체
-			saveDir = request.getContextPath()+ File.separator + "img";
-			newFileName = "basic_post.svg";
+		}else {   // 2) ! 안바꿨을 경우 그대로 유지
+			//3. post insert		
+			PostDto postDto = new PostDto();
+			postDto.setPostNo(postNo);
+			postDto.setEnterpriseNo(enNo);
+			postDto.setTitle(title);
+			postDto.setContent(content);
+			postRes = postDao.updatePostNotImg(postDto);
+			
 		}
-		
-		//3. post insert
-		int postNo = Integer.parseInt(request.getParameter("postNo")); 
-		
-		PostDto postDto = new PostDto();
-		postDto.setPostNo(postNo);
-		postDto.setEnterpriseNo(enNo);
-		postDto.setTitle(title);
-		postDto.setContent(content);
-		postDto.setPostImg(saveDir + File.separator + newFileName);
-		int postRes = postDao.updatePost(postDto);
-		
-		
-		
-		
+	
 		
 		// 4. symptom, material insert,delete
 		

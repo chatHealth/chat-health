@@ -33,9 +33,13 @@ public class MemberWish extends HttpServlet {
 
         HashMap<String, Integer> map = new HashMap<>();
 
-        int idx = Integer.parseInt(request.getParameter("idx"));
-
-        idx = idx * 8 - 7;
+        int idx;
+        if(request.getParameter("idx") == null){
+            idx = 1;
+        }else {
+            idx = Integer.parseInt(request.getParameter("idx"));
+            idx = idx * 8 - 7;
+        }
 
         map.put("userNo", userNo);
         map.put("idx", idx);

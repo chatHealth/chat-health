@@ -65,7 +65,16 @@
         FROM REVIEW r
         inner JOIN POST p ON r.postno = p.postno
         WHERE USERno = #{no} AND r.deleteddate IS NULL
-        ORDER BY regdate DESC )
+        ORDER BY
+        <choose>
+            <when test="by == 2"> regdate </when>
+            <when test="by == 1"> POSTTITLE </when>
+            <when test="by == 3"> LIKES </when>
+        </choose>
+        <choose>
+            <when test="sort == 1"> DESC </when>
+            <when test="sort == 2"> ASC </when>
+        </choose>)
         ) WHERE rnum <![CDATA[<]]> #{idx}+9 and rnum <![CDATA[>=]]> #{idx}
     </select>
     <select id="merReviewsCount" resultType="int" parameterType="int">
