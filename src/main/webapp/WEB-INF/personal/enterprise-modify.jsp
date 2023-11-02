@@ -15,12 +15,12 @@
     <div class="mb-3">
       <label for="enterprise-tel" class=form-label">Tel</label>
       <%--					<span class="input-group-text">@</span>--%>
-      <input type="tel" class="form-control" id="enterprise-tel" name="tel" value=${loggedEnterprise.tel }>
+      <input type="tel" class="form-control" id="enterprise-tel" name="tel" value=${loggedEnterprise.tel } required>
 
     </div>
     <div class="mb-3">
       <label for="enterprise-ceo" class="form-label">CEO</label>
-      <input type="text" class="form-control" id="enterprise-ceo" name="ceo" value=${loggedEnterprise.ceo }>
+      <input type="text" class="form-control" id="enterprise-ceo" name="ceo" value=${loggedEnterprise.ceo } required>
     </div>
     <div class="mb-3">
       <label for="enterprise-address" class="form-label">Address</label>
@@ -28,7 +28,7 @@
     </div>
     <div class="mb-3">
       <label for="enterprise-detail" class="form-label">Address Detail</label>
-      <input type="text" class="form-control" id="enterprise-detail" name="addressDetail" value=${loggedEnterprise.addressDetail }>
+      <input type="text" class="form-control" id="enterprise-detail" name="addressDetail" value=${loggedEnterprise.addressDetail } required>
     </div>
     <button type="submit" class="btn btn-primary">Update Profile</button>
   </form>
