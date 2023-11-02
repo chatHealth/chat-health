@@ -80,6 +80,10 @@
 	</select>
 
 	<select id="getPostForKeyword" resultType="PostDto" parameterType = "HashMap">
+	SELECT * from
+	(SELECT rownum AS num, b.* FROM
+	(
+	
 		select p.*, e.name from post p
 		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
 		where p.deletedDate is NULL
@@ -93,9 +97,16 @@
 				order by regdate
 			</when>
 		</choose>
+		
+			) b
+	<![CDATA[) WHERE num >=CAST(#{start} as number) AND num<=CAST(#{end} as number)]]>
 	</select>
 	
 	<select id="getPostForSympno" resultType="PostDto" parameterType = "HashMap">
+	SELECT * from
+	(SELECT rownum AS num, b.* FROM
+	(
+	
 		select p.*, e.name from post p
 		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
 		where p.deletedDate is NULL
@@ -110,10 +121,17 @@
 				order by regdate
 			</when>
 		</choose>
+		
+			) b
+	<![CDATA[) WHERE num >=CAST(#{start} as number) AND num<=CAST(#{end} as number)]]>
 	</select>
 
 	<select id="getPostForSympnoAndMaterial" resultType="PostDto" parameterType="HashMap">
-		select p.*, e.name from post p
+	SELECT * from
+	(SELECT rownum AS num, b.* FROM
+	(
+	
+	select p.*, e.name from post p
 		LEFT JOIN enterprise e ON p.enterpriseNo = e.enterpriseNo
 		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
 		LEFT JOIN MaterialPost ON p.postNo = MaterialPost.postNo
@@ -131,6 +149,10 @@
 				order by regdate
 			</when>
 		</choose>
+		
+		) b
+	<![CDATA[) WHERE num >=CAST(#{start} as number) AND num<=CAST(#{end} as number)]]>
+		
 	</select>
 
 
@@ -166,7 +188,7 @@
 <!-- 2. post related -->
 	<select id="getMaerialBySymptom" resultType="MaterialDto"
 		parameterType="int">
-		SELECT Material.*
+		SELECT UNIQUE(Material.materialno), Material.*
 		FROM Post p
 		LEFT JOIN SymptomPost ON p.postNo = SymptomPost.postNo
 		LEFT JOIN MaterialPost ON p.postNo = MaterialPost.postNo

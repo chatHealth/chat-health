@@ -149,6 +149,14 @@ public class MemberDao{
         sqlSession.close();
         return result;
     }
+	
+	public String getEnterDeletedDate(String id) {
+        String result = null;
+        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
+        result = sqlSession.selectOne("getEnterDeletedDate", id);
+        sqlSession.close();
+        return result;
+    }
 }
 
 

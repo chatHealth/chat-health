@@ -108,6 +108,8 @@ public class CategoryList extends HttpServlet {
 			
 			map.put("start", start);
 			map.put("end", end);
+			
+			request.setAttribute("idx", idx);
 			request.setAttribute("pageTotal", pageTotal);
 		}
 		request.setAttribute("ps", pageStandard);
@@ -125,12 +127,13 @@ public class CategoryList extends HttpServlet {
 			
 			request.setAttribute("sympNo", sympNo);
 			request.setAttribute("materialNo", materialNo);
-			request.setAttribute("info", symptomDao.getsymptName(sympNo)+">"+materialDao.getMaterialName(materialNo));
+			request.setAttribute("info", symptomDao.getsymptName(sympNo)+" > "+materialDao.getMaterialName(materialNo));
 			
 		
 		} else if(keyword != null) { 					 // 2) 검색창으로 온경우
 			postList = postDao.getPostForKeyword(map);
 			
+			request.setAttribute("keyword", keyword);
 			request.setAttribute("info", keyword);
 		}else {  											// 3) 전체
 			postList = postDao.getPostForAll(map);
@@ -149,7 +152,7 @@ public class CategoryList extends HttpServlet {
 		// 3. send
 		//if(postList.size() == 0) { postList = null; }
 		request.setAttribute("postList", postList);
-		if(materialList.size() == 0 || (materialList.size() == 1 && materialList.get(0) == null)) { materialList = null; }
+		if(ms == 0 || (ms == 1 && materialList.get(0) == null)) { materialList = null; }
 		request.setAttribute("materialList", materialList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/category/list.jsp");

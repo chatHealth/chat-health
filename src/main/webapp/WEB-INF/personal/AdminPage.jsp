@@ -3,8 +3,8 @@
 <%@ include file="../include/admin-side.jsp"%>
 
 <div class="admin-contents text-center">
-<h3 class="text-start fw-semibold" style="color: #D19C97;">개인회원 관리</h3> </br>
-	<table class="table certain-width table-hover">
+<h3 class="text-start fw-semibold" style="color: #347F5C;">개인회원 관리</h3> </br>
+	<table class="table certain-width table-striped table-hover">
 	<thead>
 		<tr>
 			<td>회원번호</td>
