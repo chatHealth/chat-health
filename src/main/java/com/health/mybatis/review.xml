@@ -33,7 +33,7 @@
  </select>
  
  <select id="sameViewLike" parameterType="UserLikeDto" resultType="int">
- 		SELECT count(*)as UserCheck FROM UserLike WHERE userNo=#{userNo} AND postNo=#{postNo}
+ 		SELECT count(*) as UserCheck FROM UserLike WHERE userNo=#{userNo} AND postNo=#{postNo}
  </select>
 
  

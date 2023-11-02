@@ -29,10 +29,10 @@ public class ReviewDao {
 		sqlSession.close();
 		return result;
 	}
-	public Map<String,Object> postInfo(Map<String,Integer> map) {
+	public Map<String,Object> postInfo(int no) {
 		Map<String,Object> result;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
-		result = sqlSession.selectOne("postInfo",map);
+		result = sqlSession.selectOne("postInfo",no);
 		sqlSession.close();
 		return result;
 	} 

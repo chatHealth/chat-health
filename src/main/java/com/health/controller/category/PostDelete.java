@@ -40,10 +40,10 @@ public class PostDelete extends HttpServlet {
 		
 		
 		// 2. post
-//		int no = Integer.parseInt(request.getParameter("no"));
-//		Map<String,Object> postInfo = ReviewDao.getInstance().postInfo(no);
-//		request.setAttribute("postInfo", postInfo);
-//		
+		int no = Integer.parseInt(request.getParameter("no"));
+		Map<String,Object> postInfo = ReviewDao.getInstance().postInfo(no);
+		request.setAttribute("postInfo", postInfo);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/product.jsp");
 		dispatcher.forward(request, response);
 	}
