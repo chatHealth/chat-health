@@ -52,6 +52,7 @@
 			<div class="sort-select d-flex justify-content-start">
 				<form action="../category/list?" method="get" name="sort-select"
 					id="sort-select">
+				<form action="../category/list" method="get" name="sort-select" id="sort-select">
 					<input type="hidden" name="symp" value="${sympNo}">
       				<input type="hidden" name="material" value="${materialNo}">
 					<select class="form-select" aria-label="Default select example" name="sort" id="sort" style="width: 150px;">
@@ -92,7 +93,7 @@
 												<p class="card-text category-title">${ post.title }</p> 
 											</a>
 											<div class="d-flex justify-content-between align-items-center">
-											<c:if test="${loggedAdmin ne null or loggedEnterprise.enterpriseNo == post.enterpriseNo}">
+											<c:if test="${loggedAdmin ne null || loggedEnterprise.enterpriseNo == post.enterpriseNo}">
 												<div class="btn-group">
 													<a href="../post/modify?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-modify" >수정</a>
 													<a href="../post/delete?no=${post.postNo }" class="btn btn-outline-secondary mt-3" id="btn-delete">삭제</a>
