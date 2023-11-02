@@ -24,12 +24,34 @@
 <c:if test="${not empty posts}">
     <thead>
     <tr>
+    <c:if test="${sort eq 1}">
         <th scope="col">#</th>
         <th scope="col">상품</th>
-        <th scope="col">상품명</th>
-        <th scope="col">등록 일자</th>
-        <th scope="col"><img src="../img/heart.png" class="img20"></th>
+        <th scope="col">
+            <a class="page-link" href="../personal/enterprise-post?sort=2&by=1&idx=1">상품명
+                <img src="../img/sorting.png" class="img20"/></a></th>
+        <th scope="col"><a class="page-link" href="../personal/enterprise-post?sort=2&by=2&idx=1">등록일
+            <img src="../img/sorting.png" class="img20"/></a></th>
+        <th scope="col">
+            <a class="page-link" href="../personal/enterprise-post?sort=2&by=3&idx=1">
+                <img src="../img/heart.png" class="img20"/>
+                <img src="../img/sorting.png" class="img20"/></a></th>
         <th scope="col">수정/삭제</th>
+    </c:if>
+    <c:if test="${sort eq 2}">
+        <th scope="col">#</th>
+        <th scope="col">상품 사진</th>
+        <th scope="col">
+            <a class="page-link" href="../personal/enterprise-post?sort=1&by=1&idx=1">상품명
+                <img src="../img/sorting.png" class="img20"/></a></th>
+        <th scope="col"><a class="page-link" href="../personal/enterprise-post?sort=1&by=2&idx=1">등록일
+            <img src="../img/sorting.png" class="img20"/></a></th>
+        <th scope="col">
+            <a class="page-link" href="../personal/enterprise-post?sort=1&by=3&idx=1">
+                <img src="../img/heart.png" class="img20"/>
+                <img src="../img/sorting.png" class="img20"/></a></th>
+        <th scope="col">수정/삭제</th>
+    </c:if>
     </tr>
     </thead>
     <tbody>
@@ -57,7 +79,7 @@
                 </a>
             </li>
             <c:forEach var="page" begin="1" end="${pages }">
-                <li class="page-item"><a class="page-link" href="../personal/enterprise-post?idx=${page}">${page}</a>
+                <li class="page-item"><a class="page-link" href="../personal/enterprise-post?&sort=${sort}&by=${by}&idx=${page}">${page}</a>
                 </li>
             </c:forEach>
             <li class="page-item">

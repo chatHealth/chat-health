@@ -48,9 +48,17 @@
         LEFT JOIN UserLike ul ON p.postNo = ul.postNo
         WHERE p.enterpriseNo = #{enterpriseNo} AND p.DELETEDDATE IS null
         GROUP BY p.postNo, p.title, p.postImg, p.regDate
-        ORDER BY p.regDate DESC
-        ))
-        WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
+        order by
+        <choose>
+            <when test="by == 2"> regdate </when>
+            <when test="by == 1"> TITLE </when>
+            <when test="by == 3"> LIKES </when>
+        </choose>
+        <choose>
+            <when test="sort == 1"> DESC </when>
+            <when test="sort == 2"> ASC </when>
+        </choose>)
+        ) WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
 
     </select>
 <!--    member review 조회-->

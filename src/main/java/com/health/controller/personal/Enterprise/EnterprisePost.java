@@ -43,8 +43,36 @@ public class EnterprisePost extends HttpServlet {
         map.put("enterpriseNo", loggedEnterprise.getEnterpriseNo());
         map.put("idx", idx);
 
+        //            정렬 기준
+//            1, "TITLE";
+//            2, "REGDATE";
+//            3, "LIKES";
+
+        int by;
+        if (request.getParameter("by") == null) {
+            by = 2;
+        } else {
+            by = Integer.parseInt(request.getParameter("by"));
+        }
+        map.put("by", by);
+
+//            오름/내림차순
+//            1, "DESC"
+//            2, "ASC"
+        int sort;
+        if (request.getParameter("sort") == null) {
+            sort = 1;
+        } else {
+            sort = Integer.parseInt(request.getParameter("sort"));
+        }
+        map.put("sort", sort);
+
+        request.setAttribute("by", by);
+        request.setAttribute("sort", sort);
+
         List<PostPageDto> posts = personalDao.entPost(map);
 
+        request.setAttribute("idx", idx);
         request.setAttribute("accepted", accepted);
         request.setAttribute("totalMerchandise", count);
         request.setAttribute("pages", pages);

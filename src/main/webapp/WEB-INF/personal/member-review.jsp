@@ -25,13 +25,13 @@
 		<th scope="col">#</th>
 		<th scope="col">상품 사진</th>
 		<th scope="col">
-			<a class="page-link" href="../personal/member-review?sort=2&by=1&idx=${idx}">상품명
+			<a class="page-link" href="../personal/member-review?sort=2&by=1&idx=1">상품명
 				<img src="../img/sorting.png" class="img20"/></a></th>
 		<th scope="col">리뷰</th>
-		<th scope="col"><a class="page-link" href="../personal/member-review?sort=2&by=2&idx=${idx}">등록일
+		<th scope="col"><a class="page-link" href="../personal/member-review?sort=2&by=2&idx=1">등록일
 			<img src="../img/sorting.png" class="img20"/></a></th>
 		<th scope="col">
-			<a class="page-link" href="../personal/member-review?sort=2&by=3&idx=${idx}">
+			<a class="page-link" href="../personal/member-review?sort=2&by=3&idx=1">
 				<img src="../img/like.png" class="img20"/>
 				<img src="../img/sorting.png" class="img20"/></a></th>
 		</c:if>
@@ -39,13 +39,13 @@
 			<th scope="col">#</th>
 			<th scope="col">상품 사진</th>
 			<th scope="col">
-				<a class="page-link" href="../personal/member-review?sort=1&by=1&idx=${idx}">상품명
+				<a class="page-link" href="../personal/member-review?sort=1&by=1&idx=1">상품명
 					<img src="../img/sorting.png" class="img20"/></a></th>
 			<th scope="col">리뷰</th>
-			<th scope="col"><a class="page-link" href="../personal/member-review?sort=1&by=2&idx=${idx}">등록일
+			<th scope="col"><a class="page-link" href="../personal/member-review?sort=1&by=2&idx=1">등록일
 				<img src="../img/sorting.png" class="img20"/></a></th>
 			<th scope="col">
-				<a class="page-link" href="../personal/member-review?sort=1&by=3&idx=${idx}">
+				<a class="page-link" href="../personal/member-review?sort=1&by=3&idx=1">
 					<img src="../img/like.png" class="img20"/>
 					<img src="../img/sorting.png" class="img20"/></a></th>
 		</c:if>
