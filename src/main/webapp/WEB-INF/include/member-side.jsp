@@ -22,8 +22,8 @@
           <ul>
             <li><a class="nav-link " href="../personal/member-info">내 정보</a></li>
             <li><a class="nav-link " href="../personal/member-password">비밀번호 변경</a></li>
-            <li><a class="nav-link " href="../personal/member-wish?idx=1">관심 제품</a></li>
-            <li><a class="nav-link " href="../personal/member-review?idx=1">내 리뷰</a></li>
+            <li><a class="nav-link " href="../personal/member-wish">관심 제품</a></li>
+            <li><a class="nav-link " href="../personal/member-review">내 리뷰</a></li>
 <%--            <li><a class="nav-link " href="../personal/member-comments">내 댓글</a></li>--%>
             <li><a class="nav-link " href="../personal/member-withdraw">회원 탈퇴</a></li>
           </ul>
@@ -33,24 +33,12 @@
           <ul>
             <li><a class="nav-link " href="../personal/member-info">기업 정보</a></li>
             <li><a class="nav-link " href="../personal/member-password">비밀번호 변경</a></li>
-            <li><a class="nav-link " href="../personal/enterprise-post?idx=1">내 상품 관리</a></li>
+            <li><a class="nav-link " href="../personal/enterprise-post">내 상품 관리</a></li>
             <li><a class="nav-link " href="../personal/member-withdraw">회원 탈퇴</a></li>
           </ul>
-          <div style="margin-top:50px">
-          <c:choose>
-            <c:when test="${loggedEnterprise.accepted eq 0}">
-              <p style="color:black">승인 대기중...</p>
-            </c:when>
-            <c:when test="${loggedEnterprise.accepted eq 1}">
-              <p style="color:blue">ACCEPTED</p>
-            </c:when>
-            <c:otherwise>
-              <p style="color:red">DENINED</p>
-            </c:otherwise>
-          </c:choose>
         </c:when>
         <c:otherwise>
-          </div>
+
           <script>
             alert("잘못된 접근입니다.");
             history.back();
