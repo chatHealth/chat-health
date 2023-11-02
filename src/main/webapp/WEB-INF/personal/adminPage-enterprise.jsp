@@ -3,6 +3,7 @@
 <%@ include file="../include/admin-side.jsp"%>
 
 <div class="admin-contents text-center">
+<h3 class="text-start fw-semibold" style="color: #347F5C;">사업자회원 관리</h3> </br>
 	<!-- 사업자 강제탈퇴 -->
 	<table class="table table-striped certain-width">
 		<thead>
