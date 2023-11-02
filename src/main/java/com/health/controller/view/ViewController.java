@@ -9,16 +9,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.health.dao.HelpfulDao;
 import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
-import com.health.dto.HelpfulDto;
-import com.health.dto.PostDto;
-import com.health.dto.ReviewDto;
 import com.health.dao.ViewLikeDao;
 import com.health.dto.HelpfulDto;
 import com.health.dto.MemberDto;
@@ -33,7 +29,6 @@ public class ViewController extends HttpServlet {
 	private final PostDao postDao = PostDao.getInstance();
 	private static ReviewDao reviewDao =  ReviewDao.getInstance();
 	private static HelpfulDao helpfulDao =  HelpfulDao.getInstance();
-	private static ViewLikeDao viewLikeDao = ViewLikeDao.getInstance();
 	
     public ViewController() {
         super();
@@ -41,9 +36,8 @@ public class ViewController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
 		HttpSession session= request.getSession();
-		MemberDto memberDto = (MemberDto)session.getAttribute("loggedMember");
+		session.getAttribute("loggedMember");
 		//리뷰전달
 		int no = Integer.parseInt(request.getParameter("no"));
 		List<Map<String,Object>> reviewList = reviewDao.selectReview(no);
@@ -53,21 +47,16 @@ public class ViewController extends HttpServlet {
 		Map<String,Object> postInfo = reviewDao.postInfo(no);
 		request.setAttribute("postInfo", postInfo);
 		
-		//viewLike유저 정보전달
-		UserLikeDto userLikeDto = new UserLikeDto();
-		userLikeDto.setPostNo(no);
-		int user=0;
-		if(memberDto != null) {
-			user = (Integer)memberDto.getUserNo();			
-		}
-		userLikeDto.setUserNo(user);
-		int viewLike = viewLikeDao.sameViewLike(userLikeDto);
-		request.setAttribute("viewLike", viewLike);
-		
-		
+
 		//성분전달
 		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
 		request.setAttribute("postMeterial", postMeterial);
+		
+		
+		
+//		int userCheck = viewLikeDao.sameViewLike(userLikeDto);
+//		request.setAttribute("userCheck", userCheck);
+		
 		
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher("/WEB-INF/view/product.jsp");
@@ -75,7 +64,7 @@ public class ViewController extends HttpServlet {
 	}
 
 	
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
