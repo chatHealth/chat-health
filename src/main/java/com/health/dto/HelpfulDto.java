@@ -17,15 +17,12 @@ public class HelpfulDto {
 	public int getHelpKey() {
 		return helpKey;
 	}
-
 	public void setHelpKey(int helpKey) {
 		this.helpKey = helpKey;
 	}
-
 	public int getReviewNo() {
 		return reviewNo;
 	}
-
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
 	}

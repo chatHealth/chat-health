@@ -6,7 +6,6 @@
 		<div class="list_review">
 			<div infinitescroll="" class="ng-star-inserted">
 				<div class="cmptype_col2 ng-star-inserted">
-
 					<div class="reviewdata">
 						<div class="reviewUserInfo">
 							<div class="reviewUser" id="nickName">닉네임 :
@@ -34,9 +33,6 @@
 				</div>
 			</div>
 		</div>
-
-
-
 	</div>
 	<hr class="featurette-divider">
 </c:forEach>
