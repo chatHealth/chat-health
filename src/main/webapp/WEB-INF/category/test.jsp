@@ -49,3 +49,53 @@
 	</div>
 </div>
 
+<<<<<<< HEAD
+
+
+
+<!--  -->
+<ul class="select2-selection__rendered">
+<li class="select2-search select2-search--inline">
+<input class="select2-search__field"
+ type="search" tabindex="0" autocomplete="off" autocorrect="off" 
+autocapitalize="none" spellcheck="false" role="searchbox" aria-autocomplete="list" placeholder="증상" style="width: 257.25px;">
+</li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+		
+
+			
+<!--  -->
+
+ <ul class="select2-selection__rendered">
+ <li class="select2-selection__choice" title=" 면연력" data-select2-id="24">
+ <span class="select2-selection__choice__remove" role="presentation">×</span> 면연력</li>
+ <li class="select2-selection__choice" title=" 눈" data-select2-id="25">
+ <span class="select2-selection__choice__remove" role="presentation">×</span> 눈</li>
+ <li class="select2-search select2-search--inline">
+ <input class="select2-search__field" 
+ type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="searchbox" 
+ aria-autocomplete="list" placeholder="" style="width: 0.75em;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+
+
+<ul class="select2-selection__rendered">
+<li class="select2-selection__choice" title=" 면연력" data-select2-id="24">
+<span class="select2-selection__choice__remove" role="presentation">×</span> 면연력</li>
+<li class="select2-selection__choice" title=" 눈" data-select2-id="25">
+<span class="select2-selection__choice__remove" role="presentation">×</span> 눈</li>
+<li class="select2-search select2-search--inline"><input class="select2-search__field" 
+type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="searchbox" 
+aria-autocomplete="list" placeholder="" style="width: 0.75em;">
+</li></ul>
+
+
+
+		<ul class="select2-selection__rendered">
+				<c:forEach items="${ selectedSymptomList }" var="symptom" varStatus="status">
+						<li class="select2-selection__choice" title=" ${symptom}" data-select2-id="24">
+ 						<span class="select2-selection__choice__remove" role="presentation">×</span> ${symptom }</li>
+				</c:forEach>
+				</ul>
+				
+				
+=======
+>>>>>>> 0c6a726c6a46f3440b70b0f0c79f072ce182831a

@@ -16,6 +16,9 @@ import java.util.Map;
 import com.health.dao.HelpfulDao;
 import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
+import com.health.dto.HelpfulDto;
+import com.health.dto.PostDto;
+import com.health.dto.ReviewDto;
 import com.health.dao.ViewLikeDao;
 import com.health.dto.HelpfulDto;
 import com.health.dto.MemberDto;
@@ -38,6 +41,7 @@ public class ViewController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
 		HttpSession session= request.getSession();
 		MemberDto memberDto = (MemberDto)session.getAttribute("loggedMember");
 		//리뷰전달
@@ -71,7 +75,7 @@ public class ViewController extends HttpServlet {
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 

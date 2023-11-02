@@ -47,9 +47,8 @@ public class PostModifyProcess extends HttpServlet {
 	private final MaterialPostDao mpDao = MaterialPostDao.getInstance();
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 
-		// 0. nav
+		//0. nav
 		HttpSession session = request.getSession();
 		if(session.getAttribute("navSymptomList")==null) {
 			session.setAttribute("navSymptomList", SymptomDao.getInstance().getAllSymptom());
@@ -196,6 +195,7 @@ public class PostModifyProcess extends HttpServlet {
 
 		// 4) material insert,delete
 		if (!(originMaterial.size() == newMaterial.size() && originMaterial.containsAll(newMaterial))) { // 1- 같을땐 pass
+		
 
 			
 			// 2- 새로운 요소를 찾아서 insert
@@ -222,17 +222,17 @@ public class PostModifyProcess extends HttpServlet {
 
 		
 		// 5. res: pos insert 되었는지 확인
-		if(postRes > 0) {
-			ModalState infoModal = new ModalState("show", "안내", "글이 수정되었습니다", "확인");
-			session.setAttribute("myModal", infoModal);
-			
-			response.sendRedirect("../view/product?no="+postNo); 
-		}
-		else {
-			ModalState infoModal = new ModalState("show", "안내", "글이 수정되지않았습니다", "확인");
-			session.setAttribute("myModal", infoModal);
-		}
-		
-		
-	}
+				if(postRes > 0) {
+					ModalState infoModal = new ModalState("show", "안내", "글이 수정되었습니다", "확인");
+					session.setAttribute("myModal", infoModal);
+					
+					response.sendRedirect("../view/product?no="+postNo); 
+				}
+				else {
+					ModalState infoModal = new ModalState("show", "안내", "글이 수정되지않았습니다", "확인");
+					session.setAttribute("myModal", infoModal);
+				}
+				
+				
+			}
 }

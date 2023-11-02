@@ -73,9 +73,9 @@
         <div class="mb-3"><!--사업장소재지,우편번호찾기 API 연동-->
           
           <label for="address" class="form-label">주소</label>
-          <input type="hidden" id="sample4_postcode" placeholder="우편번호">
+          <input type="hidden" id="sample4_postcode" placeholder="우편번호" >
 		  <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		  <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address">
+		  <input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address" required>
 		  <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
 		  <span id="guide" style="color:#999;display:none"></span>
 		  <input type="text" id="sample4_detailAddress" placeholder="상세주소"name="addressDetail">
