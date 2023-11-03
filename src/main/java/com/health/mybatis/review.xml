@@ -26,7 +26,6 @@
 					ON m.MATERIALNO = t.MATERIALNO 
 					WHERE p.POSTNO=#{postNo}
  </select>
- 
  <select id="helpfulSame" parameterType="HelpfulDto" resultType="int">
  		SELECT count(*) FROM helpful WHERE userNo=#{userNo} AND reviewNO=#{reviewNo}
  </select>

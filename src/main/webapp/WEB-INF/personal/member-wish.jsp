@@ -28,8 +28,11 @@
 						</a></div>
 						<div class="card-body entP">
 							<a href="../view/product?no=${image.postNo }">
-								<p class="card-text">${image.title }</p></a>
-							<button onclick="btnLike(${image.postNo})" style="border:none; background: none;"><img src="../img/heart.png" class="img20" id="heart${image.postNo}"/></button>
+								<p class="card-text" style="height:50px;">${image.title }</p></a>
+								<div>
+							<button onclick="btnLike(${image.postNo})" style="border:none; background: none;
+							"><img src="../img/heart.png" class="img20" id="heart${image.postNo}"/></button>
+							</div>
 						</div>
 					</div>
 
