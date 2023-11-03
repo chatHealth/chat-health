@@ -36,8 +36,8 @@
 				</div>
 					<%-- 매 4번째 이미지마다 새로운 행 시작 --%>
 				<c:if test="${loop.index % 4 == 3}">
-			</div>
-			<div class="row min-h300 wishes">
+				</div>
+				<div class="row min-h300 wishes">
 				</c:if>
 				</c:forEach>
 			</div>
