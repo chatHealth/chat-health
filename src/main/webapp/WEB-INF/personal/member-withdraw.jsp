@@ -13,7 +13,7 @@
 <!-- Content -->
     <h4 class="mb-3">회원 탈퇴</h4>
     <form action="../personal/member-withdraw-process" class="needs-validation" onsubmit="return confirm('정말 탈퇴하시겠습니까?')" method="post">
-        <div class="row g-3 min-h300">
+        <div class="g-3 min-h300">
             <div class="col-12">
                 <label for="password" class="form-label">비밀번호</label>
                 <div class="input-group has-validation">
@@ -34,7 +34,7 @@
                 </div>
             </div>
             </div>
-            <button class="w-100 btn btn-secondary btn-lg" type="submit">회원 탈퇴</button>
+            <button class="btn btn-secondary" type="submit">회원 탈퇴</button>
         </div>
     </form>
 </div>

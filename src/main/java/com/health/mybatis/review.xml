@@ -19,12 +19,12 @@
 					ON r.ENTERPRISENO =m.ENTERPRISENO 
 					WHERE postNo=#{no}
  </select>
- <select id="postMeterial" parameterType="int" resultType="Map">
- 	SELECT p.POSTNO , t.MATERIALNAME  FROM POST p INNER JOIN MATERIALPOST m 
+ <select id="postMeterial" parameterType="int" resultType="com.health.dto.MaterialPostNoDto">
+ 	SELECT p.POSTNO  ,t.MATERIALNAME   FROM POST p INNER JOIN MATERIALPOST m 
 					ON p.POSTNO = m.POSTNO 
 					INNER JOIN MATERIAL T
 					ON m.MATERIALNO = t.MATERIALNO 
-					WHERE p.POSTNO=#{no}
+					WHERE p.POSTNO=#{postNo}
  </select>
  <select id="helpfulSame" parameterType="HelpfulDto" resultType="int">
  		SELECT count(*) FROM helpful WHERE userNo=#{userNo} AND reviewNO=#{reviewNo}

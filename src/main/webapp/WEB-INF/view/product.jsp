@@ -12,8 +12,8 @@
 
 		<hr class="featurette-divider">
 		<!-- 제품정보 -->
-		<div class="row featurette">
-			<div class="col-md-7">${postInfo.CONTENT}</div>
+		<div class="productContent">
+			<div class="productContent1">${postInfo.CONTENT}</div>
 		</div>
 		<!--                          리뷰                         -->
 		<hr class="featurette-divider">
@@ -40,7 +40,6 @@
 				</form>
 			</c:when>
 			<c:otherwise>
-				<div>
 
 					<div class="commetbox">
 						<h2>
@@ -53,14 +52,15 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
+</div>
 
 
 
 
-	<%@ include file="../include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>
 
 
-	<script>
+<script>
 // 1. delete modal 처리(rang 건들지 마시오)
 
 $("#modalAccept").on("click", function() {
@@ -87,7 +87,3 @@ $("#modalAccept").on("click", function() {
 
 
 </script>
-
-
-
-
