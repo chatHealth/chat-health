@@ -65,7 +65,7 @@
 			</c:forEach>
 			<c:if test="${group ne totalGroup}">
 				<li class="page-item">
-					<a class="page-link btn-green" href="../personal/member-wish?idx=${page}&group=${group}" aria-label="Next">
+					<a class="page-link btn-green" href="../personal/member-wish?idx=${idx*5 -4}&group=${group + 1}" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>
