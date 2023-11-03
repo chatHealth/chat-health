@@ -42,7 +42,7 @@
 					<input type="text" class="search_input " placeholder="Search for products" name="keyword" id="keyword">
 			
 					<div class="input-group-append ">
-					
+
 						<button class="btn main-header-search-button mt-1">  	
 							<svg  width="25" height="25" fill="#347F5C" class="bi bi-search" viewBox="0 0 16 16">
 

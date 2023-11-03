@@ -48,9 +48,17 @@
         LEFT JOIN UserLike ul ON p.postNo = ul.postNo
         WHERE p.enterpriseNo = #{enterpriseNo} AND p.DELETEDDATE IS null
         GROUP BY p.postNo, p.title, p.postImg, p.regDate
-        ORDER BY p.regDate DESC
-        ))
-        WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
+        order by
+        <choose>
+            <when test="by == 2"> regdate </when>
+            <when test="by == 1"> TITLE </when>
+            <when test="by == 3"> LIKES </when>
+        </choose>
+        <choose>
+            <when test="sort == 1"> DESC </when>
+            <when test="sort == 2"> ASC </when>
+        </choose>)
+        ) WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
 
     </select>
 <!--    member review 조회-->
@@ -63,7 +71,7 @@
         p.title AS postTitle, r.DELETEDDATE AS reviewdeleteddate, p.DELETEDDATE AS postdeleteddate,
         (SELECT COUNT(*) FROM HELPFUL h WHERE h.REVIEWNO = r.REVIEWNO) AS likes, postimg
         FROM REVIEW r
-        inner JOIN POST p ON r.postno = p.postno
+        left JOIN POST p ON r.postno = p.postno
         WHERE USERno = #{no} AND r.deleteddate IS NULL
         ORDER BY
         <choose>
@@ -75,7 +83,7 @@
             <when test="sort == 1"> DESC </when>
             <when test="sort == 2"> ASC </when>
         </choose>)
-        ) WHERE rnum <![CDATA[<]]> #{idx}+9 and rnum <![CDATA[>=]]> #{idx}
+        ) WHERE rnum <![CDATA[<]]> #{idx}+10 and rnum <![CDATA[>=]]> #{idx}
     </select>
     <select id="merReviewsCount" resultType="int" parameterType="int">
         SELECT count(*) FROM REVIEW WHERE USERNO = ${no} AND DELETEDDATE IS null
