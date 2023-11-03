@@ -192,6 +192,7 @@ $('#btnIDCheck').on('click', function(){
          	const useID = confirm("쓸 수 있는 아이디. 사용하시겠어요?");
              if(id) $("#code").attr("readonly", true);
              isIDCheck = true;
+             $("#password").focus();
           }
        },
        fail:function(error){

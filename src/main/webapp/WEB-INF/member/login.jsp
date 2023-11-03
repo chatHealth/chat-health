@@ -3,7 +3,7 @@
 <%@ include file="../include/header-member.jsp"%>
 
 <div class="form-signin translate-middle w-25 position-absolute top-50 start-50">
-<h1 class="h3 mb-5 fw-normal">로그인</h1>
+<h1 class="h3 mb-5 fw-normal" style="color: #347F5C;">로그인</h1>
   <form action="../member/login-process" method="post" >
     
     
@@ -39,7 +39,7 @@
 
      </div>
     
-    <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
+    <button class="btn btn-outline-success w-100 py-2" type="submit">로그인</button>
   </form>
   
  

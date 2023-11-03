@@ -35,7 +35,7 @@ a {
     <!-- Sidebar -->
     <div class="col sidebar admin-sidebar">
       <h3 style="color: #347F5C;">관리자 페이지</h3></br>
-      <p>어서오세요, admin님</p></br>
+      <p style="color: #409C71;">어서오세요, admin님</p></br>
       <a href="../member/logout"><button type="button" class="btn btn-outline-secondary">로그아웃</button></a>
       <span style="border-top: 2px solid #ccc; display: block; margin: 10px 0;"></span></div>
       <ul class="nav nav-pills flex-column mb-auto"> <!-- 메인화면으로 돌아가기 링크 추가하기 -->
