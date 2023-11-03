@@ -7,73 +7,71 @@
 	<form action="../member/enterprise-join-process" method="post"
 		enctype="multipart/form-data">
 
-		<h1 class="row d-flex mb-5">사업자 회원가입</h1>
+		<h1 class="mb-5 text-center fw-semibold" style="color: #347F5C;">🙌사업자 회원가입🙌</h1>
 		<div class="mb-3">
 			<!--사업자번호-->
-			<label for="code" class="form-label">사업자번호</label>
+			<div class="d-flex flex-row">
+			<label for="code" class="form-label">사업자번호</label><p style="color: red;">*</p></div>
 			<input type="text"
 				class="form-control" id="code" aria-describedby="idHelp" name="code"
 				placeholder="000-00-00000" />
 			<div id="idHelp" class="form-text">사업자 회원은 사업자번호를 아이디로 사용하게
 				됩니다.</div>
 			<div class="col-6 mb-2 align-items-baseline px-0">
-				<button class="btn btn-outline-primary mt-3" id="btnIDCheck">아이디
-					중복 확인</button>
+				<button class="btn btn-outline-success mt-3" id="btnIDCheck">아이디 중복 확인</button>
 			</div>
 
 		</div>
 
 
 
-		<div class="mb-3">
-			<!--상호명-->
-			<label for="companyName" class="form-label">상호명</label> <input
-				type="text" class="form-control" id="companyName" name="name"
-				placeholder="ex) 챗헬스 주식회사" required />
+		<div class="mb-3"><!--상호명-->
+			<div class="d-flex flex-row">
+			<label for="companyName" class="form-label">상호명</label><p style="color: red;">*</p></div>
+			<input type="text" class="form-control" id="companyName" name="name" placeholder="ex) 챗헬스 주식회사" required />
 		</div>
 
 		<div class="mb-3">
 			<!--대표자-->
-
-			<label for="ceo" class="form-label">대표자 명</label>
+			<div class="d-flex flex-row">
+			<label for="ceo" class="form-label">대표자명</label><p style="color: red;">*</p></div>
 			<input type="text"
 				class="form-control" id="ceo" name="ceo" placeholder="ex) 곽두팔"
 				required />
 		</div>
 		<div class="mb-3">
 			<!--전화번호-->
-			<label for="tel" class="form-label">사업장 연락처</label>
+			<div class="d-flex flex-row">
+			<label for="tel" class="form-label">사업장 연락처</label><p style="color: red;">*</p></div>
 			<input type="text" class="form-control" id="tel" name="tel"
 				placeholder="ex) 02-123-1234" required />
 		</div>
 
 		<div class="mb-3"><!--비번-->
 			
-
-			<label for="password" class="form-label">비밀번호</label>
+			<div class="d-flex flex-row">
+			<label for="password" class="form-label">비밀번호</label><p style="color: red;">*</p></div>
 			<input type="password" class="form-control" id="password" name="pw"
 				oninput="check()" required />
 		</div>
 		<div class="mb-3"><!--비번확인-->
 			
-
-			<label for="password2" class="form-label">비밀번호 확인</label>
-			<input type="password" class="form-control mb-2" id="password2" name="pw2"
-				oninput="check()" required /> <span id="pwConfirm"></span>
+			<div class="d-flex flex-row">
+			<label for="password2" class="form-label">비밀번호 확인</label><p style="color: red;">*</p></div>
+			<input type="password" class="form-control mb-2" id="password2" name="pw2" oninput="check()" required />
+			<span id="pwConfirm"></span>
 		</div>
 		<div class="mb-3">
 			<!--사업장소재지,우편번호찾기 API 연동-->
-
-			<label for="address" class="form-label">사업장 소재지</label></br> <input
-				type="text" id="sample4_postcode" placeholder="우편번호"> <input
-				type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-			<input type="text" id="sample4_roadAddress" placeholder="도로명주소"
-				name="address" required> <input type="text" id="sample4_jibunAddress"
-				placeholder="지번주소"> <span id="guide"
-				style="color: #999; display: none"></span> <input type="text"
-				id="sample4_detailAddress" placeholder="상세주소" name="addressDetail">
-			<input type="text" class="hidden" id="sample4_extraAddress"
-				placeholder="참고항목">
+			<div class="d-flex flex-row">
+			<label for="address" class="form-label">사업장 소재지</label></br><p style="color: red;">*</p></div>
+			<input type="text" id="sample4_postcode" placeholder="우편번호">
+			<input type="button" class=" btn btn-sm btn-outline-success" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+			<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address" required> <input type="text" id="sample4_jibunAddress"
+				placeholder="지번주소">
+			<span id="guide" style="color: #999; display: none"></span>
+			<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="addressDetail">
+			<input type="text" class="hidden" id="sample4_extraAddress" placeholder="참고항목">
 		</div>
 
 
@@ -93,7 +91,7 @@
 					class="form-check-label w-100" name="accepted" for="accepted">사업자
 					회원은 가입신청 후 승인완료 되면 활동 하실 수 있습니다.</label>
 			</div>
-			<button type="submit" class="btn btn-primary w-100" name="">회원가입
+			<button type="submit" class="btn btn btn-success w-100" name="">회원가입
 				신청하기</button>
 		</div>
 	</form>
