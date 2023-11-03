@@ -159,3 +159,7 @@ max-width: 120vh;
 .wishes{
     margin-bottom:50px;
 }
+
+.min-h300 .col-12 {
+    padding-bottom:20px;
+}

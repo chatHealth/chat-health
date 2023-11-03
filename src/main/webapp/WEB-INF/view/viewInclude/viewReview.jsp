@@ -25,7 +25,7 @@
 
 					</div>
 				</div>
-				<!---->
+				<hr class="featurette-divider">
 				<div class="reviewContentbox">
 					<div class="reviewContent">
 						<p class="txt_review">${review.CONTENT }</p>
@@ -34,5 +34,5 @@
 			</div>
 		</div>
 	</div>
-	<hr class="featurette-divider">
+	<!-- <hr class="featurette-divider"> -->
 </c:forEach>

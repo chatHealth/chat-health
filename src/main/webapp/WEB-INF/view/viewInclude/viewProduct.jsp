@@ -12,7 +12,7 @@
 		<div class="enterpriseName">
 			제조사 : ${postInfo.NAME } <br>${postInfo.REGDATE }</div>
 		<div class="productMaterialNo">
-			주성분 :
+			주성분<br>
 			<c:forEach items="${postMeterialInfo}" var="material">
 					[ ${material.materialName } ]
 				</c:forEach>

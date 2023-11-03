@@ -12,6 +12,7 @@
 
 <table class="table">
 	<h2>my review</h2>
+<p>내 리뷰 ${count}개</p>
 	<c:if test="${empty reviews}">
 		<p class="fs-5 col-md-8">아직 등록된 리뷰가 없습니다</p>
 		<div class="mb-5">
@@ -25,13 +26,13 @@
 		<th scope="col">#</th>
 		<th scope="col">상품 사진</th>
 		<th scope="col">
-			<a class="page-link" href="../personal/member-review?sort=2&by=1&idx=${idx}">상품명
+			<a class="page-link" href="../personal/member-review?sort=2&by=1&idx=${idx}&group=${group}">상품명
 				<img src="../img/sorting.png" class="img20"/></a></th>
 		<th scope="col">리뷰</th>
-		<th scope="col"><a class="page-link" href="../personal/member-review?sort=2&by=2&idx=${idx}">등록일
+		<th scope="col"><a class="page-link" href="../personal/member-review?sort=2&by=2&idx=${idx}&group=${group}">등록일
 			<img src="../img/sorting.png" class="img20"/></a></th>
 		<th scope="col">
-			<a class="page-link" href="../personal/member-review?sort=2&by=3&idx=${idx}">
+			<a class="page-link" href="../personal/member-review?sort=2&by=3&idx=${idx}&group=${group}">
 				<img src="../img/like.png" class="img20"/>
 				<img src="../img/sorting.png" class="img20"/></a></th>
 		</c:if>
@@ -39,13 +40,13 @@
 			<th scope="col">#</th>
 			<th scope="col">상품 사진</th>
 			<th scope="col">
-				<a class="page-link" href="../personal/member-review?sort=1&by=1&idx=${idx}">상품명
+				<a class="page-link" href="../personal/member-review?sort=1&by=1&idx=${idx}&group=${group}">상품명
 					<img src="../img/sorting.png" class="img20"/></a></th>
 			<th scope="col">리뷰</th>
-			<th scope="col"><a class="page-link" href="../personal/member-review?sort=1&by=2&idx=${idx}">등록일
+			<th scope="col"><a class="page-link" href="../personal/member-review?sort=1&by=2&idx=${idx}&group=${group}">등록일
 				<img src="../img/sorting.png" class="img20"/></a></th>
 			<th scope="col">
-				<a class="page-link" href="../personal/member-review?sort=1&by=3&idx=${idx}">
+				<a class="page-link" href="../personal/member-review?sort=1&by=3&idx=${idx}&group=${group}">
 					<img src="../img/like.png" class="img20"/>
 					<img src="../img/sorting.png" class="img20"/></a></th>
 		</c:if>
@@ -73,19 +74,30 @@
 </table>
 <nav aria-label="Page navigation example">
 	<ul class="pagination">
+		<c:if test="${start ne 1}">
 		<li class="page-item">
-			<a class="page-link" href="#" aria-label="Previous">
+			<a class="page-link btn-green" href="../personal/member-review?sort=${sort}&by=${by}&idx=${start-5}&group=${group-1}" aria-label="Previous">
 				<span aria-hidden="true">&laquo;</span>
 			</a>
 		</li>
-		<c:forEach var="page" begin="1" end="${pages}">
-			<li class="page-item"><a class="page-link" href="../personal/member-review?sort=${sort}&by=${by}&idx=${page}">${page}</a></li>
+		</c:if>
+		<c:forEach var="page" begin="${start}" end="${end}">
+			<c:choose>
+			<c:when test="${idx eq page}">
+				<li class="page-item"><a class="page-link btn-ygreen" href="../personal/member-review?sort=${sort}&by=${by}&idx=${page}&group=${group}">${page}</a></li>
+			</c:when>
+				<c:otherwise>
+			<li class="page-item"><a class="page-link btn-green" href="../personal/member-review?sort=${sort}&by=${by}&idx=${page}&group=${group}">${page}</a></li>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
+		<c:if test="${group ne totalGroup}">
 		<li class="page-item">
-			<a class="page-link" href="#" aria-label="Next">
+			<a class="page-link btn-green" href="../personal/member-review?sort=${sort}&by=${by}&idx=${start+5}&group=${group + 1}" aria-label="Next">
 				<span aria-hidden="true">&raquo;</span>
 			</a>
 		</li>
+		</c:if>
 	</ul>
 </nav>
 	</c:if>

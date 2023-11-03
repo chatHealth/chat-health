@@ -30,42 +30,44 @@
 
 </head>
 <body>
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" style="position:sticky; top:-10px; background:white; opacity:0.9">
-	<div class="col-md-3 mb-2 mb-md-0">
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom mt-3" style="position:sticky; top:-10px; background:white; opacity:0.9">
+	<div class="col-md-3 mb-2 mb-md-0" style="margin-left:200px;" >
 		<a href="../index/index" class="d-inline-flex link-body-emphasis text-decoration-none">
 			<img src="../img/logo.png" style="height:80px;"/>
 		</a>
 	</div>
 
+	<div style="margin-right:200px;" >
 	<c:choose>
 		<c:when test="${ not empty loggedMember }">
-			<div class="col-md-3 text-end">
-				<a href="../personal/member-info" class="btn btn-outline-primary mt-3 btn-green"> ${loggedMember.nickName } </a>
-				<a href="../member/logout" class="btn btn-outline-primary mt-3 btn-green"> 로그아웃 </a>
+			<div class="text-end double-btn">
+				<a href="../personal/member-info" class="btn  btn-green"> ${loggedMember.nickName } </a>
+				<a href="../member/logout" class="btn  btn-green"> 로그아웃 </a>
 			</div>
 		</c:when>
 
 		<c:when test="${ not empty loggedEnterprise }">
-			<div class="col-md-3 text-end">
-				<a href="../personal/member-info" class="btn btn-outline-primary mt-3 btn-green"> ${loggedEnterprise.name } </a>
-				<a href="../member/logout" class="btn btn-outline-primary mt-3 btn-green"> 로그아웃 </a>
+			<div class="text-end double-btn">
+				<a href="../personal/member-info" class="btn   btn-green"> ${loggedEnterprise.name } </a>
+				<a href="../member/logout" class="btn   btn-green"> 로그아웃 </a>
 			</div>
 		</c:when>
 
 		<c:when test="${ not empty loggedAdmin }">
-			<div class="col-md-3 text-end">
-				<a href="../personal/member-manage" class="btn btn-outline-primary mt-3 btn-green"> ${loggedAdmin.nickName } </a>
-				<a href="../member/logout" class="btn btn-outline-primary mt-3 btn-green"> 로그아웃 </a>
+			<div class=" text-end double-btn">
+				<a href="../personal/member-manage" class="btn   btn-green"> ${loggedAdmin.nickName } </a>
+				<a href="../member/logout" class="btn   btn-green"> 로그아웃 </a>
 			</div>
 		</c:when>
 
 		<c:otherwise>
-			<div class="col-md-3 text-end">
-				<a href="../member/join-select" class="btn btn-outline-primary mt-3 btn-green"> 회원가입 </a>
-				<a href="../member/login" class="btn btn-outline-primary mt-3 btn-green"> 로그인 </a>
+			<div class=" text-end double-btn">
+				<a href="../member/join-select" class="btn   btn-green"> 회원가입 </a>
+				<a href="../member/login" class="btn   btn-green"> 로그인 </a>
 			</div>
 		</c:otherwise>
 	</c:choose>
+	</div>
 </header>
 
 <main class="main ">

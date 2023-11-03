@@ -12,8 +12,8 @@
 
 		<hr class="featurette-divider">
 		<!-- 제품정보 -->
-		<div class="row featurette">
-			<div class="col-md-7">${postInfo.CONTENT}</div>
+		<div class="productContent">
+			<div class="productContent1">${postInfo.CONTENT}</div>
 		</div>
 		<!--                          리뷰                         -->
 		<hr class="featurette-divider">

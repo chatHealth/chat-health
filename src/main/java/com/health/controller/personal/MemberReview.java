@@ -33,9 +33,8 @@ public class MemberReview extends HttpServlet {
                 idx = 1;
             } else {
                 idx = Integer.parseInt(request.getParameter("idx"));
-                idx = 10 * idx - 9;
             }
-            map.put("idx", idx);
+            map.put("idx", 10 * idx - 9);
 
 //            정렬 기준
 //            1, "TITLE";
@@ -63,6 +62,24 @@ public class MemberReview extends HttpServlet {
 
             int count = personalDao.memReviewsCount(userNo);
             int pages = (int) Math.ceil(count / 10.0);
+
+            int totalGroup = (int)Math.ceil(pages/5.0);
+            int group=1;
+            if(request.getParameter("group") != null) {
+                group = Integer.parseInt(request.getParameter("group"));
+            }
+            int start = group * 5 - 4;
+            int end = group * 5;
+            if (end >= pages) {
+                end = pages;
+            }
+
+            request.setAttribute("totalGroup", totalGroup);
+            request.setAttribute("start", start);
+            request.setAttribute("end", end);
+            request.setAttribute("group",group);
+
+            request.setAttribute("count", count);
 
             request.setAttribute("by", by);
             request.setAttribute("sort", sort);
