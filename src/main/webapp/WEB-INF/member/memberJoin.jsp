@@ -195,8 +195,9 @@
 				} else {
 					const useID = confirm("쓸 수 있는 아이디. 사용하시겠어요?");
 					if (id)
-						$("#id").attr("readonly", true);
+						$("#id").attr("readonly", true);					
 					isIDCheck = true;
+					$("#password").focus();
 				}
 			},
 			fail : function(error) {

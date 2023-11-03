@@ -23,6 +23,7 @@ public class MemberLogin extends HttpServlet {
 		HttpSession session = request.getSession();
 		Object loggedMember = session.getAttribute("loggedMember");
 		Object loggedEnterprise = session.getAttribute("loggedEnterprise");
+		Object loggedAdmin = session.getAttribute("loggedAdmin");
 		if (loggedEnterprise == null && loggedMember == null) {
 			RequestDispatcher dispatcher =
 					request.getRequestDispatcher("/WEB-INF/member/login.jsp");
