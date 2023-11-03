@@ -36,8 +36,3 @@
 	</div>
 	<hr class="featurette-divider">
 </c:forEach>
-			</div>
-		</div>
-	</div>
-	<hr class="featurette-divider">
-</c:forEach>
