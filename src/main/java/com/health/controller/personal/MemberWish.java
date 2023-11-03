@@ -38,11 +38,10 @@ public class MemberWish extends HttpServlet {
             idx = 1;
         }else {
             idx = Integer.parseInt(request.getParameter("idx"));
-            idx = idx * 8 - 7;
         }
 
         map.put("userNo", userNo);
-        map.put("idx", idx);
+        map.put("idx", idx = idx * 8 - 7);
 
         int count = personalDao.totalMemWish(userNo);
         int pages = (int) Math.ceil(count / 8.0);
@@ -65,7 +64,7 @@ public class MemberWish extends HttpServlet {
         request.setAttribute("end", end);
         request.setAttribute("group",group);
 
-
+        request.setAttribute("idx",idx);
         request.setAttribute("count", count);
         request.setAttribute("userNo", userNo);
         request.setAttribute("pages", pages);
