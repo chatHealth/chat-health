@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.health.dto.MaterialPostNoDto;
+import com.health.dto.ReviewDateDto;
 import com.health.dto.ReviewDto;
 import com.health.mybatis.MyBatisConnectionFactory;
 
@@ -22,8 +24,8 @@ public class ReviewDao {
 		return result;
 	}
 	
-	public List<Map<String,Object>> selectReview(int no) {
-		List<Map<String,Object>> result;
+	public List<ReviewDateDto> selectReview(int no) {
+		List<ReviewDateDto> result;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		result = sqlSession.selectList("reviewDate",no);
 		sqlSession.close();
@@ -36,8 +38,8 @@ public class ReviewDao {
 		sqlSession.close();
 		return result;
 	} 
-	public List<Map<String,Object>> postMeterial(int no) {
-		List<Map<String,Object>> result;
+	public List<MaterialPostNoDto> postMeterial(int no) {
+		List<MaterialPostNoDto> result;
 		SqlSession sqlSession = MyBatisConnectionFactory.getSqlSession();
 		result = sqlSession.selectList("postMeterial",no);
 		sqlSession.close();

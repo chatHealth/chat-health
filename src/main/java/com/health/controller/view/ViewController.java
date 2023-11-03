@@ -17,8 +17,10 @@ import com.health.dao.PostDao;
 import com.health.dao.ReviewDao;
 import com.health.dao.ViewLikeDao;
 import com.health.dto.HelpfulDto;
+import com.health.dto.MaterialPostNoDto;
 import com.health.dto.MemberDto;
 import com.health.dto.PostDto;
+import com.health.dto.ReviewDateDto;
 import com.health.dto.ReviewDto;
 import com.health.dto.UserLikeDto;
 
@@ -41,7 +43,7 @@ public class ViewController extends HttpServlet {
 		MemberDto logg =(MemberDto) session.getAttribute("loggedMember");
 		//리뷰전달
 		int no = Integer.parseInt(request.getParameter("no"));
-		List<Map<String,Object>> reviewList = reviewDao.selectReview(no);
+		List<ReviewDateDto> reviewList = reviewDao.selectReview(no);
 		request.setAttribute("reviewList", reviewList);
 		
 		//상품정보 전달
@@ -50,8 +52,8 @@ public class ViewController extends HttpServlet {
 		
 
 		//성분전달
-		List<Map<String,Object>> postMeterial = reviewDao.postMeterial(no);
-		request.setAttribute("postMeterial", postMeterial);
+		List<MaterialPostNoDto> postMeterialInfo = reviewDao.postMeterial(no);
+		request.setAttribute("postMeterialInfo", postMeterialInfo);
 		
 		//
 		UserLikeDto userLikeDto = new UserLikeDto();
